@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package drillbit.protobuf;
+
+message Sample {
+  repeated string feature = 1;
+  string target = 2;
+}

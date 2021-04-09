@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package drillbit.protobuf;
+
+message GeneralClassifier {
+  bool dense = 1;
+  int32 dims = 2;
+  bytes weights = 3;
+}
+
+message BinaryClassifier {
+  bool dense = 1;
+  int32 dims = 2;
+  bytes weights = 3;
+  bool useLabel = 4;
+  string trueLabel = 5;
+  string falseLabel = 6;
+}
+
+message MulticlassClassifier {
+  bool dense = 1;
+  int32 dims = 2;
+  repeated LabelAndModel label2Model = 3;
+
+  message LabelAndModel {
+    string label = 1;
+    bytes weights = 2;
+  }
+}
+
+message DecisionTreeClassifier {
+  bytes root = 1;
+}
+
+message RandomForestClassifier {
+  repeated bytes roots = 1;
+}

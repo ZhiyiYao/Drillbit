@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package drillbit.protobuf;
+
+message Node {
+  int32 output = 1;
+  repeated double posteriori = 2;
+  bool numerical = 3;
+  int32 feature = 4;
+  double value = 5;
+  Node trueChild = 6;
+  Node falseChild = 7;
+}
+
+message DenseWeights {
+  repeated double weight = 1;
+}
+
+message SparseWeights {
+  repeated SparseWeight weight = 1;
+
+  message SparseWeight {
+    string feature = 1;
+    double weight = 2;
+  }
+}
