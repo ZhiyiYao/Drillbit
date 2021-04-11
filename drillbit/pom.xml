@@ -46,12 +46,6 @@
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.roaringbitmap</groupId>-->
-<!--            <artifactId>RoaringBitmap</artifactId>-->
-<!--            <version>0.9.3</version>-->
-<!--            <systemPath>${project.basedir}/lib/R</systemPath>-->
-<!--        </dependency>-->
     </dependencies>
 
     <properties>
