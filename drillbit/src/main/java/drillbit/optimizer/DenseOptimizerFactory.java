@@ -1,8 +1,8 @@
 package drillbit.optimizer;
 
-import drillbit.parameter.Weights;
+import drillbit.TrainWeights;
 import drillbit.utils.math.MathUtils;
-import drillbit.utils.primitive.ObjectParser;
+import drillbit.utils.parser.ObjectParser;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -78,13 +78,13 @@ public final class DenseOptimizerFactory {
     static final class Momentum extends Optimizers.Momentum {
 
         @Nonnull
-        private final Weights.WeightWithDelta weightValueReused;
+        private final TrainWeights.WeightWithDelta weightValueReused;
         @Nonnull
         private double[] delta;
 
         public Momentum(int ndims, ConcurrentHashMap<String, String> options) {
             super(options);
-            this.weightValueReused = (Weights.WeightWithDelta) newWeightValue(0.d);
+            this.weightValueReused = (TrainWeights.WeightWithDelta) newWeightValue(0.d);
             this.delta = new double[ndims];
         }
 
@@ -114,13 +114,13 @@ public final class DenseOptimizerFactory {
     static final class AdaGrad extends Optimizers.AdaGrad {
 
         @Nonnull
-        private final Weights.WeightWithSumOfSquaredGradients weightValueReused;
+        private final TrainWeights.WeightWithSumOfSquaredGradients weightValueReused;
         @Nonnull
         private double[] sum_of_squared_gradients;
 
         public AdaGrad(int ndims, ConcurrentHashMap<String, String> options) {
             super(options);
-            this.weightValueReused = (Weights.WeightWithSumOfSquaredGradients) newWeightValue(0.d);
+            this.weightValueReused = (TrainWeights.WeightWithSumOfSquaredGradients) newWeightValue(0.d);
             this.sum_of_squared_gradients = new double[ndims];
         }
 
@@ -150,13 +150,13 @@ public final class DenseOptimizerFactory {
     static final class RMSprop extends Optimizers.RMSprop {
 
         @Nonnull
-        private final Weights.WeightWithSumOfSquaredGradients weightValueReused;
+        private final TrainWeights.WeightWithSumOfSquaredGradients weightValueReused;
         @Nonnull
         private double[] sum_of_squared_gradients;
 
         public RMSprop(int ndims, ConcurrentHashMap<String, String> options) {
             super(options);
-            this.weightValueReused = (Weights.WeightWithSumOfSquaredGradients) newWeightValue(0.d);
+            this.weightValueReused = (TrainWeights.WeightWithSumOfSquaredGradients) newWeightValue(0.d);
             this.sum_of_squared_gradients = new double[ndims];
         }
 
@@ -186,7 +186,7 @@ public final class DenseOptimizerFactory {
     static final class RMSpropGraves extends Optimizers.RMSpropGraves {
 
         @Nonnull
-        private final Weights.WeightWithSumOfGradientsAndSumOfSquaredGradientsAndDelta weightValueReused;
+        private final TrainWeights.WeightWithSumOfGradientsAndSumOfSquaredGradientsAndDelta weightValueReused;
         @Nonnull
         private double[] sum_of_gradients;
         @Nonnull
@@ -196,7 +196,7 @@ public final class DenseOptimizerFactory {
 
         public RMSpropGraves(int ndims, ConcurrentHashMap<String, String> options) {
             super(options);
-            this.weightValueReused = (Weights.WeightWithSumOfGradientsAndSumOfSquaredGradientsAndDelta) newWeightValue(0.d);
+            this.weightValueReused = (TrainWeights.WeightWithSumOfGradientsAndSumOfSquaredGradientsAndDelta) newWeightValue(0.d);
             this.sum_of_gradients = new double[ndims];
             this.sum_of_squared_gradients = new double[ndims];
             this.delta = new double[ndims];
@@ -234,7 +234,7 @@ public final class DenseOptimizerFactory {
     static final class AdaDelta extends Optimizers.AdaDelta {
 
         @Nonnull
-        private final Weights.WeightWithSumOfSquaredGradientsAndSumOfSquaredDeltaX weightValueReused;
+        private final TrainWeights.WeightWithSumOfSquaredGradientsAndSumOfSquaredDeltaX weightValueReused;
 
         @Nonnull
         private double[] sum_of_squared_gradients;
@@ -243,7 +243,7 @@ public final class DenseOptimizerFactory {
 
         public AdaDelta(int ndims, ConcurrentHashMap<String, String> options) {
             super(options);
-            this.weightValueReused = (Weights.WeightWithSumOfSquaredGradientsAndSumOfSquaredDeltaX) newWeightValue(0.d);
+            this.weightValueReused = (TrainWeights.WeightWithSumOfSquaredGradientsAndSumOfSquaredDeltaX) newWeightValue(0.d);
             this.sum_of_squared_gradients = new double[ndims];
             this.sum_of_squared_delta_x = new double[ndims];
         }
@@ -277,7 +277,7 @@ public final class DenseOptimizerFactory {
     static final class Adam extends Optimizers.Adam {
 
         @Nonnull
-        private final Weights.WeightWithMAndV weightValueReused;
+        private final TrainWeights.WeightWithMAndV weightValueReused;
 
         @Nonnull
         private double[] val_m;
@@ -286,7 +286,7 @@ public final class DenseOptimizerFactory {
 
         public Adam(int ndims, ConcurrentHashMap<String, String> options) {
             super(options);
-            this.weightValueReused = (Weights.WeightWithMAndV) newWeightValue(0.d);
+            this.weightValueReused = (TrainWeights.WeightWithMAndV) newWeightValue(0.d);
             this.val_m = new double[ndims];
             this.val_v = new double[ndims];
         }
@@ -320,7 +320,7 @@ public final class DenseOptimizerFactory {
     static final class Nadam extends Optimizers.Nadam {
 
         @Nonnull
-        private final Weights.WeightWithMAndV weightValueReused;
+        private final TrainWeights.WeightWithMAndV weightValueReused;
 
         @Nonnull
         private double[] val_m;
@@ -329,7 +329,7 @@ public final class DenseOptimizerFactory {
 
         public Nadam(int ndims, ConcurrentHashMap<String, String> options) {
             super(options);
-            this.weightValueReused = (Weights.WeightWithMAndV) newWeightValue(0.f);
+            this.weightValueReused = (TrainWeights.WeightWithMAndV) newWeightValue(0.f);
             this.val_m = new double[ndims];
             this.val_v = new double[ndims];
         }
@@ -363,7 +363,7 @@ public final class DenseOptimizerFactory {
     static final class Eve extends Optimizers.Eve {
 
         @Nonnull
-        private final Weights.WeightWithMAndV weightValueReused;
+        private final TrainWeights.WeightWithMAndV weightValueReused;
 
         @Nonnull
         private double[] val_m;
@@ -372,7 +372,7 @@ public final class DenseOptimizerFactory {
 
         public Eve(int ndims, ConcurrentHashMap<String, String> options) {
             super(options);
-            this.weightValueReused = (Weights.WeightWithMAndV) newWeightValue(0.f);
+            this.weightValueReused = (TrainWeights.WeightWithMAndV) newWeightValue(0.f);
             this.val_m = new double[ndims];
             this.val_v = new double[ndims];
         }
@@ -407,7 +407,7 @@ public final class DenseOptimizerFactory {
     static final class AdamHD extends Optimizers.AdamHD {
 
         @Nonnull
-        private final Weights.WeightWithMAndV weightValueReused;
+        private final TrainWeights.WeightWithMAndV weightValueReused;
 
         @Nonnull
         private double[] val_m;
@@ -416,7 +416,7 @@ public final class DenseOptimizerFactory {
 
         public AdamHD(int ndims, ConcurrentHashMap<String, String> options) {
             super(options);
-            this.weightValueReused = (Weights.WeightWithMAndV) newWeightValue(0.d);
+            this.weightValueReused = (TrainWeights.WeightWithMAndV) newWeightValue(0.d);
             this.val_m = new double[ndims];
             this.val_v = new double[ndims];
         }
@@ -449,7 +449,7 @@ public final class DenseOptimizerFactory {
     static final class AdagradRDA extends Optimizers.AdagradRDA {
 
         @Nonnull
-        private final Weights.WeightWithSumOfSquaredGradientsAndSumOfGradients weightValueReused;
+        private final TrainWeights.WeightWithSumOfSquaredGradientsAndSumOfGradients weightValueReused;
 
         @Nonnull
         private double[] sum_of_gradients;
@@ -457,7 +457,7 @@ public final class DenseOptimizerFactory {
         public AdagradRDA(int ndims, @Nonnull Optimizers.AdaGrad optimizerImpl,
                           @Nonnull ConcurrentHashMap<String, String> options) {
             super(optimizerImpl, options);
-            this.weightValueReused = (Weights.WeightWithSumOfSquaredGradientsAndSumOfGradients) newWeightValue(0.f);
+            this.weightValueReused = (TrainWeights.WeightWithSumOfSquaredGradientsAndSumOfGradients) newWeightValue(0.f);
             this.sum_of_gradients = new double[ndims];
         }
 

@@ -1,6 +1,6 @@
 package drillbit.optimizer;
 
-import drillbit.parameter.Weights;
+import drillbit.TrainWeights;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -77,7 +77,7 @@ public final class SparseOptimizerFactory {
     static final class Momentum extends Optimizers.Momentum {
 
         @Nonnull
-        private final ConcurrentHashMap<Object, Weights.WeightWithDelta> auxWeights;
+        private final ConcurrentHashMap<Object, TrainWeights.WeightWithDelta> auxWeights;
 
         public Momentum(@Nonnegative int size, @Nonnull ConcurrentHashMap<String, String> options) {
             super(options);
@@ -87,9 +87,9 @@ public final class SparseOptimizerFactory {
         @Override
         protected double update(@Nonnull final Object feature, final double weight,
                                final double gradient) {
-            Weights.WeightWithDelta auxWeight = auxWeights.get(feature);
+            TrainWeights.WeightWithDelta auxWeight = auxWeights.get(feature);
             if (auxWeight == null) {
-                auxWeight = (Weights.WeightWithDelta) newWeightValue(weight);
+                auxWeight = (TrainWeights.WeightWithDelta) newWeightValue(weight);
                 auxWeights.put(feature, auxWeight);
             } else {
                 auxWeight.set(weight);
@@ -103,7 +103,7 @@ public final class SparseOptimizerFactory {
     static final class AdaGrad extends Optimizers.AdaGrad {
 
         @Nonnull
-        private final ConcurrentHashMap<Object, Weights.WeightWithSumOfSquaredGradients> auxWeights;
+        private final ConcurrentHashMap<Object, TrainWeights.WeightWithSumOfSquaredGradients> auxWeights;
 
         public AdaGrad(@Nonnegative int size, @Nonnull ConcurrentHashMap<String, String> options) {
             super(options);
@@ -113,9 +113,9 @@ public final class SparseOptimizerFactory {
         @Override
         protected double update(@Nonnull final Object feature, final double weight,
                                final double gradient) {
-            Weights.WeightWithSumOfSquaredGradients auxWeight = auxWeights.get(feature);
+            TrainWeights.WeightWithSumOfSquaredGradients auxWeight = auxWeights.get(feature);
             if (auxWeight == null) {
-                auxWeight = (Weights.WeightWithSumOfSquaredGradients) newWeightValue(weight);
+                auxWeight = (TrainWeights.WeightWithSumOfSquaredGradients) newWeightValue(weight);
                 auxWeights.put(feature, auxWeight);
             } else {
                 auxWeight.set(weight);
@@ -129,7 +129,7 @@ public final class SparseOptimizerFactory {
     static final class RMSprop extends Optimizers.RMSprop {
 
         @Nonnull
-        private final ConcurrentHashMap<Object, Weights.WeightWithSumOfSquaredGradients> auxWeights;
+        private final ConcurrentHashMap<Object, TrainWeights.WeightWithSumOfSquaredGradients> auxWeights;
 
         public RMSprop(@Nonnegative int size, @Nonnull ConcurrentHashMap<String, String> options) {
             super(options);
@@ -139,9 +139,9 @@ public final class SparseOptimizerFactory {
         @Override
         protected double update(@Nonnull final Object feature, final double weight,
                                final double gradient) {
-            Weights.WeightWithSumOfSquaredGradients auxWeight = auxWeights.get(feature);
+            TrainWeights.WeightWithSumOfSquaredGradients auxWeight = auxWeights.get(feature);
             if (auxWeight == null) {
-                auxWeight = (Weights.WeightWithSumOfSquaredGradients) newWeightValue(weight);
+                auxWeight = (TrainWeights.WeightWithSumOfSquaredGradients) newWeightValue(weight);
                 auxWeights.put(feature, auxWeight);
             } else {
                 auxWeight.set(weight);
@@ -155,7 +155,7 @@ public final class SparseOptimizerFactory {
     static final class RMSpropGraves extends Optimizers.RMSpropGraves {
 
         @Nonnull
-        private final ConcurrentHashMap<Object, Weights.WeightWithSumOfGradientsAndSumOfSquaredGradientsAndDelta> auxWeights;
+        private final ConcurrentHashMap<Object, TrainWeights.WeightWithSumOfGradientsAndSumOfSquaredGradientsAndDelta> auxWeights;
 
         public RMSpropGraves(@Nonnegative int size, @Nonnull ConcurrentHashMap<String, String> options) {
             super(options);
@@ -165,9 +165,9 @@ public final class SparseOptimizerFactory {
         @Override
         protected double update(@Nonnull final Object feature, final double weight,
                                final double gradient) {
-            Weights.WeightWithSumOfGradientsAndSumOfSquaredGradientsAndDelta auxWeight = auxWeights.get(feature);
+            TrainWeights.WeightWithSumOfGradientsAndSumOfSquaredGradientsAndDelta auxWeight = auxWeights.get(feature);
             if (auxWeight == null) {
-                auxWeight = (Weights.WeightWithSumOfGradientsAndSumOfSquaredGradientsAndDelta) newWeightValue(weight);
+                auxWeight = (TrainWeights.WeightWithSumOfGradientsAndSumOfSquaredGradientsAndDelta) newWeightValue(weight);
                 auxWeights.put(feature, auxWeight);
             } else {
                 auxWeight.set(weight);
@@ -181,7 +181,7 @@ public final class SparseOptimizerFactory {
     static final class AdaDelta extends Optimizers.AdaDelta {
 
         @Nonnull
-        private final ConcurrentHashMap<Object, Weights.WeightWithSumOfSquaredGradientsAndSumOfSquaredDeltaX> auxWeights;
+        private final ConcurrentHashMap<Object, TrainWeights.WeightWithSumOfSquaredGradientsAndSumOfSquaredDeltaX> auxWeights;
 
         public AdaDelta(@Nonnegative int size, @Nonnull ConcurrentHashMap<String, String> options) {
             super(options);
@@ -191,9 +191,9 @@ public final class SparseOptimizerFactory {
         @Override
         protected double update(@Nonnull final Object feature, final double weight,
                                final double gradient) {
-            Weights.WeightWithSumOfSquaredGradientsAndSumOfSquaredDeltaX auxWeight = auxWeights.get(feature);
+            TrainWeights.WeightWithSumOfSquaredGradientsAndSumOfSquaredDeltaX auxWeight = auxWeights.get(feature);
             if (auxWeight == null) {
-                auxWeight = (Weights.WeightWithSumOfSquaredGradientsAndSumOfSquaredDeltaX) newWeightValue(weight);
+                auxWeight = (TrainWeights.WeightWithSumOfSquaredGradientsAndSumOfSquaredDeltaX) newWeightValue(weight);
                 auxWeights.put(feature, auxWeight);
             } else {
                 auxWeight.set(weight);
@@ -207,7 +207,7 @@ public final class SparseOptimizerFactory {
     static final class Adam extends Optimizers.Adam {
 
         @Nonnull
-        private final ConcurrentHashMap<Object, Weights.WeightWithMAndV> auxWeights;
+        private final ConcurrentHashMap<Object, TrainWeights.WeightWithMAndV> auxWeights;
 
         public Adam(@Nonnegative int size, @Nonnull ConcurrentHashMap<String, String> options) {
             super(options);
@@ -217,9 +217,9 @@ public final class SparseOptimizerFactory {
         @Override
         protected double update(@Nonnull final Object feature, final double weight,
                                final double gradient) {
-            Weights.WeightWithMAndV auxWeight = auxWeights.get(feature);
+            TrainWeights.WeightWithMAndV auxWeight = auxWeights.get(feature);
             if (auxWeight == null) {
-                auxWeight = (Weights.WeightWithMAndV) newWeightValue(weight);
+                auxWeight = (TrainWeights.WeightWithMAndV) newWeightValue(weight);
                 auxWeights.put(feature, auxWeight);
             } else {
                 auxWeight.set(weight);
@@ -233,7 +233,7 @@ public final class SparseOptimizerFactory {
     static final class Nadam extends Optimizers.Nadam {
 
         @Nonnull
-        private final ConcurrentHashMap<Object, Weights.WeightWithMAndV> auxWeights;
+        private final ConcurrentHashMap<Object, TrainWeights.WeightWithMAndV> auxWeights;
 
         public Nadam(@Nonnegative int size, @Nonnull ConcurrentHashMap<String, String> options) {
             super(options);
@@ -243,9 +243,9 @@ public final class SparseOptimizerFactory {
         @Override
         protected double update(@Nonnull final Object feature, final double weight,
                                final double gradient) {
-            Weights.WeightWithMAndV auxWeight = auxWeights.get(feature);
+            TrainWeights.WeightWithMAndV auxWeight = auxWeights.get(feature);
             if (auxWeight == null) {
-                auxWeight = (Weights.WeightWithMAndV) newWeightValue(weight);
+                auxWeight = (TrainWeights.WeightWithMAndV) newWeightValue(weight);
                 auxWeights.put(feature, auxWeight);
             } else {
                 auxWeight.set(weight);
@@ -259,7 +259,7 @@ public final class SparseOptimizerFactory {
     static final class Eve extends Optimizers.Eve {
 
         @Nonnull
-        private final ConcurrentHashMap<Object, Weights.SingleWeight> auxWeights;
+        private final ConcurrentHashMap<Object, TrainWeights.SingleWeight> auxWeights;
 
         public Eve(@Nonnegative int size, @Nonnull ConcurrentHashMap<String, String> options) {
             super(options);
@@ -269,9 +269,9 @@ public final class SparseOptimizerFactory {
         @Override
         protected double update(@Nonnull final Object feature, final double weight,
                                final double gradient) {
-            Weights.SingleWeight auxWeight = auxWeights.get(feature);
+            TrainWeights.SingleWeight auxWeight = auxWeights.get(feature);
             if (auxWeight == null) {
-                auxWeight = ( Weights.SingleWeight) newWeightValue(weight);
+                auxWeight = ( TrainWeights.SingleWeight) newWeightValue(weight);
                 auxWeights.put(feature, auxWeight);
             } else {
                 auxWeight.set(weight);
@@ -285,7 +285,7 @@ public final class SparseOptimizerFactory {
     static final class AdamHD extends Optimizers.AdamHD {
 
         @Nonnull
-        private final ConcurrentHashMap<Object, Weights.WeightWithMAndV> auxWeights;
+        private final ConcurrentHashMap<Object, TrainWeights.WeightWithMAndV> auxWeights;
 
         public AdamHD(@Nonnegative int size, @Nonnull ConcurrentHashMap<String, String> options) {
             super(options);
@@ -295,9 +295,9 @@ public final class SparseOptimizerFactory {
         @Override
         protected double update(@Nonnull final Object feature, final double weight,
                                final double gradient) {
-            Weights.WeightWithMAndV auxWeight = auxWeights.get(feature);
+            TrainWeights.WeightWithMAndV auxWeight = auxWeights.get(feature);
             if (auxWeight == null) {
-                auxWeight = (Weights.WeightWithMAndV) newWeightValue(weight);
+                auxWeight = (TrainWeights.WeightWithMAndV) newWeightValue(weight);
                 auxWeights.put(feature, auxWeight);
             } else {
                 auxWeight.set(weight);
@@ -311,7 +311,7 @@ public final class SparseOptimizerFactory {
     static final class AdagradRDA extends Optimizers.AdagradRDA {
 
         @Nonnull
-        private final ConcurrentHashMap<Object, Weights.WeightWithSumOfSquaredGradientsAndSumOfGradients> auxWeights;
+        private final ConcurrentHashMap<Object, TrainWeights.WeightWithSumOfSquaredGradientsAndSumOfGradients> auxWeights;
 
         public AdagradRDA(@Nonnegative int size, @Nonnull Optimizers.AdaGrad optimizerImpl,
                           @Nonnull ConcurrentHashMap<String, String> options) {
@@ -322,9 +322,9 @@ public final class SparseOptimizerFactory {
         @Override
         protected double update(@Nonnull final Object feature, final double weight,
                                final double gradient) {
-            Weights.WeightWithSumOfSquaredGradientsAndSumOfGradients auxWeight = auxWeights.get(feature);
+            TrainWeights.WeightWithSumOfSquaredGradientsAndSumOfGradients auxWeight = auxWeights.get(feature);
             if (auxWeight == null) {
-                auxWeight = (Weights.WeightWithSumOfSquaredGradientsAndSumOfGradients) newWeightValue(weight);
+                auxWeight = (TrainWeights.WeightWithSumOfSquaredGradientsAndSumOfGradients) newWeightValue(weight);
                 auxWeights.put(feature, auxWeight);
             } else {
                 auxWeight.set(weight);

@@ -2,7 +2,7 @@ package drillbit.dataset;
 
 import drillbit.optimizer.OptimizerOptions;
 import drillbit.utils.common.Conditions;
-import drillbit.utils.primitive.StringParser;
+import drillbit.utils.parser.StringParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;

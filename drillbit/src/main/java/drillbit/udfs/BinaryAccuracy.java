@@ -42,8 +42,8 @@ public class BinaryAccuracy implements DrillAggFunc {
     public void add() {
         String pred_s = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(y_pred.start, y_pred.end, y_pred.buffer);
         String true_s = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(y_true.start, y_true.end, y_true.buffer);
-        double pred_d = drillbit.utils.primitive.StringParser.parseDouble(pred_s, 0);
-        double true_d = drillbit.utils.primitive.StringParser.parseDouble(true_s, 0);
+        double pred_d = drillbit.utils.parser.StringParser.parseDouble(pred_s, 0);
+        double true_d = drillbit.utils.parser.StringParser.parseDouble(true_s, 0);
         if (pred_d == true_d) {
             trueCount.value++;
         }

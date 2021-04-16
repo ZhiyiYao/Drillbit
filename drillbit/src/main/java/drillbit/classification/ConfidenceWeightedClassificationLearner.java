@@ -1,10 +1,13 @@
 package drillbit.classification;
 
+import drillbit.FeatureValue;
+import drillbit.TrainWeights;
 import drillbit.parameter.*;
 import drillbit.utils.math.MathUtils;
-import drillbit.utils.primitive.StringParser;
+import drillbit.utils.parser.StringParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -44,16 +47,16 @@ public final class ConfidenceWeightedClassificationLearner extends BinaryClassif
     }
 
     @Nonnull
-    protected final Model createModel(boolean dense, int dims) {
-        Model model;
+    protected final Weights createModel(boolean dense, int dims) {
+        Weights weights;
         if (dense) {
             logger.info(String.format("Build a dense model with initial with %d initial dimensions", dims));
-            model = new DenseModel(dims, Weights.WeightType.WithCovar);
+            weights = new DenseWeights(dims, TrainWeights.WeightType.WithCovar);
         } else {
             logger.info(String.format("Build a dense model with initial with %d initial dimensions", dims));
-            model = new SparseModel(dims, Weights.WeightType.WithCovar);
+            weights = new SparseWeights(dims, TrainWeights.WeightType.WithCovar);
         }
-        return model;
+        return weights;
     }
 
     // Here we don't use optimizer to update weights
@@ -79,9 +82,9 @@ public final class ConfidenceWeightedClassificationLearner extends BinaryClassif
             final Object k = f.getFeature();
             final double v = f.getValueAsDouble();
 
-            Weights.WeightWithCovar old_w = model.get(k);
-            Weights.WeightWithCovar new_w = getNewWeight(old_w, v, coeff, alpha, phi);
-            model.set(k, new_w);
+            TrainWeights.WeightWithCovar old_w = weights.get(k);
+            TrainWeights.WeightWithCovar new_w = getNewWeight(old_w, v, coeff, alpha, phi);
+            weights.set(k, new_w);
         }
     }
 
@@ -98,7 +101,7 @@ public final class ConfidenceWeightedClassificationLearner extends BinaryClassif
         return gamma_numer / gamma_denom;
     }
 
-    private static Weights.WeightWithCovar getNewWeight(final Weights.WeightWithCovar old, final double x, final double coeff, final double alpha, final double phi) {
+    private static TrainWeights.WeightWithCovar getNewWeight(final TrainWeights.WeightWithCovar old, final double x, final double coeff, final double alpha, final double phi) {
         final double old_w, old_cov;
         if (old == null) {
             old_w = 0.d;
@@ -110,6 +113,6 @@ public final class ConfidenceWeightedClassificationLearner extends BinaryClassif
 
         double new_w = old_w + (coeff * old_cov * x);
         double new_cov = 1.d / (1.d / old_cov + (2.d * alpha * phi * x * x));
-        return (Weights.WeightWithCovar) Weights.WeightWithCovar.newBuilder().buildFromWeightAndParams(new_w, new_cov);
+        return (TrainWeights.WeightWithCovar) TrainWeights.WeightWithCovar.newBuilder().buildFromWeightAndParams(new_w, new_cov);
     }
 }

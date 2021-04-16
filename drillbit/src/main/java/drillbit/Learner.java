@@ -13,9 +13,15 @@ public interface Learner {
     @Nonnull
     Options getOptions();
 
+    Options getPredictOptions();
+
     CommandLine parseOptions(@Nonnull String commandLineValue) throws IllegalArgumentException;
 
+    CommandLine parsePredictOptions(@Nonnull String commandLineValue) throws IllegalArgumentException;
+
     CommandLine processOptions(@Nonnull CommandLine cl) throws IllegalArgumentException;
+
+    CommandLine processPredictOptions(@Nonnull CommandLine cl) throws IllegalArgumentException;
 
     void showHelp(@Nonnull Options opts);
 

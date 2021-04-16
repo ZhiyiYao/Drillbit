@@ -16,6 +16,7 @@
 package drillbit.utils.math;
 
 import drillbit.utils.common.Conditions;
+import drillbit.utils.lang.ArrayUtils;
 import drillbit.utils.math.builders.CSCMatrixBuilder;
 
 import javax.annotation.Nonnegative;

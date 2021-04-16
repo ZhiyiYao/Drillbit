@@ -20,18 +20,28 @@ message BinaryClassifier {
 message MulticlassClassifier {
   bool dense = 1;
   int32 dims = 2;
-  repeated LabelAndModel label2Model = 3;
+  repeated LabelAndWeights label2Weights = 3;
 
-  message LabelAndModel {
+  message LabelAndWeights {
     string label = 1;
     bytes weights = 2;
   }
 }
 
-message DecisionTreeClassifier {
-  bytes root = 1;
+message KNNBinaryClassifier {
+  bool dense = 1;
+  bytes coordinates = 3;
+  bool useLabel = 4;
+  string trueLabel = 5;
+  string falseLabel = 6;
 }
 
-message RandomForestClassifier {
-  repeated bytes roots = 1;
+message KNNMulticlassClassifier {
+  bool dense = 1;
+  repeated LabelAndCoordinates label2Coordinates = 2;
+
+  message LabelAndCoordinates {
+    string label = 1;
+    bytes coordinates = 2;
+  }
 }

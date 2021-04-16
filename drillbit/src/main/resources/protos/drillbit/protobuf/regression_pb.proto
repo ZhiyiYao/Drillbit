@@ -7,11 +7,3 @@ message GeneralRegressor {
   int32 dims = 2;
   bytes weights = 3;
 }
-
-message DecisionTreeRegressor {
-  bytes root = 1;
-}
-
-message RandomForestRegressor {
-  repeated bytes roots = 1;
-}

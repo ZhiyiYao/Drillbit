@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package drillbit.protobuf;
+
+message KMeansClassifier {
+
+}
+
+message GaussianMixtureModelClassifier {
+
+}

@@ -3,14 +3,17 @@ package drillbit.classification;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import drillbit.BaseLearner;
+import drillbit.FeatureValue;
+import drillbit.TrainWeights;
 import drillbit.parameter.*;
 import drillbit.optimizer.*;
 import drillbit.protobuf.ClassificationPb;
 import drillbit.protobuf.SamplePb;
-import drillbit.utils.learner.DoubleAccumulator;
-import drillbit.utils.primitive.StringParser;
+import drillbit.utils.common.DoubleAccumulator;
+import drillbit.utils.parser.StringParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.io.File;
@@ -20,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public final class GeneralClassificationLearner extends BaseLearner {
     // Model
-    private Model model;
+    private Weights weights;
     private long count;
 
     // For model storage and allocate
@@ -119,7 +122,7 @@ public final class GeneralClassificationLearner extends BaseLearner {
         }
         cvState = new ConversionState(chkCv, cvRate);
 
-        model = createModel();
+        weights = createModel();
         count = 0;
         sampled = 0;
 
@@ -136,16 +139,16 @@ public final class GeneralClassificationLearner extends BaseLearner {
     }
 
     @Nonnull
-    final Model createModel() {
-        Model model;
+    final Weights createModel() {
+        Weights weights;
         if (dense) {
             logger.info(String.format("Build a dense model with initial with %d initial dimensions", dims));
-                model = new DenseModel(dims, optimizer.getWeightType());
+                weights = new DenseWeights(dims, optimizer.getWeightType());
         } else {
             logger.info(String.format("Build a dense model with initial with %d initial dimensions", dims));
-            model = new SparseModel(dims, optimizer.getWeightType());
+            weights = new SparseWeights(dims, optimizer.getWeightType());
         }
-        return model;
+        return weights;
     }
 
     @Override
@@ -186,6 +189,17 @@ public final class GeneralClassificationLearner extends BaseLearner {
     }
 
     @Override
+    public Object predict(@NotNull String feature, @NotNull String options) {
+        ArrayList<String> featureValues = StringParser.parseArray(feature);
+        ArrayList<FeatureValue> featureVector = new ArrayList<>();
+        assert featureValues != null;
+        for (String featureValue : featureValues) {
+            featureVector.add(StringParser.parseFeature(featureValue));
+        }
+
+        return predict(featureVector) > 0 ? 1 : -1;
+    }
+
     final public double predict(@Nonnull ArrayList<FeatureValue> features) {
         double score = 0.f;
         for (FeatureValue f : features) {// a += w[i] * x[i]
@@ -195,7 +209,7 @@ public final class GeneralClassificationLearner extends BaseLearner {
             final Object k = f.getFeature();
             final double v = f.getValueAsDouble();
 
-            double old_w = model.getWeight(k);
+            double old_w = weights.getWeight(k);
             if (old_w != 0.d) {
                 score += (old_w * v);
             }
@@ -238,7 +252,7 @@ public final class GeneralClassificationLearner extends BaseLearner {
 
         builder.setDense(dense);
         builder.setDims(dims);
-        builder.setWeights(ByteString.copyFrom(model.toByteArray()));
+        builder.setWeights(ByteString.copyFrom(weights.toByteArray()));
 
         return builder.build().toByteArray();
     }
@@ -252,10 +266,10 @@ public final class GeneralClassificationLearner extends BaseLearner {
         byte[] modelBytes = generalClassifier.getWeights().toByteArray();
 
         if (dense) {
-            model = new DenseModel(dims, Weights.WeightType.Single).fromByteArray(modelBytes);
+            weights = new DenseWeights(dims, TrainWeights.WeightType.Single).fromByteArray(modelBytes);
         }
         else {
-            model = new SparseModel(dims, Weights.WeightType.Single).fromByteArray(modelBytes);
+            weights = new SparseWeights(dims, TrainWeights.WeightType.Single).fromByteArray(modelBytes);
         }
 
         return this;
@@ -316,14 +330,14 @@ public final class GeneralClassificationLearner extends BaseLearner {
         for (FeatureValue f : features) {
             Object feature = f.getFeature();
             double xi = f.getValueAsDouble();
-            double weight = model.getWeight(feature);
+            double weight = weights.getWeight(feature);
             double gradient = dloss * xi;
             final double new_weight = optimizer.update(feature, weight, loss, gradient);
             if (new_weight == 0.f) {
-                model.delete(feature);
+                weights.delete(feature);
                 continue;
             }
-            model.setWeight(feature, new_weight);
+            weights.setWeight(feature, new_weight);
         }
     }
 
@@ -331,7 +345,7 @@ public final class GeneralClassificationLearner extends BaseLearner {
         for (FeatureValue f : features) {
             Object feature = f.getFeature();
             double xi = f.getValueAsDouble();
-            double weight = model.getWeight(feature);
+            double weight = weights.getWeight(feature);
 
             double gradient = dloss * xi;
             double new_weight = optimizer.update(feature, weight, loss, gradient);
@@ -360,10 +374,10 @@ public final class GeneralClassificationLearner extends BaseLearner {
             DoubleAccumulator v = e.getValue();
             final double new_weight = v.get();
             if (new_weight == 0.d) {
-                model.delete(feature);
+                weights.delete(feature);
                 continue;
             }
-            model.setWeight(feature, new_weight);
+            weights.setWeight(feature, new_weight);
         }
 
         accumulated.clear();

@@ -3,10 +3,12 @@ package drillbit.classification.multiclass;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import drillbit.BaseLearner;
+import drillbit.FeatureValue;
+import drillbit.TrainWeights;
 import drillbit.parameter.*;
 import drillbit.optimizer.LossFunctions;
 import drillbit.protobuf.ClassificationPb;
-import drillbit.utils.primitive.StringParser;
+import drillbit.utils.parser.StringParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
 import org.jetbrains.annotations.NotNull;
@@ -21,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
     // Models
-    protected ConcurrentHashMap<String, Model> label2model;
+    protected ConcurrentHashMap<String, Weights> label2model;
     protected long count;
 
     // For model storage and allocate
@@ -110,7 +112,7 @@ public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
         return variance;
     }
 
-    protected final PredictionResult calcScoreAndVariance(@Nonnull final Model model, @Nonnull final ArrayList<FeatureValue> features) {
+    protected final PredictionResult calcScoreAndVariance(@Nonnull final Weights weights, @Nonnull final ArrayList<FeatureValue> features) {
         double score = 0.f;
         double variance = 0.f;
 
@@ -121,7 +123,7 @@ public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
             final Object k = f.getFeature();
             final double v = f.getValueAsDouble();
 
-            Weights.ExtendedWeight old_w = model.get(k);
+            TrainWeights.ExtendedWeight old_w = weights.get(k);
             if (old_w == null) {
                 variance += (1.f * v * v);
             } else {
@@ -138,13 +140,13 @@ public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
         logger.info("Trained " + label2model.size() + " classification model using " + count + " training examples");
 
         ClassificationPb.MulticlassClassifier.Builder builder = ClassificationPb.MulticlassClassifier.newBuilder();
-        ClassificationPb.MulticlassClassifier.LabelAndModel.Builder labelAndModelBuilder = ClassificationPb.MulticlassClassifier.LabelAndModel.newBuilder();
+        ClassificationPb.MulticlassClassifier.LabelAndWeights.Builder labelAndWeightsBuilder = ClassificationPb.MulticlassClassifier.LabelAndWeights.newBuilder();
 
         builder.setDense(dense);
         builder.setDims(dims);
-        for (Map.Entry<String, Model> entry : label2model.entrySet()) {
-            labelAndModelBuilder.clear();
-            builder.addLabel2Model(labelAndModelBuilder.setLabel(entry.getKey()).setWeights(ByteString.copyFrom(entry.getValue().toByteArray())).build());
+        for (Map.Entry<String, Weights> entry : label2model.entrySet()) {
+            labelAndWeightsBuilder.clear();
+            builder.addLabel2Weights(labelAndWeightsBuilder.setLabel(entry.getKey()).setWeights(ByteString.copyFrom(entry.getValue().toByteArray())).build());
         }
 
         return builder.build().toByteArray();
@@ -157,12 +159,12 @@ public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
         dense = multiclassClassifier.getDense();
         dims = multiclassClassifier.getDims();
         label2model = new ConcurrentHashMap<>();
-        for (ClassificationPb.MulticlassClassifier.LabelAndModel labelAndModel : multiclassClassifier.getLabel2ModelList()) {
+        for (ClassificationPb.MulticlassClassifier.LabelAndWeights labelAndWeights : multiclassClassifier.getLabel2WeightsList()) {
             if (dense) {
-                label2model.put(labelAndModel.getLabel(), (new DenseModel(dims, Weights.WeightType.Single)).fromByteArray(labelAndModel.getWeights().toByteArray()));
+                label2model.put(labelAndWeights.getLabel(), (new DenseWeights(dims, TrainWeights.WeightType.Single)).fromByteArray(labelAndWeights.getWeights().toByteArray()));
             }
             else {
-                label2model.put(labelAndModel.getLabel(), (new SparseModel(dims, Weights.WeightType.Single)).fromByteArray(labelAndModel.getWeights().toByteArray()));
+                label2model.put(labelAndWeights.getLabel(), (new SparseWeights(dims, TrainWeights.WeightType.Single)).fromByteArray(labelAndWeights.getWeights().toByteArray()));
             }
         }
 

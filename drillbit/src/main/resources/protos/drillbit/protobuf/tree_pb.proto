@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package drillbit.protobuf;
+
+message DecisionTreeClassifier {
+  bytes root = 1;
+}
+
+message RandomForestClassifier {
+  repeated bytes roots = 1;
+}
+
+message DecisionTreeRegressor {
+
+}
+
+message RandomForestRegressor {
+
+}

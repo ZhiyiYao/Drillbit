@@ -14,6 +14,5602 @@ public final class ParameterPb {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  public interface DenseWeightsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:drillbit.protobuf.DenseWeights)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated double weight = 1;</code>
+     * @return A list containing the weight.
+     */
+    java.util.List<java.lang.Double> getWeightList();
+    /**
+     * <code>repeated double weight = 1;</code>
+     * @return The count of weight.
+     */
+    int getWeightCount();
+    /**
+     * <code>repeated double weight = 1;</code>
+     * @param index The index of the element to return.
+     * @return The weight at the given index.
+     */
+    double getWeight(int index);
+  }
+  /**
+   * Protobuf type {@code drillbit.protobuf.DenseWeights}
+   */
+  public static final class DenseWeights extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:drillbit.protobuf.DenseWeights)
+      DenseWeightsOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use DenseWeights.newBuilder() to construct.
+    private DenseWeights(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private DenseWeights() {
+      weight_ = emptyDoubleList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DenseWeights();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private DenseWeights(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 9: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                weight_ = newDoubleList();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              weight_.addDouble(input.readDouble());
+              break;
+            }
+            case 10: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
+                weight_ = newDoubleList();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                weight_.addDouble(input.readDouble());
+              }
+              input.popLimit(limit);
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          weight_.makeImmutable(); // C
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseWeights_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseWeights_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              drillbit.protobuf.ParameterPb.DenseWeights.class, drillbit.protobuf.ParameterPb.DenseWeights.Builder.class);
+    }
+
+    public static final int WEIGHT_FIELD_NUMBER = 1;
+    private com.google.protobuf.Internal.DoubleList weight_;
+    /**
+     * <code>repeated double weight = 1;</code>
+     * @return A list containing the weight.
+     */
+    @java.lang.Override
+    public java.util.List<java.lang.Double>
+        getWeightList() {
+      return weight_;
+    }
+    /**
+     * <code>repeated double weight = 1;</code>
+     * @return The count of weight.
+     */
+    public int getWeightCount() {
+      return weight_.size();
+    }
+    /**
+     * <code>repeated double weight = 1;</code>
+     * @param index The index of the element to return.
+     * @return The weight at the given index.
+     */
+    public double getWeight(int index) {
+      return weight_.getDouble(index);
+    }
+    private int weightMemoizedSerializedSize = -1;
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (getWeightList().size() > 0) {
+        output.writeUInt32NoTag(10);
+        output.writeUInt32NoTag(weightMemoizedSerializedSize);
+      }
+      for (int i = 0; i < weight_.size(); i++) {
+        output.writeDoubleNoTag(weight_.getDouble(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        dataSize = 8 * getWeightList().size();
+        size += dataSize;
+        if (!getWeightList().isEmpty()) {
+          size += 1;
+          size += com.google.protobuf.CodedOutputStream
+              .computeInt32SizeNoTag(dataSize);
+        }
+        weightMemoizedSerializedSize = dataSize;
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof drillbit.protobuf.ParameterPb.DenseWeights)) {
+        return super.equals(obj);
+      }
+      drillbit.protobuf.ParameterPb.DenseWeights other = (drillbit.protobuf.ParameterPb.DenseWeights) obj;
+
+      if (!getWeightList()
+          .equals(other.getWeightList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getWeightCount() > 0) {
+        hash = (37 * hash) + WEIGHT_FIELD_NUMBER;
+        hash = (53 * hash) + getWeightList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseWeights parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseWeights parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(drillbit.protobuf.ParameterPb.DenseWeights prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code drillbit.protobuf.DenseWeights}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:drillbit.protobuf.DenseWeights)
+        drillbit.protobuf.ParameterPb.DenseWeightsOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseWeights_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseWeights_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                drillbit.protobuf.ParameterPb.DenseWeights.class, drillbit.protobuf.ParameterPb.DenseWeights.Builder.class);
+      }
+
+      // Construct using drillbit.protobuf.ParameterPb.DenseWeights.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        weight_ = emptyDoubleList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseWeights_descriptor;
+      }
+
+      @java.lang.Override
+      public drillbit.protobuf.ParameterPb.DenseWeights getDefaultInstanceForType() {
+        return drillbit.protobuf.ParameterPb.DenseWeights.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public drillbit.protobuf.ParameterPb.DenseWeights build() {
+        drillbit.protobuf.ParameterPb.DenseWeights result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public drillbit.protobuf.ParameterPb.DenseWeights buildPartial() {
+        drillbit.protobuf.ParameterPb.DenseWeights result = new drillbit.protobuf.ParameterPb.DenseWeights(this);
+        int from_bitField0_ = bitField0_;
+        if (((bitField0_ & 0x00000001) != 0)) {
+          weight_.makeImmutable();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.weight_ = weight_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof drillbit.protobuf.ParameterPb.DenseWeights) {
+          return mergeFrom((drillbit.protobuf.ParameterPb.DenseWeights)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(drillbit.protobuf.ParameterPb.DenseWeights other) {
+        if (other == drillbit.protobuf.ParameterPb.DenseWeights.getDefaultInstance()) return this;
+        if (!other.weight_.isEmpty()) {
+          if (weight_.isEmpty()) {
+            weight_ = other.weight_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureWeightIsMutable();
+            weight_.addAll(other.weight_);
+          }
+          onChanged();
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        drillbit.protobuf.ParameterPb.DenseWeights parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (drillbit.protobuf.ParameterPb.DenseWeights) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.Internal.DoubleList weight_ = emptyDoubleList();
+      private void ensureWeightIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          weight_ = mutableCopy(weight_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      /**
+       * <code>repeated double weight = 1;</code>
+       * @return A list containing the weight.
+       */
+      public java.util.List<java.lang.Double>
+          getWeightList() {
+        return ((bitField0_ & 0x00000001) != 0) ?
+                 java.util.Collections.unmodifiableList(weight_) : weight_;
+      }
+      /**
+       * <code>repeated double weight = 1;</code>
+       * @return The count of weight.
+       */
+      public int getWeightCount() {
+        return weight_.size();
+      }
+      /**
+       * <code>repeated double weight = 1;</code>
+       * @param index The index of the element to return.
+       * @return The weight at the given index.
+       */
+      public double getWeight(int index) {
+        return weight_.getDouble(index);
+      }
+      /**
+       * <code>repeated double weight = 1;</code>
+       * @param index The index to set the value at.
+       * @param value The weight to set.
+       * @return This builder for chaining.
+       */
+      public Builder setWeight(
+          int index, double value) {
+        ensureWeightIsMutable();
+        weight_.setDouble(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated double weight = 1;</code>
+       * @param value The weight to add.
+       * @return This builder for chaining.
+       */
+      public Builder addWeight(double value) {
+        ensureWeightIsMutable();
+        weight_.addDouble(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated double weight = 1;</code>
+       * @param values The weight to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllWeight(
+          java.lang.Iterable<? extends java.lang.Double> values) {
+        ensureWeightIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, weight_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated double weight = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearWeight() {
+        weight_ = emptyDoubleList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:drillbit.protobuf.DenseWeights)
+    }
+
+    // @@protoc_insertion_point(class_scope:drillbit.protobuf.DenseWeights)
+    private static final drillbit.protobuf.ParameterPb.DenseWeights DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new drillbit.protobuf.ParameterPb.DenseWeights();
+    }
+
+    public static drillbit.protobuf.ParameterPb.DenseWeights getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<DenseWeights>
+        PARSER = new com.google.protobuf.AbstractParser<DenseWeights>() {
+      @java.lang.Override
+      public DenseWeights parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new DenseWeights(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<DenseWeights> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<DenseWeights> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public drillbit.protobuf.ParameterPb.DenseWeights getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SparseWeightsOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:drillbit.protobuf.SparseWeights)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+     */
+    java.util.List<drillbit.protobuf.ParameterPb.SparseWeights.Item> 
+        getWeightList();
+    /**
+     * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+     */
+    drillbit.protobuf.ParameterPb.SparseWeights.Item getWeight(int index);
+    /**
+     * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+     */
+    int getWeightCount();
+    /**
+     * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+     */
+    java.util.List<? extends drillbit.protobuf.ParameterPb.SparseWeights.ItemOrBuilder> 
+        getWeightOrBuilderList();
+    /**
+     * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+     */
+    drillbit.protobuf.ParameterPb.SparseWeights.ItemOrBuilder getWeightOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code drillbit.protobuf.SparseWeights}
+   */
+  public static final class SparseWeights extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:drillbit.protobuf.SparseWeights)
+      SparseWeightsOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use SparseWeights.newBuilder() to construct.
+    private SparseWeights(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SparseWeights() {
+      weight_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new SparseWeights();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SparseWeights(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                weight_ = new java.util.ArrayList<drillbit.protobuf.ParameterPb.SparseWeights.Item>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              weight_.add(
+                  input.readMessage(drillbit.protobuf.ParameterPb.SparseWeights.Item.parser(), extensionRegistry));
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          weight_ = java.util.Collections.unmodifiableList(weight_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              drillbit.protobuf.ParameterPb.SparseWeights.class, drillbit.protobuf.ParameterPb.SparseWeights.Builder.class);
+    }
+
+    public interface ItemOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:drillbit.protobuf.SparseWeights.Item)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>string feature = 1;</code>
+       * @return The feature.
+       */
+      java.lang.String getFeature();
+      /**
+       * <code>string feature = 1;</code>
+       * @return The bytes for feature.
+       */
+      com.google.protobuf.ByteString
+          getFeatureBytes();
+
+      /**
+       * <code>double weight = 2;</code>
+       * @return The weight.
+       */
+      double getWeight();
+    }
+    /**
+     * Protobuf type {@code drillbit.protobuf.SparseWeights.Item}
+     */
+    public static final class Item extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:drillbit.protobuf.SparseWeights.Item)
+        ItemOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use Item.newBuilder() to construct.
+      private Item(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private Item() {
+        feature_ = "";
+      }
+
+      @java.lang.Override
+      @SuppressWarnings({"unused"})
+      protected java.lang.Object newInstance(
+          UnusedPrivateParameter unused) {
+        return new Item();
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private Item(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                java.lang.String s = input.readStringRequireUtf8();
+
+                feature_ = s;
+                break;
+              }
+              case 17: {
+
+                weight_ = input.readDouble();
+                break;
+              }
+              default: {
+                if (!parseUnknownField(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_Item_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_Item_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                drillbit.protobuf.ParameterPb.SparseWeights.Item.class, drillbit.protobuf.ParameterPb.SparseWeights.Item.Builder.class);
+      }
+
+      public static final int FEATURE_FIELD_NUMBER = 1;
+      private volatile java.lang.Object feature_;
+      /**
+       * <code>string feature = 1;</code>
+       * @return The feature.
+       */
+      @java.lang.Override
+      public java.lang.String getFeature() {
+        java.lang.Object ref = feature_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          feature_ = s;
+          return s;
+        }
+      }
+      /**
+       * <code>string feature = 1;</code>
+       * @return The bytes for feature.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString
+          getFeatureBytes() {
+        java.lang.Object ref = feature_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          feature_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      public static final int WEIGHT_FIELD_NUMBER = 2;
+      private double weight_;
+      /**
+       * <code>double weight = 2;</code>
+       * @return The weight.
+       */
+      @java.lang.Override
+      public double getWeight() {
+        return weight_;
+      }
+
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      @java.lang.Override
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (!getFeatureBytes().isEmpty()) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 1, feature_);
+        }
+        if (weight_ != 0D) {
+          output.writeDouble(2, weight_);
+        }
+        unknownFields.writeTo(output);
+      }
+
+      @java.lang.Override
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (!getFeatureBytes().isEmpty()) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, feature_);
+        }
+        if (weight_ != 0D) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeDoubleSize(2, weight_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof drillbit.protobuf.ParameterPb.SparseWeights.Item)) {
+          return super.equals(obj);
+        }
+        drillbit.protobuf.ParameterPb.SparseWeights.Item other = (drillbit.protobuf.ParameterPb.SparseWeights.Item) obj;
+
+        if (!getFeature()
+            .equals(other.getFeature())) return false;
+        if (java.lang.Double.doubleToLongBits(getWeight())
+            != java.lang.Double.doubleToLongBits(
+                other.getWeight())) return false;
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + FEATURE_FIELD_NUMBER;
+        hash = (53 * hash) + getFeature().hashCode();
+        hash = (37 * hash) + WEIGHT_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            java.lang.Double.doubleToLongBits(getWeight()));
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static drillbit.protobuf.ParameterPb.SparseWeights.Item parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseWeights.Item parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseWeights.Item parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseWeights.Item parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseWeights.Item parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseWeights.Item parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseWeights.Item parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseWeights.Item parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseWeights.Item parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseWeights.Item parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseWeights.Item parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseWeights.Item parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(drillbit.protobuf.ParameterPb.SparseWeights.Item prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code drillbit.protobuf.SparseWeights.Item}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:drillbit.protobuf.SparseWeights.Item)
+          drillbit.protobuf.ParameterPb.SparseWeights.ItemOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_Item_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_Item_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  drillbit.protobuf.ParameterPb.SparseWeights.Item.class, drillbit.protobuf.ParameterPb.SparseWeights.Item.Builder.class);
+        }
+
+        // Construct using drillbit.protobuf.ParameterPb.SparseWeights.Item.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          feature_ = "";
+
+          weight_ = 0D;
+
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_Item_descriptor;
+        }
+
+        @java.lang.Override
+        public drillbit.protobuf.ParameterPb.SparseWeights.Item getDefaultInstanceForType() {
+          return drillbit.protobuf.ParameterPb.SparseWeights.Item.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public drillbit.protobuf.ParameterPb.SparseWeights.Item build() {
+          drillbit.protobuf.ParameterPb.SparseWeights.Item result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public drillbit.protobuf.ParameterPb.SparseWeights.Item buildPartial() {
+          drillbit.protobuf.ParameterPb.SparseWeights.Item result = new drillbit.protobuf.ParameterPb.SparseWeights.Item(this);
+          result.feature_ = feature_;
+          result.weight_ = weight_;
+          onBuilt();
+          return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+          return super.clone();
+        }
+        @java.lang.Override
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return super.setField(field, value);
+        }
+        @java.lang.Override
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return super.clearField(field);
+        }
+        @java.lang.Override
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return super.clearOneof(oneof);
+        }
+        @java.lang.Override
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return super.setRepeatedField(field, index, value);
+        }
+        @java.lang.Override
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return super.addRepeatedField(field, value);
+        }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof drillbit.protobuf.ParameterPb.SparseWeights.Item) {
+            return mergeFrom((drillbit.protobuf.ParameterPb.SparseWeights.Item)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(drillbit.protobuf.ParameterPb.SparseWeights.Item other) {
+          if (other == drillbit.protobuf.ParameterPb.SparseWeights.Item.getDefaultInstance()) return this;
+          if (!other.getFeature().isEmpty()) {
+            feature_ = other.feature_;
+            onChanged();
+          }
+          if (other.getWeight() != 0D) {
+            setWeight(other.getWeight());
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          drillbit.protobuf.ParameterPb.SparseWeights.Item parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (drillbit.protobuf.ParameterPb.SparseWeights.Item) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+
+        private java.lang.Object feature_ = "";
+        /**
+         * <code>string feature = 1;</code>
+         * @return The feature.
+         */
+        public java.lang.String getFeature() {
+          java.lang.Object ref = feature_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            feature_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>string feature = 1;</code>
+         * @return The bytes for feature.
+         */
+        public com.google.protobuf.ByteString
+            getFeatureBytes() {
+          java.lang.Object ref = feature_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            feature_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>string feature = 1;</code>
+         * @param value The feature to set.
+         * @return This builder for chaining.
+         */
+        public Builder setFeature(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          feature_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string feature = 1;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearFeature() {
+          
+          feature_ = getDefaultInstance().getFeature();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string feature = 1;</code>
+         * @param value The bytes for feature to set.
+         * @return This builder for chaining.
+         */
+        public Builder setFeatureBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+          
+          feature_ = value;
+          onChanged();
+          return this;
+        }
+
+        private double weight_ ;
+        /**
+         * <code>double weight = 2;</code>
+         * @return The weight.
+         */
+        @java.lang.Override
+        public double getWeight() {
+          return weight_;
+        }
+        /**
+         * <code>double weight = 2;</code>
+         * @param value The weight to set.
+         * @return This builder for chaining.
+         */
+        public Builder setWeight(double value) {
+          
+          weight_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>double weight = 2;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearWeight() {
+          
+          weight_ = 0D;
+          onChanged();
+          return this;
+        }
+        @java.lang.Override
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFields(unknownFields);
+        }
+
+        @java.lang.Override
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:drillbit.protobuf.SparseWeights.Item)
+      }
+
+      // @@protoc_insertion_point(class_scope:drillbit.protobuf.SparseWeights.Item)
+      private static final drillbit.protobuf.ParameterPb.SparseWeights.Item DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new drillbit.protobuf.ParameterPb.SparseWeights.Item();
+      }
+
+      public static drillbit.protobuf.ParameterPb.SparseWeights.Item getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<Item>
+          PARSER = new com.google.protobuf.AbstractParser<Item>() {
+        @java.lang.Override
+        public Item parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Item(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<Item> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Item> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public drillbit.protobuf.ParameterPb.SparseWeights.Item getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    public static final int WEIGHT_FIELD_NUMBER = 1;
+    private java.util.List<drillbit.protobuf.ParameterPb.SparseWeights.Item> weight_;
+    /**
+     * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<drillbit.protobuf.ParameterPb.SparseWeights.Item> getWeightList() {
+      return weight_;
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends drillbit.protobuf.ParameterPb.SparseWeights.ItemOrBuilder> 
+        getWeightOrBuilderList() {
+      return weight_;
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+     */
+    @java.lang.Override
+    public int getWeightCount() {
+      return weight_.size();
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+     */
+    @java.lang.Override
+    public drillbit.protobuf.ParameterPb.SparseWeights.Item getWeight(int index) {
+      return weight_.get(index);
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+     */
+    @java.lang.Override
+    public drillbit.protobuf.ParameterPb.SparseWeights.ItemOrBuilder getWeightOrBuilder(
+        int index) {
+      return weight_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < weight_.size(); i++) {
+        output.writeMessage(1, weight_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < weight_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, weight_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof drillbit.protobuf.ParameterPb.SparseWeights)) {
+        return super.equals(obj);
+      }
+      drillbit.protobuf.ParameterPb.SparseWeights other = (drillbit.protobuf.ParameterPb.SparseWeights) obj;
+
+      if (!getWeightList()
+          .equals(other.getWeightList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getWeightCount() > 0) {
+        hash = (37 * hash) + WEIGHT_FIELD_NUMBER;
+        hash = (53 * hash) + getWeightList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseWeights parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseWeights parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(drillbit.protobuf.ParameterPb.SparseWeights prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code drillbit.protobuf.SparseWeights}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:drillbit.protobuf.SparseWeights)
+        drillbit.protobuf.ParameterPb.SparseWeightsOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                drillbit.protobuf.ParameterPb.SparseWeights.class, drillbit.protobuf.ParameterPb.SparseWeights.Builder.class);
+      }
+
+      // Construct using drillbit.protobuf.ParameterPb.SparseWeights.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getWeightFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (weightBuilder_ == null) {
+          weight_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          weightBuilder_.clear();
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_descriptor;
+      }
+
+      @java.lang.Override
+      public drillbit.protobuf.ParameterPb.SparseWeights getDefaultInstanceForType() {
+        return drillbit.protobuf.ParameterPb.SparseWeights.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public drillbit.protobuf.ParameterPb.SparseWeights build() {
+        drillbit.protobuf.ParameterPb.SparseWeights result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public drillbit.protobuf.ParameterPb.SparseWeights buildPartial() {
+        drillbit.protobuf.ParameterPb.SparseWeights result = new drillbit.protobuf.ParameterPb.SparseWeights(this);
+        int from_bitField0_ = bitField0_;
+        if (weightBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            weight_ = java.util.Collections.unmodifiableList(weight_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.weight_ = weight_;
+        } else {
+          result.weight_ = weightBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof drillbit.protobuf.ParameterPb.SparseWeights) {
+          return mergeFrom((drillbit.protobuf.ParameterPb.SparseWeights)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(drillbit.protobuf.ParameterPb.SparseWeights other) {
+        if (other == drillbit.protobuf.ParameterPb.SparseWeights.getDefaultInstance()) return this;
+        if (weightBuilder_ == null) {
+          if (!other.weight_.isEmpty()) {
+            if (weight_.isEmpty()) {
+              weight_ = other.weight_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureWeightIsMutable();
+              weight_.addAll(other.weight_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.weight_.isEmpty()) {
+            if (weightBuilder_.isEmpty()) {
+              weightBuilder_.dispose();
+              weightBuilder_ = null;
+              weight_ = other.weight_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              weightBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getWeightFieldBuilder() : null;
+            } else {
+              weightBuilder_.addAllMessages(other.weight_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        drillbit.protobuf.ParameterPb.SparseWeights parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (drillbit.protobuf.ParameterPb.SparseWeights) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<drillbit.protobuf.ParameterPb.SparseWeights.Item> weight_ =
+        java.util.Collections.emptyList();
+      private void ensureWeightIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          weight_ = new java.util.ArrayList<drillbit.protobuf.ParameterPb.SparseWeights.Item>(weight_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          drillbit.protobuf.ParameterPb.SparseWeights.Item, drillbit.protobuf.ParameterPb.SparseWeights.Item.Builder, drillbit.protobuf.ParameterPb.SparseWeights.ItemOrBuilder> weightBuilder_;
+
+      /**
+       * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+       */
+      public java.util.List<drillbit.protobuf.ParameterPb.SparseWeights.Item> getWeightList() {
+        if (weightBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(weight_);
+        } else {
+          return weightBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+       */
+      public int getWeightCount() {
+        if (weightBuilder_ == null) {
+          return weight_.size();
+        } else {
+          return weightBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+       */
+      public drillbit.protobuf.ParameterPb.SparseWeights.Item getWeight(int index) {
+        if (weightBuilder_ == null) {
+          return weight_.get(index);
+        } else {
+          return weightBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+       */
+      public Builder setWeight(
+          int index, drillbit.protobuf.ParameterPb.SparseWeights.Item value) {
+        if (weightBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureWeightIsMutable();
+          weight_.set(index, value);
+          onChanged();
+        } else {
+          weightBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+       */
+      public Builder setWeight(
+          int index, drillbit.protobuf.ParameterPb.SparseWeights.Item.Builder builderForValue) {
+        if (weightBuilder_ == null) {
+          ensureWeightIsMutable();
+          weight_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          weightBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+       */
+      public Builder addWeight(drillbit.protobuf.ParameterPb.SparseWeights.Item value) {
+        if (weightBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureWeightIsMutable();
+          weight_.add(value);
+          onChanged();
+        } else {
+          weightBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+       */
+      public Builder addWeight(
+          int index, drillbit.protobuf.ParameterPb.SparseWeights.Item value) {
+        if (weightBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureWeightIsMutable();
+          weight_.add(index, value);
+          onChanged();
+        } else {
+          weightBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+       */
+      public Builder addWeight(
+          drillbit.protobuf.ParameterPb.SparseWeights.Item.Builder builderForValue) {
+        if (weightBuilder_ == null) {
+          ensureWeightIsMutable();
+          weight_.add(builderForValue.build());
+          onChanged();
+        } else {
+          weightBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+       */
+      public Builder addWeight(
+          int index, drillbit.protobuf.ParameterPb.SparseWeights.Item.Builder builderForValue) {
+        if (weightBuilder_ == null) {
+          ensureWeightIsMutable();
+          weight_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          weightBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+       */
+      public Builder addAllWeight(
+          java.lang.Iterable<? extends drillbit.protobuf.ParameterPb.SparseWeights.Item> values) {
+        if (weightBuilder_ == null) {
+          ensureWeightIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, weight_);
+          onChanged();
+        } else {
+          weightBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+       */
+      public Builder clearWeight() {
+        if (weightBuilder_ == null) {
+          weight_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          weightBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+       */
+      public Builder removeWeight(int index) {
+        if (weightBuilder_ == null) {
+          ensureWeightIsMutable();
+          weight_.remove(index);
+          onChanged();
+        } else {
+          weightBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+       */
+      public drillbit.protobuf.ParameterPb.SparseWeights.Item.Builder getWeightBuilder(
+          int index) {
+        return getWeightFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+       */
+      public drillbit.protobuf.ParameterPb.SparseWeights.ItemOrBuilder getWeightOrBuilder(
+          int index) {
+        if (weightBuilder_ == null) {
+          return weight_.get(index);  } else {
+          return weightBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+       */
+      public java.util.List<? extends drillbit.protobuf.ParameterPb.SparseWeights.ItemOrBuilder> 
+           getWeightOrBuilderList() {
+        if (weightBuilder_ != null) {
+          return weightBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(weight_);
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+       */
+      public drillbit.protobuf.ParameterPb.SparseWeights.Item.Builder addWeightBuilder() {
+        return getWeightFieldBuilder().addBuilder(
+            drillbit.protobuf.ParameterPb.SparseWeights.Item.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+       */
+      public drillbit.protobuf.ParameterPb.SparseWeights.Item.Builder addWeightBuilder(
+          int index) {
+        return getWeightFieldBuilder().addBuilder(
+            index, drillbit.protobuf.ParameterPb.SparseWeights.Item.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseWeights.Item weight = 1;</code>
+       */
+      public java.util.List<drillbit.protobuf.ParameterPb.SparseWeights.Item.Builder> 
+           getWeightBuilderList() {
+        return getWeightFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          drillbit.protobuf.ParameterPb.SparseWeights.Item, drillbit.protobuf.ParameterPb.SparseWeights.Item.Builder, drillbit.protobuf.ParameterPb.SparseWeights.ItemOrBuilder> 
+          getWeightFieldBuilder() {
+        if (weightBuilder_ == null) {
+          weightBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              drillbit.protobuf.ParameterPb.SparseWeights.Item, drillbit.protobuf.ParameterPb.SparseWeights.Item.Builder, drillbit.protobuf.ParameterPb.SparseWeights.ItemOrBuilder>(
+                  weight_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          weight_ = null;
+        }
+        return weightBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:drillbit.protobuf.SparseWeights)
+    }
+
+    // @@protoc_insertion_point(class_scope:drillbit.protobuf.SparseWeights)
+    private static final drillbit.protobuf.ParameterPb.SparseWeights DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new drillbit.protobuf.ParameterPb.SparseWeights();
+    }
+
+    public static drillbit.protobuf.ParameterPb.SparseWeights getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SparseWeights>
+        PARSER = new com.google.protobuf.AbstractParser<SparseWeights>() {
+      @java.lang.Override
+      public SparseWeights parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SparseWeights(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SparseWeights> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SparseWeights> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public drillbit.protobuf.ParameterPb.SparseWeights getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface DenseCoordinatesOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:drillbit.protobuf.DenseCoordinates)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+     */
+    java.util.List<drillbit.protobuf.ParameterPb.DenseCoordinates.Row> 
+        getCoordinateList();
+    /**
+     * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+     */
+    drillbit.protobuf.ParameterPb.DenseCoordinates.Row getCoordinate(int index);
+    /**
+     * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+     */
+    int getCoordinateCount();
+    /**
+     * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+     */
+    java.util.List<? extends drillbit.protobuf.ParameterPb.DenseCoordinates.RowOrBuilder> 
+        getCoordinateOrBuilderList();
+    /**
+     * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+     */
+    drillbit.protobuf.ParameterPb.DenseCoordinates.RowOrBuilder getCoordinateOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code drillbit.protobuf.DenseCoordinates}
+   */
+  public static final class DenseCoordinates extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:drillbit.protobuf.DenseCoordinates)
+      DenseCoordinatesOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use DenseCoordinates.newBuilder() to construct.
+    private DenseCoordinates(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private DenseCoordinates() {
+      coordinate_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new DenseCoordinates();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private DenseCoordinates(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                coordinate_ = new java.util.ArrayList<drillbit.protobuf.ParameterPb.DenseCoordinates.Row>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              coordinate_.add(
+                  input.readMessage(drillbit.protobuf.ParameterPb.DenseCoordinates.Row.parser(), extensionRegistry));
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          coordinate_ = java.util.Collections.unmodifiableList(coordinate_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseCoordinates_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseCoordinates_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              drillbit.protobuf.ParameterPb.DenseCoordinates.class, drillbit.protobuf.ParameterPb.DenseCoordinates.Builder.class);
+    }
+
+    public interface RowOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:drillbit.protobuf.DenseCoordinates.Row)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>repeated double element = 1 [packed = true];</code>
+       * @return A list containing the element.
+       */
+      java.util.List<java.lang.Double> getElementList();
+      /**
+       * <code>repeated double element = 1 [packed = true];</code>
+       * @return The count of element.
+       */
+      int getElementCount();
+      /**
+       * <code>repeated double element = 1 [packed = true];</code>
+       * @param index The index of the element to return.
+       * @return The element at the given index.
+       */
+      double getElement(int index);
+    }
+    /**
+     * Protobuf type {@code drillbit.protobuf.DenseCoordinates.Row}
+     */
+    public static final class Row extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:drillbit.protobuf.DenseCoordinates.Row)
+        RowOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use Row.newBuilder() to construct.
+      private Row(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private Row() {
+        element_ = emptyDoubleList();
+      }
+
+      @java.lang.Override
+      @SuppressWarnings({"unused"})
+      protected java.lang.Object newInstance(
+          UnusedPrivateParameter unused) {
+        return new Row();
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private Row(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 9: {
+                if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                  element_ = newDoubleList();
+                  mutable_bitField0_ |= 0x00000001;
+                }
+                element_.addDouble(input.readDouble());
+                break;
+              }
+              case 10: {
+                int length = input.readRawVarint32();
+                int limit = input.pushLimit(length);
+                if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
+                  element_ = newDoubleList();
+                  mutable_bitField0_ |= 0x00000001;
+                }
+                while (input.getBytesUntilLimit() > 0) {
+                  element_.addDouble(input.readDouble());
+                }
+                input.popLimit(limit);
+                break;
+              }
+              default: {
+                if (!parseUnknownField(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          if (((mutable_bitField0_ & 0x00000001) != 0)) {
+            element_.makeImmutable(); // C
+          }
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseCoordinates_Row_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseCoordinates_Row_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                drillbit.protobuf.ParameterPb.DenseCoordinates.Row.class, drillbit.protobuf.ParameterPb.DenseCoordinates.Row.Builder.class);
+      }
+
+      public static final int ELEMENT_FIELD_NUMBER = 1;
+      private com.google.protobuf.Internal.DoubleList element_;
+      /**
+       * <code>repeated double element = 1 [packed = true];</code>
+       * @return A list containing the element.
+       */
+      @java.lang.Override
+      public java.util.List<java.lang.Double>
+          getElementList() {
+        return element_;
+      }
+      /**
+       * <code>repeated double element = 1 [packed = true];</code>
+       * @return The count of element.
+       */
+      public int getElementCount() {
+        return element_.size();
+      }
+      /**
+       * <code>repeated double element = 1 [packed = true];</code>
+       * @param index The index of the element to return.
+       * @return The element at the given index.
+       */
+      public double getElement(int index) {
+        return element_.getDouble(index);
+      }
+      private int elementMemoizedSerializedSize = -1;
+
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      @java.lang.Override
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        getSerializedSize();
+        if (getElementList().size() > 0) {
+          output.writeUInt32NoTag(10);
+          output.writeUInt32NoTag(elementMemoizedSerializedSize);
+        }
+        for (int i = 0; i < element_.size(); i++) {
+          output.writeDoubleNoTag(element_.getDouble(i));
+        }
+        unknownFields.writeTo(output);
+      }
+
+      @java.lang.Override
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        {
+          int dataSize = 0;
+          dataSize = 8 * getElementList().size();
+          size += dataSize;
+          if (!getElementList().isEmpty()) {
+            size += 1;
+            size += com.google.protobuf.CodedOutputStream
+                .computeInt32SizeNoTag(dataSize);
+          }
+          elementMemoizedSerializedSize = dataSize;
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof drillbit.protobuf.ParameterPb.DenseCoordinates.Row)) {
+          return super.equals(obj);
+        }
+        drillbit.protobuf.ParameterPb.DenseCoordinates.Row other = (drillbit.protobuf.ParameterPb.DenseCoordinates.Row) obj;
+
+        if (!getElementList()
+            .equals(other.getElementList())) return false;
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        if (getElementCount() > 0) {
+          hash = (37 * hash) + ELEMENT_FIELD_NUMBER;
+          hash = (53 * hash) + getElementList().hashCode();
+        }
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static drillbit.protobuf.ParameterPb.DenseCoordinates.Row parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static drillbit.protobuf.ParameterPb.DenseCoordinates.Row parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static drillbit.protobuf.ParameterPb.DenseCoordinates.Row parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static drillbit.protobuf.ParameterPb.DenseCoordinates.Row parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static drillbit.protobuf.ParameterPb.DenseCoordinates.Row parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static drillbit.protobuf.ParameterPb.DenseCoordinates.Row parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static drillbit.protobuf.ParameterPb.DenseCoordinates.Row parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static drillbit.protobuf.ParameterPb.DenseCoordinates.Row parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static drillbit.protobuf.ParameterPb.DenseCoordinates.Row parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static drillbit.protobuf.ParameterPb.DenseCoordinates.Row parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static drillbit.protobuf.ParameterPb.DenseCoordinates.Row parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static drillbit.protobuf.ParameterPb.DenseCoordinates.Row parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(drillbit.protobuf.ParameterPb.DenseCoordinates.Row prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code drillbit.protobuf.DenseCoordinates.Row}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:drillbit.protobuf.DenseCoordinates.Row)
+          drillbit.protobuf.ParameterPb.DenseCoordinates.RowOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseCoordinates_Row_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseCoordinates_Row_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  drillbit.protobuf.ParameterPb.DenseCoordinates.Row.class, drillbit.protobuf.ParameterPb.DenseCoordinates.Row.Builder.class);
+        }
+
+        // Construct using drillbit.protobuf.ParameterPb.DenseCoordinates.Row.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          element_ = emptyDoubleList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseCoordinates_Row_descriptor;
+        }
+
+        @java.lang.Override
+        public drillbit.protobuf.ParameterPb.DenseCoordinates.Row getDefaultInstanceForType() {
+          return drillbit.protobuf.ParameterPb.DenseCoordinates.Row.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public drillbit.protobuf.ParameterPb.DenseCoordinates.Row build() {
+          drillbit.protobuf.ParameterPb.DenseCoordinates.Row result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public drillbit.protobuf.ParameterPb.DenseCoordinates.Row buildPartial() {
+          drillbit.protobuf.ParameterPb.DenseCoordinates.Row result = new drillbit.protobuf.ParameterPb.DenseCoordinates.Row(this);
+          int from_bitField0_ = bitField0_;
+          if (((bitField0_ & 0x00000001) != 0)) {
+            element_.makeImmutable();
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.element_ = element_;
+          onBuilt();
+          return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+          return super.clone();
+        }
+        @java.lang.Override
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return super.setField(field, value);
+        }
+        @java.lang.Override
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return super.clearField(field);
+        }
+        @java.lang.Override
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return super.clearOneof(oneof);
+        }
+        @java.lang.Override
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return super.setRepeatedField(field, index, value);
+        }
+        @java.lang.Override
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return super.addRepeatedField(field, value);
+        }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof drillbit.protobuf.ParameterPb.DenseCoordinates.Row) {
+            return mergeFrom((drillbit.protobuf.ParameterPb.DenseCoordinates.Row)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(drillbit.protobuf.ParameterPb.DenseCoordinates.Row other) {
+          if (other == drillbit.protobuf.ParameterPb.DenseCoordinates.Row.getDefaultInstance()) return this;
+          if (!other.element_.isEmpty()) {
+            if (element_.isEmpty()) {
+              element_ = other.element_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureElementIsMutable();
+              element_.addAll(other.element_);
+            }
+            onChanged();
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          drillbit.protobuf.ParameterPb.DenseCoordinates.Row parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (drillbit.protobuf.ParameterPb.DenseCoordinates.Row) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        private com.google.protobuf.Internal.DoubleList element_ = emptyDoubleList();
+        private void ensureElementIsMutable() {
+          if (!((bitField0_ & 0x00000001) != 0)) {
+            element_ = mutableCopy(element_);
+            bitField0_ |= 0x00000001;
+           }
+        }
+        /**
+         * <code>repeated double element = 1 [packed = true];</code>
+         * @return A list containing the element.
+         */
+        public java.util.List<java.lang.Double>
+            getElementList() {
+          return ((bitField0_ & 0x00000001) != 0) ?
+                   java.util.Collections.unmodifiableList(element_) : element_;
+        }
+        /**
+         * <code>repeated double element = 1 [packed = true];</code>
+         * @return The count of element.
+         */
+        public int getElementCount() {
+          return element_.size();
+        }
+        /**
+         * <code>repeated double element = 1 [packed = true];</code>
+         * @param index The index of the element to return.
+         * @return The element at the given index.
+         */
+        public double getElement(int index) {
+          return element_.getDouble(index);
+        }
+        /**
+         * <code>repeated double element = 1 [packed = true];</code>
+         * @param index The index to set the value at.
+         * @param value The element to set.
+         * @return This builder for chaining.
+         */
+        public Builder setElement(
+            int index, double value) {
+          ensureElementIsMutable();
+          element_.setDouble(index, value);
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>repeated double element = 1 [packed = true];</code>
+         * @param value The element to add.
+         * @return This builder for chaining.
+         */
+        public Builder addElement(double value) {
+          ensureElementIsMutable();
+          element_.addDouble(value);
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>repeated double element = 1 [packed = true];</code>
+         * @param values The element to add.
+         * @return This builder for chaining.
+         */
+        public Builder addAllElement(
+            java.lang.Iterable<? extends java.lang.Double> values) {
+          ensureElementIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, element_);
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>repeated double element = 1 [packed = true];</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearElement() {
+          element_ = emptyDoubleList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+          return this;
+        }
+        @java.lang.Override
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFields(unknownFields);
+        }
+
+        @java.lang.Override
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:drillbit.protobuf.DenseCoordinates.Row)
+      }
+
+      // @@protoc_insertion_point(class_scope:drillbit.protobuf.DenseCoordinates.Row)
+      private static final drillbit.protobuf.ParameterPb.DenseCoordinates.Row DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new drillbit.protobuf.ParameterPb.DenseCoordinates.Row();
+      }
+
+      public static drillbit.protobuf.ParameterPb.DenseCoordinates.Row getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<Row>
+          PARSER = new com.google.protobuf.AbstractParser<Row>() {
+        @java.lang.Override
+        public Row parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Row(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<Row> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Row> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public drillbit.protobuf.ParameterPb.DenseCoordinates.Row getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    public static final int COORDINATE_FIELD_NUMBER = 1;
+    private java.util.List<drillbit.protobuf.ParameterPb.DenseCoordinates.Row> coordinate_;
+    /**
+     * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<drillbit.protobuf.ParameterPb.DenseCoordinates.Row> getCoordinateList() {
+      return coordinate_;
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends drillbit.protobuf.ParameterPb.DenseCoordinates.RowOrBuilder> 
+        getCoordinateOrBuilderList() {
+      return coordinate_;
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+     */
+    @java.lang.Override
+    public int getCoordinateCount() {
+      return coordinate_.size();
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+     */
+    @java.lang.Override
+    public drillbit.protobuf.ParameterPb.DenseCoordinates.Row getCoordinate(int index) {
+      return coordinate_.get(index);
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+     */
+    @java.lang.Override
+    public drillbit.protobuf.ParameterPb.DenseCoordinates.RowOrBuilder getCoordinateOrBuilder(
+        int index) {
+      return coordinate_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < coordinate_.size(); i++) {
+        output.writeMessage(1, coordinate_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < coordinate_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, coordinate_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof drillbit.protobuf.ParameterPb.DenseCoordinates)) {
+        return super.equals(obj);
+      }
+      drillbit.protobuf.ParameterPb.DenseCoordinates other = (drillbit.protobuf.ParameterPb.DenseCoordinates) obj;
+
+      if (!getCoordinateList()
+          .equals(other.getCoordinateList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getCoordinateCount() > 0) {
+        hash = (37 * hash) + COORDINATE_FIELD_NUMBER;
+        hash = (53 * hash) + getCoordinateList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static drillbit.protobuf.ParameterPb.DenseCoordinates parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseCoordinates parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseCoordinates parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseCoordinates parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseCoordinates parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseCoordinates parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseCoordinates parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseCoordinates parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseCoordinates parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseCoordinates parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseCoordinates parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static drillbit.protobuf.ParameterPb.DenseCoordinates parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(drillbit.protobuf.ParameterPb.DenseCoordinates prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code drillbit.protobuf.DenseCoordinates}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:drillbit.protobuf.DenseCoordinates)
+        drillbit.protobuf.ParameterPb.DenseCoordinatesOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseCoordinates_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseCoordinates_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                drillbit.protobuf.ParameterPb.DenseCoordinates.class, drillbit.protobuf.ParameterPb.DenseCoordinates.Builder.class);
+      }
+
+      // Construct using drillbit.protobuf.ParameterPb.DenseCoordinates.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getCoordinateFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (coordinateBuilder_ == null) {
+          coordinate_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          coordinateBuilder_.clear();
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseCoordinates_descriptor;
+      }
+
+      @java.lang.Override
+      public drillbit.protobuf.ParameterPb.DenseCoordinates getDefaultInstanceForType() {
+        return drillbit.protobuf.ParameterPb.DenseCoordinates.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public drillbit.protobuf.ParameterPb.DenseCoordinates build() {
+        drillbit.protobuf.ParameterPb.DenseCoordinates result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public drillbit.protobuf.ParameterPb.DenseCoordinates buildPartial() {
+        drillbit.protobuf.ParameterPb.DenseCoordinates result = new drillbit.protobuf.ParameterPb.DenseCoordinates(this);
+        int from_bitField0_ = bitField0_;
+        if (coordinateBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            coordinate_ = java.util.Collections.unmodifiableList(coordinate_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.coordinate_ = coordinate_;
+        } else {
+          result.coordinate_ = coordinateBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof drillbit.protobuf.ParameterPb.DenseCoordinates) {
+          return mergeFrom((drillbit.protobuf.ParameterPb.DenseCoordinates)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(drillbit.protobuf.ParameterPb.DenseCoordinates other) {
+        if (other == drillbit.protobuf.ParameterPb.DenseCoordinates.getDefaultInstance()) return this;
+        if (coordinateBuilder_ == null) {
+          if (!other.coordinate_.isEmpty()) {
+            if (coordinate_.isEmpty()) {
+              coordinate_ = other.coordinate_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureCoordinateIsMutable();
+              coordinate_.addAll(other.coordinate_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.coordinate_.isEmpty()) {
+            if (coordinateBuilder_.isEmpty()) {
+              coordinateBuilder_.dispose();
+              coordinateBuilder_ = null;
+              coordinate_ = other.coordinate_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              coordinateBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getCoordinateFieldBuilder() : null;
+            } else {
+              coordinateBuilder_.addAllMessages(other.coordinate_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        drillbit.protobuf.ParameterPb.DenseCoordinates parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (drillbit.protobuf.ParameterPb.DenseCoordinates) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<drillbit.protobuf.ParameterPb.DenseCoordinates.Row> coordinate_ =
+        java.util.Collections.emptyList();
+      private void ensureCoordinateIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          coordinate_ = new java.util.ArrayList<drillbit.protobuf.ParameterPb.DenseCoordinates.Row>(coordinate_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          drillbit.protobuf.ParameterPb.DenseCoordinates.Row, drillbit.protobuf.ParameterPb.DenseCoordinates.Row.Builder, drillbit.protobuf.ParameterPb.DenseCoordinates.RowOrBuilder> coordinateBuilder_;
+
+      /**
+       * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+       */
+      public java.util.List<drillbit.protobuf.ParameterPb.DenseCoordinates.Row> getCoordinateList() {
+        if (coordinateBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(coordinate_);
+        } else {
+          return coordinateBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+       */
+      public int getCoordinateCount() {
+        if (coordinateBuilder_ == null) {
+          return coordinate_.size();
+        } else {
+          return coordinateBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+       */
+      public drillbit.protobuf.ParameterPb.DenseCoordinates.Row getCoordinate(int index) {
+        if (coordinateBuilder_ == null) {
+          return coordinate_.get(index);
+        } else {
+          return coordinateBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+       */
+      public Builder setCoordinate(
+          int index, drillbit.protobuf.ParameterPb.DenseCoordinates.Row value) {
+        if (coordinateBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureCoordinateIsMutable();
+          coordinate_.set(index, value);
+          onChanged();
+        } else {
+          coordinateBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+       */
+      public Builder setCoordinate(
+          int index, drillbit.protobuf.ParameterPb.DenseCoordinates.Row.Builder builderForValue) {
+        if (coordinateBuilder_ == null) {
+          ensureCoordinateIsMutable();
+          coordinate_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          coordinateBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+       */
+      public Builder addCoordinate(drillbit.protobuf.ParameterPb.DenseCoordinates.Row value) {
+        if (coordinateBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureCoordinateIsMutable();
+          coordinate_.add(value);
+          onChanged();
+        } else {
+          coordinateBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+       */
+      public Builder addCoordinate(
+          int index, drillbit.protobuf.ParameterPb.DenseCoordinates.Row value) {
+        if (coordinateBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureCoordinateIsMutable();
+          coordinate_.add(index, value);
+          onChanged();
+        } else {
+          coordinateBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+       */
+      public Builder addCoordinate(
+          drillbit.protobuf.ParameterPb.DenseCoordinates.Row.Builder builderForValue) {
+        if (coordinateBuilder_ == null) {
+          ensureCoordinateIsMutable();
+          coordinate_.add(builderForValue.build());
+          onChanged();
+        } else {
+          coordinateBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+       */
+      public Builder addCoordinate(
+          int index, drillbit.protobuf.ParameterPb.DenseCoordinates.Row.Builder builderForValue) {
+        if (coordinateBuilder_ == null) {
+          ensureCoordinateIsMutable();
+          coordinate_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          coordinateBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+       */
+      public Builder addAllCoordinate(
+          java.lang.Iterable<? extends drillbit.protobuf.ParameterPb.DenseCoordinates.Row> values) {
+        if (coordinateBuilder_ == null) {
+          ensureCoordinateIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, coordinate_);
+          onChanged();
+        } else {
+          coordinateBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+       */
+      public Builder clearCoordinate() {
+        if (coordinateBuilder_ == null) {
+          coordinate_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          coordinateBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+       */
+      public Builder removeCoordinate(int index) {
+        if (coordinateBuilder_ == null) {
+          ensureCoordinateIsMutable();
+          coordinate_.remove(index);
+          onChanged();
+        } else {
+          coordinateBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+       */
+      public drillbit.protobuf.ParameterPb.DenseCoordinates.Row.Builder getCoordinateBuilder(
+          int index) {
+        return getCoordinateFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+       */
+      public drillbit.protobuf.ParameterPb.DenseCoordinates.RowOrBuilder getCoordinateOrBuilder(
+          int index) {
+        if (coordinateBuilder_ == null) {
+          return coordinate_.get(index);  } else {
+          return coordinateBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+       */
+      public java.util.List<? extends drillbit.protobuf.ParameterPb.DenseCoordinates.RowOrBuilder> 
+           getCoordinateOrBuilderList() {
+        if (coordinateBuilder_ != null) {
+          return coordinateBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(coordinate_);
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+       */
+      public drillbit.protobuf.ParameterPb.DenseCoordinates.Row.Builder addCoordinateBuilder() {
+        return getCoordinateFieldBuilder().addBuilder(
+            drillbit.protobuf.ParameterPb.DenseCoordinates.Row.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+       */
+      public drillbit.protobuf.ParameterPb.DenseCoordinates.Row.Builder addCoordinateBuilder(
+          int index) {
+        return getCoordinateFieldBuilder().addBuilder(
+            index, drillbit.protobuf.ParameterPb.DenseCoordinates.Row.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.DenseCoordinates.Row coordinate = 1;</code>
+       */
+      public java.util.List<drillbit.protobuf.ParameterPb.DenseCoordinates.Row.Builder> 
+           getCoordinateBuilderList() {
+        return getCoordinateFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          drillbit.protobuf.ParameterPb.DenseCoordinates.Row, drillbit.protobuf.ParameterPb.DenseCoordinates.Row.Builder, drillbit.protobuf.ParameterPb.DenseCoordinates.RowOrBuilder> 
+          getCoordinateFieldBuilder() {
+        if (coordinateBuilder_ == null) {
+          coordinateBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              drillbit.protobuf.ParameterPb.DenseCoordinates.Row, drillbit.protobuf.ParameterPb.DenseCoordinates.Row.Builder, drillbit.protobuf.ParameterPb.DenseCoordinates.RowOrBuilder>(
+                  coordinate_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          coordinate_ = null;
+        }
+        return coordinateBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:drillbit.protobuf.DenseCoordinates)
+    }
+
+    // @@protoc_insertion_point(class_scope:drillbit.protobuf.DenseCoordinates)
+    private static final drillbit.protobuf.ParameterPb.DenseCoordinates DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new drillbit.protobuf.ParameterPb.DenseCoordinates();
+    }
+
+    public static drillbit.protobuf.ParameterPb.DenseCoordinates getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<DenseCoordinates>
+        PARSER = new com.google.protobuf.AbstractParser<DenseCoordinates>() {
+      @java.lang.Override
+      public DenseCoordinates parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new DenseCoordinates(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<DenseCoordinates> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<DenseCoordinates> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public drillbit.protobuf.ParameterPb.DenseCoordinates getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface SparseCoordinatesOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:drillbit.protobuf.SparseCoordinates)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+     */
+    java.util.List<drillbit.protobuf.ParameterPb.SparseCoordinates.Row> 
+        getCoordinateList();
+    /**
+     * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+     */
+    drillbit.protobuf.ParameterPb.SparseCoordinates.Row getCoordinate(int index);
+    /**
+     * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+     */
+    int getCoordinateCount();
+    /**
+     * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+     */
+    java.util.List<? extends drillbit.protobuf.ParameterPb.SparseCoordinates.RowOrBuilder> 
+        getCoordinateOrBuilderList();
+    /**
+     * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+     */
+    drillbit.protobuf.ParameterPb.SparseCoordinates.RowOrBuilder getCoordinateOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code drillbit.protobuf.SparseCoordinates}
+   */
+  public static final class SparseCoordinates extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:drillbit.protobuf.SparseCoordinates)
+      SparseCoordinatesOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use SparseCoordinates.newBuilder() to construct.
+    private SparseCoordinates(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private SparseCoordinates() {
+      coordinate_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new SparseCoordinates();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SparseCoordinates(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                coordinate_ = new java.util.ArrayList<drillbit.protobuf.ParameterPb.SparseCoordinates.Row>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              coordinate_.add(
+                  input.readMessage(drillbit.protobuf.ParameterPb.SparseCoordinates.Row.parser(), extensionRegistry));
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          coordinate_ = java.util.Collections.unmodifiableList(coordinate_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseCoordinates_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseCoordinates_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              drillbit.protobuf.ParameterPb.SparseCoordinates.class, drillbit.protobuf.ParameterPb.SparseCoordinates.Builder.class);
+    }
+
+    public interface RowOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:drillbit.protobuf.SparseCoordinates.Row)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+       */
+      java.util.List<drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item> 
+          getElementList();
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+       */
+      drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item getElement(int index);
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+       */
+      int getElementCount();
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+       */
+      java.util.List<? extends drillbit.protobuf.ParameterPb.SparseCoordinates.Row.ItemOrBuilder> 
+          getElementOrBuilderList();
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+       */
+      drillbit.protobuf.ParameterPb.SparseCoordinates.Row.ItemOrBuilder getElementOrBuilder(
+          int index);
+    }
+    /**
+     * Protobuf type {@code drillbit.protobuf.SparseCoordinates.Row}
+     */
+    public static final class Row extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:drillbit.protobuf.SparseCoordinates.Row)
+        RowOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use Row.newBuilder() to construct.
+      private Row(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private Row() {
+        element_ = java.util.Collections.emptyList();
+      }
+
+      @java.lang.Override
+      @SuppressWarnings({"unused"})
+      protected java.lang.Object newInstance(
+          UnusedPrivateParameter unused) {
+        return new Row();
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private Row(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                  element_ = new java.util.ArrayList<drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item>();
+                  mutable_bitField0_ |= 0x00000001;
+                }
+                element_.add(
+                    input.readMessage(drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.parser(), extensionRegistry));
+                break;
+              }
+              default: {
+                if (!parseUnknownField(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          if (((mutable_bitField0_ & 0x00000001) != 0)) {
+            element_ = java.util.Collections.unmodifiableList(element_);
+          }
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseCoordinates_Row_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseCoordinates_Row_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                drillbit.protobuf.ParameterPb.SparseCoordinates.Row.class, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Builder.class);
+      }
+
+      public interface ItemOrBuilder extends
+          // @@protoc_insertion_point(interface_extends:drillbit.protobuf.SparseCoordinates.Row.Item)
+          com.google.protobuf.MessageOrBuilder {
+
+        /**
+         * <code>int32 index = 1;</code>
+         * @return The index.
+         */
+        int getIndex();
+
+        /**
+         * <code>double element = 2;</code>
+         * @return The element.
+         */
+        double getElement();
+      }
+      /**
+       * Protobuf type {@code drillbit.protobuf.SparseCoordinates.Row.Item}
+       */
+      public static final class Item extends
+          com.google.protobuf.GeneratedMessageV3 implements
+          // @@protoc_insertion_point(message_implements:drillbit.protobuf.SparseCoordinates.Row.Item)
+          ItemOrBuilder {
+      private static final long serialVersionUID = 0L;
+        // Use Item.newBuilder() to construct.
+        private Item(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+          super(builder);
+        }
+        private Item() {
+        }
+
+        @java.lang.Override
+        @SuppressWarnings({"unused"})
+        protected java.lang.Object newInstance(
+            UnusedPrivateParameter unused) {
+          return new Item();
+        }
+
+        @java.lang.Override
+        public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+          return this.unknownFields;
+        }
+        private Item(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          this();
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+              com.google.protobuf.UnknownFieldSet.newBuilder();
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                case 8: {
+
+                  index_ = input.readInt32();
+                  break;
+                }
+                case 17: {
+
+                  element_ = input.readDouble();
+                  break;
+                }
+                default: {
+                  if (!parseUnknownField(
+                      input, unknownFields, extensionRegistry, tag)) {
+                    done = true;
+                  }
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(this);
+          } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(
+                e).setUnfinishedMessage(this);
+          } finally {
+            this.unknownFields = unknownFields.build();
+            makeExtensionsImmutable();
+          }
+        }
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseCoordinates_Row_Item_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseCoordinates_Row_Item_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.class, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.Builder.class);
+        }
+
+        public static final int INDEX_FIELD_NUMBER = 1;
+        private int index_;
+        /**
+         * <code>int32 index = 1;</code>
+         * @return The index.
+         */
+        @java.lang.Override
+        public int getIndex() {
+          return index_;
+        }
+
+        public static final int ELEMENT_FIELD_NUMBER = 2;
+        private double element_;
+        /**
+         * <code>double element = 2;</code>
+         * @return The element.
+         */
+        @java.lang.Override
+        public double getElement() {
+          return element_;
+        }
+
+        private byte memoizedIsInitialized = -1;
+        @java.lang.Override
+        public final boolean isInitialized() {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return true;
+          if (isInitialized == 0) return false;
+
+          memoizedIsInitialized = 1;
+          return true;
+        }
+
+        @java.lang.Override
+        public void writeTo(com.google.protobuf.CodedOutputStream output)
+                            throws java.io.IOException {
+          if (index_ != 0) {
+            output.writeInt32(1, index_);
+          }
+          if (element_ != 0D) {
+            output.writeDouble(2, element_);
+          }
+          unknownFields.writeTo(output);
+        }
+
+        @java.lang.Override
+        public int getSerializedSize() {
+          int size = memoizedSize;
+          if (size != -1) return size;
+
+          size = 0;
+          if (index_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeInt32Size(1, index_);
+          }
+          if (element_ != 0D) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeDoubleSize(2, element_);
+          }
+          size += unknownFields.getSerializedSize();
+          memoizedSize = size;
+          return size;
+        }
+
+        @java.lang.Override
+        public boolean equals(final java.lang.Object obj) {
+          if (obj == this) {
+           return true;
+          }
+          if (!(obj instanceof drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item)) {
+            return super.equals(obj);
+          }
+          drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item other = (drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item) obj;
+
+          if (getIndex()
+              != other.getIndex()) return false;
+          if (java.lang.Double.doubleToLongBits(getElement())
+              != java.lang.Double.doubleToLongBits(
+                  other.getElement())) return false;
+          if (!unknownFields.equals(other.unknownFields)) return false;
+          return true;
+        }
+
+        @java.lang.Override
+        public int hashCode() {
+          if (memoizedHashCode != 0) {
+            return memoizedHashCode;
+          }
+          int hash = 41;
+          hash = (19 * hash) + getDescriptor().hashCode();
+          hash = (37 * hash) + INDEX_FIELD_NUMBER;
+          hash = (53 * hash) + getIndex();
+          hash = (37 * hash) + ELEMENT_FIELD_NUMBER;
+          hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+              java.lang.Double.doubleToLongBits(getElement()));
+          hash = (29 * hash) + unknownFields.hashCode();
+          memoizedHashCode = hash;
+          return hash;
+        }
+
+        public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+        }
+        public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+        }
+        public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data);
+        }
+        public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return PARSER.parseFrom(data, extensionRegistry);
+        }
+        public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+        }
+        public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+        public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input);
+        }
+        public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        }
+        public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input);
+        }
+        public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          return com.google.protobuf.GeneratedMessageV3
+              .parseWithIOException(PARSER, input, extensionRegistry);
+        }
+
+        @java.lang.Override
+        public Builder newBuilderForType() { return newBuilder(); }
+        public static Builder newBuilder() {
+          return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item prototype) {
+          return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+        @java.lang.Override
+        public Builder toBuilder() {
+          return this == DEFAULT_INSTANCE
+              ? new Builder() : new Builder().mergeFrom(this);
+        }
+
+        @java.lang.Override
+        protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          Builder builder = new Builder(parent);
+          return builder;
+        }
+        /**
+         * Protobuf type {@code drillbit.protobuf.SparseCoordinates.Row.Item}
+         */
+        public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:drillbit.protobuf.SparseCoordinates.Row.Item)
+            drillbit.protobuf.ParameterPb.SparseCoordinates.Row.ItemOrBuilder {
+          public static final com.google.protobuf.Descriptors.Descriptor
+              getDescriptor() {
+            return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseCoordinates_Row_Item_descriptor;
+          }
+
+          @java.lang.Override
+          protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+              internalGetFieldAccessorTable() {
+            return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseCoordinates_Row_Item_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                    drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.class, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.Builder.class);
+          }
+
+          // Construct using drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.newBuilder()
+          private Builder() {
+            maybeForceBuilderInitialization();
+          }
+
+          private Builder(
+              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            super(parent);
+            maybeForceBuilderInitialization();
+          }
+          private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
+            }
+          }
+          @java.lang.Override
+          public Builder clear() {
+            super.clear();
+            index_ = 0;
+
+            element_ = 0D;
+
+            return this;
+          }
+
+          @java.lang.Override
+          public com.google.protobuf.Descriptors.Descriptor
+              getDescriptorForType() {
+            return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseCoordinates_Row_Item_descriptor;
+          }
+
+          @java.lang.Override
+          public drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item getDefaultInstanceForType() {
+            return drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.getDefaultInstance();
+          }
+
+          @java.lang.Override
+          public drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item build() {
+            drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item result = buildPartial();
+            if (!result.isInitialized()) {
+              throw newUninitializedMessageException(result);
+            }
+            return result;
+          }
+
+          @java.lang.Override
+          public drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item buildPartial() {
+            drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item result = new drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item(this);
+            result.index_ = index_;
+            result.element_ = element_;
+            onBuilt();
+            return result;
+          }
+
+          @java.lang.Override
+          public Builder clone() {
+            return super.clone();
+          }
+          @java.lang.Override
+          public Builder setField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
+            return super.setField(field, value);
+          }
+          @java.lang.Override
+          public Builder clearField(
+              com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return super.clearField(field);
+          }
+          @java.lang.Override
+          public Builder clearOneof(
+              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
+          }
+          @java.lang.Override
+          public Builder setRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              int index, java.lang.Object value) {
+            return super.setRepeatedField(field, index, value);
+          }
+          @java.lang.Override
+          public Builder addRepeatedField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
+            return super.addRepeatedField(field, value);
+          }
+          @java.lang.Override
+          public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item) {
+              return mergeFrom((drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item)other);
+            } else {
+              super.mergeFrom(other);
+              return this;
+            }
+          }
+
+          public Builder mergeFrom(drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item other) {
+            if (other == drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.getDefaultInstance()) return this;
+            if (other.getIndex() != 0) {
+              setIndex(other.getIndex());
+            }
+            if (other.getElement() != 0D) {
+              setElement(other.getElement());
+            }
+            this.mergeUnknownFields(other.unknownFields);
+            onChanged();
+            return this;
+          }
+
+          @java.lang.Override
+          public final boolean isInitialized() {
+            return true;
+          }
+
+          @java.lang.Override
+          public Builder mergeFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
+            drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item parsedMessage = null;
+            try {
+              parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+              parsedMessage = (drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item) e.getUnfinishedMessage();
+              throw e.unwrapIOException();
+            } finally {
+              if (parsedMessage != null) {
+                mergeFrom(parsedMessage);
+              }
+            }
+            return this;
+          }
+
+          private int index_ ;
+          /**
+           * <code>int32 index = 1;</code>
+           * @return The index.
+           */
+          @java.lang.Override
+          public int getIndex() {
+            return index_;
+          }
+          /**
+           * <code>int32 index = 1;</code>
+           * @param value The index to set.
+           * @return This builder for chaining.
+           */
+          public Builder setIndex(int value) {
+            
+            index_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>int32 index = 1;</code>
+           * @return This builder for chaining.
+           */
+          public Builder clearIndex() {
+            
+            index_ = 0;
+            onChanged();
+            return this;
+          }
+
+          private double element_ ;
+          /**
+           * <code>double element = 2;</code>
+           * @return The element.
+           */
+          @java.lang.Override
+          public double getElement() {
+            return element_;
+          }
+          /**
+           * <code>double element = 2;</code>
+           * @param value The element to set.
+           * @return This builder for chaining.
+           */
+          public Builder setElement(double value) {
+            
+            element_ = value;
+            onChanged();
+            return this;
+          }
+          /**
+           * <code>double element = 2;</code>
+           * @return This builder for chaining.
+           */
+          public Builder clearElement() {
+            
+            element_ = 0D;
+            onChanged();
+            return this;
+          }
+          @java.lang.Override
+          public final Builder setUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.setUnknownFields(unknownFields);
+          }
+
+          @java.lang.Override
+          public final Builder mergeUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
+          }
+
+
+          // @@protoc_insertion_point(builder_scope:drillbit.protobuf.SparseCoordinates.Row.Item)
+        }
+
+        // @@protoc_insertion_point(class_scope:drillbit.protobuf.SparseCoordinates.Row.Item)
+        private static final drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item DEFAULT_INSTANCE;
+        static {
+          DEFAULT_INSTANCE = new drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item();
+        }
+
+        public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item getDefaultInstance() {
+          return DEFAULT_INSTANCE;
+        }
+
+        private static final com.google.protobuf.Parser<Item>
+            PARSER = new com.google.protobuf.AbstractParser<Item>() {
+          @java.lang.Override
+          public Item parsePartialFrom(
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
+            return new Item(input, extensionRegistry);
+          }
+        };
+
+        public static com.google.protobuf.Parser<Item> parser() {
+          return PARSER;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Parser<Item> getParserForType() {
+          return PARSER;
+        }
+
+        @java.lang.Override
+        public drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item getDefaultInstanceForType() {
+          return DEFAULT_INSTANCE;
+        }
+
+      }
+
+      public static final int ELEMENT_FIELD_NUMBER = 1;
+      private java.util.List<drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item> element_;
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+       */
+      @java.lang.Override
+      public java.util.List<drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item> getElementList() {
+        return element_;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+       */
+      @java.lang.Override
+      public java.util.List<? extends drillbit.protobuf.ParameterPb.SparseCoordinates.Row.ItemOrBuilder> 
+          getElementOrBuilderList() {
+        return element_;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+       */
+      @java.lang.Override
+      public int getElementCount() {
+        return element_.size();
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+       */
+      @java.lang.Override
+      public drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item getElement(int index) {
+        return element_.get(index);
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+       */
+      @java.lang.Override
+      public drillbit.protobuf.ParameterPb.SparseCoordinates.Row.ItemOrBuilder getElementOrBuilder(
+          int index) {
+        return element_.get(index);
+      }
+
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      @java.lang.Override
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        for (int i = 0; i < element_.size(); i++) {
+          output.writeMessage(1, element_.get(i));
+        }
+        unknownFields.writeTo(output);
+      }
+
+      @java.lang.Override
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        for (int i = 0; i < element_.size(); i++) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(1, element_.get(i));
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof drillbit.protobuf.ParameterPb.SparseCoordinates.Row)) {
+          return super.equals(obj);
+        }
+        drillbit.protobuf.ParameterPb.SparseCoordinates.Row other = (drillbit.protobuf.ParameterPb.SparseCoordinates.Row) obj;
+
+        if (!getElementList()
+            .equals(other.getElementList())) return false;
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        if (getElementCount() > 0) {
+          hash = (37 * hash) + ELEMENT_FIELD_NUMBER;
+          hash = (53 * hash) + getElementList().hashCode();
+        }
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(drillbit.protobuf.ParameterPb.SparseCoordinates.Row prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code drillbit.protobuf.SparseCoordinates.Row}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:drillbit.protobuf.SparseCoordinates.Row)
+          drillbit.protobuf.ParameterPb.SparseCoordinates.RowOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseCoordinates_Row_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseCoordinates_Row_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  drillbit.protobuf.ParameterPb.SparseCoordinates.Row.class, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Builder.class);
+        }
+
+        // Construct using drillbit.protobuf.ParameterPb.SparseCoordinates.Row.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+            getElementFieldBuilder();
+          }
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          if (elementBuilder_ == null) {
+            element_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            elementBuilder_.clear();
+          }
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseCoordinates_Row_descriptor;
+        }
+
+        @java.lang.Override
+        public drillbit.protobuf.ParameterPb.SparseCoordinates.Row getDefaultInstanceForType() {
+          return drillbit.protobuf.ParameterPb.SparseCoordinates.Row.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public drillbit.protobuf.ParameterPb.SparseCoordinates.Row build() {
+          drillbit.protobuf.ParameterPb.SparseCoordinates.Row result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public drillbit.protobuf.ParameterPb.SparseCoordinates.Row buildPartial() {
+          drillbit.protobuf.ParameterPb.SparseCoordinates.Row result = new drillbit.protobuf.ParameterPb.SparseCoordinates.Row(this);
+          int from_bitField0_ = bitField0_;
+          if (elementBuilder_ == null) {
+            if (((bitField0_ & 0x00000001) != 0)) {
+              element_ = java.util.Collections.unmodifiableList(element_);
+              bitField0_ = (bitField0_ & ~0x00000001);
+            }
+            result.element_ = element_;
+          } else {
+            result.element_ = elementBuilder_.build();
+          }
+          onBuilt();
+          return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+          return super.clone();
+        }
+        @java.lang.Override
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return super.setField(field, value);
+        }
+        @java.lang.Override
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return super.clearField(field);
+        }
+        @java.lang.Override
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return super.clearOneof(oneof);
+        }
+        @java.lang.Override
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return super.setRepeatedField(field, index, value);
+        }
+        @java.lang.Override
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return super.addRepeatedField(field, value);
+        }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof drillbit.protobuf.ParameterPb.SparseCoordinates.Row) {
+            return mergeFrom((drillbit.protobuf.ParameterPb.SparseCoordinates.Row)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(drillbit.protobuf.ParameterPb.SparseCoordinates.Row other) {
+          if (other == drillbit.protobuf.ParameterPb.SparseCoordinates.Row.getDefaultInstance()) return this;
+          if (elementBuilder_ == null) {
+            if (!other.element_.isEmpty()) {
+              if (element_.isEmpty()) {
+                element_ = other.element_;
+                bitField0_ = (bitField0_ & ~0x00000001);
+              } else {
+                ensureElementIsMutable();
+                element_.addAll(other.element_);
+              }
+              onChanged();
+            }
+          } else {
+            if (!other.element_.isEmpty()) {
+              if (elementBuilder_.isEmpty()) {
+                elementBuilder_.dispose();
+                elementBuilder_ = null;
+                element_ = other.element_;
+                bitField0_ = (bitField0_ & ~0x00000001);
+                elementBuilder_ = 
+                  com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                     getElementFieldBuilder() : null;
+              } else {
+                elementBuilder_.addAllMessages(other.element_);
+              }
+            }
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          drillbit.protobuf.ParameterPb.SparseCoordinates.Row parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (drillbit.protobuf.ParameterPb.SparseCoordinates.Row) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        private java.util.List<drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item> element_ =
+          java.util.Collections.emptyList();
+        private void ensureElementIsMutable() {
+          if (!((bitField0_ & 0x00000001) != 0)) {
+            element_ = new java.util.ArrayList<drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item>(element_);
+            bitField0_ |= 0x00000001;
+           }
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.Builder, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.ItemOrBuilder> elementBuilder_;
+
+        /**
+         * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+         */
+        public java.util.List<drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item> getElementList() {
+          if (elementBuilder_ == null) {
+            return java.util.Collections.unmodifiableList(element_);
+          } else {
+            return elementBuilder_.getMessageList();
+          }
+        }
+        /**
+         * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+         */
+        public int getElementCount() {
+          if (elementBuilder_ == null) {
+            return element_.size();
+          } else {
+            return elementBuilder_.getCount();
+          }
+        }
+        /**
+         * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+         */
+        public drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item getElement(int index) {
+          if (elementBuilder_ == null) {
+            return element_.get(index);
+          } else {
+            return elementBuilder_.getMessage(index);
+          }
+        }
+        /**
+         * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+         */
+        public Builder setElement(
+            int index, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item value) {
+          if (elementBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureElementIsMutable();
+            element_.set(index, value);
+            onChanged();
+          } else {
+            elementBuilder_.setMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+         */
+        public Builder setElement(
+            int index, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.Builder builderForValue) {
+          if (elementBuilder_ == null) {
+            ensureElementIsMutable();
+            element_.set(index, builderForValue.build());
+            onChanged();
+          } else {
+            elementBuilder_.setMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+         */
+        public Builder addElement(drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item value) {
+          if (elementBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureElementIsMutable();
+            element_.add(value);
+            onChanged();
+          } else {
+            elementBuilder_.addMessage(value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+         */
+        public Builder addElement(
+            int index, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item value) {
+          if (elementBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureElementIsMutable();
+            element_.add(index, value);
+            onChanged();
+          } else {
+            elementBuilder_.addMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+         */
+        public Builder addElement(
+            drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.Builder builderForValue) {
+          if (elementBuilder_ == null) {
+            ensureElementIsMutable();
+            element_.add(builderForValue.build());
+            onChanged();
+          } else {
+            elementBuilder_.addMessage(builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+         */
+        public Builder addElement(
+            int index, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.Builder builderForValue) {
+          if (elementBuilder_ == null) {
+            ensureElementIsMutable();
+            element_.add(index, builderForValue.build());
+            onChanged();
+          } else {
+            elementBuilder_.addMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+         */
+        public Builder addAllElement(
+            java.lang.Iterable<? extends drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item> values) {
+          if (elementBuilder_ == null) {
+            ensureElementIsMutable();
+            com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                values, element_);
+            onChanged();
+          } else {
+            elementBuilder_.addAllMessages(values);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+         */
+        public Builder clearElement() {
+          if (elementBuilder_ == null) {
+            element_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000001);
+            onChanged();
+          } else {
+            elementBuilder_.clear();
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+         */
+        public Builder removeElement(int index) {
+          if (elementBuilder_ == null) {
+            ensureElementIsMutable();
+            element_.remove(index);
+            onChanged();
+          } else {
+            elementBuilder_.remove(index);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+         */
+        public drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.Builder getElementBuilder(
+            int index) {
+          return getElementFieldBuilder().getBuilder(index);
+        }
+        /**
+         * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+         */
+        public drillbit.protobuf.ParameterPb.SparseCoordinates.Row.ItemOrBuilder getElementOrBuilder(
+            int index) {
+          if (elementBuilder_ == null) {
+            return element_.get(index);  } else {
+            return elementBuilder_.getMessageOrBuilder(index);
+          }
+        }
+        /**
+         * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+         */
+        public java.util.List<? extends drillbit.protobuf.ParameterPb.SparseCoordinates.Row.ItemOrBuilder> 
+             getElementOrBuilderList() {
+          if (elementBuilder_ != null) {
+            return elementBuilder_.getMessageOrBuilderList();
+          } else {
+            return java.util.Collections.unmodifiableList(element_);
+          }
+        }
+        /**
+         * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+         */
+        public drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.Builder addElementBuilder() {
+          return getElementFieldBuilder().addBuilder(
+              drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+         */
+        public drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.Builder addElementBuilder(
+            int index) {
+          return getElementFieldBuilder().addBuilder(
+              index, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .drillbit.protobuf.SparseCoordinates.Row.Item element = 1;</code>
+         */
+        public java.util.List<drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.Builder> 
+             getElementBuilderList() {
+          return getElementFieldBuilder().getBuilderList();
+        }
+        private com.google.protobuf.RepeatedFieldBuilderV3<
+            drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.Builder, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.ItemOrBuilder> 
+            getElementFieldBuilder() {
+          if (elementBuilder_ == null) {
+            elementBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+                drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Item.Builder, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.ItemOrBuilder>(
+                    element_,
+                    ((bitField0_ & 0x00000001) != 0),
+                    getParentForChildren(),
+                    isClean());
+            element_ = null;
+          }
+          return elementBuilder_;
+        }
+        @java.lang.Override
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFields(unknownFields);
+        }
+
+        @java.lang.Override
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:drillbit.protobuf.SparseCoordinates.Row)
+      }
+
+      // @@protoc_insertion_point(class_scope:drillbit.protobuf.SparseCoordinates.Row)
+      private static final drillbit.protobuf.ParameterPb.SparseCoordinates.Row DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new drillbit.protobuf.ParameterPb.SparseCoordinates.Row();
+      }
+
+      public static drillbit.protobuf.ParameterPb.SparseCoordinates.Row getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<Row>
+          PARSER = new com.google.protobuf.AbstractParser<Row>() {
+        @java.lang.Override
+        public Row parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Row(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<Row> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Row> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public drillbit.protobuf.ParameterPb.SparseCoordinates.Row getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    public static final int COORDINATE_FIELD_NUMBER = 1;
+    private java.util.List<drillbit.protobuf.ParameterPb.SparseCoordinates.Row> coordinate_;
+    /**
+     * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<drillbit.protobuf.ParameterPb.SparseCoordinates.Row> getCoordinateList() {
+      return coordinate_;
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends drillbit.protobuf.ParameterPb.SparseCoordinates.RowOrBuilder> 
+        getCoordinateOrBuilderList() {
+      return coordinate_;
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+     */
+    @java.lang.Override
+    public int getCoordinateCount() {
+      return coordinate_.size();
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+     */
+    @java.lang.Override
+    public drillbit.protobuf.ParameterPb.SparseCoordinates.Row getCoordinate(int index) {
+      return coordinate_.get(index);
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+     */
+    @java.lang.Override
+    public drillbit.protobuf.ParameterPb.SparseCoordinates.RowOrBuilder getCoordinateOrBuilder(
+        int index) {
+      return coordinate_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < coordinate_.size(); i++) {
+        output.writeMessage(1, coordinate_.get(i));
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < coordinate_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, coordinate_.get(i));
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof drillbit.protobuf.ParameterPb.SparseCoordinates)) {
+        return super.equals(obj);
+      }
+      drillbit.protobuf.ParameterPb.SparseCoordinates other = (drillbit.protobuf.ParameterPb.SparseCoordinates) obj;
+
+      if (!getCoordinateList()
+          .equals(other.getCoordinateList())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getCoordinateCount() > 0) {
+        hash = (37 * hash) + COORDINATE_FIELD_NUMBER;
+        hash = (53 * hash) + getCoordinateList().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static drillbit.protobuf.ParameterPb.SparseCoordinates parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseCoordinates parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseCoordinates parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseCoordinates parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseCoordinates parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseCoordinates parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseCoordinates parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseCoordinates parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseCoordinates parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseCoordinates parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseCoordinates parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static drillbit.protobuf.ParameterPb.SparseCoordinates parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(drillbit.protobuf.ParameterPb.SparseCoordinates prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code drillbit.protobuf.SparseCoordinates}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:drillbit.protobuf.SparseCoordinates)
+        drillbit.protobuf.ParameterPb.SparseCoordinatesOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseCoordinates_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseCoordinates_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                drillbit.protobuf.ParameterPb.SparseCoordinates.class, drillbit.protobuf.ParameterPb.SparseCoordinates.Builder.class);
+      }
+
+      // Construct using drillbit.protobuf.ParameterPb.SparseCoordinates.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+          getCoordinateFieldBuilder();
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (coordinateBuilder_ == null) {
+          coordinate_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          coordinateBuilder_.clear();
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseCoordinates_descriptor;
+      }
+
+      @java.lang.Override
+      public drillbit.protobuf.ParameterPb.SparseCoordinates getDefaultInstanceForType() {
+        return drillbit.protobuf.ParameterPb.SparseCoordinates.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public drillbit.protobuf.ParameterPb.SparseCoordinates build() {
+        drillbit.protobuf.ParameterPb.SparseCoordinates result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public drillbit.protobuf.ParameterPb.SparseCoordinates buildPartial() {
+        drillbit.protobuf.ParameterPb.SparseCoordinates result = new drillbit.protobuf.ParameterPb.SparseCoordinates(this);
+        int from_bitField0_ = bitField0_;
+        if (coordinateBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            coordinate_ = java.util.Collections.unmodifiableList(coordinate_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.coordinate_ = coordinate_;
+        } else {
+          result.coordinate_ = coordinateBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof drillbit.protobuf.ParameterPb.SparseCoordinates) {
+          return mergeFrom((drillbit.protobuf.ParameterPb.SparseCoordinates)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(drillbit.protobuf.ParameterPb.SparseCoordinates other) {
+        if (other == drillbit.protobuf.ParameterPb.SparseCoordinates.getDefaultInstance()) return this;
+        if (coordinateBuilder_ == null) {
+          if (!other.coordinate_.isEmpty()) {
+            if (coordinate_.isEmpty()) {
+              coordinate_ = other.coordinate_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureCoordinateIsMutable();
+              coordinate_.addAll(other.coordinate_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.coordinate_.isEmpty()) {
+            if (coordinateBuilder_.isEmpty()) {
+              coordinateBuilder_.dispose();
+              coordinateBuilder_ = null;
+              coordinate_ = other.coordinate_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              coordinateBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getCoordinateFieldBuilder() : null;
+            } else {
+              coordinateBuilder_.addAllMessages(other.coordinate_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        drillbit.protobuf.ParameterPb.SparseCoordinates parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (drillbit.protobuf.ParameterPb.SparseCoordinates) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<drillbit.protobuf.ParameterPb.SparseCoordinates.Row> coordinate_ =
+        java.util.Collections.emptyList();
+      private void ensureCoordinateIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          coordinate_ = new java.util.ArrayList<drillbit.protobuf.ParameterPb.SparseCoordinates.Row>(coordinate_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          drillbit.protobuf.ParameterPb.SparseCoordinates.Row, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Builder, drillbit.protobuf.ParameterPb.SparseCoordinates.RowOrBuilder> coordinateBuilder_;
+
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+       */
+      public java.util.List<drillbit.protobuf.ParameterPb.SparseCoordinates.Row> getCoordinateList() {
+        if (coordinateBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(coordinate_);
+        } else {
+          return coordinateBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+       */
+      public int getCoordinateCount() {
+        if (coordinateBuilder_ == null) {
+          return coordinate_.size();
+        } else {
+          return coordinateBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+       */
+      public drillbit.protobuf.ParameterPb.SparseCoordinates.Row getCoordinate(int index) {
+        if (coordinateBuilder_ == null) {
+          return coordinate_.get(index);
+        } else {
+          return coordinateBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+       */
+      public Builder setCoordinate(
+          int index, drillbit.protobuf.ParameterPb.SparseCoordinates.Row value) {
+        if (coordinateBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureCoordinateIsMutable();
+          coordinate_.set(index, value);
+          onChanged();
+        } else {
+          coordinateBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+       */
+      public Builder setCoordinate(
+          int index, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Builder builderForValue) {
+        if (coordinateBuilder_ == null) {
+          ensureCoordinateIsMutable();
+          coordinate_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          coordinateBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+       */
+      public Builder addCoordinate(drillbit.protobuf.ParameterPb.SparseCoordinates.Row value) {
+        if (coordinateBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureCoordinateIsMutable();
+          coordinate_.add(value);
+          onChanged();
+        } else {
+          coordinateBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+       */
+      public Builder addCoordinate(
+          int index, drillbit.protobuf.ParameterPb.SparseCoordinates.Row value) {
+        if (coordinateBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureCoordinateIsMutable();
+          coordinate_.add(index, value);
+          onChanged();
+        } else {
+          coordinateBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+       */
+      public Builder addCoordinate(
+          drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Builder builderForValue) {
+        if (coordinateBuilder_ == null) {
+          ensureCoordinateIsMutable();
+          coordinate_.add(builderForValue.build());
+          onChanged();
+        } else {
+          coordinateBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+       */
+      public Builder addCoordinate(
+          int index, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Builder builderForValue) {
+        if (coordinateBuilder_ == null) {
+          ensureCoordinateIsMutable();
+          coordinate_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          coordinateBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+       */
+      public Builder addAllCoordinate(
+          java.lang.Iterable<? extends drillbit.protobuf.ParameterPb.SparseCoordinates.Row> values) {
+        if (coordinateBuilder_ == null) {
+          ensureCoordinateIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, coordinate_);
+          onChanged();
+        } else {
+          coordinateBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+       */
+      public Builder clearCoordinate() {
+        if (coordinateBuilder_ == null) {
+          coordinate_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          coordinateBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+       */
+      public Builder removeCoordinate(int index) {
+        if (coordinateBuilder_ == null) {
+          ensureCoordinateIsMutable();
+          coordinate_.remove(index);
+          onChanged();
+        } else {
+          coordinateBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+       */
+      public drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Builder getCoordinateBuilder(
+          int index) {
+        return getCoordinateFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+       */
+      public drillbit.protobuf.ParameterPb.SparseCoordinates.RowOrBuilder getCoordinateOrBuilder(
+          int index) {
+        if (coordinateBuilder_ == null) {
+          return coordinate_.get(index);  } else {
+          return coordinateBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+       */
+      public java.util.List<? extends drillbit.protobuf.ParameterPb.SparseCoordinates.RowOrBuilder> 
+           getCoordinateOrBuilderList() {
+        if (coordinateBuilder_ != null) {
+          return coordinateBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(coordinate_);
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+       */
+      public drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Builder addCoordinateBuilder() {
+        return getCoordinateFieldBuilder().addBuilder(
+            drillbit.protobuf.ParameterPb.SparseCoordinates.Row.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+       */
+      public drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Builder addCoordinateBuilder(
+          int index) {
+        return getCoordinateFieldBuilder().addBuilder(
+            index, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.SparseCoordinates.Row coordinate = 1;</code>
+       */
+      public java.util.List<drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Builder> 
+           getCoordinateBuilderList() {
+        return getCoordinateFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          drillbit.protobuf.ParameterPb.SparseCoordinates.Row, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Builder, drillbit.protobuf.ParameterPb.SparseCoordinates.RowOrBuilder> 
+          getCoordinateFieldBuilder() {
+        if (coordinateBuilder_ == null) {
+          coordinateBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              drillbit.protobuf.ParameterPb.SparseCoordinates.Row, drillbit.protobuf.ParameterPb.SparseCoordinates.Row.Builder, drillbit.protobuf.ParameterPb.SparseCoordinates.RowOrBuilder>(
+                  coordinate_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          coordinate_ = null;
+        }
+        return coordinateBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:drillbit.protobuf.SparseCoordinates)
+    }
+
+    // @@protoc_insertion_point(class_scope:drillbit.protobuf.SparseCoordinates)
+    private static final drillbit.protobuf.ParameterPb.SparseCoordinates DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new drillbit.protobuf.ParameterPb.SparseCoordinates();
+    }
+
+    public static drillbit.protobuf.ParameterPb.SparseCoordinates getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<SparseCoordinates>
+        PARSER = new com.google.protobuf.AbstractParser<SparseCoordinates>() {
+      @java.lang.Override
+      public SparseCoordinates parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SparseCoordinates(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<SparseCoordinates> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SparseCoordinates> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public drillbit.protobuf.ParameterPb.SparseCoordinates getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface NodeOrBuilder extends
       // @@protoc_insertion_point(interface_extends:drillbit.protobuf.Node)
       com.google.protobuf.MessageOrBuilder {
@@ -1315,2056 +6911,6 @@ public final class ParameterPb {
 
   }
 
-  public interface DenseWeightsOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:drillbit.protobuf.DenseWeights)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>repeated double weight = 1;</code>
-     * @return A list containing the weight.
-     */
-    java.util.List<java.lang.Double> getWeightList();
-    /**
-     * <code>repeated double weight = 1;</code>
-     * @return The count of weight.
-     */
-    int getWeightCount();
-    /**
-     * <code>repeated double weight = 1;</code>
-     * @param index The index of the element to return.
-     * @return The weight at the given index.
-     */
-    double getWeight(int index);
-  }
-  /**
-   * Protobuf type {@code drillbit.protobuf.DenseWeights}
-   */
-  public static final class DenseWeights extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:drillbit.protobuf.DenseWeights)
-      DenseWeightsOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use DenseWeights.newBuilder() to construct.
-    private DenseWeights(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private DenseWeights() {
-      weight_ = emptyDoubleList();
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new DenseWeights();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private DenseWeights(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 9: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                weight_ = newDoubleList();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              weight_.addDouble(input.readDouble());
-              break;
-            }
-            case 10: {
-              int length = input.readRawVarint32();
-              int limit = input.pushLimit(length);
-              if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
-                weight_ = newDoubleList();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              while (input.getBytesUntilLimit() > 0) {
-                weight_.addDouble(input.readDouble());
-              }
-              input.popLimit(limit);
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          weight_.makeImmutable(); // C
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseWeights_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseWeights_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              drillbit.protobuf.ParameterPb.DenseWeights.class, drillbit.protobuf.ParameterPb.DenseWeights.Builder.class);
-    }
-
-    public static final int WEIGHT_FIELD_NUMBER = 1;
-    private com.google.protobuf.Internal.DoubleList weight_;
-    /**
-     * <code>repeated double weight = 1;</code>
-     * @return A list containing the weight.
-     */
-    @java.lang.Override
-    public java.util.List<java.lang.Double>
-        getWeightList() {
-      return weight_;
-    }
-    /**
-     * <code>repeated double weight = 1;</code>
-     * @return The count of weight.
-     */
-    public int getWeightCount() {
-      return weight_.size();
-    }
-    /**
-     * <code>repeated double weight = 1;</code>
-     * @param index The index of the element to return.
-     * @return The weight at the given index.
-     */
-    public double getWeight(int index) {
-      return weight_.getDouble(index);
-    }
-    private int weightMemoizedSerializedSize = -1;
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (getWeightList().size() > 0) {
-        output.writeUInt32NoTag(10);
-        output.writeUInt32NoTag(weightMemoizedSerializedSize);
-      }
-      for (int i = 0; i < weight_.size(); i++) {
-        output.writeDoubleNoTag(weight_.getDouble(i));
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      {
-        int dataSize = 0;
-        dataSize = 8 * getWeightList().size();
-        size += dataSize;
-        if (!getWeightList().isEmpty()) {
-          size += 1;
-          size += com.google.protobuf.CodedOutputStream
-              .computeInt32SizeNoTag(dataSize);
-        }
-        weightMemoizedSerializedSize = dataSize;
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof drillbit.protobuf.ParameterPb.DenseWeights)) {
-        return super.equals(obj);
-      }
-      drillbit.protobuf.ParameterPb.DenseWeights other = (drillbit.protobuf.ParameterPb.DenseWeights) obj;
-
-      if (!getWeightList()
-          .equals(other.getWeightList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (getWeightCount() > 0) {
-        hash = (37 * hash) + WEIGHT_FIELD_NUMBER;
-        hash = (53 * hash) + getWeightList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static drillbit.protobuf.ParameterPb.DenseWeights parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static drillbit.protobuf.ParameterPb.DenseWeights parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static drillbit.protobuf.ParameterPb.DenseWeights parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(drillbit.protobuf.ParameterPb.DenseWeights prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code drillbit.protobuf.DenseWeights}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:drillbit.protobuf.DenseWeights)
-        drillbit.protobuf.ParameterPb.DenseWeightsOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseWeights_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseWeights_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                drillbit.protobuf.ParameterPb.DenseWeights.class, drillbit.protobuf.ParameterPb.DenseWeights.Builder.class);
-      }
-
-      // Construct using drillbit.protobuf.ParameterPb.DenseWeights.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        weight_ = emptyDoubleList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_DenseWeights_descriptor;
-      }
-
-      @java.lang.Override
-      public drillbit.protobuf.ParameterPb.DenseWeights getDefaultInstanceForType() {
-        return drillbit.protobuf.ParameterPb.DenseWeights.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public drillbit.protobuf.ParameterPb.DenseWeights build() {
-        drillbit.protobuf.ParameterPb.DenseWeights result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public drillbit.protobuf.ParameterPb.DenseWeights buildPartial() {
-        drillbit.protobuf.ParameterPb.DenseWeights result = new drillbit.protobuf.ParameterPb.DenseWeights(this);
-        int from_bitField0_ = bitField0_;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          weight_.makeImmutable();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.weight_ = weight_;
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof drillbit.protobuf.ParameterPb.DenseWeights) {
-          return mergeFrom((drillbit.protobuf.ParameterPb.DenseWeights)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(drillbit.protobuf.ParameterPb.DenseWeights other) {
-        if (other == drillbit.protobuf.ParameterPb.DenseWeights.getDefaultInstance()) return this;
-        if (!other.weight_.isEmpty()) {
-          if (weight_.isEmpty()) {
-            weight_ = other.weight_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-          } else {
-            ensureWeightIsMutable();
-            weight_.addAll(other.weight_);
-          }
-          onChanged();
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        drillbit.protobuf.ParameterPb.DenseWeights parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (drillbit.protobuf.ParameterPb.DenseWeights) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private com.google.protobuf.Internal.DoubleList weight_ = emptyDoubleList();
-      private void ensureWeightIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          weight_ = mutableCopy(weight_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-      /**
-       * <code>repeated double weight = 1;</code>
-       * @return A list containing the weight.
-       */
-      public java.util.List<java.lang.Double>
-          getWeightList() {
-        return ((bitField0_ & 0x00000001) != 0) ?
-                 java.util.Collections.unmodifiableList(weight_) : weight_;
-      }
-      /**
-       * <code>repeated double weight = 1;</code>
-       * @return The count of weight.
-       */
-      public int getWeightCount() {
-        return weight_.size();
-      }
-      /**
-       * <code>repeated double weight = 1;</code>
-       * @param index The index of the element to return.
-       * @return The weight at the given index.
-       */
-      public double getWeight(int index) {
-        return weight_.getDouble(index);
-      }
-      /**
-       * <code>repeated double weight = 1;</code>
-       * @param index The index to set the value at.
-       * @param value The weight to set.
-       * @return This builder for chaining.
-       */
-      public Builder setWeight(
-          int index, double value) {
-        ensureWeightIsMutable();
-        weight_.setDouble(index, value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated double weight = 1;</code>
-       * @param value The weight to add.
-       * @return This builder for chaining.
-       */
-      public Builder addWeight(double value) {
-        ensureWeightIsMutable();
-        weight_.addDouble(value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated double weight = 1;</code>
-       * @param values The weight to add.
-       * @return This builder for chaining.
-       */
-      public Builder addAllWeight(
-          java.lang.Iterable<? extends java.lang.Double> values) {
-        ensureWeightIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, weight_);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated double weight = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearWeight() {
-        weight_ = emptyDoubleList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        onChanged();
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:drillbit.protobuf.DenseWeights)
-    }
-
-    // @@protoc_insertion_point(class_scope:drillbit.protobuf.DenseWeights)
-    private static final drillbit.protobuf.ParameterPb.DenseWeights DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new drillbit.protobuf.ParameterPb.DenseWeights();
-    }
-
-    public static drillbit.protobuf.ParameterPb.DenseWeights getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<DenseWeights>
-        PARSER = new com.google.protobuf.AbstractParser<DenseWeights>() {
-      @java.lang.Override
-      public DenseWeights parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new DenseWeights(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<DenseWeights> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<DenseWeights> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public drillbit.protobuf.ParameterPb.DenseWeights getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface SparseWeightsOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:drillbit.protobuf.SparseWeights)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-     */
-    java.util.List<drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight> 
-        getWeightList();
-    /**
-     * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-     */
-    drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight getWeight(int index);
-    /**
-     * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-     */
-    int getWeightCount();
-    /**
-     * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-     */
-    java.util.List<? extends drillbit.protobuf.ParameterPb.SparseWeights.SparseWeightOrBuilder> 
-        getWeightOrBuilderList();
-    /**
-     * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-     */
-    drillbit.protobuf.ParameterPb.SparseWeights.SparseWeightOrBuilder getWeightOrBuilder(
-        int index);
-  }
-  /**
-   * Protobuf type {@code drillbit.protobuf.SparseWeights}
-   */
-  public static final class SparseWeights extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:drillbit.protobuf.SparseWeights)
-      SparseWeightsOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use SparseWeights.newBuilder() to construct.
-    private SparseWeights(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private SparseWeights() {
-      weight_ = java.util.Collections.emptyList();
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-        UnusedPrivateParameter unused) {
-      return new SparseWeights();
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private SparseWeights(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 10: {
-              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                weight_ = new java.util.ArrayList<drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight>();
-                mutable_bitField0_ |= 0x00000001;
-              }
-              weight_.add(
-                  input.readMessage(drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.parser(), extensionRegistry));
-              break;
-            }
-            default: {
-              if (!parseUnknownField(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          weight_ = java.util.Collections.unmodifiableList(weight_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              drillbit.protobuf.ParameterPb.SparseWeights.class, drillbit.protobuf.ParameterPb.SparseWeights.Builder.class);
-    }
-
-    public interface SparseWeightOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:drillbit.protobuf.SparseWeights.SparseWeight)
-        com.google.protobuf.MessageOrBuilder {
-
-      /**
-       * <code>string feature = 1;</code>
-       * @return The feature.
-       */
-      java.lang.String getFeature();
-      /**
-       * <code>string feature = 1;</code>
-       * @return The bytes for feature.
-       */
-      com.google.protobuf.ByteString
-          getFeatureBytes();
-
-      /**
-       * <code>double weight = 2;</code>
-       * @return The weight.
-       */
-      double getWeight();
-    }
-    /**
-     * Protobuf type {@code drillbit.protobuf.SparseWeights.SparseWeight}
-     */
-    public static final class SparseWeight extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:drillbit.protobuf.SparseWeights.SparseWeight)
-        SparseWeightOrBuilder {
-    private static final long serialVersionUID = 0L;
-      // Use SparseWeight.newBuilder() to construct.
-      private SparseWeight(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
-      }
-      private SparseWeight() {
-        feature_ = "";
-      }
-
-      @java.lang.Override
-      @SuppressWarnings({"unused"})
-      protected java.lang.Object newInstance(
-          UnusedPrivateParameter unused) {
-        return new SparseWeight();
-      }
-
-      @java.lang.Override
-      public final com.google.protobuf.UnknownFieldSet
-      getUnknownFields() {
-        return this.unknownFields;
-      }
-      private SparseWeight(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        if (extensionRegistry == null) {
-          throw new java.lang.NullPointerException();
-        }
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-            com.google.protobuf.UnknownFieldSet.newBuilder();
-        try {
-          boolean done = false;
-          while (!done) {
-            int tag = input.readTag();
-            switch (tag) {
-              case 0:
-                done = true;
-                break;
-              case 10: {
-                java.lang.String s = input.readStringRequireUtf8();
-
-                feature_ = s;
-                break;
-              }
-              case 17: {
-
-                weight_ = input.readDouble();
-                break;
-              }
-              default: {
-                if (!parseUnknownField(
-                    input, unknownFields, extensionRegistry, tag)) {
-                  done = true;
-                }
-                break;
-              }
-            }
-          }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          throw e.setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-          throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
-        } finally {
-          this.unknownFields = unknownFields.build();
-          makeExtensionsImmutable();
-        }
-      }
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_SparseWeight_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_SparseWeight_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.class, drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.Builder.class);
-      }
-
-      public static final int FEATURE_FIELD_NUMBER = 1;
-      private volatile java.lang.Object feature_;
-      /**
-       * <code>string feature = 1;</code>
-       * @return The feature.
-       */
-      @java.lang.Override
-      public java.lang.String getFeature() {
-        java.lang.Object ref = feature_;
-        if (ref instanceof java.lang.String) {
-          return (java.lang.String) ref;
-        } else {
-          com.google.protobuf.ByteString bs = 
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          feature_ = s;
-          return s;
-        }
-      }
-      /**
-       * <code>string feature = 1;</code>
-       * @return The bytes for feature.
-       */
-      @java.lang.Override
-      public com.google.protobuf.ByteString
-          getFeatureBytes() {
-        java.lang.Object ref = feature_;
-        if (ref instanceof java.lang.String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          feature_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-
-      public static final int WEIGHT_FIELD_NUMBER = 2;
-      private double weight_;
-      /**
-       * <code>double weight = 2;</code>
-       * @return The weight.
-       */
-      @java.lang.Override
-      public double getWeight() {
-        return weight_;
-      }
-
-      private byte memoizedIsInitialized = -1;
-      @java.lang.Override
-      public final boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
-
-        memoizedIsInitialized = 1;
-        return true;
-      }
-
-      @java.lang.Override
-      public void writeTo(com.google.protobuf.CodedOutputStream output)
-                          throws java.io.IOException {
-        if (!getFeatureBytes().isEmpty()) {
-          com.google.protobuf.GeneratedMessageV3.writeString(output, 1, feature_);
-        }
-        if (weight_ != 0D) {
-          output.writeDouble(2, weight_);
-        }
-        unknownFields.writeTo(output);
-      }
-
-      @java.lang.Override
-      public int getSerializedSize() {
-        int size = memoizedSize;
-        if (size != -1) return size;
-
-        size = 0;
-        if (!getFeatureBytes().isEmpty()) {
-          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, feature_);
-        }
-        if (weight_ != 0D) {
-          size += com.google.protobuf.CodedOutputStream
-            .computeDoubleSize(2, weight_);
-        }
-        size += unknownFields.getSerializedSize();
-        memoizedSize = size;
-        return size;
-      }
-
-      @java.lang.Override
-      public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-         return true;
-        }
-        if (!(obj instanceof drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight)) {
-          return super.equals(obj);
-        }
-        drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight other = (drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight) obj;
-
-        if (!getFeature()
-            .equals(other.getFeature())) return false;
-        if (java.lang.Double.doubleToLongBits(getWeight())
-            != java.lang.Double.doubleToLongBits(
-                other.getWeight())) return false;
-        if (!unknownFields.equals(other.unknownFields)) return false;
-        return true;
-      }
-
-      @java.lang.Override
-      public int hashCode() {
-        if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptor().hashCode();
-        hash = (37 * hash) + FEATURE_FIELD_NUMBER;
-        hash = (53 * hash) + getFeature().hashCode();
-        hash = (37 * hash) + WEIGHT_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            java.lang.Double.doubleToLongBits(getWeight()));
-        hash = (29 * hash) + unknownFields.hashCode();
-        memoizedHashCode = hash;
-        return hash;
-      }
-
-      public static drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight parseFrom(
-          java.nio.ByteBuffer data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight parseFrom(
-          java.nio.ByteBuffer data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-      }
-      public static drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-      }
-      public static drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-      public static drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-      public static drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-      }
-      public static drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-      }
-      public static drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-      }
-      public static drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-      }
-
-      @java.lang.Override
-      public Builder newBuilderForType() { return newBuilder(); }
-      public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-      }
-      public static Builder newBuilder(drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-      }
-      @java.lang.Override
-      public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
-      }
-
-      @java.lang.Override
-      protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-      }
-      /**
-       * Protobuf type {@code drillbit.protobuf.SparseWeights.SparseWeight}
-       */
-      public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:drillbit.protobuf.SparseWeights.SparseWeight)
-          drillbit.protobuf.ParameterPb.SparseWeights.SparseWeightOrBuilder {
-        public static final com.google.protobuf.Descriptors.Descriptor
-            getDescriptor() {
-          return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_SparseWeight_descriptor;
-        }
-
-        @java.lang.Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-            internalGetFieldAccessorTable() {
-          return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_SparseWeight_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                  drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.class, drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.Builder.class);
-        }
-
-        // Construct using drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.newBuilder()
-        private Builder() {
-          maybeForceBuilderInitialization();
-        }
-
-        private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-          super(parent);
-          maybeForceBuilderInitialization();
-        }
-        private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
-          }
-        }
-        @java.lang.Override
-        public Builder clear() {
-          super.clear();
-          feature_ = "";
-
-          weight_ = 0D;
-
-          return this;
-        }
-
-        @java.lang.Override
-        public com.google.protobuf.Descriptors.Descriptor
-            getDescriptorForType() {
-          return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_SparseWeight_descriptor;
-        }
-
-        @java.lang.Override
-        public drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight getDefaultInstanceForType() {
-          return drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.getDefaultInstance();
-        }
-
-        @java.lang.Override
-        public drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight build() {
-          drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight result = buildPartial();
-          if (!result.isInitialized()) {
-            throw newUninitializedMessageException(result);
-          }
-          return result;
-        }
-
-        @java.lang.Override
-        public drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight buildPartial() {
-          drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight result = new drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight(this);
-          result.feature_ = feature_;
-          result.weight_ = weight_;
-          onBuilt();
-          return result;
-        }
-
-        @java.lang.Override
-        public Builder clone() {
-          return super.clone();
-        }
-        @java.lang.Override
-        public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-          return super.setField(field, value);
-        }
-        @java.lang.Override
-        public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return super.clearField(field);
-        }
-        @java.lang.Override
-        public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return super.clearOneof(oneof);
-        }
-        @java.lang.Override
-        public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
-          return super.setRepeatedField(field, index, value);
-        }
-        @java.lang.Override
-        public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-          return super.addRepeatedField(field, value);
-        }
-        @java.lang.Override
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight) {
-            return mergeFrom((drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight)other);
-          } else {
-            super.mergeFrom(other);
-            return this;
-          }
-        }
-
-        public Builder mergeFrom(drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight other) {
-          if (other == drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.getDefaultInstance()) return this;
-          if (!other.getFeature().isEmpty()) {
-            feature_ = other.feature_;
-            onChanged();
-          }
-          if (other.getWeight() != 0D) {
-            setWeight(other.getWeight());
-          }
-          this.mergeUnknownFields(other.unknownFields);
-          onChanged();
-          return this;
-        }
-
-        @java.lang.Override
-        public final boolean isInitialized() {
-          return true;
-        }
-
-        @java.lang.Override
-        public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-          drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight parsedMessage = null;
-          try {
-            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight) e.getUnfinishedMessage();
-            throw e.unwrapIOException();
-          } finally {
-            if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-            }
-          }
-          return this;
-        }
-
-        private java.lang.Object feature_ = "";
-        /**
-         * <code>string feature = 1;</code>
-         * @return The feature.
-         */
-        public java.lang.String getFeature() {
-          java.lang.Object ref = feature_;
-          if (!(ref instanceof java.lang.String)) {
-            com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
-            java.lang.String s = bs.toStringUtf8();
-            feature_ = s;
-            return s;
-          } else {
-            return (java.lang.String) ref;
-          }
-        }
-        /**
-         * <code>string feature = 1;</code>
-         * @return The bytes for feature.
-         */
-        public com.google.protobuf.ByteString
-            getFeatureBytes() {
-          java.lang.Object ref = feature_;
-          if (ref instanceof String) {
-            com.google.protobuf.ByteString b = 
-                com.google.protobuf.ByteString.copyFromUtf8(
-                    (java.lang.String) ref);
-            feature_ = b;
-            return b;
-          } else {
-            return (com.google.protobuf.ByteString) ref;
-          }
-        }
-        /**
-         * <code>string feature = 1;</code>
-         * @param value The feature to set.
-         * @return This builder for chaining.
-         */
-        public Builder setFeature(
-            java.lang.String value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  
-          feature_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>string feature = 1;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearFeature() {
-          
-          feature_ = getDefaultInstance().getFeature();
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>string feature = 1;</code>
-         * @param value The bytes for feature to set.
-         * @return This builder for chaining.
-         */
-        public Builder setFeatureBytes(
-            com.google.protobuf.ByteString value) {
-          if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-          
-          feature_ = value;
-          onChanged();
-          return this;
-        }
-
-        private double weight_ ;
-        /**
-         * <code>double weight = 2;</code>
-         * @return The weight.
-         */
-        @java.lang.Override
-        public double getWeight() {
-          return weight_;
-        }
-        /**
-         * <code>double weight = 2;</code>
-         * @param value The weight to set.
-         * @return This builder for chaining.
-         */
-        public Builder setWeight(double value) {
-          
-          weight_ = value;
-          onChanged();
-          return this;
-        }
-        /**
-         * <code>double weight = 2;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearWeight() {
-          
-          weight_ = 0D;
-          onChanged();
-          return this;
-        }
-        @java.lang.Override
-        public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.setUnknownFields(unknownFields);
-        }
-
-        @java.lang.Override
-        public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.mergeUnknownFields(unknownFields);
-        }
-
-
-        // @@protoc_insertion_point(builder_scope:drillbit.protobuf.SparseWeights.SparseWeight)
-      }
-
-      // @@protoc_insertion_point(class_scope:drillbit.protobuf.SparseWeights.SparseWeight)
-      private static final drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight DEFAULT_INSTANCE;
-      static {
-        DEFAULT_INSTANCE = new drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight();
-      }
-
-      public static drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-      }
-
-      private static final com.google.protobuf.Parser<SparseWeight>
-          PARSER = new com.google.protobuf.AbstractParser<SparseWeight>() {
-        @java.lang.Override
-        public SparseWeight parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-          return new SparseWeight(input, extensionRegistry);
-        }
-      };
-
-      public static com.google.protobuf.Parser<SparseWeight> parser() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Parser<SparseWeight> getParserForType() {
-        return PARSER;
-      }
-
-      @java.lang.Override
-      public drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-      }
-
-    }
-
-    public static final int WEIGHT_FIELD_NUMBER = 1;
-    private java.util.List<drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight> weight_;
-    /**
-     * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-     */
-    @java.lang.Override
-    public java.util.List<drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight> getWeightList() {
-      return weight_;
-    }
-    /**
-     * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-     */
-    @java.lang.Override
-    public java.util.List<? extends drillbit.protobuf.ParameterPb.SparseWeights.SparseWeightOrBuilder> 
-        getWeightOrBuilderList() {
-      return weight_;
-    }
-    /**
-     * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-     */
-    @java.lang.Override
-    public int getWeightCount() {
-      return weight_.size();
-    }
-    /**
-     * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-     */
-    @java.lang.Override
-    public drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight getWeight(int index) {
-      return weight_.get(index);
-    }
-    /**
-     * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-     */
-    @java.lang.Override
-    public drillbit.protobuf.ParameterPb.SparseWeights.SparseWeightOrBuilder getWeightOrBuilder(
-        int index) {
-      return weight_.get(index);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      for (int i = 0; i < weight_.size(); i++) {
-        output.writeMessage(1, weight_.get(i));
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      for (int i = 0; i < weight_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, weight_.get(i));
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof drillbit.protobuf.ParameterPb.SparseWeights)) {
-        return super.equals(obj);
-      }
-      drillbit.protobuf.ParameterPb.SparseWeights other = (drillbit.protobuf.ParameterPb.SparseWeights) obj;
-
-      if (!getWeightList()
-          .equals(other.getWeightList())) return false;
-      if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (getWeightCount() > 0) {
-        hash = (37 * hash) + WEIGHT_FIELD_NUMBER;
-        hash = (53 * hash) + getWeightList().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static drillbit.protobuf.ParameterPb.SparseWeights parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static drillbit.protobuf.ParameterPb.SparseWeights parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static drillbit.protobuf.ParameterPb.SparseWeights parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(drillbit.protobuf.ParameterPb.SparseWeights prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code drillbit.protobuf.SparseWeights}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:drillbit.protobuf.SparseWeights)
-        drillbit.protobuf.ParameterPb.SparseWeightsOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                drillbit.protobuf.ParameterPb.SparseWeights.class, drillbit.protobuf.ParameterPb.SparseWeights.Builder.class);
-      }
-
-      // Construct using drillbit.protobuf.ParameterPb.SparseWeights.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-          getWeightFieldBuilder();
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (weightBuilder_ == null) {
-          weight_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          weightBuilder_.clear();
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return drillbit.protobuf.ParameterPb.internal_static_drillbit_protobuf_SparseWeights_descriptor;
-      }
-
-      @java.lang.Override
-      public drillbit.protobuf.ParameterPb.SparseWeights getDefaultInstanceForType() {
-        return drillbit.protobuf.ParameterPb.SparseWeights.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public drillbit.protobuf.ParameterPb.SparseWeights build() {
-        drillbit.protobuf.ParameterPb.SparseWeights result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public drillbit.protobuf.ParameterPb.SparseWeights buildPartial() {
-        drillbit.protobuf.ParameterPb.SparseWeights result = new drillbit.protobuf.ParameterPb.SparseWeights(this);
-        int from_bitField0_ = bitField0_;
-        if (weightBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) != 0)) {
-            weight_ = java.util.Collections.unmodifiableList(weight_);
-            bitField0_ = (bitField0_ & ~0x00000001);
-          }
-          result.weight_ = weight_;
-        } else {
-          result.weight_ = weightBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof drillbit.protobuf.ParameterPb.SparseWeights) {
-          return mergeFrom((drillbit.protobuf.ParameterPb.SparseWeights)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(drillbit.protobuf.ParameterPb.SparseWeights other) {
-        if (other == drillbit.protobuf.ParameterPb.SparseWeights.getDefaultInstance()) return this;
-        if (weightBuilder_ == null) {
-          if (!other.weight_.isEmpty()) {
-            if (weight_.isEmpty()) {
-              weight_ = other.weight_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-            } else {
-              ensureWeightIsMutable();
-              weight_.addAll(other.weight_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.weight_.isEmpty()) {
-            if (weightBuilder_.isEmpty()) {
-              weightBuilder_.dispose();
-              weightBuilder_ = null;
-              weight_ = other.weight_;
-              bitField0_ = (bitField0_ & ~0x00000001);
-              weightBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getWeightFieldBuilder() : null;
-            } else {
-              weightBuilder_.addAllMessages(other.weight_);
-            }
-          }
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        drillbit.protobuf.ParameterPb.SparseWeights parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (drillbit.protobuf.ParameterPb.SparseWeights) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private java.util.List<drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight> weight_ =
-        java.util.Collections.emptyList();
-      private void ensureWeightIsMutable() {
-        if (!((bitField0_ & 0x00000001) != 0)) {
-          weight_ = new java.util.ArrayList<drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight>(weight_);
-          bitField0_ |= 0x00000001;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight, drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.Builder, drillbit.protobuf.ParameterPb.SparseWeights.SparseWeightOrBuilder> weightBuilder_;
-
-      /**
-       * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-       */
-      public java.util.List<drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight> getWeightList() {
-        if (weightBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(weight_);
-        } else {
-          return weightBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-       */
-      public int getWeightCount() {
-        if (weightBuilder_ == null) {
-          return weight_.size();
-        } else {
-          return weightBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-       */
-      public drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight getWeight(int index) {
-        if (weightBuilder_ == null) {
-          return weight_.get(index);
-        } else {
-          return weightBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-       */
-      public Builder setWeight(
-          int index, drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight value) {
-        if (weightBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureWeightIsMutable();
-          weight_.set(index, value);
-          onChanged();
-        } else {
-          weightBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-       */
-      public Builder setWeight(
-          int index, drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.Builder builderForValue) {
-        if (weightBuilder_ == null) {
-          ensureWeightIsMutable();
-          weight_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          weightBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-       */
-      public Builder addWeight(drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight value) {
-        if (weightBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureWeightIsMutable();
-          weight_.add(value);
-          onChanged();
-        } else {
-          weightBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-       */
-      public Builder addWeight(
-          int index, drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight value) {
-        if (weightBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureWeightIsMutable();
-          weight_.add(index, value);
-          onChanged();
-        } else {
-          weightBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-       */
-      public Builder addWeight(
-          drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.Builder builderForValue) {
-        if (weightBuilder_ == null) {
-          ensureWeightIsMutable();
-          weight_.add(builderForValue.build());
-          onChanged();
-        } else {
-          weightBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-       */
-      public Builder addWeight(
-          int index, drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.Builder builderForValue) {
-        if (weightBuilder_ == null) {
-          ensureWeightIsMutable();
-          weight_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          weightBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-       */
-      public Builder addAllWeight(
-          java.lang.Iterable<? extends drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight> values) {
-        if (weightBuilder_ == null) {
-          ensureWeightIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, weight_);
-          onChanged();
-        } else {
-          weightBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-       */
-      public Builder clearWeight() {
-        if (weightBuilder_ == null) {
-          weight_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000001);
-          onChanged();
-        } else {
-          weightBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-       */
-      public Builder removeWeight(int index) {
-        if (weightBuilder_ == null) {
-          ensureWeightIsMutable();
-          weight_.remove(index);
-          onChanged();
-        } else {
-          weightBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-       */
-      public drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.Builder getWeightBuilder(
-          int index) {
-        return getWeightFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-       */
-      public drillbit.protobuf.ParameterPb.SparseWeights.SparseWeightOrBuilder getWeightOrBuilder(
-          int index) {
-        if (weightBuilder_ == null) {
-          return weight_.get(index);  } else {
-          return weightBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-       */
-      public java.util.List<? extends drillbit.protobuf.ParameterPb.SparseWeights.SparseWeightOrBuilder> 
-           getWeightOrBuilderList() {
-        if (weightBuilder_ != null) {
-          return weightBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(weight_);
-        }
-      }
-      /**
-       * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-       */
-      public drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.Builder addWeightBuilder() {
-        return getWeightFieldBuilder().addBuilder(
-            drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-       */
-      public drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.Builder addWeightBuilder(
-          int index) {
-        return getWeightFieldBuilder().addBuilder(
-            index, drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .drillbit.protobuf.SparseWeights.SparseWeight weight = 1;</code>
-       */
-      public java.util.List<drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.Builder> 
-           getWeightBuilderList() {
-        return getWeightFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight, drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.Builder, drillbit.protobuf.ParameterPb.SparseWeights.SparseWeightOrBuilder> 
-          getWeightFieldBuilder() {
-        if (weightBuilder_ == null) {
-          weightBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight, drillbit.protobuf.ParameterPb.SparseWeights.SparseWeight.Builder, drillbit.protobuf.ParameterPb.SparseWeights.SparseWeightOrBuilder>(
-                  weight_,
-                  ((bitField0_ & 0x00000001) != 0),
-                  getParentForChildren(),
-                  isClean());
-          weight_ = null;
-        }
-        return weightBuilder_;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFields(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:drillbit.protobuf.SparseWeights)
-    }
-
-    // @@protoc_insertion_point(class_scope:drillbit.protobuf.SparseWeights)
-    private static final drillbit.protobuf.ParameterPb.SparseWeights DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new drillbit.protobuf.ParameterPb.SparseWeights();
-    }
-
-    public static drillbit.protobuf.ParameterPb.SparseWeights getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<SparseWeights>
-        PARSER = new com.google.protobuf.AbstractParser<SparseWeights>() {
-      @java.lang.Override
-      public SparseWeights parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SparseWeights(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<SparseWeights> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<SparseWeights> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public drillbit.protobuf.ParameterPb.SparseWeights getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_drillbit_protobuf_Node_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_drillbit_protobuf_Node_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_drillbit_protobuf_DenseWeights_descriptor;
   private static final 
@@ -3376,10 +6922,40 @@ public final class ParameterPb {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_drillbit_protobuf_SparseWeights_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_drillbit_protobuf_SparseWeights_SparseWeight_descriptor;
+    internal_static_drillbit_protobuf_SparseWeights_Item_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_drillbit_protobuf_SparseWeights_SparseWeight_fieldAccessorTable;
+      internal_static_drillbit_protobuf_SparseWeights_Item_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_drillbit_protobuf_DenseCoordinates_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_drillbit_protobuf_DenseCoordinates_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_drillbit_protobuf_DenseCoordinates_Row_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_drillbit_protobuf_DenseCoordinates_Row_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_drillbit_protobuf_SparseCoordinates_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_drillbit_protobuf_SparseCoordinates_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_drillbit_protobuf_SparseCoordinates_Row_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_drillbit_protobuf_SparseCoordinates_Row_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_drillbit_protobuf_SparseCoordinates_Row_Item_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_drillbit_protobuf_SparseCoordinates_Row_Item_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_drillbit_protobuf_Node_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_drillbit_protobuf_Node_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -3390,45 +6966,82 @@ public final class ParameterPb {
   static {
     java.lang.String[] descriptorData = {
       "\n5resources/protos/drillbit/protobuf/par" +
-      "ameter_pb.proto\022\021drillbit.protobuf\"\266\001\n\004N" +
-      "ode\022\016\n\006output\030\001 \001(\005\022\022\n\nposteriori\030\002 \003(\001\022" +
-      "\021\n\tnumerical\030\003 \001(\010\022\017\n\007feature\030\004 \001(\005\022\r\n\005v" +
-      "alue\030\005 \001(\001\022*\n\ttrueChild\030\006 \001(\0132\027.drillbit" +
-      ".protobuf.Node\022+\n\nfalseChild\030\007 \001(\0132\027.dri" +
-      "llbit.protobuf.Node\"\036\n\014DenseWeights\022\016\n\006w" +
-      "eight\030\001 \003(\001\"\177\n\rSparseWeights\022=\n\006weight\030\001" +
-      " \003(\0132-.drillbit.protobuf.SparseWeights.S" +
-      "parseWeight\032/\n\014SparseWeight\022\017\n\007feature\030\001" +
-      " \001(\t\022\016\n\006weight\030\002 \001(\001b\006proto3"
+      "ameter_pb.proto\022\021drillbit.protobuf\"\036\n\014De" +
+      "nseWeights\022\016\n\006weight\030\001 \003(\001\"o\n\rSparseWeig" +
+      "hts\0225\n\006weight\030\001 \003(\0132%.drillbit.protobuf." +
+      "SparseWeights.Item\032\'\n\004Item\022\017\n\007feature\030\001 " +
+      "\001(\t\022\016\n\006weight\030\002 \001(\001\"k\n\020DenseCoordinates\022" +
+      ";\n\ncoordinate\030\001 \003(\0132\'.drillbit.protobuf." +
+      "DenseCoordinates.Row\032\032\n\003Row\022\023\n\007element\030\001" +
+      " \003(\001B\002\020\001\"\300\001\n\021SparseCoordinates\022<\n\ncoordi" +
+      "nate\030\001 \003(\0132(.drillbit.protobuf.SparseCoo" +
+      "rdinates.Row\032m\n\003Row\022>\n\007element\030\001 \003(\0132-.d" +
+      "rillbit.protobuf.SparseCoordinates.Row.I" +
+      "tem\032&\n\004Item\022\r\n\005index\030\001 \001(\005\022\017\n\007element\030\002 " +
+      "\001(\001\"\266\001\n\004Node\022\016\n\006output\030\001 \001(\005\022\022\n\nposterio" +
+      "ri\030\002 \003(\001\022\021\n\tnumerical\030\003 \001(\010\022\017\n\007feature\030\004" +
+      " \001(\005\022\r\n\005value\030\005 \001(\001\022*\n\ttrueChild\030\006 \001(\0132\027" +
+      ".drillbit.protobuf.Node\022+\n\nfalseChild\030\007 " +
+      "\001(\0132\027.drillbit.protobuf.Nodeb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_drillbit_protobuf_Node_descriptor =
-      getDescriptor().getMessageTypes().get(0);
-    internal_static_drillbit_protobuf_Node_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_drillbit_protobuf_Node_descriptor,
-        new java.lang.String[] { "Output", "Posteriori", "Numerical", "Feature", "Value", "TrueChild", "FalseChild", });
     internal_static_drillbit_protobuf_DenseWeights_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(0);
     internal_static_drillbit_protobuf_DenseWeights_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_drillbit_protobuf_DenseWeights_descriptor,
         new java.lang.String[] { "Weight", });
     internal_static_drillbit_protobuf_SparseWeights_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(1);
     internal_static_drillbit_protobuf_SparseWeights_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_drillbit_protobuf_SparseWeights_descriptor,
         new java.lang.String[] { "Weight", });
-    internal_static_drillbit_protobuf_SparseWeights_SparseWeight_descriptor =
+    internal_static_drillbit_protobuf_SparseWeights_Item_descriptor =
       internal_static_drillbit_protobuf_SparseWeights_descriptor.getNestedTypes().get(0);
-    internal_static_drillbit_protobuf_SparseWeights_SparseWeight_fieldAccessorTable = new
+    internal_static_drillbit_protobuf_SparseWeights_Item_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_drillbit_protobuf_SparseWeights_SparseWeight_descriptor,
+        internal_static_drillbit_protobuf_SparseWeights_Item_descriptor,
         new java.lang.String[] { "Feature", "Weight", });
+    internal_static_drillbit_protobuf_DenseCoordinates_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_drillbit_protobuf_DenseCoordinates_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_drillbit_protobuf_DenseCoordinates_descriptor,
+        new java.lang.String[] { "Coordinate", });
+    internal_static_drillbit_protobuf_DenseCoordinates_Row_descriptor =
+      internal_static_drillbit_protobuf_DenseCoordinates_descriptor.getNestedTypes().get(0);
+    internal_static_drillbit_protobuf_DenseCoordinates_Row_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_drillbit_protobuf_DenseCoordinates_Row_descriptor,
+        new java.lang.String[] { "Element", });
+    internal_static_drillbit_protobuf_SparseCoordinates_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_drillbit_protobuf_SparseCoordinates_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_drillbit_protobuf_SparseCoordinates_descriptor,
+        new java.lang.String[] { "Coordinate", });
+    internal_static_drillbit_protobuf_SparseCoordinates_Row_descriptor =
+      internal_static_drillbit_protobuf_SparseCoordinates_descriptor.getNestedTypes().get(0);
+    internal_static_drillbit_protobuf_SparseCoordinates_Row_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_drillbit_protobuf_SparseCoordinates_Row_descriptor,
+        new java.lang.String[] { "Element", });
+    internal_static_drillbit_protobuf_SparseCoordinates_Row_Item_descriptor =
+      internal_static_drillbit_protobuf_SparseCoordinates_Row_descriptor.getNestedTypes().get(0);
+    internal_static_drillbit_protobuf_SparseCoordinates_Row_Item_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_drillbit_protobuf_SparseCoordinates_Row_Item_descriptor,
+        new java.lang.String[] { "Index", "Element", });
+    internal_static_drillbit_protobuf_Node_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_drillbit_protobuf_Node_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_drillbit_protobuf_Node_descriptor,
+        new java.lang.String[] { "Output", "Posteriori", "Numerical", "Feature", "Value", "TrueChild", "FalseChild", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

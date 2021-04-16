@@ -2,10 +2,11 @@ package drillbit.regression;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import drillbit.BaseLearner;
-import drillbit.parameter.FeatureValue;
+import drillbit.FeatureValue;
 import drillbit.optimizer.LossFunctions;
 
 import javax.annotation.Nonnull;
+
 import java.util.ArrayList;
 
 public class RegressionBaseLearner extends BaseLearner {
@@ -15,6 +16,10 @@ public class RegressionBaseLearner extends BaseLearner {
     }
 
     @Override
+    public Object predict(@Nonnull String features, @Nonnull String options) {
+        return null;
+    }
+
     public double predict(@Nonnull ArrayList<FeatureValue> features) {
         return 0;
     }

@@ -40,8 +40,8 @@ public class ReceiverOperatingCharacteristicAreaUnderCurve implements DrillAggFu
             String labelString = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(label.start, label.end, label.buffer);
             String scoreString = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(score.start, score.end, score.buffer);
 
-            double labelValue = drillbit.utils.primitive.StringParser.parseDouble(labelString, 0);
-            double scoreValue = drillbit.utils.primitive.StringParser.parseDouble(scoreString, 0.d);
+            double labelValue = drillbit.utils.parser.StringParser.parseDouble(labelString, 0);
+            double scoreValue = drillbit.utils.parser.StringParser.parseDouble(scoreString, 0.d);
 
             ((drillbit.metrics.AreaUnderCurve) aucHolder.obj).add(labelValue, scoreValue, "-type roc");
         }

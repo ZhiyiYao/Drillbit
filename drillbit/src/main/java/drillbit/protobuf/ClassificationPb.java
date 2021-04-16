@@ -1668,27 +1668,27 @@ public final class ClassificationPb {
     int getDims();
 
     /**
-     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
      */
-    java.util.List<drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel> 
-        getLabel2ModelList();
+    java.util.List<drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights> 
+        getLabel2WeightsList();
     /**
-     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
      */
-    drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel getLabel2Model(int index);
+    drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights getLabel2Weights(int index);
     /**
-     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
      */
-    int getLabel2ModelCount();
+    int getLabel2WeightsCount();
     /**
-     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
      */
-    java.util.List<? extends drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModelOrBuilder> 
-        getLabel2ModelOrBuilderList();
+    java.util.List<? extends drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeightsOrBuilder> 
+        getLabel2WeightsOrBuilderList();
     /**
-     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
      */
-    drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModelOrBuilder getLabel2ModelOrBuilder(
+    drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeightsOrBuilder getLabel2WeightsOrBuilder(
         int index);
   }
   /**
@@ -1704,7 +1704,7 @@ public final class ClassificationPb {
       super(builder);
     }
     private MulticlassClassifier() {
-      label2Model_ = java.util.Collections.emptyList();
+      label2Weights_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -1750,11 +1750,11 @@ public final class ClassificationPb {
             }
             case 26: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                label2Model_ = new java.util.ArrayList<drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel>();
+                label2Weights_ = new java.util.ArrayList<drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights>();
                 mutable_bitField0_ |= 0x00000001;
               }
-              label2Model_.add(
-                  input.readMessage(drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.parser(), extensionRegistry));
+              label2Weights_.add(
+                  input.readMessage(drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.parser(), extensionRegistry));
               break;
             }
             default: {
@@ -1773,7 +1773,7 @@ public final class ClassificationPb {
             e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          label2Model_ = java.util.Collections.unmodifiableList(label2Model_);
+          label2Weights_ = java.util.Collections.unmodifiableList(label2Weights_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -1792,8 +1792,8 @@ public final class ClassificationPb {
               drillbit.protobuf.ClassificationPb.MulticlassClassifier.class, drillbit.protobuf.ClassificationPb.MulticlassClassifier.Builder.class);
     }
 
-    public interface LabelAndModelOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:drillbit.protobuf.MulticlassClassifier.LabelAndModel)
+    public interface LabelAndWeightsOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:drillbit.protobuf.MulticlassClassifier.LabelAndWeights)
         com.google.protobuf.MessageOrBuilder {
 
       /**
@@ -1815,18 +1815,18 @@ public final class ClassificationPb {
       com.google.protobuf.ByteString getWeights();
     }
     /**
-     * Protobuf type {@code drillbit.protobuf.MulticlassClassifier.LabelAndModel}
+     * Protobuf type {@code drillbit.protobuf.MulticlassClassifier.LabelAndWeights}
      */
-    public static final class LabelAndModel extends
+    public static final class LabelAndWeights extends
         com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:drillbit.protobuf.MulticlassClassifier.LabelAndModel)
-        LabelAndModelOrBuilder {
+        // @@protoc_insertion_point(message_implements:drillbit.protobuf.MulticlassClassifier.LabelAndWeights)
+        LabelAndWeightsOrBuilder {
     private static final long serialVersionUID = 0L;
-      // Use LabelAndModel.newBuilder() to construct.
-      private LabelAndModel(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      // Use LabelAndWeights.newBuilder() to construct.
+      private LabelAndWeights(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
       }
-      private LabelAndModel() {
+      private LabelAndWeights() {
         label_ = "";
         weights_ = com.google.protobuf.ByteString.EMPTY;
       }
@@ -1835,7 +1835,7 @@ public final class ClassificationPb {
       @SuppressWarnings({"unused"})
       protected java.lang.Object newInstance(
           UnusedPrivateParameter unused) {
-        return new LabelAndModel();
+        return new LabelAndWeights();
       }
 
       @java.lang.Override
@@ -1843,7 +1843,7 @@ public final class ClassificationPb {
       getUnknownFields() {
         return this.unknownFields;
       }
-      private LabelAndModel(
+      private LabelAndWeights(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1893,15 +1893,15 @@ public final class ClassificationPb {
       }
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndModel_descriptor;
+        return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndWeights_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndModel_fieldAccessorTable
+        return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndWeights_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.class, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.Builder.class);
+                drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.class, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.Builder.class);
       }
 
       public static final int LABEL_FIELD_NUMBER = 1;
@@ -1999,10 +1999,10 @@ public final class ClassificationPb {
         if (obj == this) {
          return true;
         }
-        if (!(obj instanceof drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel)) {
+        if (!(obj instanceof drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights)) {
           return super.equals(obj);
         }
-        drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel other = (drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel) obj;
+        drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights other = (drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights) obj;
 
         if (!getLabel()
             .equals(other.getLabel())) return false;
@@ -2028,69 +2028,69 @@ public final class ClassificationPb {
         return hash;
       }
 
-      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel parseFrom(
+      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights parseFrom(
           java.nio.ByteBuffer data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
       }
-      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel parseFrom(
+      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights parseFrom(
           java.nio.ByteBuffer data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
       }
-      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel parseFrom(
+      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
       }
-      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel parseFrom(
+      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights parseFrom(
           com.google.protobuf.ByteString data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
       }
-      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel parseFrom(byte[] data)
+      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights parseFrom(byte[] data)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
       }
-      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel parseFrom(
+      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights parseFrom(
           byte[] data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
       }
-      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel parseFrom(java.io.InputStream input)
+      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights parseFrom(java.io.InputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input);
       }
-      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel parseFrom(
+      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights parseFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input, extensionRegistry);
       }
-      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel parseDelimitedFrom(java.io.InputStream input)
+      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights parseDelimitedFrom(java.io.InputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseDelimitedWithIOException(PARSER, input);
       }
-      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel parseDelimitedFrom(
+      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights parseDelimitedFrom(
           java.io.InputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
       }
-      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel parseFrom(
+      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights parseFrom(
           com.google.protobuf.CodedInputStream input)
           throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
             .parseWithIOException(PARSER, input);
       }
-      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel parseFrom(
+      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights parseFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
@@ -2103,7 +2103,7 @@ public final class ClassificationPb {
       public static Builder newBuilder() {
         return DEFAULT_INSTANCE.toBuilder();
       }
-      public static Builder newBuilder(drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel prototype) {
+      public static Builder newBuilder(drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights prototype) {
         return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
       }
       @java.lang.Override
@@ -2119,26 +2119,26 @@ public final class ClassificationPb {
         return builder;
       }
       /**
-       * Protobuf type {@code drillbit.protobuf.MulticlassClassifier.LabelAndModel}
+       * Protobuf type {@code drillbit.protobuf.MulticlassClassifier.LabelAndWeights}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:drillbit.protobuf.MulticlassClassifier.LabelAndModel)
-          drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModelOrBuilder {
+          // @@protoc_insertion_point(builder_implements:drillbit.protobuf.MulticlassClassifier.LabelAndWeights)
+          drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeightsOrBuilder {
         public static final com.google.protobuf.Descriptors.Descriptor
             getDescriptor() {
-          return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndModel_descriptor;
+          return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndWeights_descriptor;
         }
 
         @java.lang.Override
         protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internalGetFieldAccessorTable() {
-          return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndModel_fieldAccessorTable
+          return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndWeights_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
-                  drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.class, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.Builder.class);
+                  drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.class, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.Builder.class);
         }
 
-        // Construct using drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.newBuilder()
+        // Construct using drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.newBuilder()
         private Builder() {
           maybeForceBuilderInitialization();
         }
@@ -2166,17 +2166,17 @@ public final class ClassificationPb {
         @java.lang.Override
         public com.google.protobuf.Descriptors.Descriptor
             getDescriptorForType() {
-          return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndModel_descriptor;
+          return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndWeights_descriptor;
         }
 
         @java.lang.Override
-        public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel getDefaultInstanceForType() {
-          return drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.getDefaultInstance();
+        public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights getDefaultInstanceForType() {
+          return drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.getDefaultInstance();
         }
 
         @java.lang.Override
-        public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel build() {
-          drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel result = buildPartial();
+        public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights build() {
+          drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights result = buildPartial();
           if (!result.isInitialized()) {
             throw newUninitializedMessageException(result);
           }
@@ -2184,8 +2184,8 @@ public final class ClassificationPb {
         }
 
         @java.lang.Override
-        public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel buildPartial() {
-          drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel result = new drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel(this);
+        public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights buildPartial() {
+          drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights result = new drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights(this);
           result.label_ = label_;
           result.weights_ = weights_;
           onBuilt();
@@ -2226,16 +2226,16 @@ public final class ClassificationPb {
         }
         @java.lang.Override
         public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel) {
-            return mergeFrom((drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel)other);
+          if (other instanceof drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights) {
+            return mergeFrom((drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights)other);
           } else {
             super.mergeFrom(other);
             return this;
           }
         }
 
-        public Builder mergeFrom(drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel other) {
-          if (other == drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.getDefaultInstance()) return this;
+        public Builder mergeFrom(drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights other) {
+          if (other == drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.getDefaultInstance()) return this;
           if (!other.getLabel().isEmpty()) {
             label_ = other.label_;
             onChanged();
@@ -2258,11 +2258,11 @@ public final class ClassificationPb {
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
-          drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel parsedMessage = null;
+          drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights parsedMessage = null;
           try {
             parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
           } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            parsedMessage = (drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel) e.getUnfinishedMessage();
+            parsedMessage = (drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights) e.getUnfinishedMessage();
             throw e.unwrapIOException();
           } finally {
             if (parsedMessage != null) {
@@ -2394,41 +2394,41 @@ public final class ClassificationPb {
         }
 
 
-        // @@protoc_insertion_point(builder_scope:drillbit.protobuf.MulticlassClassifier.LabelAndModel)
+        // @@protoc_insertion_point(builder_scope:drillbit.protobuf.MulticlassClassifier.LabelAndWeights)
       }
 
-      // @@protoc_insertion_point(class_scope:drillbit.protobuf.MulticlassClassifier.LabelAndModel)
-      private static final drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel DEFAULT_INSTANCE;
+      // @@protoc_insertion_point(class_scope:drillbit.protobuf.MulticlassClassifier.LabelAndWeights)
+      private static final drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights DEFAULT_INSTANCE;
       static {
-        DEFAULT_INSTANCE = new drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel();
+        DEFAULT_INSTANCE = new drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights();
       }
 
-      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel getDefaultInstance() {
+      public static drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights getDefaultInstance() {
         return DEFAULT_INSTANCE;
       }
 
-      private static final com.google.protobuf.Parser<LabelAndModel>
-          PARSER = new com.google.protobuf.AbstractParser<LabelAndModel>() {
+      private static final com.google.protobuf.Parser<LabelAndWeights>
+          PARSER = new com.google.protobuf.AbstractParser<LabelAndWeights>() {
         @java.lang.Override
-        public LabelAndModel parsePartialFrom(
+        public LabelAndWeights parsePartialFrom(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
-          return new LabelAndModel(input, extensionRegistry);
+          return new LabelAndWeights(input, extensionRegistry);
         }
       };
 
-      public static com.google.protobuf.Parser<LabelAndModel> parser() {
+      public static com.google.protobuf.Parser<LabelAndWeights> parser() {
         return PARSER;
       }
 
       @java.lang.Override
-      public com.google.protobuf.Parser<LabelAndModel> getParserForType() {
+      public com.google.protobuf.Parser<LabelAndWeights> getParserForType() {
         return PARSER;
       }
 
       @java.lang.Override
-      public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel getDefaultInstanceForType() {
+      public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights getDefaultInstanceForType() {
         return DEFAULT_INSTANCE;
       }
 
@@ -2456,44 +2456,44 @@ public final class ClassificationPb {
       return dims_;
     }
 
-    public static final int LABEL2MODEL_FIELD_NUMBER = 3;
-    private java.util.List<drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel> label2Model_;
+    public static final int LABEL2WEIGHTS_FIELD_NUMBER = 3;
+    private java.util.List<drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights> label2Weights_;
     /**
-     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
      */
     @java.lang.Override
-    public java.util.List<drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel> getLabel2ModelList() {
-      return label2Model_;
+    public java.util.List<drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights> getLabel2WeightsList() {
+      return label2Weights_;
     }
     /**
-     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
      */
     @java.lang.Override
-    public java.util.List<? extends drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModelOrBuilder> 
-        getLabel2ModelOrBuilderList() {
-      return label2Model_;
+    public java.util.List<? extends drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeightsOrBuilder> 
+        getLabel2WeightsOrBuilderList() {
+      return label2Weights_;
     }
     /**
-     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
      */
     @java.lang.Override
-    public int getLabel2ModelCount() {
-      return label2Model_.size();
+    public int getLabel2WeightsCount() {
+      return label2Weights_.size();
     }
     /**
-     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
      */
     @java.lang.Override
-    public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel getLabel2Model(int index) {
-      return label2Model_.get(index);
+    public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights getLabel2Weights(int index) {
+      return label2Weights_.get(index);
     }
     /**
-     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+     * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
      */
     @java.lang.Override
-    public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModelOrBuilder getLabel2ModelOrBuilder(
+    public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeightsOrBuilder getLabel2WeightsOrBuilder(
         int index) {
-      return label2Model_.get(index);
+      return label2Weights_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2516,8 +2516,8 @@ public final class ClassificationPb {
       if (dims_ != 0) {
         output.writeInt32(2, dims_);
       }
-      for (int i = 0; i < label2Model_.size(); i++) {
-        output.writeMessage(3, label2Model_.get(i));
+      for (int i = 0; i < label2Weights_.size(); i++) {
+        output.writeMessage(3, label2Weights_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -2536,9 +2536,9 @@ public final class ClassificationPb {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(2, dims_);
       }
-      for (int i = 0; i < label2Model_.size(); i++) {
+      for (int i = 0; i < label2Weights_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, label2Model_.get(i));
+          .computeMessageSize(3, label2Weights_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2559,8 +2559,8 @@ public final class ClassificationPb {
           != other.getDense()) return false;
       if (getDims()
           != other.getDims()) return false;
-      if (!getLabel2ModelList()
-          .equals(other.getLabel2ModelList())) return false;
+      if (!getLabel2WeightsList()
+          .equals(other.getLabel2WeightsList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -2577,9 +2577,9 @@ public final class ClassificationPb {
           getDense());
       hash = (37 * hash) + DIMS_FIELD_NUMBER;
       hash = (53 * hash) + getDims();
-      if (getLabel2ModelCount() > 0) {
-        hash = (37 * hash) + LABEL2MODEL_FIELD_NUMBER;
-        hash = (53 * hash) + getLabel2ModelList().hashCode();
+      if (getLabel2WeightsCount() > 0) {
+        hash = (37 * hash) + LABEL2WEIGHTS_FIELD_NUMBER;
+        hash = (53 * hash) + getLabel2WeightsList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -2709,7 +2709,7 @@ public final class ClassificationPb {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getLabel2ModelFieldBuilder();
+          getLabel2WeightsFieldBuilder();
         }
       }
       @java.lang.Override
@@ -2719,11 +2719,11 @@ public final class ClassificationPb {
 
         dims_ = 0;
 
-        if (label2ModelBuilder_ == null) {
-          label2Model_ = java.util.Collections.emptyList();
+        if (label2WeightsBuilder_ == null) {
+          label2Weights_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000001);
         } else {
-          label2ModelBuilder_.clear();
+          label2WeightsBuilder_.clear();
         }
         return this;
       }
@@ -2754,14 +2754,14 @@ public final class ClassificationPb {
         int from_bitField0_ = bitField0_;
         result.dense_ = dense_;
         result.dims_ = dims_;
-        if (label2ModelBuilder_ == null) {
+        if (label2WeightsBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
-            label2Model_ = java.util.Collections.unmodifiableList(label2Model_);
+            label2Weights_ = java.util.Collections.unmodifiableList(label2Weights_);
             bitField0_ = (bitField0_ & ~0x00000001);
           }
-          result.label2Model_ = label2Model_;
+          result.label2Weights_ = label2Weights_;
         } else {
-          result.label2Model_ = label2ModelBuilder_.build();
+          result.label2Weights_ = label2WeightsBuilder_.build();
         }
         onBuilt();
         return result;
@@ -2817,29 +2817,29 @@ public final class ClassificationPb {
         if (other.getDims() != 0) {
           setDims(other.getDims());
         }
-        if (label2ModelBuilder_ == null) {
-          if (!other.label2Model_.isEmpty()) {
-            if (label2Model_.isEmpty()) {
-              label2Model_ = other.label2Model_;
+        if (label2WeightsBuilder_ == null) {
+          if (!other.label2Weights_.isEmpty()) {
+            if (label2Weights_.isEmpty()) {
+              label2Weights_ = other.label2Weights_;
               bitField0_ = (bitField0_ & ~0x00000001);
             } else {
-              ensureLabel2ModelIsMutable();
-              label2Model_.addAll(other.label2Model_);
+              ensureLabel2WeightsIsMutable();
+              label2Weights_.addAll(other.label2Weights_);
             }
             onChanged();
           }
         } else {
-          if (!other.label2Model_.isEmpty()) {
-            if (label2ModelBuilder_.isEmpty()) {
-              label2ModelBuilder_.dispose();
-              label2ModelBuilder_ = null;
-              label2Model_ = other.label2Model_;
+          if (!other.label2Weights_.isEmpty()) {
+            if (label2WeightsBuilder_.isEmpty()) {
+              label2WeightsBuilder_.dispose();
+              label2WeightsBuilder_ = null;
+              label2Weights_ = other.label2Weights_;
               bitField0_ = (bitField0_ & ~0x00000001);
-              label2ModelBuilder_ = 
+              label2WeightsBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getLabel2ModelFieldBuilder() : null;
+                   getLabel2WeightsFieldBuilder() : null;
             } else {
-              label2ModelBuilder_.addAllMessages(other.label2Model_);
+              label2WeightsBuilder_.addAllMessages(other.label2Weights_);
             }
           }
         }
@@ -2935,244 +2935,244 @@ public final class ClassificationPb {
         return this;
       }
 
-      private java.util.List<drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel> label2Model_ =
+      private java.util.List<drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights> label2Weights_ =
         java.util.Collections.emptyList();
-      private void ensureLabel2ModelIsMutable() {
+      private void ensureLabel2WeightsIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          label2Model_ = new java.util.ArrayList<drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel>(label2Model_);
+          label2Weights_ = new java.util.ArrayList<drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights>(label2Weights_);
           bitField0_ |= 0x00000001;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.Builder, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModelOrBuilder> label2ModelBuilder_;
+          drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.Builder, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeightsOrBuilder> label2WeightsBuilder_;
 
       /**
-       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
        */
-      public java.util.List<drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel> getLabel2ModelList() {
-        if (label2ModelBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(label2Model_);
+      public java.util.List<drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights> getLabel2WeightsList() {
+        if (label2WeightsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(label2Weights_);
         } else {
-          return label2ModelBuilder_.getMessageList();
+          return label2WeightsBuilder_.getMessageList();
         }
       }
       /**
-       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
        */
-      public int getLabel2ModelCount() {
-        if (label2ModelBuilder_ == null) {
-          return label2Model_.size();
+      public int getLabel2WeightsCount() {
+        if (label2WeightsBuilder_ == null) {
+          return label2Weights_.size();
         } else {
-          return label2ModelBuilder_.getCount();
+          return label2WeightsBuilder_.getCount();
         }
       }
       /**
-       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
        */
-      public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel getLabel2Model(int index) {
-        if (label2ModelBuilder_ == null) {
-          return label2Model_.get(index);
+      public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights getLabel2Weights(int index) {
+        if (label2WeightsBuilder_ == null) {
+          return label2Weights_.get(index);
         } else {
-          return label2ModelBuilder_.getMessage(index);
+          return label2WeightsBuilder_.getMessage(index);
         }
       }
       /**
-       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
        */
-      public Builder setLabel2Model(
-          int index, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel value) {
-        if (label2ModelBuilder_ == null) {
+      public Builder setLabel2Weights(
+          int index, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights value) {
+        if (label2WeightsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureLabel2ModelIsMutable();
-          label2Model_.set(index, value);
+          ensureLabel2WeightsIsMutable();
+          label2Weights_.set(index, value);
           onChanged();
         } else {
-          label2ModelBuilder_.setMessage(index, value);
+          label2WeightsBuilder_.setMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
        */
-      public Builder setLabel2Model(
-          int index, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.Builder builderForValue) {
-        if (label2ModelBuilder_ == null) {
-          ensureLabel2ModelIsMutable();
-          label2Model_.set(index, builderForValue.build());
+      public Builder setLabel2Weights(
+          int index, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.Builder builderForValue) {
+        if (label2WeightsBuilder_ == null) {
+          ensureLabel2WeightsIsMutable();
+          label2Weights_.set(index, builderForValue.build());
           onChanged();
         } else {
-          label2ModelBuilder_.setMessage(index, builderForValue.build());
+          label2WeightsBuilder_.setMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
        */
-      public Builder addLabel2Model(drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel value) {
-        if (label2ModelBuilder_ == null) {
+      public Builder addLabel2Weights(drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights value) {
+        if (label2WeightsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureLabel2ModelIsMutable();
-          label2Model_.add(value);
+          ensureLabel2WeightsIsMutable();
+          label2Weights_.add(value);
           onChanged();
         } else {
-          label2ModelBuilder_.addMessage(value);
+          label2WeightsBuilder_.addMessage(value);
         }
         return this;
       }
       /**
-       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
        */
-      public Builder addLabel2Model(
-          int index, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel value) {
-        if (label2ModelBuilder_ == null) {
+      public Builder addLabel2Weights(
+          int index, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights value) {
+        if (label2WeightsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureLabel2ModelIsMutable();
-          label2Model_.add(index, value);
+          ensureLabel2WeightsIsMutable();
+          label2Weights_.add(index, value);
           onChanged();
         } else {
-          label2ModelBuilder_.addMessage(index, value);
+          label2WeightsBuilder_.addMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
        */
-      public Builder addLabel2Model(
-          drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.Builder builderForValue) {
-        if (label2ModelBuilder_ == null) {
-          ensureLabel2ModelIsMutable();
-          label2Model_.add(builderForValue.build());
+      public Builder addLabel2Weights(
+          drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.Builder builderForValue) {
+        if (label2WeightsBuilder_ == null) {
+          ensureLabel2WeightsIsMutable();
+          label2Weights_.add(builderForValue.build());
           onChanged();
         } else {
-          label2ModelBuilder_.addMessage(builderForValue.build());
+          label2WeightsBuilder_.addMessage(builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
        */
-      public Builder addLabel2Model(
-          int index, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.Builder builderForValue) {
-        if (label2ModelBuilder_ == null) {
-          ensureLabel2ModelIsMutable();
-          label2Model_.add(index, builderForValue.build());
+      public Builder addLabel2Weights(
+          int index, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.Builder builderForValue) {
+        if (label2WeightsBuilder_ == null) {
+          ensureLabel2WeightsIsMutable();
+          label2Weights_.add(index, builderForValue.build());
           onChanged();
         } else {
-          label2ModelBuilder_.addMessage(index, builderForValue.build());
+          label2WeightsBuilder_.addMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
        */
-      public Builder addAllLabel2Model(
-          java.lang.Iterable<? extends drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel> values) {
-        if (label2ModelBuilder_ == null) {
-          ensureLabel2ModelIsMutable();
+      public Builder addAllLabel2Weights(
+          java.lang.Iterable<? extends drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights> values) {
+        if (label2WeightsBuilder_ == null) {
+          ensureLabel2WeightsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, label2Model_);
+              values, label2Weights_);
           onChanged();
         } else {
-          label2ModelBuilder_.addAllMessages(values);
+          label2WeightsBuilder_.addAllMessages(values);
         }
         return this;
       }
       /**
-       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
        */
-      public Builder clearLabel2Model() {
-        if (label2ModelBuilder_ == null) {
-          label2Model_ = java.util.Collections.emptyList();
+      public Builder clearLabel2Weights() {
+        if (label2WeightsBuilder_ == null) {
+          label2Weights_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000001);
           onChanged();
         } else {
-          label2ModelBuilder_.clear();
+          label2WeightsBuilder_.clear();
         }
         return this;
       }
       /**
-       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
        */
-      public Builder removeLabel2Model(int index) {
-        if (label2ModelBuilder_ == null) {
-          ensureLabel2ModelIsMutable();
-          label2Model_.remove(index);
+      public Builder removeLabel2Weights(int index) {
+        if (label2WeightsBuilder_ == null) {
+          ensureLabel2WeightsIsMutable();
+          label2Weights_.remove(index);
           onChanged();
         } else {
-          label2ModelBuilder_.remove(index);
+          label2WeightsBuilder_.remove(index);
         }
         return this;
       }
       /**
-       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
        */
-      public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.Builder getLabel2ModelBuilder(
+      public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.Builder getLabel2WeightsBuilder(
           int index) {
-        return getLabel2ModelFieldBuilder().getBuilder(index);
+        return getLabel2WeightsFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
        */
-      public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModelOrBuilder getLabel2ModelOrBuilder(
+      public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeightsOrBuilder getLabel2WeightsOrBuilder(
           int index) {
-        if (label2ModelBuilder_ == null) {
-          return label2Model_.get(index);  } else {
-          return label2ModelBuilder_.getMessageOrBuilder(index);
+        if (label2WeightsBuilder_ == null) {
+          return label2Weights_.get(index);  } else {
+          return label2WeightsBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
        */
-      public java.util.List<? extends drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModelOrBuilder> 
-           getLabel2ModelOrBuilderList() {
-        if (label2ModelBuilder_ != null) {
-          return label2ModelBuilder_.getMessageOrBuilderList();
+      public java.util.List<? extends drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeightsOrBuilder> 
+           getLabel2WeightsOrBuilderList() {
+        if (label2WeightsBuilder_ != null) {
+          return label2WeightsBuilder_.getMessageOrBuilderList();
         } else {
-          return java.util.Collections.unmodifiableList(label2Model_);
+          return java.util.Collections.unmodifiableList(label2Weights_);
         }
       }
       /**
-       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
        */
-      public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.Builder addLabel2ModelBuilder() {
-        return getLabel2ModelFieldBuilder().addBuilder(
-            drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.getDefaultInstance());
+      public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.Builder addLabel2WeightsBuilder() {
+        return getLabel2WeightsFieldBuilder().addBuilder(
+            drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.getDefaultInstance());
       }
       /**
-       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
        */
-      public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.Builder addLabel2ModelBuilder(
+      public drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.Builder addLabel2WeightsBuilder(
           int index) {
-        return getLabel2ModelFieldBuilder().addBuilder(
-            index, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.getDefaultInstance());
+        return getLabel2WeightsFieldBuilder().addBuilder(
+            index, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.getDefaultInstance());
       }
       /**
-       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndModel label2Model = 3;</code>
+       * <code>repeated .drillbit.protobuf.MulticlassClassifier.LabelAndWeights label2Weights = 3;</code>
        */
-      public java.util.List<drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.Builder> 
-           getLabel2ModelBuilderList() {
-        return getLabel2ModelFieldBuilder().getBuilderList();
+      public java.util.List<drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.Builder> 
+           getLabel2WeightsBuilderList() {
+        return getLabel2WeightsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.Builder, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModelOrBuilder> 
-          getLabel2ModelFieldBuilder() {
-        if (label2ModelBuilder_ == null) {
-          label2ModelBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModel.Builder, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndModelOrBuilder>(
-                  label2Model_,
+          drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.Builder, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeightsOrBuilder> 
+          getLabel2WeightsFieldBuilder() {
+        if (label2WeightsBuilder_ == null) {
+          label2WeightsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeights.Builder, drillbit.protobuf.ClassificationPb.MulticlassClassifier.LabelAndWeightsOrBuilder>(
+                  label2Weights_,
                   ((bitField0_ & 0x00000001) != 0),
                   getParentForChildren(),
                   isClean());
-          label2Model_ = null;
+          label2Weights_ = null;
         }
-        return label2ModelBuilder_;
+        return label2WeightsBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -3227,37 +3227,75 @@ public final class ClassificationPb {
 
   }
 
-  public interface DecisionTreeClassifierOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:drillbit.protobuf.DecisionTreeClassifier)
+  public interface KNNBinaryClassifierOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:drillbit.protobuf.KNNBinaryClassifier)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>bytes root = 1;</code>
-     * @return The root.
+     * <code>bool dense = 1;</code>
+     * @return The dense.
      */
-    com.google.protobuf.ByteString getRoot();
+    boolean getDense();
+
+    /**
+     * <code>bytes coordinates = 3;</code>
+     * @return The coordinates.
+     */
+    com.google.protobuf.ByteString getCoordinates();
+
+    /**
+     * <code>bool useLabel = 4;</code>
+     * @return The useLabel.
+     */
+    boolean getUseLabel();
+
+    /**
+     * <code>string trueLabel = 5;</code>
+     * @return The trueLabel.
+     */
+    java.lang.String getTrueLabel();
+    /**
+     * <code>string trueLabel = 5;</code>
+     * @return The bytes for trueLabel.
+     */
+    com.google.protobuf.ByteString
+        getTrueLabelBytes();
+
+    /**
+     * <code>string falseLabel = 6;</code>
+     * @return The falseLabel.
+     */
+    java.lang.String getFalseLabel();
+    /**
+     * <code>string falseLabel = 6;</code>
+     * @return The bytes for falseLabel.
+     */
+    com.google.protobuf.ByteString
+        getFalseLabelBytes();
   }
   /**
-   * Protobuf type {@code drillbit.protobuf.DecisionTreeClassifier}
+   * Protobuf type {@code drillbit.protobuf.KNNBinaryClassifier}
    */
-  public static final class DecisionTreeClassifier extends
+  public static final class KNNBinaryClassifier extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:drillbit.protobuf.DecisionTreeClassifier)
-      DecisionTreeClassifierOrBuilder {
+      // @@protoc_insertion_point(message_implements:drillbit.protobuf.KNNBinaryClassifier)
+      KNNBinaryClassifierOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use DecisionTreeClassifier.newBuilder() to construct.
-    private DecisionTreeClassifier(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use KNNBinaryClassifier.newBuilder() to construct.
+    private KNNBinaryClassifier(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private DecisionTreeClassifier() {
-      root_ = com.google.protobuf.ByteString.EMPTY;
+    private KNNBinaryClassifier() {
+      coordinates_ = com.google.protobuf.ByteString.EMPTY;
+      trueLabel_ = "";
+      falseLabel_ = "";
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new DecisionTreeClassifier();
+      return new KNNBinaryClassifier();
     }
 
     @java.lang.Override
@@ -3265,7 +3303,7 @@ public final class ClassificationPb {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private DecisionTreeClassifier(
+    private KNNBinaryClassifier(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3283,9 +3321,31 @@ public final class ClassificationPb {
             case 0:
               done = true;
               break;
-            case 10: {
+            case 8: {
 
-              root_ = input.readBytes();
+              dense_ = input.readBool();
+              break;
+            }
+            case 26: {
+
+              coordinates_ = input.readBytes();
+              break;
+            }
+            case 32: {
+
+              useLabel_ = input.readBool();
+              break;
+            }
+            case 42: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              trueLabel_ = s;
+              break;
+            }
+            case 50: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              falseLabel_ = s;
               break;
             }
             default: {
@@ -3309,26 +3369,124 @@ public final class ClassificationPb {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_DecisionTreeClassifier_descriptor;
+      return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_KNNBinaryClassifier_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_DecisionTreeClassifier_fieldAccessorTable
+      return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_KNNBinaryClassifier_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              drillbit.protobuf.ClassificationPb.DecisionTreeClassifier.class, drillbit.protobuf.ClassificationPb.DecisionTreeClassifier.Builder.class);
+              drillbit.protobuf.ClassificationPb.KNNBinaryClassifier.class, drillbit.protobuf.ClassificationPb.KNNBinaryClassifier.Builder.class);
     }
 
-    public static final int ROOT_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString root_;
+    public static final int DENSE_FIELD_NUMBER = 1;
+    private boolean dense_;
     /**
-     * <code>bytes root = 1;</code>
-     * @return The root.
+     * <code>bool dense = 1;</code>
+     * @return The dense.
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getRoot() {
-      return root_;
+    public boolean getDense() {
+      return dense_;
+    }
+
+    public static final int COORDINATES_FIELD_NUMBER = 3;
+    private com.google.protobuf.ByteString coordinates_;
+    /**
+     * <code>bytes coordinates = 3;</code>
+     * @return The coordinates.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getCoordinates() {
+      return coordinates_;
+    }
+
+    public static final int USELABEL_FIELD_NUMBER = 4;
+    private boolean useLabel_;
+    /**
+     * <code>bool useLabel = 4;</code>
+     * @return The useLabel.
+     */
+    @java.lang.Override
+    public boolean getUseLabel() {
+      return useLabel_;
+    }
+
+    public static final int TRUELABEL_FIELD_NUMBER = 5;
+    private volatile java.lang.Object trueLabel_;
+    /**
+     * <code>string trueLabel = 5;</code>
+     * @return The trueLabel.
+     */
+    @java.lang.Override
+    public java.lang.String getTrueLabel() {
+      java.lang.Object ref = trueLabel_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        trueLabel_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string trueLabel = 5;</code>
+     * @return The bytes for trueLabel.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getTrueLabelBytes() {
+      java.lang.Object ref = trueLabel_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        trueLabel_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int FALSELABEL_FIELD_NUMBER = 6;
+    private volatile java.lang.Object falseLabel_;
+    /**
+     * <code>string falseLabel = 6;</code>
+     * @return The falseLabel.
+     */
+    @java.lang.Override
+    public java.lang.String getFalseLabel() {
+      java.lang.Object ref = falseLabel_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        falseLabel_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string falseLabel = 6;</code>
+     * @return The bytes for falseLabel.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getFalseLabelBytes() {
+      java.lang.Object ref = falseLabel_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        falseLabel_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
 
     private byte memoizedIsInitialized = -1;
@@ -3345,8 +3503,20 @@ public final class ClassificationPb {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!root_.isEmpty()) {
-        output.writeBytes(1, root_);
+      if (dense_ != false) {
+        output.writeBool(1, dense_);
+      }
+      if (!coordinates_.isEmpty()) {
+        output.writeBytes(3, coordinates_);
+      }
+      if (useLabel_ != false) {
+        output.writeBool(4, useLabel_);
+      }
+      if (!getTrueLabelBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, trueLabel_);
+      }
+      if (!getFalseLabelBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, falseLabel_);
       }
       unknownFields.writeTo(output);
     }
@@ -3357,9 +3527,23 @@ public final class ClassificationPb {
       if (size != -1) return size;
 
       size = 0;
-      if (!root_.isEmpty()) {
+      if (dense_ != false) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, root_);
+          .computeBoolSize(1, dense_);
+      }
+      if (!coordinates_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, coordinates_);
+      }
+      if (useLabel_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, useLabel_);
+      }
+      if (!getTrueLabelBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, trueLabel_);
+      }
+      if (!getFalseLabelBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, falseLabel_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3371,13 +3555,21 @@ public final class ClassificationPb {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof drillbit.protobuf.ClassificationPb.DecisionTreeClassifier)) {
+      if (!(obj instanceof drillbit.protobuf.ClassificationPb.KNNBinaryClassifier)) {
         return super.equals(obj);
       }
-      drillbit.protobuf.ClassificationPb.DecisionTreeClassifier other = (drillbit.protobuf.ClassificationPb.DecisionTreeClassifier) obj;
+      drillbit.protobuf.ClassificationPb.KNNBinaryClassifier other = (drillbit.protobuf.ClassificationPb.KNNBinaryClassifier) obj;
 
-      if (!getRoot()
-          .equals(other.getRoot())) return false;
+      if (getDense()
+          != other.getDense()) return false;
+      if (!getCoordinates()
+          .equals(other.getCoordinates())) return false;
+      if (getUseLabel()
+          != other.getUseLabel()) return false;
+      if (!getTrueLabel()
+          .equals(other.getTrueLabel())) return false;
+      if (!getFalseLabel()
+          .equals(other.getFalseLabel())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -3389,76 +3581,86 @@ public final class ClassificationPb {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ROOT_FIELD_NUMBER;
-      hash = (53 * hash) + getRoot().hashCode();
+      hash = (37 * hash) + DENSE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getDense());
+      hash = (37 * hash) + COORDINATES_FIELD_NUMBER;
+      hash = (53 * hash) + getCoordinates().hashCode();
+      hash = (37 * hash) + USELABEL_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getUseLabel());
+      hash = (37 * hash) + TRUELABEL_FIELD_NUMBER;
+      hash = (53 * hash) + getTrueLabel().hashCode();
+      hash = (37 * hash) + FALSELABEL_FIELD_NUMBER;
+      hash = (53 * hash) + getFalseLabel().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static drillbit.protobuf.ClassificationPb.DecisionTreeClassifier parseFrom(
+    public static drillbit.protobuf.ClassificationPb.KNNBinaryClassifier parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static drillbit.protobuf.ClassificationPb.DecisionTreeClassifier parseFrom(
+    public static drillbit.protobuf.ClassificationPb.KNNBinaryClassifier parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static drillbit.protobuf.ClassificationPb.DecisionTreeClassifier parseFrom(
+    public static drillbit.protobuf.ClassificationPb.KNNBinaryClassifier parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static drillbit.protobuf.ClassificationPb.DecisionTreeClassifier parseFrom(
+    public static drillbit.protobuf.ClassificationPb.KNNBinaryClassifier parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static drillbit.protobuf.ClassificationPb.DecisionTreeClassifier parseFrom(byte[] data)
+    public static drillbit.protobuf.ClassificationPb.KNNBinaryClassifier parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static drillbit.protobuf.ClassificationPb.DecisionTreeClassifier parseFrom(
+    public static drillbit.protobuf.ClassificationPb.KNNBinaryClassifier parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static drillbit.protobuf.ClassificationPb.DecisionTreeClassifier parseFrom(java.io.InputStream input)
+    public static drillbit.protobuf.ClassificationPb.KNNBinaryClassifier parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static drillbit.protobuf.ClassificationPb.DecisionTreeClassifier parseFrom(
+    public static drillbit.protobuf.ClassificationPb.KNNBinaryClassifier parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static drillbit.protobuf.ClassificationPb.DecisionTreeClassifier parseDelimitedFrom(java.io.InputStream input)
+    public static drillbit.protobuf.ClassificationPb.KNNBinaryClassifier parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static drillbit.protobuf.ClassificationPb.DecisionTreeClassifier parseDelimitedFrom(
+    public static drillbit.protobuf.ClassificationPb.KNNBinaryClassifier parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static drillbit.protobuf.ClassificationPb.DecisionTreeClassifier parseFrom(
+    public static drillbit.protobuf.ClassificationPb.KNNBinaryClassifier parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static drillbit.protobuf.ClassificationPb.DecisionTreeClassifier parseFrom(
+    public static drillbit.protobuf.ClassificationPb.KNNBinaryClassifier parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -3471,7 +3673,7 @@ public final class ClassificationPb {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(drillbit.protobuf.ClassificationPb.DecisionTreeClassifier prototype) {
+    public static Builder newBuilder(drillbit.protobuf.ClassificationPb.KNNBinaryClassifier prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -3487,26 +3689,26 @@ public final class ClassificationPb {
       return builder;
     }
     /**
-     * Protobuf type {@code drillbit.protobuf.DecisionTreeClassifier}
+     * Protobuf type {@code drillbit.protobuf.KNNBinaryClassifier}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:drillbit.protobuf.DecisionTreeClassifier)
-        drillbit.protobuf.ClassificationPb.DecisionTreeClassifierOrBuilder {
+        // @@protoc_insertion_point(builder_implements:drillbit.protobuf.KNNBinaryClassifier)
+        drillbit.protobuf.ClassificationPb.KNNBinaryClassifierOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_DecisionTreeClassifier_descriptor;
+        return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_KNNBinaryClassifier_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_DecisionTreeClassifier_fieldAccessorTable
+        return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_KNNBinaryClassifier_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                drillbit.protobuf.ClassificationPb.DecisionTreeClassifier.class, drillbit.protobuf.ClassificationPb.DecisionTreeClassifier.Builder.class);
+                drillbit.protobuf.ClassificationPb.KNNBinaryClassifier.class, drillbit.protobuf.ClassificationPb.KNNBinaryClassifier.Builder.class);
       }
 
-      // Construct using drillbit.protobuf.ClassificationPb.DecisionTreeClassifier.newBuilder()
+      // Construct using drillbit.protobuf.ClassificationPb.KNNBinaryClassifier.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -3524,7 +3726,15 @@ public final class ClassificationPb {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        root_ = com.google.protobuf.ByteString.EMPTY;
+        dense_ = false;
+
+        coordinates_ = com.google.protobuf.ByteString.EMPTY;
+
+        useLabel_ = false;
+
+        trueLabel_ = "";
+
+        falseLabel_ = "";
 
         return this;
       }
@@ -3532,17 +3742,17 @@ public final class ClassificationPb {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_DecisionTreeClassifier_descriptor;
+        return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_KNNBinaryClassifier_descriptor;
       }
 
       @java.lang.Override
-      public drillbit.protobuf.ClassificationPb.DecisionTreeClassifier getDefaultInstanceForType() {
-        return drillbit.protobuf.ClassificationPb.DecisionTreeClassifier.getDefaultInstance();
+      public drillbit.protobuf.ClassificationPb.KNNBinaryClassifier getDefaultInstanceForType() {
+        return drillbit.protobuf.ClassificationPb.KNNBinaryClassifier.getDefaultInstance();
       }
 
       @java.lang.Override
-      public drillbit.protobuf.ClassificationPb.DecisionTreeClassifier build() {
-        drillbit.protobuf.ClassificationPb.DecisionTreeClassifier result = buildPartial();
+      public drillbit.protobuf.ClassificationPb.KNNBinaryClassifier build() {
+        drillbit.protobuf.ClassificationPb.KNNBinaryClassifier result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -3550,9 +3760,13 @@ public final class ClassificationPb {
       }
 
       @java.lang.Override
-      public drillbit.protobuf.ClassificationPb.DecisionTreeClassifier buildPartial() {
-        drillbit.protobuf.ClassificationPb.DecisionTreeClassifier result = new drillbit.protobuf.ClassificationPb.DecisionTreeClassifier(this);
-        result.root_ = root_;
+      public drillbit.protobuf.ClassificationPb.KNNBinaryClassifier buildPartial() {
+        drillbit.protobuf.ClassificationPb.KNNBinaryClassifier result = new drillbit.protobuf.ClassificationPb.KNNBinaryClassifier(this);
+        result.dense_ = dense_;
+        result.coordinates_ = coordinates_;
+        result.useLabel_ = useLabel_;
+        result.trueLabel_ = trueLabel_;
+        result.falseLabel_ = falseLabel_;
         onBuilt();
         return result;
       }
@@ -3591,18 +3805,32 @@ public final class ClassificationPb {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof drillbit.protobuf.ClassificationPb.DecisionTreeClassifier) {
-          return mergeFrom((drillbit.protobuf.ClassificationPb.DecisionTreeClassifier)other);
+        if (other instanceof drillbit.protobuf.ClassificationPb.KNNBinaryClassifier) {
+          return mergeFrom((drillbit.protobuf.ClassificationPb.KNNBinaryClassifier)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(drillbit.protobuf.ClassificationPb.DecisionTreeClassifier other) {
-        if (other == drillbit.protobuf.ClassificationPb.DecisionTreeClassifier.getDefaultInstance()) return this;
-        if (other.getRoot() != com.google.protobuf.ByteString.EMPTY) {
-          setRoot(other.getRoot());
+      public Builder mergeFrom(drillbit.protobuf.ClassificationPb.KNNBinaryClassifier other) {
+        if (other == drillbit.protobuf.ClassificationPb.KNNBinaryClassifier.getDefaultInstance()) return this;
+        if (other.getDense() != false) {
+          setDense(other.getDense());
+        }
+        if (other.getCoordinates() != com.google.protobuf.ByteString.EMPTY) {
+          setCoordinates(other.getCoordinates());
+        }
+        if (other.getUseLabel() != false) {
+          setUseLabel(other.getUseLabel());
+        }
+        if (!other.getTrueLabel().isEmpty()) {
+          trueLabel_ = other.trueLabel_;
+          onChanged();
+        }
+        if (!other.getFalseLabel().isEmpty()) {
+          falseLabel_ = other.falseLabel_;
+          onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -3619,11 +3847,11 @@ public final class ClassificationPb {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        drillbit.protobuf.ClassificationPb.DecisionTreeClassifier parsedMessage = null;
+        drillbit.protobuf.ClassificationPb.KNNBinaryClassifier parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (drillbit.protobuf.ClassificationPb.DecisionTreeClassifier) e.getUnfinishedMessage();
+          parsedMessage = (drillbit.protobuf.ClassificationPb.KNNBinaryClassifier) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -3633,36 +3861,250 @@ public final class ClassificationPb {
         return this;
       }
 
-      private com.google.protobuf.ByteString root_ = com.google.protobuf.ByteString.EMPTY;
+      private boolean dense_ ;
       /**
-       * <code>bytes root = 1;</code>
-       * @return The root.
+       * <code>bool dense = 1;</code>
+       * @return The dense.
        */
       @java.lang.Override
-      public com.google.protobuf.ByteString getRoot() {
-        return root_;
+      public boolean getDense() {
+        return dense_;
       }
       /**
-       * <code>bytes root = 1;</code>
-       * @param value The root to set.
+       * <code>bool dense = 1;</code>
+       * @param value The dense to set.
        * @return This builder for chaining.
        */
-      public Builder setRoot(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        root_ = value;
+      public Builder setDense(boolean value) {
+        
+        dense_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>bytes root = 1;</code>
+       * <code>bool dense = 1;</code>
        * @return This builder for chaining.
        */
-      public Builder clearRoot() {
+      public Builder clearDense() {
         
-        root_ = getDefaultInstance().getRoot();
+        dense_ = false;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString coordinates_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes coordinates = 3;</code>
+       * @return The coordinates.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getCoordinates() {
+        return coordinates_;
+      }
+      /**
+       * <code>bytes coordinates = 3;</code>
+       * @param value The coordinates to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCoordinates(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        coordinates_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes coordinates = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCoordinates() {
+        
+        coordinates_ = getDefaultInstance().getCoordinates();
+        onChanged();
+        return this;
+      }
+
+      private boolean useLabel_ ;
+      /**
+       * <code>bool useLabel = 4;</code>
+       * @return The useLabel.
+       */
+      @java.lang.Override
+      public boolean getUseLabel() {
+        return useLabel_;
+      }
+      /**
+       * <code>bool useLabel = 4;</code>
+       * @param value The useLabel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUseLabel(boolean value) {
+        
+        useLabel_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool useLabel = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUseLabel() {
+        
+        useLabel_ = false;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object trueLabel_ = "";
+      /**
+       * <code>string trueLabel = 5;</code>
+       * @return The trueLabel.
+       */
+      public java.lang.String getTrueLabel() {
+        java.lang.Object ref = trueLabel_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          trueLabel_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string trueLabel = 5;</code>
+       * @return The bytes for trueLabel.
+       */
+      public com.google.protobuf.ByteString
+          getTrueLabelBytes() {
+        java.lang.Object ref = trueLabel_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          trueLabel_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string trueLabel = 5;</code>
+       * @param value The trueLabel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTrueLabel(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        trueLabel_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string trueLabel = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTrueLabel() {
+        
+        trueLabel_ = getDefaultInstance().getTrueLabel();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string trueLabel = 5;</code>
+       * @param value The bytes for trueLabel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTrueLabelBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        trueLabel_ = value;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object falseLabel_ = "";
+      /**
+       * <code>string falseLabel = 6;</code>
+       * @return The falseLabel.
+       */
+      public java.lang.String getFalseLabel() {
+        java.lang.Object ref = falseLabel_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          falseLabel_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string falseLabel = 6;</code>
+       * @return The bytes for falseLabel.
+       */
+      public com.google.protobuf.ByteString
+          getFalseLabelBytes() {
+        java.lang.Object ref = falseLabel_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          falseLabel_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string falseLabel = 6;</code>
+       * @param value The falseLabel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFalseLabel(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        falseLabel_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string falseLabel = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFalseLabel() {
+        
+        falseLabel_ = getDefaultInstance().getFalseLabel();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string falseLabel = 6;</code>
+       * @param value The bytes for falseLabel to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFalseLabelBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        falseLabel_ = value;
         onChanged();
         return this;
       }
@@ -3679,88 +4121,101 @@ public final class ClassificationPb {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:drillbit.protobuf.DecisionTreeClassifier)
+      // @@protoc_insertion_point(builder_scope:drillbit.protobuf.KNNBinaryClassifier)
     }
 
-    // @@protoc_insertion_point(class_scope:drillbit.protobuf.DecisionTreeClassifier)
-    private static final drillbit.protobuf.ClassificationPb.DecisionTreeClassifier DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:drillbit.protobuf.KNNBinaryClassifier)
+    private static final drillbit.protobuf.ClassificationPb.KNNBinaryClassifier DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new drillbit.protobuf.ClassificationPb.DecisionTreeClassifier();
+      DEFAULT_INSTANCE = new drillbit.protobuf.ClassificationPb.KNNBinaryClassifier();
     }
 
-    public static drillbit.protobuf.ClassificationPb.DecisionTreeClassifier getDefaultInstance() {
+    public static drillbit.protobuf.ClassificationPb.KNNBinaryClassifier getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<DecisionTreeClassifier>
-        PARSER = new com.google.protobuf.AbstractParser<DecisionTreeClassifier>() {
+    private static final com.google.protobuf.Parser<KNNBinaryClassifier>
+        PARSER = new com.google.protobuf.AbstractParser<KNNBinaryClassifier>() {
       @java.lang.Override
-      public DecisionTreeClassifier parsePartialFrom(
+      public KNNBinaryClassifier parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new DecisionTreeClassifier(input, extensionRegistry);
+        return new KNNBinaryClassifier(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<DecisionTreeClassifier> parser() {
+    public static com.google.protobuf.Parser<KNNBinaryClassifier> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<DecisionTreeClassifier> getParserForType() {
+    public com.google.protobuf.Parser<KNNBinaryClassifier> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public drillbit.protobuf.ClassificationPb.DecisionTreeClassifier getDefaultInstanceForType() {
+    public drillbit.protobuf.ClassificationPb.KNNBinaryClassifier getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface RandomForestClassifierOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:drillbit.protobuf.RandomForestClassifier)
+  public interface KNNMulticlassClassifierOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:drillbit.protobuf.KNNMulticlassClassifier)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>repeated bytes roots = 1;</code>
-     * @return A list containing the roots.
+     * <code>bool dense = 1;</code>
+     * @return The dense.
      */
-    java.util.List<com.google.protobuf.ByteString> getRootsList();
+    boolean getDense();
+
     /**
-     * <code>repeated bytes roots = 1;</code>
-     * @return The count of roots.
+     * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
      */
-    int getRootsCount();
+    java.util.List<drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates> 
+        getLabel2CoordinatesList();
     /**
-     * <code>repeated bytes roots = 1;</code>
-     * @param index The index of the element to return.
-     * @return The roots at the given index.
+     * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
      */
-    com.google.protobuf.ByteString getRoots(int index);
+    drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates getLabel2Coordinates(int index);
+    /**
+     * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
+     */
+    int getLabel2CoordinatesCount();
+    /**
+     * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
+     */
+    java.util.List<? extends drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinatesOrBuilder> 
+        getLabel2CoordinatesOrBuilderList();
+    /**
+     * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
+     */
+    drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinatesOrBuilder getLabel2CoordinatesOrBuilder(
+        int index);
   }
   /**
-   * Protobuf type {@code drillbit.protobuf.RandomForestClassifier}
+   * Protobuf type {@code drillbit.protobuf.KNNMulticlassClassifier}
    */
-  public static final class RandomForestClassifier extends
+  public static final class KNNMulticlassClassifier extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:drillbit.protobuf.RandomForestClassifier)
-      RandomForestClassifierOrBuilder {
+      // @@protoc_insertion_point(message_implements:drillbit.protobuf.KNNMulticlassClassifier)
+      KNNMulticlassClassifierOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use RandomForestClassifier.newBuilder() to construct.
-    private RandomForestClassifier(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use KNNMulticlassClassifier.newBuilder() to construct.
+    private KNNMulticlassClassifier(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private RandomForestClassifier() {
-      roots_ = java.util.Collections.emptyList();
+    private KNNMulticlassClassifier() {
+      label2Coordinates_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
         UnusedPrivateParameter unused) {
-      return new RandomForestClassifier();
+      return new KNNMulticlassClassifier();
     }
 
     @java.lang.Override
@@ -3768,7 +4223,7 @@ public final class ClassificationPb {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private RandomForestClassifier(
+    private KNNMulticlassClassifier(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -3787,12 +4242,18 @@ public final class ClassificationPb {
             case 0:
               done = true;
               break;
-            case 10: {
+            case 8: {
+
+              dense_ = input.readBool();
+              break;
+            }
+            case 18: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                roots_ = new java.util.ArrayList<com.google.protobuf.ByteString>();
+                label2Coordinates_ = new java.util.ArrayList<drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates>();
                 mutable_bitField0_ |= 0x00000001;
               }
-              roots_.add(input.readBytes());
+              label2Coordinates_.add(
+                  input.readMessage(drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.parser(), extensionRegistry));
               break;
             }
             default: {
@@ -3811,7 +4272,7 @@ public final class ClassificationPb {
             e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000001) != 0)) {
-          roots_ = java.util.Collections.unmodifiableList(roots_); // C
+          label2Coordinates_ = java.util.Collections.unmodifiableList(label2Coordinates_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -3819,42 +4280,708 @@ public final class ClassificationPb {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_RandomForestClassifier_descriptor;
+      return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_KNNMulticlassClassifier_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_RandomForestClassifier_fieldAccessorTable
+      return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_KNNMulticlassClassifier_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              drillbit.protobuf.ClassificationPb.RandomForestClassifier.class, drillbit.protobuf.ClassificationPb.RandomForestClassifier.Builder.class);
+              drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.class, drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.Builder.class);
     }
 
-    public static final int ROOTS_FIELD_NUMBER = 1;
-    private java.util.List<com.google.protobuf.ByteString> roots_;
+    public interface LabelAndCoordinatesOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>string label = 1;</code>
+       * @return The label.
+       */
+      java.lang.String getLabel();
+      /**
+       * <code>string label = 1;</code>
+       * @return The bytes for label.
+       */
+      com.google.protobuf.ByteString
+          getLabelBytes();
+
+      /**
+       * <code>bytes coordinates = 2;</code>
+       * @return The coordinates.
+       */
+      com.google.protobuf.ByteString getCoordinates();
+    }
     /**
-     * <code>repeated bytes roots = 1;</code>
-     * @return A list containing the roots.
+     * Protobuf type {@code drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates}
+     */
+    public static final class LabelAndCoordinates extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates)
+        LabelAndCoordinatesOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use LabelAndCoordinates.newBuilder() to construct.
+      private LabelAndCoordinates(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private LabelAndCoordinates() {
+        label_ = "";
+        coordinates_ = com.google.protobuf.ByteString.EMPTY;
+      }
+
+      @java.lang.Override
+      @SuppressWarnings({"unused"})
+      protected java.lang.Object newInstance(
+          UnusedPrivateParameter unused) {
+        return new LabelAndCoordinates();
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private LabelAndCoordinates(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                java.lang.String s = input.readStringRequireUtf8();
+
+                label_ = s;
+                break;
+              }
+              case 18: {
+
+                coordinates_ = input.readBytes();
+                break;
+              }
+              default: {
+                if (!parseUnknownField(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_KNNMulticlassClassifier_LabelAndCoordinates_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_KNNMulticlassClassifier_LabelAndCoordinates_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.class, drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.Builder.class);
+      }
+
+      public static final int LABEL_FIELD_NUMBER = 1;
+      private volatile java.lang.Object label_;
+      /**
+       * <code>string label = 1;</code>
+       * @return The label.
+       */
+      @java.lang.Override
+      public java.lang.String getLabel() {
+        java.lang.Object ref = label_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          label_ = s;
+          return s;
+        }
+      }
+      /**
+       * <code>string label = 1;</code>
+       * @return The bytes for label.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString
+          getLabelBytes() {
+        java.lang.Object ref = label_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          label_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      public static final int COORDINATES_FIELD_NUMBER = 2;
+      private com.google.protobuf.ByteString coordinates_;
+      /**
+       * <code>bytes coordinates = 2;</code>
+       * @return The coordinates.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getCoordinates() {
+        return coordinates_;
+      }
+
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      @java.lang.Override
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (!getLabelBytes().isEmpty()) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 1, label_);
+        }
+        if (!coordinates_.isEmpty()) {
+          output.writeBytes(2, coordinates_);
+        }
+        unknownFields.writeTo(output);
+      }
+
+      @java.lang.Override
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (!getLabelBytes().isEmpty()) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, label_);
+        }
+        if (!coordinates_.isEmpty()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(2, coordinates_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates)) {
+          return super.equals(obj);
+        }
+        drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates other = (drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates) obj;
+
+        if (!getLabel()
+            .equals(other.getLabel())) return false;
+        if (!getCoordinates()
+            .equals(other.getCoordinates())) return false;
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + LABEL_FIELD_NUMBER;
+        hash = (53 * hash) + getLabel().hashCode();
+        hash = (37 * hash) + COORDINATES_FIELD_NUMBER;
+        hash = (53 * hash) + getCoordinates().hashCode();
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates)
+          drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinatesOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_KNNMulticlassClassifier_LabelAndCoordinates_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_KNNMulticlassClassifier_LabelAndCoordinates_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.class, drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.Builder.class);
+        }
+
+        // Construct using drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          label_ = "";
+
+          coordinates_ = com.google.protobuf.ByteString.EMPTY;
+
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_KNNMulticlassClassifier_LabelAndCoordinates_descriptor;
+        }
+
+        @java.lang.Override
+        public drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates getDefaultInstanceForType() {
+          return drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates build() {
+          drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates buildPartial() {
+          drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates result = new drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates(this);
+          result.label_ = label_;
+          result.coordinates_ = coordinates_;
+          onBuilt();
+          return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+          return super.clone();
+        }
+        @java.lang.Override
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return super.setField(field, value);
+        }
+        @java.lang.Override
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return super.clearField(field);
+        }
+        @java.lang.Override
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return super.clearOneof(oneof);
+        }
+        @java.lang.Override
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return super.setRepeatedField(field, index, value);
+        }
+        @java.lang.Override
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return super.addRepeatedField(field, value);
+        }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates) {
+            return mergeFrom((drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates other) {
+          if (other == drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.getDefaultInstance()) return this;
+          if (!other.getLabel().isEmpty()) {
+            label_ = other.label_;
+            onChanged();
+          }
+          if (other.getCoordinates() != com.google.protobuf.ByteString.EMPTY) {
+            setCoordinates(other.getCoordinates());
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+
+        private java.lang.Object label_ = "";
+        /**
+         * <code>string label = 1;</code>
+         * @return The label.
+         */
+        public java.lang.String getLabel() {
+          java.lang.Object ref = label_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            label_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>string label = 1;</code>
+         * @return The bytes for label.
+         */
+        public com.google.protobuf.ByteString
+            getLabelBytes() {
+          java.lang.Object ref = label_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            label_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>string label = 1;</code>
+         * @param value The label to set.
+         * @return This builder for chaining.
+         */
+        public Builder setLabel(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          label_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string label = 1;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearLabel() {
+          
+          label_ = getDefaultInstance().getLabel();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string label = 1;</code>
+         * @param value The bytes for label to set.
+         * @return This builder for chaining.
+         */
+        public Builder setLabelBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+          
+          label_ = value;
+          onChanged();
+          return this;
+        }
+
+        private com.google.protobuf.ByteString coordinates_ = com.google.protobuf.ByteString.EMPTY;
+        /**
+         * <code>bytes coordinates = 2;</code>
+         * @return The coordinates.
+         */
+        @java.lang.Override
+        public com.google.protobuf.ByteString getCoordinates() {
+          return coordinates_;
+        }
+        /**
+         * <code>bytes coordinates = 2;</code>
+         * @param value The coordinates to set.
+         * @return This builder for chaining.
+         */
+        public Builder setCoordinates(com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          coordinates_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>bytes coordinates = 2;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearCoordinates() {
+          
+          coordinates_ = getDefaultInstance().getCoordinates();
+          onChanged();
+          return this;
+        }
+        @java.lang.Override
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFields(unknownFields);
+        }
+
+        @java.lang.Override
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates)
+      }
+
+      // @@protoc_insertion_point(class_scope:drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates)
+      private static final drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates();
+      }
+
+      public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<LabelAndCoordinates>
+          PARSER = new com.google.protobuf.AbstractParser<LabelAndCoordinates>() {
+        @java.lang.Override
+        public LabelAndCoordinates parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new LabelAndCoordinates(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<LabelAndCoordinates> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<LabelAndCoordinates> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    public static final int DENSE_FIELD_NUMBER = 1;
+    private boolean dense_;
+    /**
+     * <code>bool dense = 1;</code>
+     * @return The dense.
      */
     @java.lang.Override
-    public java.util.List<com.google.protobuf.ByteString>
-        getRootsList() {
-      return roots_;
+    public boolean getDense() {
+      return dense_;
+    }
+
+    public static final int LABEL2COORDINATES_FIELD_NUMBER = 2;
+    private java.util.List<drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates> label2Coordinates_;
+    /**
+     * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
+     */
+    @java.lang.Override
+    public java.util.List<drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates> getLabel2CoordinatesList() {
+      return label2Coordinates_;
     }
     /**
-     * <code>repeated bytes roots = 1;</code>
-     * @return The count of roots.
+     * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
      */
-    public int getRootsCount() {
-      return roots_.size();
+    @java.lang.Override
+    public java.util.List<? extends drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinatesOrBuilder> 
+        getLabel2CoordinatesOrBuilderList() {
+      return label2Coordinates_;
     }
     /**
-     * <code>repeated bytes roots = 1;</code>
-     * @param index The index of the element to return.
-     * @return The roots at the given index.
+     * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
      */
-    public com.google.protobuf.ByteString getRoots(int index) {
-      return roots_.get(index);
+    @java.lang.Override
+    public int getLabel2CoordinatesCount() {
+      return label2Coordinates_.size();
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
+     */
+    @java.lang.Override
+    public drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates getLabel2Coordinates(int index) {
+      return label2Coordinates_.get(index);
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
+     */
+    @java.lang.Override
+    public drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinatesOrBuilder getLabel2CoordinatesOrBuilder(
+        int index) {
+      return label2Coordinates_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -3871,8 +4998,11 @@ public final class ClassificationPb {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      for (int i = 0; i < roots_.size(); i++) {
-        output.writeBytes(1, roots_.get(i));
+      if (dense_ != false) {
+        output.writeBool(1, dense_);
+      }
+      for (int i = 0; i < label2Coordinates_.size(); i++) {
+        output.writeMessage(2, label2Coordinates_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -3883,14 +5013,13 @@ public final class ClassificationPb {
       if (size != -1) return size;
 
       size = 0;
-      {
-        int dataSize = 0;
-        for (int i = 0; i < roots_.size(); i++) {
-          dataSize += com.google.protobuf.CodedOutputStream
-            .computeBytesSizeNoTag(roots_.get(i));
-        }
-        size += dataSize;
-        size += 1 * getRootsList().size();
+      if (dense_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, dense_);
+      }
+      for (int i = 0; i < label2Coordinates_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, label2Coordinates_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3902,13 +5031,15 @@ public final class ClassificationPb {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof drillbit.protobuf.ClassificationPb.RandomForestClassifier)) {
+      if (!(obj instanceof drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier)) {
         return super.equals(obj);
       }
-      drillbit.protobuf.ClassificationPb.RandomForestClassifier other = (drillbit.protobuf.ClassificationPb.RandomForestClassifier) obj;
+      drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier other = (drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier) obj;
 
-      if (!getRootsList()
-          .equals(other.getRootsList())) return false;
+      if (getDense()
+          != other.getDense()) return false;
+      if (!getLabel2CoordinatesList()
+          .equals(other.getLabel2CoordinatesList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -3920,78 +5051,81 @@ public final class ClassificationPb {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      if (getRootsCount() > 0) {
-        hash = (37 * hash) + ROOTS_FIELD_NUMBER;
-        hash = (53 * hash) + getRootsList().hashCode();
+      hash = (37 * hash) + DENSE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getDense());
+      if (getLabel2CoordinatesCount() > 0) {
+        hash = (37 * hash) + LABEL2COORDINATES_FIELD_NUMBER;
+        hash = (53 * hash) + getLabel2CoordinatesList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static drillbit.protobuf.ClassificationPb.RandomForestClassifier parseFrom(
+    public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static drillbit.protobuf.ClassificationPb.RandomForestClassifier parseFrom(
+    public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static drillbit.protobuf.ClassificationPb.RandomForestClassifier parseFrom(
+    public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static drillbit.protobuf.ClassificationPb.RandomForestClassifier parseFrom(
+    public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static drillbit.protobuf.ClassificationPb.RandomForestClassifier parseFrom(byte[] data)
+    public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static drillbit.protobuf.ClassificationPb.RandomForestClassifier parseFrom(
+    public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static drillbit.protobuf.ClassificationPb.RandomForestClassifier parseFrom(java.io.InputStream input)
+    public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static drillbit.protobuf.ClassificationPb.RandomForestClassifier parseFrom(
+    public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static drillbit.protobuf.ClassificationPb.RandomForestClassifier parseDelimitedFrom(java.io.InputStream input)
+    public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static drillbit.protobuf.ClassificationPb.RandomForestClassifier parseDelimitedFrom(
+    public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static drillbit.protobuf.ClassificationPb.RandomForestClassifier parseFrom(
+    public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static drillbit.protobuf.ClassificationPb.RandomForestClassifier parseFrom(
+    public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -4004,7 +5138,7 @@ public final class ClassificationPb {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(drillbit.protobuf.ClassificationPb.RandomForestClassifier prototype) {
+    public static Builder newBuilder(drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -4020,26 +5154,26 @@ public final class ClassificationPb {
       return builder;
     }
     /**
-     * Protobuf type {@code drillbit.protobuf.RandomForestClassifier}
+     * Protobuf type {@code drillbit.protobuf.KNNMulticlassClassifier}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:drillbit.protobuf.RandomForestClassifier)
-        drillbit.protobuf.ClassificationPb.RandomForestClassifierOrBuilder {
+        // @@protoc_insertion_point(builder_implements:drillbit.protobuf.KNNMulticlassClassifier)
+        drillbit.protobuf.ClassificationPb.KNNMulticlassClassifierOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_RandomForestClassifier_descriptor;
+        return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_KNNMulticlassClassifier_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_RandomForestClassifier_fieldAccessorTable
+        return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_KNNMulticlassClassifier_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                drillbit.protobuf.ClassificationPb.RandomForestClassifier.class, drillbit.protobuf.ClassificationPb.RandomForestClassifier.Builder.class);
+                drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.class, drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.Builder.class);
       }
 
-      // Construct using drillbit.protobuf.ClassificationPb.RandomForestClassifier.newBuilder()
+      // Construct using drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -4052,30 +5186,37 @@ public final class ClassificationPb {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getLabel2CoordinatesFieldBuilder();
         }
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        roots_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
+        dense_ = false;
+
+        if (label2CoordinatesBuilder_ == null) {
+          label2Coordinates_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          label2CoordinatesBuilder_.clear();
+        }
         return this;
       }
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_RandomForestClassifier_descriptor;
+        return drillbit.protobuf.ClassificationPb.internal_static_drillbit_protobuf_KNNMulticlassClassifier_descriptor;
       }
 
       @java.lang.Override
-      public drillbit.protobuf.ClassificationPb.RandomForestClassifier getDefaultInstanceForType() {
-        return drillbit.protobuf.ClassificationPb.RandomForestClassifier.getDefaultInstance();
+      public drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier getDefaultInstanceForType() {
+        return drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.getDefaultInstance();
       }
 
       @java.lang.Override
-      public drillbit.protobuf.ClassificationPb.RandomForestClassifier build() {
-        drillbit.protobuf.ClassificationPb.RandomForestClassifier result = buildPartial();
+      public drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier build() {
+        drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -4083,14 +5224,19 @@ public final class ClassificationPb {
       }
 
       @java.lang.Override
-      public drillbit.protobuf.ClassificationPb.RandomForestClassifier buildPartial() {
-        drillbit.protobuf.ClassificationPb.RandomForestClassifier result = new drillbit.protobuf.ClassificationPb.RandomForestClassifier(this);
+      public drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier buildPartial() {
+        drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier result = new drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier(this);
         int from_bitField0_ = bitField0_;
-        if (((bitField0_ & 0x00000001) != 0)) {
-          roots_ = java.util.Collections.unmodifiableList(roots_);
-          bitField0_ = (bitField0_ & ~0x00000001);
+        result.dense_ = dense_;
+        if (label2CoordinatesBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            label2Coordinates_ = java.util.Collections.unmodifiableList(label2Coordinates_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.label2Coordinates_ = label2Coordinates_;
+        } else {
+          result.label2Coordinates_ = label2CoordinatesBuilder_.build();
         }
-        result.roots_ = roots_;
         onBuilt();
         return result;
       }
@@ -4129,25 +5275,44 @@ public final class ClassificationPb {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof drillbit.protobuf.ClassificationPb.RandomForestClassifier) {
-          return mergeFrom((drillbit.protobuf.ClassificationPb.RandomForestClassifier)other);
+        if (other instanceof drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier) {
+          return mergeFrom((drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(drillbit.protobuf.ClassificationPb.RandomForestClassifier other) {
-        if (other == drillbit.protobuf.ClassificationPb.RandomForestClassifier.getDefaultInstance()) return this;
-        if (!other.roots_.isEmpty()) {
-          if (roots_.isEmpty()) {
-            roots_ = other.roots_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-          } else {
-            ensureRootsIsMutable();
-            roots_.addAll(other.roots_);
+      public Builder mergeFrom(drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier other) {
+        if (other == drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.getDefaultInstance()) return this;
+        if (other.getDense() != false) {
+          setDense(other.getDense());
+        }
+        if (label2CoordinatesBuilder_ == null) {
+          if (!other.label2Coordinates_.isEmpty()) {
+            if (label2Coordinates_.isEmpty()) {
+              label2Coordinates_ = other.label2Coordinates_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureLabel2CoordinatesIsMutable();
+              label2Coordinates_.addAll(other.label2Coordinates_);
+            }
+            onChanged();
           }
-          onChanged();
+        } else {
+          if (!other.label2Coordinates_.isEmpty()) {
+            if (label2CoordinatesBuilder_.isEmpty()) {
+              label2CoordinatesBuilder_.dispose();
+              label2CoordinatesBuilder_ = null;
+              label2Coordinates_ = other.label2Coordinates_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              label2CoordinatesBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getLabel2CoordinatesFieldBuilder() : null;
+            } else {
+              label2CoordinatesBuilder_.addAllMessages(other.label2Coordinates_);
+            }
+          }
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -4164,11 +5329,11 @@ public final class ClassificationPb {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        drillbit.protobuf.ClassificationPb.RandomForestClassifier parsedMessage = null;
+        drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (drillbit.protobuf.ClassificationPb.RandomForestClassifier) e.getUnfinishedMessage();
+          parsedMessage = (drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -4179,89 +5344,275 @@ public final class ClassificationPb {
       }
       private int bitField0_;
 
-      private java.util.List<com.google.protobuf.ByteString> roots_ = java.util.Collections.emptyList();
-      private void ensureRootsIsMutable() {
+      private boolean dense_ ;
+      /**
+       * <code>bool dense = 1;</code>
+       * @return The dense.
+       */
+      @java.lang.Override
+      public boolean getDense() {
+        return dense_;
+      }
+      /**
+       * <code>bool dense = 1;</code>
+       * @param value The dense to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDense(boolean value) {
+        
+        dense_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool dense = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDense() {
+        
+        dense_ = false;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates> label2Coordinates_ =
+        java.util.Collections.emptyList();
+      private void ensureLabel2CoordinatesIsMutable() {
         if (!((bitField0_ & 0x00000001) != 0)) {
-          roots_ = new java.util.ArrayList<com.google.protobuf.ByteString>(roots_);
+          label2Coordinates_ = new java.util.ArrayList<drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates>(label2Coordinates_);
           bitField0_ |= 0x00000001;
          }
       }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates, drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.Builder, drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinatesOrBuilder> label2CoordinatesBuilder_;
+
       /**
-       * <code>repeated bytes roots = 1;</code>
-       * @return A list containing the roots.
+       * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
        */
-      public java.util.List<com.google.protobuf.ByteString>
-          getRootsList() {
-        return ((bitField0_ & 0x00000001) != 0) ?
-                 java.util.Collections.unmodifiableList(roots_) : roots_;
+      public java.util.List<drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates> getLabel2CoordinatesList() {
+        if (label2CoordinatesBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(label2Coordinates_);
+        } else {
+          return label2CoordinatesBuilder_.getMessageList();
+        }
       }
       /**
-       * <code>repeated bytes roots = 1;</code>
-       * @return The count of roots.
+       * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
        */
-      public int getRootsCount() {
-        return roots_.size();
+      public int getLabel2CoordinatesCount() {
+        if (label2CoordinatesBuilder_ == null) {
+          return label2Coordinates_.size();
+        } else {
+          return label2CoordinatesBuilder_.getCount();
+        }
       }
       /**
-       * <code>repeated bytes roots = 1;</code>
-       * @param index The index of the element to return.
-       * @return The roots at the given index.
+       * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
        */
-      public com.google.protobuf.ByteString getRoots(int index) {
-        return roots_.get(index);
+      public drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates getLabel2Coordinates(int index) {
+        if (label2CoordinatesBuilder_ == null) {
+          return label2Coordinates_.get(index);
+        } else {
+          return label2CoordinatesBuilder_.getMessage(index);
+        }
       }
       /**
-       * <code>repeated bytes roots = 1;</code>
-       * @param index The index to set the value at.
-       * @param value The roots to set.
-       * @return This builder for chaining.
+       * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
        */
-      public Builder setRoots(
-          int index, com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureRootsIsMutable();
-        roots_.set(index, value);
-        onChanged();
+      public Builder setLabel2Coordinates(
+          int index, drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates value) {
+        if (label2CoordinatesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureLabel2CoordinatesIsMutable();
+          label2Coordinates_.set(index, value);
+          onChanged();
+        } else {
+          label2CoordinatesBuilder_.setMessage(index, value);
+        }
         return this;
       }
       /**
-       * <code>repeated bytes roots = 1;</code>
-       * @param value The roots to add.
-       * @return This builder for chaining.
+       * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
        */
-      public Builder addRoots(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  ensureRootsIsMutable();
-        roots_.add(value);
-        onChanged();
+      public Builder setLabel2Coordinates(
+          int index, drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.Builder builderForValue) {
+        if (label2CoordinatesBuilder_ == null) {
+          ensureLabel2CoordinatesIsMutable();
+          label2Coordinates_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          label2CoordinatesBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
-       * <code>repeated bytes roots = 1;</code>
-       * @param values The roots to add.
-       * @return This builder for chaining.
+       * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
        */
-      public Builder addAllRoots(
-          java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
-        ensureRootsIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, roots_);
-        onChanged();
+      public Builder addLabel2Coordinates(drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates value) {
+        if (label2CoordinatesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureLabel2CoordinatesIsMutable();
+          label2Coordinates_.add(value);
+          onChanged();
+        } else {
+          label2CoordinatesBuilder_.addMessage(value);
+        }
         return this;
       }
       /**
-       * <code>repeated bytes roots = 1;</code>
-       * @return This builder for chaining.
+       * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
        */
-      public Builder clearRoots() {
-        roots_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        onChanged();
+      public Builder addLabel2Coordinates(
+          int index, drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates value) {
+        if (label2CoordinatesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureLabel2CoordinatesIsMutable();
+          label2Coordinates_.add(index, value);
+          onChanged();
+        } else {
+          label2CoordinatesBuilder_.addMessage(index, value);
+        }
         return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
+       */
+      public Builder addLabel2Coordinates(
+          drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.Builder builderForValue) {
+        if (label2CoordinatesBuilder_ == null) {
+          ensureLabel2CoordinatesIsMutable();
+          label2Coordinates_.add(builderForValue.build());
+          onChanged();
+        } else {
+          label2CoordinatesBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
+       */
+      public Builder addLabel2Coordinates(
+          int index, drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.Builder builderForValue) {
+        if (label2CoordinatesBuilder_ == null) {
+          ensureLabel2CoordinatesIsMutable();
+          label2Coordinates_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          label2CoordinatesBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
+       */
+      public Builder addAllLabel2Coordinates(
+          java.lang.Iterable<? extends drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates> values) {
+        if (label2CoordinatesBuilder_ == null) {
+          ensureLabel2CoordinatesIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, label2Coordinates_);
+          onChanged();
+        } else {
+          label2CoordinatesBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
+       */
+      public Builder clearLabel2Coordinates() {
+        if (label2CoordinatesBuilder_ == null) {
+          label2Coordinates_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          label2CoordinatesBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
+       */
+      public Builder removeLabel2Coordinates(int index) {
+        if (label2CoordinatesBuilder_ == null) {
+          ensureLabel2CoordinatesIsMutable();
+          label2Coordinates_.remove(index);
+          onChanged();
+        } else {
+          label2CoordinatesBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
+       */
+      public drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.Builder getLabel2CoordinatesBuilder(
+          int index) {
+        return getLabel2CoordinatesFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
+       */
+      public drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinatesOrBuilder getLabel2CoordinatesOrBuilder(
+          int index) {
+        if (label2CoordinatesBuilder_ == null) {
+          return label2Coordinates_.get(index);  } else {
+          return label2CoordinatesBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
+       */
+      public java.util.List<? extends drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinatesOrBuilder> 
+           getLabel2CoordinatesOrBuilderList() {
+        if (label2CoordinatesBuilder_ != null) {
+          return label2CoordinatesBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(label2Coordinates_);
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
+       */
+      public drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.Builder addLabel2CoordinatesBuilder() {
+        return getLabel2CoordinatesFieldBuilder().addBuilder(
+            drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
+       */
+      public drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.Builder addLabel2CoordinatesBuilder(
+          int index) {
+        return getLabel2CoordinatesFieldBuilder().addBuilder(
+            index, drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KNNMulticlassClassifier.LabelAndCoordinates label2Coordinates = 2;</code>
+       */
+      public java.util.List<drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.Builder> 
+           getLabel2CoordinatesBuilderList() {
+        return getLabel2CoordinatesFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates, drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.Builder, drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinatesOrBuilder> 
+          getLabel2CoordinatesFieldBuilder() {
+        if (label2CoordinatesBuilder_ == null) {
+          label2CoordinatesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates, drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinates.Builder, drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier.LabelAndCoordinatesOrBuilder>(
+                  label2Coordinates_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          label2Coordinates_ = null;
+        }
+        return label2CoordinatesBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -4276,41 +5627,41 @@ public final class ClassificationPb {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:drillbit.protobuf.RandomForestClassifier)
+      // @@protoc_insertion_point(builder_scope:drillbit.protobuf.KNNMulticlassClassifier)
     }
 
-    // @@protoc_insertion_point(class_scope:drillbit.protobuf.RandomForestClassifier)
-    private static final drillbit.protobuf.ClassificationPb.RandomForestClassifier DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:drillbit.protobuf.KNNMulticlassClassifier)
+    private static final drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new drillbit.protobuf.ClassificationPb.RandomForestClassifier();
+      DEFAULT_INSTANCE = new drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier();
     }
 
-    public static drillbit.protobuf.ClassificationPb.RandomForestClassifier getDefaultInstance() {
+    public static drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<RandomForestClassifier>
-        PARSER = new com.google.protobuf.AbstractParser<RandomForestClassifier>() {
+    private static final com.google.protobuf.Parser<KNNMulticlassClassifier>
+        PARSER = new com.google.protobuf.AbstractParser<KNNMulticlassClassifier>() {
       @java.lang.Override
-      public RandomForestClassifier parsePartialFrom(
+      public KNNMulticlassClassifier parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new RandomForestClassifier(input, extensionRegistry);
+        return new KNNMulticlassClassifier(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<RandomForestClassifier> parser() {
+    public static com.google.protobuf.Parser<KNNMulticlassClassifier> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<RandomForestClassifier> getParserForType() {
+    public com.google.protobuf.Parser<KNNMulticlassClassifier> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public drillbit.protobuf.ClassificationPb.RandomForestClassifier getDefaultInstanceForType() {
+    public drillbit.protobuf.ClassificationPb.KNNMulticlassClassifier getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -4332,20 +5683,25 @@ public final class ClassificationPb {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_drillbit_protobuf_MulticlassClassifier_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndModel_descriptor;
+    internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndWeights_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndModel_fieldAccessorTable;
+      internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndWeights_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_drillbit_protobuf_DecisionTreeClassifier_descriptor;
+    internal_static_drillbit_protobuf_KNNBinaryClassifier_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_drillbit_protobuf_DecisionTreeClassifier_fieldAccessorTable;
+      internal_static_drillbit_protobuf_KNNBinaryClassifier_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_drillbit_protobuf_RandomForestClassifier_descriptor;
+    internal_static_drillbit_protobuf_KNNMulticlassClassifier_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_drillbit_protobuf_RandomForestClassifier_fieldAccessorTable;
+      internal_static_drillbit_protobuf_KNNMulticlassClassifier_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_drillbit_protobuf_KNNMulticlassClassifier_LabelAndCoordinates_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_drillbit_protobuf_KNNMulticlassClassifier_LabelAndCoordinates_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -4361,14 +5717,20 @@ public final class ClassificationPb {
       "ims\030\002 \001(\005\022\017\n\007weights\030\003 \001(\014\"y\n\020BinaryClas" +
       "sifier\022\r\n\005dense\030\001 \001(\010\022\014\n\004dims\030\002 \001(\005\022\017\n\007w" +
       "eights\030\003 \001(\014\022\020\n\010useLabel\030\004 \001(\010\022\021\n\ttrueLa" +
-      "bel\030\005 \001(\t\022\022\n\nfalseLabel\030\006 \001(\t\"\260\001\n\024Multic" +
+      "bel\030\005 \001(\t\022\022\n\nfalseLabel\030\006 \001(\t\"\266\001\n\024Multic" +
       "lassClassifier\022\r\n\005dense\030\001 \001(\010\022\014\n\004dims\030\002 " +
-      "\001(\005\022J\n\013label2Model\030\003 \003(\01325.drillbit.prot" +
-      "obuf.MulticlassClassifier.LabelAndModel\032" +
-      "/\n\rLabelAndModel\022\r\n\005label\030\001 \001(\t\022\017\n\007weigh" +
-      "ts\030\002 \001(\014\"&\n\026DecisionTreeClassifier\022\014\n\004ro" +
-      "ot\030\001 \001(\014\"\'\n\026RandomForestClassifier\022\r\n\005ro" +
-      "ots\030\001 \003(\014b\006proto3"
+      "\001(\005\022N\n\rlabel2Weights\030\003 \003(\01327.drillbit.pr" +
+      "otobuf.MulticlassClassifier.LabelAndWeig" +
+      "hts\0321\n\017LabelAndWeights\022\r\n\005label\030\001 \001(\t\022\017\n" +
+      "\007weights\030\002 \001(\014\"r\n\023KNNBinaryClassifier\022\r\n" +
+      "\005dense\030\001 \001(\010\022\023\n\013coordinates\030\003 \001(\014\022\020\n\010use" +
+      "Label\030\004 \001(\010\022\021\n\ttrueLabel\030\005 \001(\t\022\022\n\nfalseL" +
+      "abel\030\006 \001(\t\"\276\001\n\027KNNMulticlassClassifier\022\r" +
+      "\n\005dense\030\001 \001(\010\022Y\n\021label2Coordinates\030\002 \003(\013" +
+      "2>.drillbit.protobuf.KNNMulticlassClassi" +
+      "fier.LabelAndCoordinates\0329\n\023LabelAndCoor" +
+      "dinates\022\r\n\005label\030\001 \001(\t\022\023\n\013coordinates\030\002 " +
+      "\001(\014b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -4391,25 +5753,31 @@ public final class ClassificationPb {
     internal_static_drillbit_protobuf_MulticlassClassifier_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_drillbit_protobuf_MulticlassClassifier_descriptor,
-        new java.lang.String[] { "Dense", "Dims", "Label2Model", });
-    internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndModel_descriptor =
+        new java.lang.String[] { "Dense", "Dims", "Label2Weights", });
+    internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndWeights_descriptor =
       internal_static_drillbit_protobuf_MulticlassClassifier_descriptor.getNestedTypes().get(0);
-    internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndModel_fieldAccessorTable = new
+    internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndWeights_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndModel_descriptor,
+        internal_static_drillbit_protobuf_MulticlassClassifier_LabelAndWeights_descriptor,
         new java.lang.String[] { "Label", "Weights", });
-    internal_static_drillbit_protobuf_DecisionTreeClassifier_descriptor =
+    internal_static_drillbit_protobuf_KNNBinaryClassifier_descriptor =
       getDescriptor().getMessageTypes().get(3);
-    internal_static_drillbit_protobuf_DecisionTreeClassifier_fieldAccessorTable = new
+    internal_static_drillbit_protobuf_KNNBinaryClassifier_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_drillbit_protobuf_DecisionTreeClassifier_descriptor,
-        new java.lang.String[] { "Root", });
-    internal_static_drillbit_protobuf_RandomForestClassifier_descriptor =
+        internal_static_drillbit_protobuf_KNNBinaryClassifier_descriptor,
+        new java.lang.String[] { "Dense", "Coordinates", "UseLabel", "TrueLabel", "FalseLabel", });
+    internal_static_drillbit_protobuf_KNNMulticlassClassifier_descriptor =
       getDescriptor().getMessageTypes().get(4);
-    internal_static_drillbit_protobuf_RandomForestClassifier_fieldAccessorTable = new
+    internal_static_drillbit_protobuf_KNNMulticlassClassifier_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_drillbit_protobuf_RandomForestClassifier_descriptor,
-        new java.lang.String[] { "Roots", });
+        internal_static_drillbit_protobuf_KNNMulticlassClassifier_descriptor,
+        new java.lang.String[] { "Dense", "Label2Coordinates", });
+    internal_static_drillbit_protobuf_KNNMulticlassClassifier_LabelAndCoordinates_descriptor =
+      internal_static_drillbit_protobuf_KNNMulticlassClassifier_descriptor.getNestedTypes().get(0);
+    internal_static_drillbit_protobuf_KNNMulticlassClassifier_LabelAndCoordinates_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_drillbit_protobuf_KNNMulticlassClassifier_LabelAndCoordinates_descriptor,
+        new java.lang.String[] { "Label", "Coordinates", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

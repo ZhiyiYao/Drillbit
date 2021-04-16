@@ -32,8 +32,8 @@ public class ConcatFeatureValues implements DrillSimpleFunc {
 
     @Override
     public void eval() {
-        String[] numericalStrings = drillbit.utils.primitive.StringParser.parseList(org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(numericalFeatures.start, numericalFeatures.end, numericalFeatures.buffer));
-        String[] categoricalStrings = drillbit.utils.primitive.StringParser.parseList(org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(categoricalFeatures.start, categoricalFeatures.end, categoricalFeatures.buffer));
+        String[] numericalStrings = drillbit.utils.parser.StringParser.parseList(org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(numericalFeatures.start, numericalFeatures.end, numericalFeatures.buffer));
+        String[] categoricalStrings = drillbit.utils.parser.StringParser.parseList(org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(categoricalFeatures.start, categoricalFeatures.end, categoricalFeatures.buffer));
         String[] features = new String[numericalStrings.length + categoricalStrings.length];
         java.lang.System.arraycopy(numericalStrings, 0, features, 0, numericalStrings.length);
         java.lang.System.arraycopy(categoricalStrings, 0, features, numericalStrings.length, categoricalStrings.length);

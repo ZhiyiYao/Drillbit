@@ -1,13 +1,15 @@
 package drillbit.udfs;
 
-import drillbit.utils.udf.TrainTestSampleSplitter;
+import drillbit.dataset.TrainTestSampleSplitter;
 import io.netty.buffer.DrillBuf;
 import org.apache.drill.exec.expr.DrillSimpleFunc;
 import org.apache.drill.exec.expr.annotations.FunctionTemplate;
 import org.apache.drill.exec.expr.annotations.Output;
 import org.apache.drill.exec.expr.annotations.Param;
+import org.apache.drill.exec.expr.annotations.Workspace;
 import org.apache.drill.exec.expr.holders.Float8Holder;
 import org.apache.drill.exec.expr.holders.VarCharHolder;
+import org.apache.drill.exec.expr.holders.ObjectHolder;
 
 import javax.inject.Inject;
 
@@ -35,7 +37,7 @@ public class SplitTrainTestSample implements DrillSimpleFunc {
 
     @Override
     public void eval() {
-        String label = TrainTestSampleSplitter.judge(ratio.value) ? "train" : "test";
+        String label = drillbit.dataset.TrainTestSampleSplitter.judge(ratio.value) ? "train" : "test";
         out.buffer = buffer;
         out.start = 0;
         out.end = label.getBytes().length;

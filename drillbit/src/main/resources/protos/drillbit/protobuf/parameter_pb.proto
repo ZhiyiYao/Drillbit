@@ -2,6 +2,40 @@ syntax = "proto3";
 
 package drillbit.protobuf;
 
+message DenseWeights {
+  repeated double weight = 1;
+}
+
+message SparseWeights {
+  repeated Item weight = 1;
+
+  message Item {
+    string feature = 1;
+    double weight = 2;
+  }
+}
+
+message DenseCoordinates {
+  repeated Row coordinate = 1;
+
+  message Row {
+    repeated double element = 1 [packed = true];
+  }
+}
+
+message SparseCoordinates {
+  repeated Row coordinate = 1;
+
+  message Row {
+    repeated Item element = 1;
+
+    message Item {
+      int32 index = 1;
+      double element = 2;
+    }
+  }
+}
+
 message Node {
   int32 output = 1;
   repeated double posteriori = 2;
@@ -10,17 +44,4 @@ message Node {
   double value = 5;
   Node trueChild = 6;
   Node falseChild = 7;
-}
-
-message DenseWeights {
-  repeated double weight = 1;
-}
-
-message SparseWeights {
-  repeated SparseWeight weight = 1;
-
-  message SparseWeight {
-    string feature = 1;
-    double weight = 2;
-  }
 }

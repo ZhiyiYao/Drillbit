@@ -3,16 +3,18 @@ package drillbit.classification;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import drillbit.BaseLearner;
+import drillbit.FeatureValue;
+import drillbit.TrainWeights;
 import drillbit.parameter.*;
 import drillbit.optimizer.ConversionState;
 import drillbit.optimizer.LossFunctions;
 import drillbit.protobuf.ClassificationPb;
 import drillbit.protobuf.SamplePb;
-import drillbit.utils.primitive.StringParser;
+import drillbit.utils.parser.StringParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
-
 import javax.annotation.Nonnull;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 
 public abstract class BinaryClassificationBaseLearner extends BaseLearner {
     // Model
-    protected Model model;
+    protected Weights weights;
     protected int count;
 
     // For model storage and allocate
@@ -102,23 +104,23 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
             falseLabel = "";
         }
 
-        model = createModel();
+        weights = createModel();
         count = 0;
 
         return cl;
     }
 
     @Nonnull
-    final Model createModel() {
-        Model model;
+    final Weights createModel() {
+        Weights weights;
         if (dense) {
             logger.info(String.format("Build a dense model with initial with %d initial dimensions", dims));
-            model = new DenseModel(dims, Weights.WeightType.WithCovar);
+            weights = new DenseWeights(dims, TrainWeights.WeightType.WithCovar);
         } else {
             logger.info(String.format("Build a dense model with initial with %d initial dimensions", dims));
-            model = new SparseModel(dims, Weights.WeightType.WithCovar);
+            weights = new SparseWeights(dims, TrainWeights.WeightType.WithCovar);
         }
-        return model;
+        return weights;
     }
 
     @Override
@@ -193,7 +195,6 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
         }
     }
 
-    @Override
     public double predict(@Nonnull final ArrayList<FeatureValue> features) {
         double score = 0.f;
         for (FeatureValue f : features) {// a += w[i] * x[i]
@@ -201,12 +202,24 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
                 continue;
             }
             Object k = f.getFeature();
-            double old_w = model.getWeight(k);
+            double old_w = weights.getWeight(k);
             if (old_w != 0.f) {
                 score += (old_w * f.getValueAsFloat());
             }
         }
         return score;
+    }
+
+    @Override
+    public Object predict(@Nonnull String features, @Nonnull String options) {
+        ArrayList<String> featureValues = StringParser.parseArray(features);
+        ArrayList<FeatureValue> featureVector = new ArrayList<>();
+        assert featureValues != null;
+        for (String featureValue : featureValues) {
+            featureVector.add(StringParser.parseFeature(featureValue));
+        }
+
+        return predict(featureVector) > 0 ? 1 : -1;
     }
 
     @Override
@@ -222,9 +235,9 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
             final Object k = f.getFeature();
             final double v = f.getValueAsDouble();
 
-            double old_w = model.getWeight(k);
+            double old_w = weights.getWeight(k);
             double new_w = old_w + (coeff * v);
-            model.setWeight(k, new_w);
+            weights.setWeight(k, new_w);
         }
     }
 
@@ -274,7 +287,7 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
             final Object k = f.getFeature();
             final float v = f.getValueAsFloat();
 
-            Weights.ExtendedWeight old_w = model.get(k);
+            TrainWeights.ExtendedWeight old_w = weights.get(k);
             if (old_w == null) {
                 variance += (1.f * v * v);
             } else {
@@ -303,7 +316,7 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
 
         builder.setDense(dense);
         builder.setDims(dims);
-        builder.setWeights(ByteString.copyFrom(model.toByteArray()));
+        builder.setWeights(ByteString.copyFrom(weights.toByteArray()));
 
         return builder.build().toByteArray();
     }
@@ -327,10 +340,10 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
         byte[] modelBytes = binaryClassifier.getWeights().toByteArray();
 
         if (dense) {
-            model = (new DenseModel(dims, Weights.WeightType.Single)).fromByteArray(modelBytes);
+            weights = (new DenseWeights(dims, TrainWeights.WeightType.Single)).fromByteArray(modelBytes);
         }
         else {
-            model = (new SparseModel(dims, Weights.WeightType.Single)).fromByteArray(modelBytes);
+            weights = (new SparseWeights(dims, TrainWeights.WeightType.Single)).fromByteArray(modelBytes);
         }
 
         return this;

@@ -2,11 +2,9 @@ package drillbit.utils.math;
 
 import com.clearspring.analytics.util.Lists;
 
+import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class MathUtils {
@@ -34,6 +32,24 @@ public class MathUtils {
         return Math.max(Math.min(v, max), min);
     }
 
+    @Nonnull
+    public static int[] permutation(@Nonnegative final int start, @Nonnegative final int size) {
+        final int[] perm = new int[size];
+        for (int i = 0; i < size; i++) {
+            perm[i] = start + i;
+        }
+        return perm;
+    }
+
+    @Nonnull
+    public static int[] permutation(@Nonnegative final int size) {
+        final int[] perm = new int[size];
+        for (int i = 0; i < size; i++) {
+            perm[i] = i;
+        }
+        return perm;
+    }
+
     public static int bitsRequired(int value) {
         int bits = 0;
         while (value != 0) {
@@ -55,6 +71,18 @@ public class MathUtils {
         }
 
         return which;
+    }
+
+    public static int whichMax(int... x) {
+        int m = x[0];
+
+        for (int n : x) {
+            if (n > m) {
+                m = n;
+            }
+        }
+
+        return m;
     }
 
     public static double log2(double x) {
@@ -212,5 +240,47 @@ public class MathUtils {
         }
 
         return minInterval(newValues);
+    }
+
+    public static int max(int... x) {
+        int m = x[0];
+
+        for (int n : x) {
+            if (n > m) {
+                m = n;
+            }
+        }
+
+        return m;
+    }
+
+    public static int sum(int[] x) {
+        double sum = 0.0;
+
+        for (int n : x) {
+            sum += n;
+        }
+
+        if (sum > Integer.MAX_VALUE || sum < -Integer.MAX_VALUE) {
+            throw new ArithmeticException("Sum overflow: " + sum);
+        }
+
+        return (int) sum;
+    }
+
+    public static int[] unique(int[] x) {
+        HashSet<Integer> hash = new HashSet<Integer>();
+        for (int i = 0; i < x.length; i++) {
+            hash.add(x[i]);
+        }
+
+        int[] y = new int[hash.size()];
+
+        Iterator<Integer> keys = hash.iterator();
+        for (int i = 0; i < y.length; i++) {
+            y[i] = keys.next();
+        }
+
+        return y;
     }
 }

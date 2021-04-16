@@ -1,6 +1,6 @@
 package drillbit.udfs;
 
-import drillbit.utils.udf.DatasetHelper;
+import drillbit.dataset.DatasetHelper;
 import io.netty.buffer.DrillBuf;
 import org.apache.drill.exec.expr.DrillSimpleFunc;
 import org.apache.drill.exec.expr.annotations.FunctionTemplate;

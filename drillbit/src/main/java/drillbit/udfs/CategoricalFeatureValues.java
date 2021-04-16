@@ -35,7 +35,7 @@ public class CategoricalFeatureValues implements DrillSimpleFunc {
     @Override
     public void eval() {
         String namesString = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(featureNames.start, featureNames.end, featureNames.buffer);
-        String[] names = drillbit.utils.primitive.StringParser.parseList(namesString);
+        String[] names = drillbit.utils.parser.StringParser.parseList(namesString);
         String[] categoricalFeatures = new String[names.length];
         for (int i = 0; i < names.length; i++) {
             categoricalFeatures[i] = names[i] + "#" + org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(features[i].start, features[i].end, features[i].buffer);

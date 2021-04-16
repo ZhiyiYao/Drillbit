@@ -1,7 +1,6 @@
 package drillbit.utils.math;
 
-import drillbit.utils.primitive.ObjectParser;
-import it.unimi.dsi.fastutil.ints.Int2BooleanAVLTreeMap;
+import drillbit.utils.parser.ObjectParser;
 
 import javax.annotation.Nonnull;
 import java.util.Enumeration;

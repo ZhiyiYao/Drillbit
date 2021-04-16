@@ -1,8 +1,8 @@
 package drillbit.optimizer;
 
-import drillbit.parameter.Weights;
+import drillbit.TrainWeights;
 import drillbit.utils.math.MathUtils;
-import drillbit.utils.primitive.StringParser;
+import drillbit.utils.parser.StringParser;
 
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
@@ -26,11 +26,11 @@ public abstract class Optimizers {
             this._reg = Regularizers.get(options);
         }
 
-        public abstract Weights.WeightType getWeightType();
+        public abstract TrainWeights.WeightType getWeightType();
 
         @Nonnull
-        protected Weights.ExtendedWeight newWeightValue(final double weight) {
-            return Weights.getWeightBuilder(getWeightType()).buildFromWeight(weight);
+        protected TrainWeights.ExtendedWeight newWeightValue(final double weight) {
+            return TrainWeights.getWeightBuilder(getWeightType()).buildFromWeight(weight);
         }
 
         @Nonnull
@@ -56,7 +56,7 @@ public abstract class Optimizers {
          *
          * @return new weight to be set
          */
-        protected double update(@Nonnull final Weights.ExtendedWeight weight, double gradient) {
+        protected double update(@Nonnull final TrainWeights.ExtendedWeight weight, double gradient) {
             double oldWeight = weight.get();
             double delta = computeDelta(weight, gradient);
             double eta = eta(_numStep);
@@ -81,7 +81,7 @@ public abstract class Optimizers {
             return _eta.eta(_numStep);
         }
 
-        protected double computeDelta(@Nonnull final Weights.ExtendedWeight weight, final double gradient) {
+        protected double computeDelta(@Nonnull final TrainWeights.ExtendedWeight weight, final double gradient) {
             return gradient;
         }
     }
@@ -109,8 +109,8 @@ public abstract class Optimizers {
 
 
         @Override
-        public Weights.WeightType getWeightType() {
-            return Weights.WeightType.WithMAndV;
+        public TrainWeights.WeightType getWeightType() {
+            return TrainWeights.WeightType.WithMAndV;
         }
 
         @Override
@@ -130,16 +130,16 @@ public abstract class Optimizers {
         }
 
         @Override
-        protected double computeDelta(@Nonnull final Weights.ExtendedWeight weight, double gradient) {
-            assert weight instanceof Weights.WeightWithMAndV;
+        protected double computeDelta(@Nonnull final TrainWeights.ExtendedWeight weight, double gradient) {
+            assert weight instanceof TrainWeights.WeightWithMAndV;
             if (decay != 0.f) {// L2 regularization for weight decay
                 double oldWeight = weight.get();
                 gradient += decay * oldWeight;
             }
             // update biased first moment estimate
-            double m = beta1 * ((Weights.WeightWithMAndV) weight).getM() + (1.d - beta1) * gradient;
+            double m = beta1 * ((TrainWeights.WeightWithMAndV) weight).getM() + (1.d - beta1) * gradient;
             // update biased second raw moment estimate
-            double v = beta2 * ((Weights.WeightWithMAndV) weight).getV() + (double) ((1.d - beta2) * square(gradient));
+            double v = beta2 * ((TrainWeights.WeightWithMAndV) weight).getV() + (double) ((1.d - beta2) * square(gradient));
             double v_hat = v;
             if (amsgrad) {
                 if (v_hat > max_vhat) {
@@ -185,16 +185,16 @@ public abstract class Optimizers {
     }
 
     public static final class SGD extends OptimizerBase {
-        private final Weights.WeightWithCovar weightValueReused;
+        private final TrainWeights.WeightWithCovar weightValueReused;
 
         public SGD(@Nonnull ConcurrentHashMap<String, String> options) {
             super(options);
-            weightValueReused = (Weights.WeightWithCovar) newWeightValue(0.d);
+            weightValueReused = (TrainWeights.WeightWithCovar) newWeightValue(0.d);
         }
 
         @Override
-        public Weights.WeightType getWeightType() {
-            return Weights.WeightType.WithCovar;
+        public TrainWeights.WeightType getWeightType() {
+            return TrainWeights.WeightType.WithCovar;
         }
 
         @Override
@@ -213,7 +213,7 @@ public abstract class Optimizers {
     public static abstract class Momentum extends OptimizerBase {
 
         @Nonnull
-        private final Weights.WeightWithDelta weightValueReused;
+        private final TrainWeights.WeightWithDelta weightValueReused;
 
         private final boolean nesterov;
         private final double alpha;
@@ -221,21 +221,21 @@ public abstract class Optimizers {
 
         public Momentum(@Nonnull ConcurrentHashMap<String, String> options) {
             super(options);
-            this.weightValueReused = (Weights.WeightWithDelta) newWeightValue(0.f);
+            this.weightValueReused = (TrainWeights.WeightWithDelta) newWeightValue(0.f);
             this.nesterov = options.containsKey("nesterov");
             this.alpha = StringParser.parseDouble(options.get("alpha"), 1.d);
             this.momentum = StringParser.parseDouble(options.get("momentum"), 0.9d);
         }
         @Override
-        public Weights.WeightType getWeightType() {
-            return Weights.WeightType.WithDelta;
+        public TrainWeights.WeightType getWeightType() {
+            return TrainWeights.WeightType.WithDelta;
         }
 
         @Override
-        protected double computeDelta(@Nonnull final Weights.ExtendedWeight weight, final double gradient) {
+        protected double computeDelta(@Nonnull final TrainWeights.ExtendedWeight weight, final double gradient) {
             final double oldDelta = weight.getDelta();
             final double v = momentum * oldDelta + alpha * gradient;
-            ((Weights.WeightWithDelta) weight).setDelta(v);
+            ((TrainWeights.WeightWithDelta) weight).setDelta(v);
             if (nesterov) {
                 //return momentum * momentum * oldDelta + (1.f + momentum) * alpha * gradient;
                 return momentum * momentum * v + (1.f + momentum) * alpha * gradient;
@@ -272,12 +272,12 @@ public abstract class Optimizers {
         }
 
         @Override
-        public Weights.WeightType getWeightType() {
-            return Weights.WeightType.WithSumOfSquaredGradients;
+        public TrainWeights.WeightType getWeightType() {
+            return TrainWeights.WeightType.WithSumOfSquaredGradients;
         }
 
         @Override
-        protected double computeDelta(@Nonnull final Weights.ExtendedWeight weight, final double gradient) {
+        protected double computeDelta(@Nonnull final TrainWeights.ExtendedWeight weight, final double gradient) {
             double old_scaled_gg = weight.getSumOfSquaredGradients();
             double new_scaled_gg = old_scaled_gg + gradient * (gradient / scale);
             weight.setSumOfSquaredGradients(new_scaled_gg);
@@ -315,12 +315,12 @@ public abstract class Optimizers {
         }
 
         @Override
-        public Weights.WeightType getWeightType() {
-            return Weights.WeightType.WithSumOfSquaredGradients;
+        public TrainWeights.WeightType getWeightType() {
+            return TrainWeights.WeightType.WithSumOfSquaredGradients;
         }
 
         @Override
-        protected double computeDelta(@Nonnull final Weights.ExtendedWeight weight, final double gradient) {
+        protected double computeDelta(@Nonnull final TrainWeights.ExtendedWeight weight, final double gradient) {
             double old_scaled_gg = weight.getSumOfSquaredGradients();
             double new_scaled_gg = decay * old_scaled_gg + (1.d - decay) * gradient * (gradient / scale);
             weight.setSumOfSquaredGradients(new_scaled_gg);
@@ -363,12 +363,12 @@ public abstract class Optimizers {
         }
 
         @Override
-        public Weights.WeightType getWeightType() {
-            return Weights.WeightType.WithSumOfGradientsAndSumOfSquaredGradientsAndDelta;
+        public TrainWeights.WeightType getWeightType() {
+            return TrainWeights.WeightType.WithSumOfGradientsAndSumOfSquaredGradientsAndDelta;
         }
 
         @Override
-        protected double computeDelta(@Nonnull final Weights.ExtendedWeight weight, final double gradient) {
+        protected double computeDelta(@Nonnull final TrainWeights.ExtendedWeight weight, final double gradient) {
             double old_scaled_n = weight.getSumOfSquaredGradients();
             double new_scaled_n = decay * old_scaled_n + (1.d - decay) * gradient * (gradient / scale);
             weight.setSumOfSquaredGradients(new_scaled_n);
@@ -414,8 +414,8 @@ public abstract class Optimizers {
         }
 
         @Override
-        public Weights.WeightType getWeightType() {
-            return Weights.WeightType.WithSumOfSquaredGradientsAndSumOfSquaredDeltaX;
+        public TrainWeights.WeightType getWeightType() {
+            return TrainWeights.WeightType.WithSumOfSquaredGradientsAndSumOfSquaredDeltaX;
         }
 
         @Override
@@ -431,7 +431,7 @@ public abstract class Optimizers {
         }
 
         @Override
-        protected double computeDelta(@Nonnull final Weights.ExtendedWeight weight, final double gradient) {
+        protected double computeDelta(@Nonnull final TrainWeights.ExtendedWeight weight, final double gradient) {
             double old_scaled_sum_sqgrad = weight.getSumOfSquaredGradients();
             double old_sum_squared_delta_x = weight.getSumOfSquaredDeltaX();
             double new_scaled_sum_sqgrad = (decay * old_scaled_sum_sqgrad)
@@ -476,7 +476,6 @@ public abstract class Optimizers {
 
         public Nadam(@Nonnull ConcurrentHashMap<String, String> options) {
             super(options);
-            //this.alpha = Primitives.parsedouble(options.get("alpha"), 0.001f);
             this.alpha = StringParser.parseDouble(options.get("alpha"), 1.0d);
             this.beta1 = StringParser.parseDouble(options.get("beta1"), 0.9d);
             this.beta2 = StringParser.parseDouble(options.get("beta2"), 0.999d);
@@ -486,8 +485,8 @@ public abstract class Optimizers {
         }
 
         @Override
-        public Weights.WeightType getWeightType() {
-            return Weights.WeightType.WithMAndV;
+        public TrainWeights.WeightType getWeightType() {
+            return TrainWeights.WeightType.WithMAndV;
         }
 
         @Override
@@ -522,7 +521,7 @@ public abstract class Optimizers {
         }
 
         @Override
-        protected double computeDelta(@Nonnull final Weights.ExtendedWeight weight, double gradient) {
+        protected double computeDelta(@Nonnull final TrainWeights.ExtendedWeight weight, double gradient) {
             if (decay != 0.f) {// L2 regularization for weight decay
                 double oldWeight = weight.get();
                 gradient += decay * oldWeight;
@@ -587,8 +586,8 @@ public abstract class Optimizers {
         }
 
         @Override
-        public Weights.WeightType getWeightType() {
-            return Weights.WeightType.Single;
+        public TrainWeights.WeightType getWeightType() {
+            return TrainWeights.WeightType.Single;
         }
 
         @Override
@@ -642,8 +641,8 @@ public abstract class Optimizers {
         }
 
         @Override
-        public Weights.WeightType getWeightType() {
-            return Weights.WeightType.WithMAndV;
+        public TrainWeights.WeightType getWeightType() {
+            return TrainWeights.WeightType.WithMAndV;
         }
 
         @Override
@@ -670,15 +669,15 @@ public abstract class Optimizers {
         }
 
         @Override
-        protected double computeDelta(@Nonnull final Weights.ExtendedWeight weight, double gradient) {
+        protected double computeDelta(@Nonnull final TrainWeights.ExtendedWeight weight, double gradient) {
             if (decay != 0.f) {// L2 regularization for weight decay
                 double oldWeight = weight.get();
                 gradient += decay * oldWeight;
             }
             // update biased first moment estimate
-            double m = beta1 * ((Weights.WeightWithMAndV) weight).getM() + (1.d - beta1) * gradient;
+            double m = beta1 * ((TrainWeights.WeightWithMAndV) weight).getM() + (1.d - beta1) * gradient;
             // update biased second raw moment estimate
-            double v = beta2 * ((Weights.WeightWithMAndV) weight).getV() + (1.d - beta2) * square(gradient);
+            double v = beta2 * ((TrainWeights.WeightWithMAndV) weight).getV() + (1.d - beta2) * square(gradient);
             // compute bias-corrected first moment estimate
             double m_hat = m / (1.d - pow(beta1, _numStep));
             // compute bias-corrected second raw moment estimate
@@ -724,13 +723,13 @@ public abstract class Optimizers {
         }
 
         @Override
-        public Weights.WeightType getWeightType() {
-            return Weights.WeightType.WithSumOfSquaredGradientsAndSumOfGradients;
+        public TrainWeights.WeightType getWeightType() {
+            return TrainWeights.WeightType.WithSumOfSquaredGradientsAndSumOfGradients;
         }
 
 
         @Override
-        protected double update(@Nonnull final Weights.ExtendedWeight weight, final double gradient) {
+        protected double update(@Nonnull final TrainWeights.ExtendedWeight weight, final double gradient) {
             final double new_sum_grad = weight.getSumOfGradients() + gradient;
             // sign(u_{t,i})
             final double sign = (new_sum_grad > 0.d) ? 1.d : -1.d;

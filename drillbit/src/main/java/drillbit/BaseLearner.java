@@ -2,7 +2,6 @@ package drillbit;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import drillbit.parameter.*;
 import drillbit.optimizer.*;
 import drillbit.protobuf.SamplePb;
 import drillbit.utils.lang.SizeOf;
@@ -40,6 +39,8 @@ public abstract class BaseLearner implements Learner {
     // Process options at first call of add method
     protected boolean optionProcessed;
 
+    protected boolean optionForPredictProcessed;
+
     // Basic commandline options
 
     // For mini batch update
@@ -62,20 +63,18 @@ public abstract class BaseLearner implements Learner {
 
     public BaseLearner() {
         optionProcessed = false;
+        optionForPredictProcessed = false;
         path = null;
     }
 
     @Override
     public Options getOptions() {
-        Options opts = new Options();
+        return new Options();
+    }
 
-//        opts.addOption("dense", "dense_model", false, "Use dense model or not");
-//        opts.addOption("dims", "feature_dimensions", true, "The dimension of model [default: 16777216 (2^24)]");
-//        opts.addOption("mini_batch", "mini_batch_size", true, "mini batch size");
-//        opts.addOption("loss", "loss_function", true, "loss function name");
-//        opts.addOption("opt", "optimizer", true, "optimizer name");
-
-        return opts;
+    @Override
+    public Options getPredictOptions() {
+        return new Options();
     }
 
     @Override
@@ -101,15 +100,45 @@ public abstract class BaseLearner implements Learner {
     }
 
     @Override
+    public CommandLine parsePredictOptions(String optionValue) {
+        String[] args = optionValue.split("\\s+");
+        Options opts = getPredictOptions();
+        OptimizerOptions.setup(opts);
+        opts.addOption("help", false, "Show function help");
+
+        final CommandLine cl;
+        try {
+            DefaultParser parser = new DefaultParser();
+            cl = parser.parse(opts, args);
+        } catch (IllegalArgumentException | ParseException e) {
+            throw new IllegalArgumentException(e);
+        }
+
+        if (cl.hasOption("help")) {
+            this.showHelp(opts);
+        }
+
+        return cl;
+    }
+
+    @Override
     public void showHelp(@Nonnull Options opts) {
         //TODO: implement show help method
     }
 
     /*
-     * process the options. May be reused by subclasses
+     * process the options. Reused by subclasses
      */
     @Override
     public CommandLine processOptions(@Nonnull final CommandLine cl) throws IllegalArgumentException {
+        return cl;
+    }
+
+    /*
+     * process prediction options.
+     */
+    @Override
+    public CommandLine processPredictOptions(@Nonnull final CommandLine cl) throws IllegalArgumentException {
         return cl;
     }
 
@@ -277,7 +306,7 @@ public abstract class BaseLearner implements Learner {
 //        }
 //    }
 
-    public abstract double predict(@Nonnull final ArrayList<FeatureValue> features);
+    public abstract Object predict(@Nonnull final String features, @Nonnull final String options);
 
     protected abstract void update(@Nonnull final ArrayList<FeatureValue> features, final double target, final double predicted);
 
