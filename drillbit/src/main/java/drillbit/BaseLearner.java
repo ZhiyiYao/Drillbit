@@ -3,9 +3,13 @@ package drillbit;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import drillbit.optimizer.*;
+import drillbit.parameter.DenseWeights;
+import drillbit.parameter.SparseWeights;
+import drillbit.parameter.Weights;
 import drillbit.protobuf.SamplePb;
 import drillbit.utils.lang.SizeOf;
 
+import drillbit.utils.parser.StringParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
@@ -13,6 +17,7 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 import java.io.*;
 import java.nio.ByteBuffer;
@@ -21,6 +26,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.concurrent.ConcurrentHashMap;
 
 /*
     Base learner for general regression learner and general classification learner.
@@ -155,28 +161,39 @@ public abstract class BaseLearner implements Learner {
 
     protected abstract void train(@Nonnull final ArrayList<FeatureValue> featureVector, @Nonnull final double target);
 
-//    @Nonnull
-//    protected final Optimizers.OptimizerBase createOptimizer(@CheckForNull ConcurrentHashMap<String, String> options, boolean dense, int dims) {
-//        assert options != null;
-//        if (dense) {
-//            return DenseOptimizerFactory.create(dims, options);
-//        } else {
-//            return SparseOptimizerFactory.create(dims, options);
-//        }
-//    }
+    protected ArrayList<FeatureValue> parseFeatureList(String feature) {
+        ArrayList<String> featureValues = StringParser.parseArray(feature);
+        ArrayList<FeatureValue> featureVector = new ArrayList<>();
+        assert featureValues != null;
+        for (String featureValue : featureValues) {
+            featureVector.add(StringParser.parseFeature(featureValue));
+        }
 
-//    @Nonnull
-//    protected Model createModel() {
-//        Model model;
-//        if (dense) {
-//            logger.info(String.format("Build a dense model with initial with %d initial dimensions", dims));
-//                model = new DenseModel(dims, optimizer.getWeightType());
-//        } else {
-//            logger.info(String.format("Build a dense model with initial with %d initial dimensions", dims));
-//            model = new SparseModel(dims, optimizer.getWeightType());
-//        }
-//        return model;
-//    }
+        return featureVector;
+    }
+
+    @Nonnull
+    protected final Optimizers.OptimizerBase createOptimizer(@CheckForNull ConcurrentHashMap<String, String> options, boolean dense, int dims) {
+        assert options != null;
+        if (dense) {
+            return DenseOptimizerFactory.create(dims, options);
+        } else {
+            return SparseOptimizerFactory.create(dims, options);
+        }
+    }
+
+    @Nonnull
+    protected Weights createModel(boolean dense, int dims) {
+        Weights weights;
+        if (dense) {
+            logger.info(String.format("Build a dense model with initial with %d initial dimensions", dims));
+            weights = new DenseWeights(dims, TrainWeights.WeightType.WithCovar);
+        } else {
+            logger.info(String.format("Build a dense model with initial with %d initial dimensions", dims));
+            weights = new SparseWeights(dims, TrainWeights.WeightType.WithCovar);
+        }
+        return weights;
+    }
 
     protected void writeSampleToTempFile(@Nonnull final ArrayList<FeatureValue> featureVector, @Nonnull final String target) {
         if (outputStream == null) {

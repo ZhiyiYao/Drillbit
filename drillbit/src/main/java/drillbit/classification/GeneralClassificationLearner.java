@@ -2,6 +2,7 @@ package drillbit.classification;
 
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
+
 import drillbit.BaseLearner;
 import drillbit.FeatureValue;
 import drillbit.TrainWeights;
@@ -11,11 +12,12 @@ import drillbit.protobuf.ClassificationPb;
 import drillbit.protobuf.SamplePb;
 import drillbit.utils.common.DoubleAccumulator;
 import drillbit.utils.parser.StringParser;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -63,6 +65,12 @@ public final class GeneralClassificationLearner extends BaseLearner {
         opts.addOption("cv_rate", "conversion_rate", true, "conversion rate used in checking");
 
         return opts;
+    }
+
+    @Override
+    public Options getPredictOptions() {
+        // No option for prediction provided.
+        return super.getPredictOptions();
     }
 
     @Override
@@ -122,10 +130,16 @@ public final class GeneralClassificationLearner extends BaseLearner {
         }
         cvState = new ConversionState(chkCv, cvRate);
 
-        weights = createModel();
+        weights = createWeights();
         count = 0;
         sampled = 0;
 
+        return cl;
+    }
+
+    @Override
+    public final CommandLine processPredictOptions(@Nonnull final CommandLine cl) {
+        // Do nothing.
         return cl;
     }
 
@@ -139,7 +153,7 @@ public final class GeneralClassificationLearner extends BaseLearner {
     }
 
     @Nonnull
-    final Weights createModel() {
+    final Weights createWeights() {
         Weights weights;
         if (dense) {
             logger.info(String.format("Build a dense model with initial with %d initial dimensions", dims));
@@ -189,15 +203,9 @@ public final class GeneralClassificationLearner extends BaseLearner {
     }
 
     @Override
-    public Object predict(@NotNull String feature, @NotNull String options) {
-        ArrayList<String> featureValues = StringParser.parseArray(feature);
-        ArrayList<FeatureValue> featureVector = new ArrayList<>();
-        assert featureValues != null;
-        for (String featureValue : featureValues) {
-            featureVector.add(StringParser.parseFeature(featureValue));
-        }
-
-        return predict(featureVector) > 0 ? 1 : -1;
+    public Object predict(@Nonnull String feature, @Nonnull String options) {
+        // Options unused.
+        return predict(parseFeatureList(feature)) > 0 ? 1 : -1;
     }
 
     final public double predict(@Nonnull ArrayList<FeatureValue> features) {
@@ -399,7 +407,10 @@ public final class GeneralClassificationLearner extends BaseLearner {
 
     @Override
     protected void checkTargetValue(String target) throws IllegalArgumentException {
-        //TODO: implement this method, assign the form of target for general classification.
+        int targetValue = StringParser.parseInt(target, -2);
+        if (targetValue != 1 && targetValue != -1 && targetValue != 0) {
+            throw new IllegalArgumentException("Target should be either -1 or 1");
+        }
     }
 
     @Override

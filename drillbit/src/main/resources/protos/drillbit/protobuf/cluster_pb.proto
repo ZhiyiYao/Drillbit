@@ -3,9 +3,26 @@ syntax = "proto3";
 package drillbit.protobuf;
 
 message KMeansClassifier {
+  bool dense = 1;
+  int32 dims = 2;
 
+  repeated LabelAndClusterCenter label2ClusterCenters = 3;
+
+  message LabelAndClusterCenter {
+    string label = 1;
+    bytes coordinate = 2;
+  }
 }
 
 message GaussianMixtureModelClassifier {
+  bool dense = 1;
+  int32 dims = 2;
 
+  repeated LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;
+
+  message LabelAndClusterCenterAndVariance {
+    string label = 1;
+    bytes coordinate = 2;
+    bytes variance = 3;
+  }
 }

@@ -668,36 +668,6 @@ public final class ClassificationPb {
      * @return The weights.
      */
     com.google.protobuf.ByteString getWeights();
-
-    /**
-     * <code>bool useLabel = 4;</code>
-     * @return The useLabel.
-     */
-    boolean getUseLabel();
-
-    /**
-     * <code>string trueLabel = 5;</code>
-     * @return The trueLabel.
-     */
-    java.lang.String getTrueLabel();
-    /**
-     * <code>string trueLabel = 5;</code>
-     * @return The bytes for trueLabel.
-     */
-    com.google.protobuf.ByteString
-        getTrueLabelBytes();
-
-    /**
-     * <code>string falseLabel = 6;</code>
-     * @return The falseLabel.
-     */
-    java.lang.String getFalseLabel();
-    /**
-     * <code>string falseLabel = 6;</code>
-     * @return The bytes for falseLabel.
-     */
-    com.google.protobuf.ByteString
-        getFalseLabelBytes();
   }
   /**
    * Protobuf type {@code drillbit.protobuf.BinaryClassifier}
@@ -713,8 +683,6 @@ public final class ClassificationPb {
     }
     private BinaryClassifier() {
       weights_ = com.google.protobuf.ByteString.EMPTY;
-      trueLabel_ = "";
-      falseLabel_ = "";
     }
 
     @java.lang.Override
@@ -760,23 +728,6 @@ public final class ClassificationPb {
             case 26: {
 
               weights_ = input.readBytes();
-              break;
-            }
-            case 32: {
-
-              useLabel_ = input.readBool();
-              break;
-            }
-            case 42: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              trueLabel_ = s;
-              break;
-            }
-            case 50: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              falseLabel_ = s;
               break;
             }
             default: {
@@ -844,93 +795,6 @@ public final class ClassificationPb {
       return weights_;
     }
 
-    public static final int USELABEL_FIELD_NUMBER = 4;
-    private boolean useLabel_;
-    /**
-     * <code>bool useLabel = 4;</code>
-     * @return The useLabel.
-     */
-    @java.lang.Override
-    public boolean getUseLabel() {
-      return useLabel_;
-    }
-
-    public static final int TRUELABEL_FIELD_NUMBER = 5;
-    private volatile java.lang.Object trueLabel_;
-    /**
-     * <code>string trueLabel = 5;</code>
-     * @return The trueLabel.
-     */
-    @java.lang.Override
-    public java.lang.String getTrueLabel() {
-      java.lang.Object ref = trueLabel_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        trueLabel_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string trueLabel = 5;</code>
-     * @return The bytes for trueLabel.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getTrueLabelBytes() {
-      java.lang.Object ref = trueLabel_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        trueLabel_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int FALSELABEL_FIELD_NUMBER = 6;
-    private volatile java.lang.Object falseLabel_;
-    /**
-     * <code>string falseLabel = 6;</code>
-     * @return The falseLabel.
-     */
-    @java.lang.Override
-    public java.lang.String getFalseLabel() {
-      java.lang.Object ref = falseLabel_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        falseLabel_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string falseLabel = 6;</code>
-     * @return The bytes for falseLabel.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getFalseLabelBytes() {
-      java.lang.Object ref = falseLabel_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        falseLabel_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -954,15 +818,6 @@ public final class ClassificationPb {
       if (!weights_.isEmpty()) {
         output.writeBytes(3, weights_);
       }
-      if (useLabel_ != false) {
-        output.writeBool(4, useLabel_);
-      }
-      if (!getTrueLabelBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, trueLabel_);
-      }
-      if (!getFalseLabelBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, falseLabel_);
-      }
       unknownFields.writeTo(output);
     }
 
@@ -983,16 +838,6 @@ public final class ClassificationPb {
       if (!weights_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(3, weights_);
-      }
-      if (useLabel_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(4, useLabel_);
-      }
-      if (!getTrueLabelBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, trueLabel_);
-      }
-      if (!getFalseLabelBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, falseLabel_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1015,12 +860,6 @@ public final class ClassificationPb {
           != other.getDims()) return false;
       if (!getWeights()
           .equals(other.getWeights())) return false;
-      if (getUseLabel()
-          != other.getUseLabel()) return false;
-      if (!getTrueLabel()
-          .equals(other.getTrueLabel())) return false;
-      if (!getFalseLabel()
-          .equals(other.getFalseLabel())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -1039,13 +878,6 @@ public final class ClassificationPb {
       hash = (53 * hash) + getDims();
       hash = (37 * hash) + WEIGHTS_FIELD_NUMBER;
       hash = (53 * hash) + getWeights().hashCode();
-      hash = (37 * hash) + USELABEL_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getUseLabel());
-      hash = (37 * hash) + TRUELABEL_FIELD_NUMBER;
-      hash = (53 * hash) + getTrueLabel().hashCode();
-      hash = (37 * hash) + FALSELABEL_FIELD_NUMBER;
-      hash = (53 * hash) + getFalseLabel().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -1185,12 +1017,6 @@ public final class ClassificationPb {
 
         weights_ = com.google.protobuf.ByteString.EMPTY;
 
-        useLabel_ = false;
-
-        trueLabel_ = "";
-
-        falseLabel_ = "";
-
         return this;
       }
 
@@ -1220,9 +1046,6 @@ public final class ClassificationPb {
         result.dense_ = dense_;
         result.dims_ = dims_;
         result.weights_ = weights_;
-        result.useLabel_ = useLabel_;
-        result.trueLabel_ = trueLabel_;
-        result.falseLabel_ = falseLabel_;
         onBuilt();
         return result;
       }
@@ -1279,17 +1102,6 @@ public final class ClassificationPb {
         }
         if (other.getWeights() != com.google.protobuf.ByteString.EMPTY) {
           setWeights(other.getWeights());
-        }
-        if (other.getUseLabel() != false) {
-          setUseLabel(other.getUseLabel());
-        }
-        if (!other.getTrueLabel().isEmpty()) {
-          trueLabel_ = other.trueLabel_;
-          onChanged();
-        }
-        if (!other.getFalseLabel().isEmpty()) {
-          falseLabel_ = other.falseLabel_;
-          onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1412,189 +1224,6 @@ public final class ClassificationPb {
       public Builder clearWeights() {
         
         weights_ = getDefaultInstance().getWeights();
-        onChanged();
-        return this;
-      }
-
-      private boolean useLabel_ ;
-      /**
-       * <code>bool useLabel = 4;</code>
-       * @return The useLabel.
-       */
-      @java.lang.Override
-      public boolean getUseLabel() {
-        return useLabel_;
-      }
-      /**
-       * <code>bool useLabel = 4;</code>
-       * @param value The useLabel to set.
-       * @return This builder for chaining.
-       */
-      public Builder setUseLabel(boolean value) {
-        
-        useLabel_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bool useLabel = 4;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearUseLabel() {
-        
-        useLabel_ = false;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object trueLabel_ = "";
-      /**
-       * <code>string trueLabel = 5;</code>
-       * @return The trueLabel.
-       */
-      public java.lang.String getTrueLabel() {
-        java.lang.Object ref = trueLabel_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          trueLabel_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string trueLabel = 5;</code>
-       * @return The bytes for trueLabel.
-       */
-      public com.google.protobuf.ByteString
-          getTrueLabelBytes() {
-        java.lang.Object ref = trueLabel_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          trueLabel_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string trueLabel = 5;</code>
-       * @param value The trueLabel to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTrueLabel(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        trueLabel_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string trueLabel = 5;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTrueLabel() {
-        
-        trueLabel_ = getDefaultInstance().getTrueLabel();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string trueLabel = 5;</code>
-       * @param value The bytes for trueLabel to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTrueLabelBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        trueLabel_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object falseLabel_ = "";
-      /**
-       * <code>string falseLabel = 6;</code>
-       * @return The falseLabel.
-       */
-      public java.lang.String getFalseLabel() {
-        java.lang.Object ref = falseLabel_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          falseLabel_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string falseLabel = 6;</code>
-       * @return The bytes for falseLabel.
-       */
-      public com.google.protobuf.ByteString
-          getFalseLabelBytes() {
-        java.lang.Object ref = falseLabel_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          falseLabel_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string falseLabel = 6;</code>
-       * @param value The falseLabel to set.
-       * @return This builder for chaining.
-       */
-      public Builder setFalseLabel(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        falseLabel_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string falseLabel = 6;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearFalseLabel() {
-        
-        falseLabel_ = getDefaultInstance().getFalseLabel();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string falseLabel = 6;</code>
-       * @param value The bytes for falseLabel to set.
-       * @return This builder for chaining.
-       */
-      public Builder setFalseLabelBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        falseLabel_ = value;
         onChanged();
         return this;
       }
@@ -3242,36 +2871,6 @@ public final class ClassificationPb {
      * @return The coordinates.
      */
     com.google.protobuf.ByteString getCoordinates();
-
-    /**
-     * <code>bool useLabel = 4;</code>
-     * @return The useLabel.
-     */
-    boolean getUseLabel();
-
-    /**
-     * <code>string trueLabel = 5;</code>
-     * @return The trueLabel.
-     */
-    java.lang.String getTrueLabel();
-    /**
-     * <code>string trueLabel = 5;</code>
-     * @return The bytes for trueLabel.
-     */
-    com.google.protobuf.ByteString
-        getTrueLabelBytes();
-
-    /**
-     * <code>string falseLabel = 6;</code>
-     * @return The falseLabel.
-     */
-    java.lang.String getFalseLabel();
-    /**
-     * <code>string falseLabel = 6;</code>
-     * @return The bytes for falseLabel.
-     */
-    com.google.protobuf.ByteString
-        getFalseLabelBytes();
   }
   /**
    * Protobuf type {@code drillbit.protobuf.KNNBinaryClassifier}
@@ -3287,8 +2886,6 @@ public final class ClassificationPb {
     }
     private KNNBinaryClassifier() {
       coordinates_ = com.google.protobuf.ByteString.EMPTY;
-      trueLabel_ = "";
-      falseLabel_ = "";
     }
 
     @java.lang.Override
@@ -3329,23 +2926,6 @@ public final class ClassificationPb {
             case 26: {
 
               coordinates_ = input.readBytes();
-              break;
-            }
-            case 32: {
-
-              useLabel_ = input.readBool();
-              break;
-            }
-            case 42: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              trueLabel_ = s;
-              break;
-            }
-            case 50: {
-              java.lang.String s = input.readStringRequireUtf8();
-
-              falseLabel_ = s;
               break;
             }
             default: {
@@ -3402,93 +2982,6 @@ public final class ClassificationPb {
       return coordinates_;
     }
 
-    public static final int USELABEL_FIELD_NUMBER = 4;
-    private boolean useLabel_;
-    /**
-     * <code>bool useLabel = 4;</code>
-     * @return The useLabel.
-     */
-    @java.lang.Override
-    public boolean getUseLabel() {
-      return useLabel_;
-    }
-
-    public static final int TRUELABEL_FIELD_NUMBER = 5;
-    private volatile java.lang.Object trueLabel_;
-    /**
-     * <code>string trueLabel = 5;</code>
-     * @return The trueLabel.
-     */
-    @java.lang.Override
-    public java.lang.String getTrueLabel() {
-      java.lang.Object ref = trueLabel_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        trueLabel_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string trueLabel = 5;</code>
-     * @return The bytes for trueLabel.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getTrueLabelBytes() {
-      java.lang.Object ref = trueLabel_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        trueLabel_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int FALSELABEL_FIELD_NUMBER = 6;
-    private volatile java.lang.Object falseLabel_;
-    /**
-     * <code>string falseLabel = 6;</code>
-     * @return The falseLabel.
-     */
-    @java.lang.Override
-    public java.lang.String getFalseLabel() {
-      java.lang.Object ref = falseLabel_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        falseLabel_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string falseLabel = 6;</code>
-     * @return The bytes for falseLabel.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getFalseLabelBytes() {
-      java.lang.Object ref = falseLabel_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        falseLabel_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -3509,15 +3002,6 @@ public final class ClassificationPb {
       if (!coordinates_.isEmpty()) {
         output.writeBytes(3, coordinates_);
       }
-      if (useLabel_ != false) {
-        output.writeBool(4, useLabel_);
-      }
-      if (!getTrueLabelBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, trueLabel_);
-      }
-      if (!getFalseLabelBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, falseLabel_);
-      }
       unknownFields.writeTo(output);
     }
 
@@ -3534,16 +3018,6 @@ public final class ClassificationPb {
       if (!coordinates_.isEmpty()) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(3, coordinates_);
-      }
-      if (useLabel_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(4, useLabel_);
-      }
-      if (!getTrueLabelBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, trueLabel_);
-      }
-      if (!getFalseLabelBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, falseLabel_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -3564,12 +3038,6 @@ public final class ClassificationPb {
           != other.getDense()) return false;
       if (!getCoordinates()
           .equals(other.getCoordinates())) return false;
-      if (getUseLabel()
-          != other.getUseLabel()) return false;
-      if (!getTrueLabel()
-          .equals(other.getTrueLabel())) return false;
-      if (!getFalseLabel()
-          .equals(other.getFalseLabel())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -3586,13 +3054,6 @@ public final class ClassificationPb {
           getDense());
       hash = (37 * hash) + COORDINATES_FIELD_NUMBER;
       hash = (53 * hash) + getCoordinates().hashCode();
-      hash = (37 * hash) + USELABEL_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getUseLabel());
-      hash = (37 * hash) + TRUELABEL_FIELD_NUMBER;
-      hash = (53 * hash) + getTrueLabel().hashCode();
-      hash = (37 * hash) + FALSELABEL_FIELD_NUMBER;
-      hash = (53 * hash) + getFalseLabel().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -3730,12 +3191,6 @@ public final class ClassificationPb {
 
         coordinates_ = com.google.protobuf.ByteString.EMPTY;
 
-        useLabel_ = false;
-
-        trueLabel_ = "";
-
-        falseLabel_ = "";
-
         return this;
       }
 
@@ -3764,9 +3219,6 @@ public final class ClassificationPb {
         drillbit.protobuf.ClassificationPb.KNNBinaryClassifier result = new drillbit.protobuf.ClassificationPb.KNNBinaryClassifier(this);
         result.dense_ = dense_;
         result.coordinates_ = coordinates_;
-        result.useLabel_ = useLabel_;
-        result.trueLabel_ = trueLabel_;
-        result.falseLabel_ = falseLabel_;
         onBuilt();
         return result;
       }
@@ -3820,17 +3272,6 @@ public final class ClassificationPb {
         }
         if (other.getCoordinates() != com.google.protobuf.ByteString.EMPTY) {
           setCoordinates(other.getCoordinates());
-        }
-        if (other.getUseLabel() != false) {
-          setUseLabel(other.getUseLabel());
-        }
-        if (!other.getTrueLabel().isEmpty()) {
-          trueLabel_ = other.trueLabel_;
-          onChanged();
-        }
-        if (!other.getFalseLabel().isEmpty()) {
-          falseLabel_ = other.falseLabel_;
-          onChanged();
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -3922,189 +3363,6 @@ public final class ClassificationPb {
       public Builder clearCoordinates() {
         
         coordinates_ = getDefaultInstance().getCoordinates();
-        onChanged();
-        return this;
-      }
-
-      private boolean useLabel_ ;
-      /**
-       * <code>bool useLabel = 4;</code>
-       * @return The useLabel.
-       */
-      @java.lang.Override
-      public boolean getUseLabel() {
-        return useLabel_;
-      }
-      /**
-       * <code>bool useLabel = 4;</code>
-       * @param value The useLabel to set.
-       * @return This builder for chaining.
-       */
-      public Builder setUseLabel(boolean value) {
-        
-        useLabel_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bool useLabel = 4;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearUseLabel() {
-        
-        useLabel_ = false;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object trueLabel_ = "";
-      /**
-       * <code>string trueLabel = 5;</code>
-       * @return The trueLabel.
-       */
-      public java.lang.String getTrueLabel() {
-        java.lang.Object ref = trueLabel_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          trueLabel_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string trueLabel = 5;</code>
-       * @return The bytes for trueLabel.
-       */
-      public com.google.protobuf.ByteString
-          getTrueLabelBytes() {
-        java.lang.Object ref = trueLabel_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          trueLabel_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string trueLabel = 5;</code>
-       * @param value The trueLabel to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTrueLabel(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        trueLabel_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string trueLabel = 5;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearTrueLabel() {
-        
-        trueLabel_ = getDefaultInstance().getTrueLabel();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string trueLabel = 5;</code>
-       * @param value The bytes for trueLabel to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTrueLabelBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        trueLabel_ = value;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object falseLabel_ = "";
-      /**
-       * <code>string falseLabel = 6;</code>
-       * @return The falseLabel.
-       */
-      public java.lang.String getFalseLabel() {
-        java.lang.Object ref = falseLabel_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          falseLabel_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string falseLabel = 6;</code>
-       * @return The bytes for falseLabel.
-       */
-      public com.google.protobuf.ByteString
-          getFalseLabelBytes() {
-        java.lang.Object ref = falseLabel_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          falseLabel_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string falseLabel = 6;</code>
-       * @param value The falseLabel to set.
-       * @return This builder for chaining.
-       */
-      public Builder setFalseLabel(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  
-        falseLabel_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string falseLabel = 6;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearFalseLabel() {
-        
-        falseLabel_ = getDefaultInstance().getFalseLabel();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string falseLabel = 6;</code>
-       * @param value The bytes for falseLabel to set.
-       * @return This builder for chaining.
-       */
-      public Builder setFalseLabelBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
-        falseLabel_ = value;
         onChanged();
         return this;
       }
@@ -5714,23 +4972,20 @@ public final class ClassificationPb {
       "\n:resources/protos/drillbit/protobuf/cla" +
       "ssification_pb.proto\022\021drillbit.protobuf\"" +
       "A\n\021GeneralClassifier\022\r\n\005dense\030\001 \001(\010\022\014\n\004d" +
-      "ims\030\002 \001(\005\022\017\n\007weights\030\003 \001(\014\"y\n\020BinaryClas" +
+      "ims\030\002 \001(\005\022\017\n\007weights\030\003 \001(\014\"@\n\020BinaryClas" +
       "sifier\022\r\n\005dense\030\001 \001(\010\022\014\n\004dims\030\002 \001(\005\022\017\n\007w" +
-      "eights\030\003 \001(\014\022\020\n\010useLabel\030\004 \001(\010\022\021\n\ttrueLa" +
-      "bel\030\005 \001(\t\022\022\n\nfalseLabel\030\006 \001(\t\"\266\001\n\024Multic" +
-      "lassClassifier\022\r\n\005dense\030\001 \001(\010\022\014\n\004dims\030\002 " +
-      "\001(\005\022N\n\rlabel2Weights\030\003 \003(\01327.drillbit.pr" +
-      "otobuf.MulticlassClassifier.LabelAndWeig" +
-      "hts\0321\n\017LabelAndWeights\022\r\n\005label\030\001 \001(\t\022\017\n" +
-      "\007weights\030\002 \001(\014\"r\n\023KNNBinaryClassifier\022\r\n" +
-      "\005dense\030\001 \001(\010\022\023\n\013coordinates\030\003 \001(\014\022\020\n\010use" +
-      "Label\030\004 \001(\010\022\021\n\ttrueLabel\030\005 \001(\t\022\022\n\nfalseL" +
-      "abel\030\006 \001(\t\"\276\001\n\027KNNMulticlassClassifier\022\r" +
-      "\n\005dense\030\001 \001(\010\022Y\n\021label2Coordinates\030\002 \003(\013" +
-      "2>.drillbit.protobuf.KNNMulticlassClassi" +
-      "fier.LabelAndCoordinates\0329\n\023LabelAndCoor" +
-      "dinates\022\r\n\005label\030\001 \001(\t\022\023\n\013coordinates\030\002 " +
-      "\001(\014b\006proto3"
+      "eights\030\003 \001(\014\"\266\001\n\024MulticlassClassifier\022\r\n" +
+      "\005dense\030\001 \001(\010\022\014\n\004dims\030\002 \001(\005\022N\n\rlabel2Weig" +
+      "hts\030\003 \003(\01327.drillbit.protobuf.Multiclass" +
+      "Classifier.LabelAndWeights\0321\n\017LabelAndWe" +
+      "ights\022\r\n\005label\030\001 \001(\t\022\017\n\007weights\030\002 \001(\014\"9\n" +
+      "\023KNNBinaryClassifier\022\r\n\005dense\030\001 \001(\010\022\023\n\013c" +
+      "oordinates\030\003 \001(\014\"\276\001\n\027KNNMulticlassClassi" +
+      "fier\022\r\n\005dense\030\001 \001(\010\022Y\n\021label2Coordinates" +
+      "\030\002 \003(\0132>.drillbit.protobuf.KNNMulticlass" +
+      "Classifier.LabelAndCoordinates\0329\n\023LabelA" +
+      "ndCoordinates\022\r\n\005label\030\001 \001(\t\022\023\n\013coordina" +
+      "tes\030\002 \001(\014b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -5747,7 +5002,7 @@ public final class ClassificationPb {
     internal_static_drillbit_protobuf_BinaryClassifier_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_drillbit_protobuf_BinaryClassifier_descriptor,
-        new java.lang.String[] { "Dense", "Dims", "Weights", "UseLabel", "TrueLabel", "FalseLabel", });
+        new java.lang.String[] { "Dense", "Dims", "Weights", });
     internal_static_drillbit_protobuf_MulticlassClassifier_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_drillbit_protobuf_MulticlassClassifier_fieldAccessorTable = new
@@ -5765,7 +5020,7 @@ public final class ClassificationPb {
     internal_static_drillbit_protobuf_KNNBinaryClassifier_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_drillbit_protobuf_KNNBinaryClassifier_descriptor,
-        new java.lang.String[] { "Dense", "Coordinates", "UseLabel", "TrueLabel", "FalseLabel", });
+        new java.lang.String[] { "Dense", "Coordinates", });
     internal_static_drillbit_protobuf_KNNMulticlassClassifier_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_drillbit_protobuf_KNNMulticlassClassifier_fieldAccessorTable = new

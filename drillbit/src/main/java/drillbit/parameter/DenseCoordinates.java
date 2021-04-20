@@ -63,10 +63,10 @@ public class DenseCoordinates extends Coordinates {
             coordinates.set(row, coordinate);
         }
         else if (row >= sz) {
-            for (int i = sz; i < 2 * sz; i++) {
+            for (int i = sz; i < row; i++) {
                 coordinates.add(new double[ndim]);
             }
-            set(row, coordinate);
+            coordinates.add(coordinate);
         }
         else {
             throw new IllegalArgumentException("");

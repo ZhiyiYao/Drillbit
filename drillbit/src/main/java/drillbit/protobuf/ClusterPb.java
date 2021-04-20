@@ -17,6 +17,42 @@ public final class ClusterPb {
   public interface KMeansClassifierOrBuilder extends
       // @@protoc_insertion_point(interface_extends:drillbit.protobuf.KMeansClassifier)
       com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>bool dense = 1;</code>
+     * @return The dense.
+     */
+    boolean getDense();
+
+    /**
+     * <code>int32 dims = 2;</code>
+     * @return The dims.
+     */
+    int getDims();
+
+    /**
+     * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+     */
+    java.util.List<drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter> 
+        getLabel2ClusterCentersList();
+    /**
+     * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+     */
+    drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter getLabel2ClusterCenters(int index);
+    /**
+     * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+     */
+    int getLabel2ClusterCentersCount();
+    /**
+     * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+     */
+    java.util.List<? extends drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenterOrBuilder> 
+        getLabel2ClusterCentersOrBuilderList();
+    /**
+     * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+     */
+    drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenterOrBuilder getLabel2ClusterCentersOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code drillbit.protobuf.KMeansClassifier}
@@ -31,6 +67,7 @@ public final class ClusterPb {
       super(builder);
     }
     private KMeansClassifier() {
+      label2ClusterCenters_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -53,6 +90,7 @@ public final class ClusterPb {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -63,6 +101,25 @@ public final class ClusterPb {
             case 0:
               done = true;
               break;
+            case 8: {
+
+              dense_ = input.readBool();
+              break;
+            }
+            case 16: {
+
+              dims_ = input.readInt32();
+              break;
+            }
+            case 26: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                label2ClusterCenters_ = new java.util.ArrayList<drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              label2ClusterCenters_.add(
+                  input.readMessage(drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.parser(), extensionRegistry));
+              break;
+            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -78,6 +135,9 @@ public final class ClusterPb {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          label2ClusterCenters_ = java.util.Collections.unmodifiableList(label2ClusterCenters_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -95,6 +155,710 @@ public final class ClusterPb {
               drillbit.protobuf.ClusterPb.KMeansClassifier.class, drillbit.protobuf.ClusterPb.KMeansClassifier.Builder.class);
     }
 
+    public interface ClusterCenterOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:drillbit.protobuf.KMeansClassifier.ClusterCenter)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>string label = 1;</code>
+       * @return The label.
+       */
+      java.lang.String getLabel();
+      /**
+       * <code>string label = 1;</code>
+       * @return The bytes for label.
+       */
+      com.google.protobuf.ByteString
+          getLabelBytes();
+
+      /**
+       * <code>bytes coordinate = 2;</code>
+       * @return The coordinate.
+       */
+      com.google.protobuf.ByteString getCoordinate();
+    }
+    /**
+     * Protobuf type {@code drillbit.protobuf.KMeansClassifier.ClusterCenter}
+     */
+    public static final class ClusterCenter extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:drillbit.protobuf.KMeansClassifier.ClusterCenter)
+        ClusterCenterOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use ClusterCenter.newBuilder() to construct.
+      private ClusterCenter(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private ClusterCenter() {
+        label_ = "";
+        coordinate_ = com.google.protobuf.ByteString.EMPTY;
+      }
+
+      @java.lang.Override
+      @SuppressWarnings({"unused"})
+      protected java.lang.Object newInstance(
+          UnusedPrivateParameter unused) {
+        return new ClusterCenter();
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private ClusterCenter(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                java.lang.String s = input.readStringRequireUtf8();
+
+                label_ = s;
+                break;
+              }
+              case 18: {
+
+                coordinate_ = input.readBytes();
+                break;
+              }
+              default: {
+                if (!parseUnknownField(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return drillbit.protobuf.ClusterPb.internal_static_drillbit_protobuf_KMeansClassifier_ClusterCenter_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return drillbit.protobuf.ClusterPb.internal_static_drillbit_protobuf_KMeansClassifier_ClusterCenter_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.class, drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.Builder.class);
+      }
+
+      public static final int LABEL_FIELD_NUMBER = 1;
+      private volatile java.lang.Object label_;
+      /**
+       * <code>string label = 1;</code>
+       * @return The label.
+       */
+      @java.lang.Override
+      public java.lang.String getLabel() {
+        java.lang.Object ref = label_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          label_ = s;
+          return s;
+        }
+      }
+      /**
+       * <code>string label = 1;</code>
+       * @return The bytes for label.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString
+          getLabelBytes() {
+        java.lang.Object ref = label_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          label_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      public static final int COORDINATE_FIELD_NUMBER = 2;
+      private com.google.protobuf.ByteString coordinate_;
+      /**
+       * <code>bytes coordinate = 2;</code>
+       * @return The coordinate.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getCoordinate() {
+        return coordinate_;
+      }
+
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      @java.lang.Override
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (!getLabelBytes().isEmpty()) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 1, label_);
+        }
+        if (!coordinate_.isEmpty()) {
+          output.writeBytes(2, coordinate_);
+        }
+        unknownFields.writeTo(output);
+      }
+
+      @java.lang.Override
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (!getLabelBytes().isEmpty()) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, label_);
+        }
+        if (!coordinate_.isEmpty()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(2, coordinate_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter)) {
+          return super.equals(obj);
+        }
+        drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter other = (drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter) obj;
+
+        if (!getLabel()
+            .equals(other.getLabel())) return false;
+        if (!getCoordinate()
+            .equals(other.getCoordinate())) return false;
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + LABEL_FIELD_NUMBER;
+        hash = (53 * hash) + getLabel().hashCode();
+        hash = (37 * hash) + COORDINATE_FIELD_NUMBER;
+        hash = (53 * hash) + getCoordinate().hashCode();
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code drillbit.protobuf.KMeansClassifier.ClusterCenter}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:drillbit.protobuf.KMeansClassifier.ClusterCenter)
+          drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenterOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return drillbit.protobuf.ClusterPb.internal_static_drillbit_protobuf_KMeansClassifier_ClusterCenter_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return drillbit.protobuf.ClusterPb.internal_static_drillbit_protobuf_KMeansClassifier_ClusterCenter_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.class, drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.Builder.class);
+        }
+
+        // Construct using drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          label_ = "";
+
+          coordinate_ = com.google.protobuf.ByteString.EMPTY;
+
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return drillbit.protobuf.ClusterPb.internal_static_drillbit_protobuf_KMeansClassifier_ClusterCenter_descriptor;
+        }
+
+        @java.lang.Override
+        public drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter getDefaultInstanceForType() {
+          return drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter build() {
+          drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter buildPartial() {
+          drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter result = new drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter(this);
+          result.label_ = label_;
+          result.coordinate_ = coordinate_;
+          onBuilt();
+          return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+          return super.clone();
+        }
+        @java.lang.Override
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return super.setField(field, value);
+        }
+        @java.lang.Override
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return super.clearField(field);
+        }
+        @java.lang.Override
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return super.clearOneof(oneof);
+        }
+        @java.lang.Override
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return super.setRepeatedField(field, index, value);
+        }
+        @java.lang.Override
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return super.addRepeatedField(field, value);
+        }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter) {
+            return mergeFrom((drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter other) {
+          if (other == drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.getDefaultInstance()) return this;
+          if (!other.getLabel().isEmpty()) {
+            label_ = other.label_;
+            onChanged();
+          }
+          if (other.getCoordinate() != com.google.protobuf.ByteString.EMPTY) {
+            setCoordinate(other.getCoordinate());
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+
+        private java.lang.Object label_ = "";
+        /**
+         * <code>string label = 1;</code>
+         * @return The label.
+         */
+        public java.lang.String getLabel() {
+          java.lang.Object ref = label_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            label_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>string label = 1;</code>
+         * @return The bytes for label.
+         */
+        public com.google.protobuf.ByteString
+            getLabelBytes() {
+          java.lang.Object ref = label_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            label_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>string label = 1;</code>
+         * @param value The label to set.
+         * @return This builder for chaining.
+         */
+        public Builder setLabel(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          label_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string label = 1;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearLabel() {
+          
+          label_ = getDefaultInstance().getLabel();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string label = 1;</code>
+         * @param value The bytes for label to set.
+         * @return This builder for chaining.
+         */
+        public Builder setLabelBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+          
+          label_ = value;
+          onChanged();
+          return this;
+        }
+
+        private com.google.protobuf.ByteString coordinate_ = com.google.protobuf.ByteString.EMPTY;
+        /**
+         * <code>bytes coordinate = 2;</code>
+         * @return The coordinate.
+         */
+        @java.lang.Override
+        public com.google.protobuf.ByteString getCoordinate() {
+          return coordinate_;
+        }
+        /**
+         * <code>bytes coordinate = 2;</code>
+         * @param value The coordinate to set.
+         * @return This builder for chaining.
+         */
+        public Builder setCoordinate(com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          coordinate_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>bytes coordinate = 2;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearCoordinate() {
+          
+          coordinate_ = getDefaultInstance().getCoordinate();
+          onChanged();
+          return this;
+        }
+        @java.lang.Override
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFields(unknownFields);
+        }
+
+        @java.lang.Override
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:drillbit.protobuf.KMeansClassifier.ClusterCenter)
+      }
+
+      // @@protoc_insertion_point(class_scope:drillbit.protobuf.KMeansClassifier.ClusterCenter)
+      private static final drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter();
+      }
+
+      public static drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<ClusterCenter>
+          PARSER = new com.google.protobuf.AbstractParser<ClusterCenter>() {
+        @java.lang.Override
+        public ClusterCenter parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new ClusterCenter(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<ClusterCenter> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<ClusterCenter> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    public static final int DENSE_FIELD_NUMBER = 1;
+    private boolean dense_;
+    /**
+     * <code>bool dense = 1;</code>
+     * @return The dense.
+     */
+    @java.lang.Override
+    public boolean getDense() {
+      return dense_;
+    }
+
+    public static final int DIMS_FIELD_NUMBER = 2;
+    private int dims_;
+    /**
+     * <code>int32 dims = 2;</code>
+     * @return The dims.
+     */
+    @java.lang.Override
+    public int getDims() {
+      return dims_;
+    }
+
+    public static final int LABEL2CLUSTERCENTERS_FIELD_NUMBER = 3;
+    private java.util.List<drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter> label2ClusterCenters_;
+    /**
+     * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+     */
+    @java.lang.Override
+    public java.util.List<drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter> getLabel2ClusterCentersList() {
+      return label2ClusterCenters_;
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenterOrBuilder> 
+        getLabel2ClusterCentersOrBuilderList() {
+      return label2ClusterCenters_;
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+     */
+    @java.lang.Override
+    public int getLabel2ClusterCentersCount() {
+      return label2ClusterCenters_.size();
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+     */
+    @java.lang.Override
+    public drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter getLabel2ClusterCenters(int index) {
+      return label2ClusterCenters_.get(index);
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+     */
+    @java.lang.Override
+    public drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenterOrBuilder getLabel2ClusterCentersOrBuilder(
+        int index) {
+      return label2ClusterCenters_.get(index);
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -109,6 +873,15 @@ public final class ClusterPb {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (dense_ != false) {
+        output.writeBool(1, dense_);
+      }
+      if (dims_ != 0) {
+        output.writeInt32(2, dims_);
+      }
+      for (int i = 0; i < label2ClusterCenters_.size(); i++) {
+        output.writeMessage(3, label2ClusterCenters_.get(i));
+      }
       unknownFields.writeTo(output);
     }
 
@@ -118,6 +891,18 @@ public final class ClusterPb {
       if (size != -1) return size;
 
       size = 0;
+      if (dense_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, dense_);
+      }
+      if (dims_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, dims_);
+      }
+      for (int i = 0; i < label2ClusterCenters_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, label2ClusterCenters_.get(i));
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -133,6 +918,12 @@ public final class ClusterPb {
       }
       drillbit.protobuf.ClusterPb.KMeansClassifier other = (drillbit.protobuf.ClusterPb.KMeansClassifier) obj;
 
+      if (getDense()
+          != other.getDense()) return false;
+      if (getDims()
+          != other.getDims()) return false;
+      if (!getLabel2ClusterCentersList()
+          .equals(other.getLabel2ClusterCentersList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -144,6 +935,15 @@ public final class ClusterPb {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + DENSE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getDense());
+      hash = (37 * hash) + DIMS_FIELD_NUMBER;
+      hash = (53 * hash) + getDims();
+      if (getLabel2ClusterCentersCount() > 0) {
+        hash = (37 * hash) + LABEL2CLUSTERCENTERS_FIELD_NUMBER;
+        hash = (53 * hash) + getLabel2ClusterCentersList().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -272,11 +1072,22 @@ public final class ClusterPb {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getLabel2ClusterCentersFieldBuilder();
         }
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        dense_ = false;
+
+        dims_ = 0;
+
+        if (label2ClusterCentersBuilder_ == null) {
+          label2ClusterCenters_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          label2ClusterCentersBuilder_.clear();
+        }
         return this;
       }
 
@@ -303,6 +1114,18 @@ public final class ClusterPb {
       @java.lang.Override
       public drillbit.protobuf.ClusterPb.KMeansClassifier buildPartial() {
         drillbit.protobuf.ClusterPb.KMeansClassifier result = new drillbit.protobuf.ClusterPb.KMeansClassifier(this);
+        int from_bitField0_ = bitField0_;
+        result.dense_ = dense_;
+        result.dims_ = dims_;
+        if (label2ClusterCentersBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            label2ClusterCenters_ = java.util.Collections.unmodifiableList(label2ClusterCenters_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.label2ClusterCenters_ = label2ClusterCenters_;
+        } else {
+          result.label2ClusterCenters_ = label2ClusterCentersBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -351,6 +1174,38 @@ public final class ClusterPb {
 
       public Builder mergeFrom(drillbit.protobuf.ClusterPb.KMeansClassifier other) {
         if (other == drillbit.protobuf.ClusterPb.KMeansClassifier.getDefaultInstance()) return this;
+        if (other.getDense() != false) {
+          setDense(other.getDense());
+        }
+        if (other.getDims() != 0) {
+          setDims(other.getDims());
+        }
+        if (label2ClusterCentersBuilder_ == null) {
+          if (!other.label2ClusterCenters_.isEmpty()) {
+            if (label2ClusterCenters_.isEmpty()) {
+              label2ClusterCenters_ = other.label2ClusterCenters_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureLabel2ClusterCentersIsMutable();
+              label2ClusterCenters_.addAll(other.label2ClusterCenters_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.label2ClusterCenters_.isEmpty()) {
+            if (label2ClusterCentersBuilder_.isEmpty()) {
+              label2ClusterCentersBuilder_.dispose();
+              label2ClusterCentersBuilder_ = null;
+              label2ClusterCenters_ = other.label2ClusterCenters_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              label2ClusterCentersBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getLabel2ClusterCentersFieldBuilder() : null;
+            } else {
+              label2ClusterCentersBuilder_.addAllMessages(other.label2ClusterCenters_);
+            }
+          }
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -378,6 +1233,309 @@ public final class ClusterPb {
           }
         }
         return this;
+      }
+      private int bitField0_;
+
+      private boolean dense_ ;
+      /**
+       * <code>bool dense = 1;</code>
+       * @return The dense.
+       */
+      @java.lang.Override
+      public boolean getDense() {
+        return dense_;
+      }
+      /**
+       * <code>bool dense = 1;</code>
+       * @param value The dense to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDense(boolean value) {
+        
+        dense_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool dense = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDense() {
+        
+        dense_ = false;
+        onChanged();
+        return this;
+      }
+
+      private int dims_ ;
+      /**
+       * <code>int32 dims = 2;</code>
+       * @return The dims.
+       */
+      @java.lang.Override
+      public int getDims() {
+        return dims_;
+      }
+      /**
+       * <code>int32 dims = 2;</code>
+       * @param value The dims to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDims(int value) {
+        
+        dims_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 dims = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDims() {
+        
+        dims_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter> label2ClusterCenters_ =
+        java.util.Collections.emptyList();
+      private void ensureLabel2ClusterCentersIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          label2ClusterCenters_ = new java.util.ArrayList<drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter>(label2ClusterCenters_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter, drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.Builder, drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenterOrBuilder> label2ClusterCentersBuilder_;
+
+      /**
+       * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+       */
+      public java.util.List<drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter> getLabel2ClusterCentersList() {
+        if (label2ClusterCentersBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(label2ClusterCenters_);
+        } else {
+          return label2ClusterCentersBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+       */
+      public int getLabel2ClusterCentersCount() {
+        if (label2ClusterCentersBuilder_ == null) {
+          return label2ClusterCenters_.size();
+        } else {
+          return label2ClusterCentersBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+       */
+      public drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter getLabel2ClusterCenters(int index) {
+        if (label2ClusterCentersBuilder_ == null) {
+          return label2ClusterCenters_.get(index);
+        } else {
+          return label2ClusterCentersBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+       */
+      public Builder setLabel2ClusterCenters(
+          int index, drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter value) {
+        if (label2ClusterCentersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureLabel2ClusterCentersIsMutable();
+          label2ClusterCenters_.set(index, value);
+          onChanged();
+        } else {
+          label2ClusterCentersBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+       */
+      public Builder setLabel2ClusterCenters(
+          int index, drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.Builder builderForValue) {
+        if (label2ClusterCentersBuilder_ == null) {
+          ensureLabel2ClusterCentersIsMutable();
+          label2ClusterCenters_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          label2ClusterCentersBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+       */
+      public Builder addLabel2ClusterCenters(drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter value) {
+        if (label2ClusterCentersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureLabel2ClusterCentersIsMutable();
+          label2ClusterCenters_.add(value);
+          onChanged();
+        } else {
+          label2ClusterCentersBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+       */
+      public Builder addLabel2ClusterCenters(
+          int index, drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter value) {
+        if (label2ClusterCentersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureLabel2ClusterCentersIsMutable();
+          label2ClusterCenters_.add(index, value);
+          onChanged();
+        } else {
+          label2ClusterCentersBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+       */
+      public Builder addLabel2ClusterCenters(
+          drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.Builder builderForValue) {
+        if (label2ClusterCentersBuilder_ == null) {
+          ensureLabel2ClusterCentersIsMutable();
+          label2ClusterCenters_.add(builderForValue.build());
+          onChanged();
+        } else {
+          label2ClusterCentersBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+       */
+      public Builder addLabel2ClusterCenters(
+          int index, drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.Builder builderForValue) {
+        if (label2ClusterCentersBuilder_ == null) {
+          ensureLabel2ClusterCentersIsMutable();
+          label2ClusterCenters_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          label2ClusterCentersBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+       */
+      public Builder addAllLabel2ClusterCenters(
+          java.lang.Iterable<? extends drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter> values) {
+        if (label2ClusterCentersBuilder_ == null) {
+          ensureLabel2ClusterCentersIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, label2ClusterCenters_);
+          onChanged();
+        } else {
+          label2ClusterCentersBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+       */
+      public Builder clearLabel2ClusterCenters() {
+        if (label2ClusterCentersBuilder_ == null) {
+          label2ClusterCenters_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          label2ClusterCentersBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+       */
+      public Builder removeLabel2ClusterCenters(int index) {
+        if (label2ClusterCentersBuilder_ == null) {
+          ensureLabel2ClusterCentersIsMutable();
+          label2ClusterCenters_.remove(index);
+          onChanged();
+        } else {
+          label2ClusterCentersBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+       */
+      public drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.Builder getLabel2ClusterCentersBuilder(
+          int index) {
+        return getLabel2ClusterCentersFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+       */
+      public drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenterOrBuilder getLabel2ClusterCentersOrBuilder(
+          int index) {
+        if (label2ClusterCentersBuilder_ == null) {
+          return label2ClusterCenters_.get(index);  } else {
+          return label2ClusterCentersBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+       */
+      public java.util.List<? extends drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenterOrBuilder> 
+           getLabel2ClusterCentersOrBuilderList() {
+        if (label2ClusterCentersBuilder_ != null) {
+          return label2ClusterCentersBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(label2ClusterCenters_);
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+       */
+      public drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.Builder addLabel2ClusterCentersBuilder() {
+        return getLabel2ClusterCentersFieldBuilder().addBuilder(
+            drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+       */
+      public drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.Builder addLabel2ClusterCentersBuilder(
+          int index) {
+        return getLabel2ClusterCentersFieldBuilder().addBuilder(
+            index, drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.KMeansClassifier.ClusterCenter label2ClusterCenters = 3;</code>
+       */
+      public java.util.List<drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.Builder> 
+           getLabel2ClusterCentersBuilderList() {
+        return getLabel2ClusterCentersFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter, drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.Builder, drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenterOrBuilder> 
+          getLabel2ClusterCentersFieldBuilder() {
+        if (label2ClusterCentersBuilder_ == null) {
+          label2ClusterCentersBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter, drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenter.Builder, drillbit.protobuf.ClusterPb.KMeansClassifier.ClusterCenterOrBuilder>(
+                  label2ClusterCenters_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          label2ClusterCenters_ = null;
+        }
+        return label2ClusterCentersBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -435,6 +1593,42 @@ public final class ClusterPb {
   public interface GaussianMixtureModelClassifierOrBuilder extends
       // @@protoc_insertion_point(interface_extends:drillbit.protobuf.GaussianMixtureModelClassifier)
       com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>bool dense = 1;</code>
+     * @return The dense.
+     */
+    boolean getDense();
+
+    /**
+     * <code>int32 dims = 2;</code>
+     * @return The dims.
+     */
+    int getDims();
+
+    /**
+     * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+     */
+    java.util.List<drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance> 
+        getLabel2ClusterCenterAndVarianceList();
+    /**
+     * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+     */
+    drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance getLabel2ClusterCenterAndVariance(int index);
+    /**
+     * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+     */
+    int getLabel2ClusterCenterAndVarianceCount();
+    /**
+     * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+     */
+    java.util.List<? extends drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVarianceOrBuilder> 
+        getLabel2ClusterCenterAndVarianceOrBuilderList();
+    /**
+     * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+     */
+    drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVarianceOrBuilder getLabel2ClusterCenterAndVarianceOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code drillbit.protobuf.GaussianMixtureModelClassifier}
@@ -449,6 +1643,7 @@ public final class ClusterPb {
       super(builder);
     }
     private GaussianMixtureModelClassifier() {
+      label2ClusterCenterAndVariance_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -471,6 +1666,7 @@ public final class ClusterPb {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
+      int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
           com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
@@ -481,6 +1677,25 @@ public final class ClusterPb {
             case 0:
               done = true;
               break;
+            case 8: {
+
+              dense_ = input.readBool();
+              break;
+            }
+            case 16: {
+
+              dims_ = input.readInt32();
+              break;
+            }
+            case 26: {
+              if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                label2ClusterCenterAndVariance_ = new java.util.ArrayList<drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              label2ClusterCenterAndVariance_.add(
+                  input.readMessage(drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.parser(), extensionRegistry));
+              break;
+            }
             default: {
               if (!parseUnknownField(
                   input, unknownFields, extensionRegistry, tag)) {
@@ -496,6 +1711,9 @@ public final class ClusterPb {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e).setUnfinishedMessage(this);
       } finally {
+        if (((mutable_bitField0_ & 0x00000001) != 0)) {
+          label2ClusterCenterAndVariance_ = java.util.Collections.unmodifiableList(label2ClusterCenterAndVariance_);
+        }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
@@ -513,6 +1731,784 @@ public final class ClusterPb {
               drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.class, drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.Builder.class);
     }
 
+    public interface LabelAndClusterCenterAndVarianceOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance)
+        com.google.protobuf.MessageOrBuilder {
+
+      /**
+       * <code>string label = 1;</code>
+       * @return The label.
+       */
+      java.lang.String getLabel();
+      /**
+       * <code>string label = 1;</code>
+       * @return The bytes for label.
+       */
+      com.google.protobuf.ByteString
+          getLabelBytes();
+
+      /**
+       * <code>bytes coordinate = 2;</code>
+       * @return The coordinate.
+       */
+      com.google.protobuf.ByteString getCoordinate();
+
+      /**
+       * <code>bytes variance = 3;</code>
+       * @return The variance.
+       */
+      com.google.protobuf.ByteString getVariance();
+    }
+    /**
+     * Protobuf type {@code drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance}
+     */
+    public static final class LabelAndClusterCenterAndVariance extends
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance)
+        LabelAndClusterCenterAndVarianceOrBuilder {
+    private static final long serialVersionUID = 0L;
+      // Use LabelAndClusterCenterAndVariance.newBuilder() to construct.
+      private LabelAndClusterCenterAndVariance(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+      }
+      private LabelAndClusterCenterAndVariance() {
+        label_ = "";
+        coordinate_ = com.google.protobuf.ByteString.EMPTY;
+        variance_ = com.google.protobuf.ByteString.EMPTY;
+      }
+
+      @java.lang.Override
+      @SuppressWarnings({"unused"})
+      protected java.lang.Object newInstance(
+          UnusedPrivateParameter unused) {
+        return new LabelAndClusterCenterAndVariance();
+      }
+
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+      getUnknownFields() {
+        return this.unknownFields;
+      }
+      private LabelAndClusterCenterAndVariance(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                java.lang.String s = input.readStringRequireUtf8();
+
+                label_ = s;
+                break;
+              }
+              case 18: {
+
+                coordinate_ = input.readBytes();
+                break;
+              }
+              case 26: {
+
+                variance_ = input.readBytes();
+                break;
+              }
+              default: {
+                if (!parseUnknownField(
+                    input, unknownFields, extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return drillbit.protobuf.ClusterPb.internal_static_drillbit_protobuf_GaussianMixtureModelClassifier_LabelAndClusterCenterAndVariance_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return drillbit.protobuf.ClusterPb.internal_static_drillbit_protobuf_GaussianMixtureModelClassifier_LabelAndClusterCenterAndVariance_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.class, drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.Builder.class);
+      }
+
+      public static final int LABEL_FIELD_NUMBER = 1;
+      private volatile java.lang.Object label_;
+      /**
+       * <code>string label = 1;</code>
+       * @return The label.
+       */
+      @java.lang.Override
+      public java.lang.String getLabel() {
+        java.lang.Object ref = label_;
+        if (ref instanceof java.lang.String) {
+          return (java.lang.String) ref;
+        } else {
+          com.google.protobuf.ByteString bs = 
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          label_ = s;
+          return s;
+        }
+      }
+      /**
+       * <code>string label = 1;</code>
+       * @return The bytes for label.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString
+          getLabelBytes() {
+        java.lang.Object ref = label_;
+        if (ref instanceof java.lang.String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          label_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+
+      public static final int COORDINATE_FIELD_NUMBER = 2;
+      private com.google.protobuf.ByteString coordinate_;
+      /**
+       * <code>bytes coordinate = 2;</code>
+       * @return The coordinate.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getCoordinate() {
+        return coordinate_;
+      }
+
+      public static final int VARIANCE_FIELD_NUMBER = 3;
+      private com.google.protobuf.ByteString variance_;
+      /**
+       * <code>bytes variance = 3;</code>
+       * @return The variance.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getVariance() {
+        return variance_;
+      }
+
+      private byte memoizedIsInitialized = -1;
+      @java.lang.Override
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      @java.lang.Override
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        if (!getLabelBytes().isEmpty()) {
+          com.google.protobuf.GeneratedMessageV3.writeString(output, 1, label_);
+        }
+        if (!coordinate_.isEmpty()) {
+          output.writeBytes(2, coordinate_);
+        }
+        if (!variance_.isEmpty()) {
+          output.writeBytes(3, variance_);
+        }
+        unknownFields.writeTo(output);
+      }
+
+      @java.lang.Override
+      public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (!getLabelBytes().isEmpty()) {
+          size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, label_);
+        }
+        if (!coordinate_.isEmpty()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(2, coordinate_);
+        }
+        if (!variance_.isEmpty()) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeBytesSize(3, variance_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+      }
+
+      @java.lang.Override
+      public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+         return true;
+        }
+        if (!(obj instanceof drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance)) {
+          return super.equals(obj);
+        }
+        drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance other = (drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance) obj;
+
+        if (!getLabel()
+            .equals(other.getLabel())) return false;
+        if (!getCoordinate()
+            .equals(other.getCoordinate())) return false;
+        if (!getVariance()
+            .equals(other.getVariance())) return false;
+        if (!unknownFields.equals(other.unknownFields)) return false;
+        return true;
+      }
+
+      @java.lang.Override
+      public int hashCode() {
+        if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (37 * hash) + LABEL_FIELD_NUMBER;
+        hash = (53 * hash) + getLabel().hashCode();
+        hash = (37 * hash) + COORDINATE_FIELD_NUMBER;
+        hash = (53 * hash) + getCoordinate().hashCode();
+        hash = (37 * hash) + VARIANCE_FIELD_NUMBER;
+        hash = (53 * hash) + getVariance().hashCode();
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+      }
+
+      public static drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance parseFrom(
+          java.nio.ByteBuffer data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance parseFrom(
+          java.nio.ByteBuffer data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input);
+      }
+      public static drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+      }
+      public static drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input);
+      }
+      public static drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+            .parseWithIOException(PARSER, input, extensionRegistry);
+      }
+
+      @java.lang.Override
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+      }
+      public static Builder newBuilder(drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+      }
+      @java.lang.Override
+      public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+            ? new Builder() : new Builder().mergeFrom(this);
+      }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+          // @@protoc_insertion_point(builder_implements:drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance)
+          drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVarianceOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return drillbit.protobuf.ClusterPb.internal_static_drillbit_protobuf_GaussianMixtureModelClassifier_LabelAndClusterCenterAndVariance_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return drillbit.protobuf.ClusterPb.internal_static_drillbit_protobuf_GaussianMixtureModelClassifier_LabelAndClusterCenterAndVariance_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.class, drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.Builder.class);
+        }
+
+        // Construct using drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+        }
+        @java.lang.Override
+        public Builder clear() {
+          super.clear();
+          label_ = "";
+
+          coordinate_ = com.google.protobuf.ByteString.EMPTY;
+
+          variance_ = com.google.protobuf.ByteString.EMPTY;
+
+          return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return drillbit.protobuf.ClusterPb.internal_static_drillbit_protobuf_GaussianMixtureModelClassifier_LabelAndClusterCenterAndVariance_descriptor;
+        }
+
+        @java.lang.Override
+        public drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance getDefaultInstanceForType() {
+          return drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance build() {
+          drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        @java.lang.Override
+        public drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance buildPartial() {
+          drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance result = new drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance(this);
+          result.label_ = label_;
+          result.coordinate_ = coordinate_;
+          result.variance_ = variance_;
+          onBuilt();
+          return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+          return super.clone();
+        }
+        @java.lang.Override
+        public Builder setField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return super.setField(field, value);
+        }
+        @java.lang.Override
+        public Builder clearField(
+            com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return super.clearField(field);
+        }
+        @java.lang.Override
+        public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return super.clearOneof(oneof);
+        }
+        @java.lang.Override
+        public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+          return super.setRepeatedField(field, index, value);
+        }
+        @java.lang.Override
+        public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+          return super.addRepeatedField(field, value);
+        }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance) {
+            return mergeFrom((drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance other) {
+          if (other == drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.getDefaultInstance()) return this;
+          if (!other.getLabel().isEmpty()) {
+            label_ = other.label_;
+            onChanged();
+          }
+          if (other.getCoordinate() != com.google.protobuf.ByteString.EMPTY) {
+            setCoordinate(other.getCoordinate());
+          }
+          if (other.getVariance() != com.google.protobuf.ByteString.EMPTY) {
+            setVariance(other.getVariance());
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
+          return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance) e.getUnfinishedMessage();
+            throw e.unwrapIOException();
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+
+        private java.lang.Object label_ = "";
+        /**
+         * <code>string label = 1;</code>
+         * @return The label.
+         */
+        public java.lang.String getLabel() {
+          java.lang.Object ref = label_;
+          if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            label_ = s;
+            return s;
+          } else {
+            return (java.lang.String) ref;
+          }
+        }
+        /**
+         * <code>string label = 1;</code>
+         * @return The bytes for label.
+         */
+        public com.google.protobuf.ByteString
+            getLabelBytes() {
+          java.lang.Object ref = label_;
+          if (ref instanceof String) {
+            com.google.protobuf.ByteString b = 
+                com.google.protobuf.ByteString.copyFromUtf8(
+                    (java.lang.String) ref);
+            label_ = b;
+            return b;
+          } else {
+            return (com.google.protobuf.ByteString) ref;
+          }
+        }
+        /**
+         * <code>string label = 1;</code>
+         * @param value The label to set.
+         * @return This builder for chaining.
+         */
+        public Builder setLabel(
+            java.lang.String value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          label_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string label = 1;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearLabel() {
+          
+          label_ = getDefaultInstance().getLabel();
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>string label = 1;</code>
+         * @param value The bytes for label to set.
+         * @return This builder for chaining.
+         */
+        public Builder setLabelBytes(
+            com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+          
+          label_ = value;
+          onChanged();
+          return this;
+        }
+
+        private com.google.protobuf.ByteString coordinate_ = com.google.protobuf.ByteString.EMPTY;
+        /**
+         * <code>bytes coordinate = 2;</code>
+         * @return The coordinate.
+         */
+        @java.lang.Override
+        public com.google.protobuf.ByteString getCoordinate() {
+          return coordinate_;
+        }
+        /**
+         * <code>bytes coordinate = 2;</code>
+         * @param value The coordinate to set.
+         * @return This builder for chaining.
+         */
+        public Builder setCoordinate(com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          coordinate_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>bytes coordinate = 2;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearCoordinate() {
+          
+          coordinate_ = getDefaultInstance().getCoordinate();
+          onChanged();
+          return this;
+        }
+
+        private com.google.protobuf.ByteString variance_ = com.google.protobuf.ByteString.EMPTY;
+        /**
+         * <code>bytes variance = 3;</code>
+         * @return The variance.
+         */
+        @java.lang.Override
+        public com.google.protobuf.ByteString getVariance() {
+          return variance_;
+        }
+        /**
+         * <code>bytes variance = 3;</code>
+         * @param value The variance to set.
+         * @return This builder for chaining.
+         */
+        public Builder setVariance(com.google.protobuf.ByteString value) {
+          if (value == null) {
+    throw new NullPointerException();
+  }
+  
+          variance_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>bytes variance = 3;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearVariance() {
+          
+          variance_ = getDefaultInstance().getVariance();
+          onChanged();
+          return this;
+        }
+        @java.lang.Override
+        public final Builder setUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFields(unknownFields);
+        }
+
+        @java.lang.Override
+        public final Builder mergeUnknownFields(
+            final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance)
+      }
+
+      // @@protoc_insertion_point(class_scope:drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance)
+      private static final drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance DEFAULT_INSTANCE;
+      static {
+        DEFAULT_INSTANCE = new drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance();
+      }
+
+      public static drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+      }
+
+      private static final com.google.protobuf.Parser<LabelAndClusterCenterAndVariance>
+          PARSER = new com.google.protobuf.AbstractParser<LabelAndClusterCenterAndVariance>() {
+        @java.lang.Override
+        public LabelAndClusterCenterAndVariance parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new LabelAndClusterCenterAndVariance(input, extensionRegistry);
+        }
+      };
+
+      public static com.google.protobuf.Parser<LabelAndClusterCenterAndVariance> parser() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<LabelAndClusterCenterAndVariance> getParserForType() {
+        return PARSER;
+      }
+
+      @java.lang.Override
+      public drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+      }
+
+    }
+
+    public static final int DENSE_FIELD_NUMBER = 1;
+    private boolean dense_;
+    /**
+     * <code>bool dense = 1;</code>
+     * @return The dense.
+     */
+    @java.lang.Override
+    public boolean getDense() {
+      return dense_;
+    }
+
+    public static final int DIMS_FIELD_NUMBER = 2;
+    private int dims_;
+    /**
+     * <code>int32 dims = 2;</code>
+     * @return The dims.
+     */
+    @java.lang.Override
+    public int getDims() {
+      return dims_;
+    }
+
+    public static final int LABEL2CLUSTERCENTERANDVARIANCE_FIELD_NUMBER = 3;
+    private java.util.List<drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance> label2ClusterCenterAndVariance_;
+    /**
+     * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+     */
+    @java.lang.Override
+    public java.util.List<drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance> getLabel2ClusterCenterAndVarianceList() {
+      return label2ClusterCenterAndVariance_;
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVarianceOrBuilder> 
+        getLabel2ClusterCenterAndVarianceOrBuilderList() {
+      return label2ClusterCenterAndVariance_;
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+     */
+    @java.lang.Override
+    public int getLabel2ClusterCenterAndVarianceCount() {
+      return label2ClusterCenterAndVariance_.size();
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+     */
+    @java.lang.Override
+    public drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance getLabel2ClusterCenterAndVariance(int index) {
+      return label2ClusterCenterAndVariance_.get(index);
+    }
+    /**
+     * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+     */
+    @java.lang.Override
+    public drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVarianceOrBuilder getLabel2ClusterCenterAndVarianceOrBuilder(
+        int index) {
+      return label2ClusterCenterAndVariance_.get(index);
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -527,6 +2523,15 @@ public final class ClusterPb {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (dense_ != false) {
+        output.writeBool(1, dense_);
+      }
+      if (dims_ != 0) {
+        output.writeInt32(2, dims_);
+      }
+      for (int i = 0; i < label2ClusterCenterAndVariance_.size(); i++) {
+        output.writeMessage(3, label2ClusterCenterAndVariance_.get(i));
+      }
       unknownFields.writeTo(output);
     }
 
@@ -536,6 +2541,18 @@ public final class ClusterPb {
       if (size != -1) return size;
 
       size = 0;
+      if (dense_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, dense_);
+      }
+      if (dims_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, dims_);
+      }
+      for (int i = 0; i < label2ClusterCenterAndVariance_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, label2ClusterCenterAndVariance_.get(i));
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -551,6 +2568,12 @@ public final class ClusterPb {
       }
       drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier other = (drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier) obj;
 
+      if (getDense()
+          != other.getDense()) return false;
+      if (getDims()
+          != other.getDims()) return false;
+      if (!getLabel2ClusterCenterAndVarianceList()
+          .equals(other.getLabel2ClusterCenterAndVarianceList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
     }
@@ -562,6 +2585,15 @@ public final class ClusterPb {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + DENSE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getDense());
+      hash = (37 * hash) + DIMS_FIELD_NUMBER;
+      hash = (53 * hash) + getDims();
+      if (getLabel2ClusterCenterAndVarianceCount() > 0) {
+        hash = (37 * hash) + LABEL2CLUSTERCENTERANDVARIANCE_FIELD_NUMBER;
+        hash = (53 * hash) + getLabel2ClusterCenterAndVarianceList().hashCode();
+      }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -690,11 +2722,22 @@ public final class ClusterPb {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
+          getLabel2ClusterCenterAndVarianceFieldBuilder();
         }
       }
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        dense_ = false;
+
+        dims_ = 0;
+
+        if (label2ClusterCenterAndVarianceBuilder_ == null) {
+          label2ClusterCenterAndVariance_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          label2ClusterCenterAndVarianceBuilder_.clear();
+        }
         return this;
       }
 
@@ -721,6 +2764,18 @@ public final class ClusterPb {
       @java.lang.Override
       public drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier buildPartial() {
         drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier result = new drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier(this);
+        int from_bitField0_ = bitField0_;
+        result.dense_ = dense_;
+        result.dims_ = dims_;
+        if (label2ClusterCenterAndVarianceBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            label2ClusterCenterAndVariance_ = java.util.Collections.unmodifiableList(label2ClusterCenterAndVariance_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.label2ClusterCenterAndVariance_ = label2ClusterCenterAndVariance_;
+        } else {
+          result.label2ClusterCenterAndVariance_ = label2ClusterCenterAndVarianceBuilder_.build();
+        }
         onBuilt();
         return result;
       }
@@ -769,6 +2824,38 @@ public final class ClusterPb {
 
       public Builder mergeFrom(drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier other) {
         if (other == drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.getDefaultInstance()) return this;
+        if (other.getDense() != false) {
+          setDense(other.getDense());
+        }
+        if (other.getDims() != 0) {
+          setDims(other.getDims());
+        }
+        if (label2ClusterCenterAndVarianceBuilder_ == null) {
+          if (!other.label2ClusterCenterAndVariance_.isEmpty()) {
+            if (label2ClusterCenterAndVariance_.isEmpty()) {
+              label2ClusterCenterAndVariance_ = other.label2ClusterCenterAndVariance_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureLabel2ClusterCenterAndVarianceIsMutable();
+              label2ClusterCenterAndVariance_.addAll(other.label2ClusterCenterAndVariance_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.label2ClusterCenterAndVariance_.isEmpty()) {
+            if (label2ClusterCenterAndVarianceBuilder_.isEmpty()) {
+              label2ClusterCenterAndVarianceBuilder_.dispose();
+              label2ClusterCenterAndVarianceBuilder_ = null;
+              label2ClusterCenterAndVariance_ = other.label2ClusterCenterAndVariance_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              label2ClusterCenterAndVarianceBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getLabel2ClusterCenterAndVarianceFieldBuilder() : null;
+            } else {
+              label2ClusterCenterAndVarianceBuilder_.addAllMessages(other.label2ClusterCenterAndVariance_);
+            }
+          }
+        }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
         return this;
@@ -796,6 +2883,309 @@ public final class ClusterPb {
           }
         }
         return this;
+      }
+      private int bitField0_;
+
+      private boolean dense_ ;
+      /**
+       * <code>bool dense = 1;</code>
+       * @return The dense.
+       */
+      @java.lang.Override
+      public boolean getDense() {
+        return dense_;
+      }
+      /**
+       * <code>bool dense = 1;</code>
+       * @param value The dense to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDense(boolean value) {
+        
+        dense_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool dense = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDense() {
+        
+        dense_ = false;
+        onChanged();
+        return this;
+      }
+
+      private int dims_ ;
+      /**
+       * <code>int32 dims = 2;</code>
+       * @return The dims.
+       */
+      @java.lang.Override
+      public int getDims() {
+        return dims_;
+      }
+      /**
+       * <code>int32 dims = 2;</code>
+       * @param value The dims to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDims(int value) {
+        
+        dims_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 dims = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDims() {
+        
+        dims_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance> label2ClusterCenterAndVariance_ =
+        java.util.Collections.emptyList();
+      private void ensureLabel2ClusterCenterAndVarianceIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          label2ClusterCenterAndVariance_ = new java.util.ArrayList<drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance>(label2ClusterCenterAndVariance_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance, drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.Builder, drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVarianceOrBuilder> label2ClusterCenterAndVarianceBuilder_;
+
+      /**
+       * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+       */
+      public java.util.List<drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance> getLabel2ClusterCenterAndVarianceList() {
+        if (label2ClusterCenterAndVarianceBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(label2ClusterCenterAndVariance_);
+        } else {
+          return label2ClusterCenterAndVarianceBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+       */
+      public int getLabel2ClusterCenterAndVarianceCount() {
+        if (label2ClusterCenterAndVarianceBuilder_ == null) {
+          return label2ClusterCenterAndVariance_.size();
+        } else {
+          return label2ClusterCenterAndVarianceBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+       */
+      public drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance getLabel2ClusterCenterAndVariance(int index) {
+        if (label2ClusterCenterAndVarianceBuilder_ == null) {
+          return label2ClusterCenterAndVariance_.get(index);
+        } else {
+          return label2ClusterCenterAndVarianceBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+       */
+      public Builder setLabel2ClusterCenterAndVariance(
+          int index, drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance value) {
+        if (label2ClusterCenterAndVarianceBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureLabel2ClusterCenterAndVarianceIsMutable();
+          label2ClusterCenterAndVariance_.set(index, value);
+          onChanged();
+        } else {
+          label2ClusterCenterAndVarianceBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+       */
+      public Builder setLabel2ClusterCenterAndVariance(
+          int index, drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.Builder builderForValue) {
+        if (label2ClusterCenterAndVarianceBuilder_ == null) {
+          ensureLabel2ClusterCenterAndVarianceIsMutable();
+          label2ClusterCenterAndVariance_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          label2ClusterCenterAndVarianceBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+       */
+      public Builder addLabel2ClusterCenterAndVariance(drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance value) {
+        if (label2ClusterCenterAndVarianceBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureLabel2ClusterCenterAndVarianceIsMutable();
+          label2ClusterCenterAndVariance_.add(value);
+          onChanged();
+        } else {
+          label2ClusterCenterAndVarianceBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+       */
+      public Builder addLabel2ClusterCenterAndVariance(
+          int index, drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance value) {
+        if (label2ClusterCenterAndVarianceBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureLabel2ClusterCenterAndVarianceIsMutable();
+          label2ClusterCenterAndVariance_.add(index, value);
+          onChanged();
+        } else {
+          label2ClusterCenterAndVarianceBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+       */
+      public Builder addLabel2ClusterCenterAndVariance(
+          drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.Builder builderForValue) {
+        if (label2ClusterCenterAndVarianceBuilder_ == null) {
+          ensureLabel2ClusterCenterAndVarianceIsMutable();
+          label2ClusterCenterAndVariance_.add(builderForValue.build());
+          onChanged();
+        } else {
+          label2ClusterCenterAndVarianceBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+       */
+      public Builder addLabel2ClusterCenterAndVariance(
+          int index, drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.Builder builderForValue) {
+        if (label2ClusterCenterAndVarianceBuilder_ == null) {
+          ensureLabel2ClusterCenterAndVarianceIsMutable();
+          label2ClusterCenterAndVariance_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          label2ClusterCenterAndVarianceBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+       */
+      public Builder addAllLabel2ClusterCenterAndVariance(
+          java.lang.Iterable<? extends drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance> values) {
+        if (label2ClusterCenterAndVarianceBuilder_ == null) {
+          ensureLabel2ClusterCenterAndVarianceIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, label2ClusterCenterAndVariance_);
+          onChanged();
+        } else {
+          label2ClusterCenterAndVarianceBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+       */
+      public Builder clearLabel2ClusterCenterAndVariance() {
+        if (label2ClusterCenterAndVarianceBuilder_ == null) {
+          label2ClusterCenterAndVariance_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          label2ClusterCenterAndVarianceBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+       */
+      public Builder removeLabel2ClusterCenterAndVariance(int index) {
+        if (label2ClusterCenterAndVarianceBuilder_ == null) {
+          ensureLabel2ClusterCenterAndVarianceIsMutable();
+          label2ClusterCenterAndVariance_.remove(index);
+          onChanged();
+        } else {
+          label2ClusterCenterAndVarianceBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+       */
+      public drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.Builder getLabel2ClusterCenterAndVarianceBuilder(
+          int index) {
+        return getLabel2ClusterCenterAndVarianceFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+       */
+      public drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVarianceOrBuilder getLabel2ClusterCenterAndVarianceOrBuilder(
+          int index) {
+        if (label2ClusterCenterAndVarianceBuilder_ == null) {
+          return label2ClusterCenterAndVariance_.get(index);  } else {
+          return label2ClusterCenterAndVarianceBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+       */
+      public java.util.List<? extends drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVarianceOrBuilder> 
+           getLabel2ClusterCenterAndVarianceOrBuilderList() {
+        if (label2ClusterCenterAndVarianceBuilder_ != null) {
+          return label2ClusterCenterAndVarianceBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(label2ClusterCenterAndVariance_);
+        }
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+       */
+      public drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.Builder addLabel2ClusterCenterAndVarianceBuilder() {
+        return getLabel2ClusterCenterAndVarianceFieldBuilder().addBuilder(
+            drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+       */
+      public drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.Builder addLabel2ClusterCenterAndVarianceBuilder(
+          int index) {
+        return getLabel2ClusterCenterAndVarianceFieldBuilder().addBuilder(
+            index, drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .drillbit.protobuf.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;</code>
+       */
+      public java.util.List<drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.Builder> 
+           getLabel2ClusterCenterAndVarianceBuilderList() {
+        return getLabel2ClusterCenterAndVarianceFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance, drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.Builder, drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVarianceOrBuilder> 
+          getLabel2ClusterCenterAndVarianceFieldBuilder() {
+        if (label2ClusterCenterAndVarianceBuilder_ == null) {
+          label2ClusterCenterAndVarianceBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance, drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVariance.Builder, drillbit.protobuf.ClusterPb.GaussianMixtureModelClassifier.LabelAndClusterCenterAndVarianceOrBuilder>(
+                  label2ClusterCenterAndVariance_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          label2ClusterCenterAndVariance_ = null;
+        }
+        return label2ClusterCenterAndVarianceBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -856,10 +3246,20 @@ public final class ClusterPb {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_drillbit_protobuf_KMeansClassifier_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_drillbit_protobuf_KMeansClassifier_ClusterCenter_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_drillbit_protobuf_KMeansClassifier_ClusterCenter_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_drillbit_protobuf_GaussianMixtureModelClassifier_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_drillbit_protobuf_GaussianMixtureModelClassifier_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_drillbit_protobuf_GaussianMixtureModelClassifier_LabelAndClusterCenterAndVariance_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_drillbit_protobuf_GaussianMixtureModelClassifier_LabelAndClusterCenterAndVariance_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -870,9 +3270,19 @@ public final class ClusterPb {
   static {
     java.lang.String[] descriptorData = {
       "\n3resources/protos/drillbit/protobuf/clu" +
-      "ster_pb.proto\022\021drillbit.protobuf\"\022\n\020KMea" +
-      "nsClassifier\" \n\036GaussianMixtureModelClas" +
-      "sifierb\006proto3"
+      "ster_pb.proto\022\021drillbit.protobuf\"\264\001\n\020KMe" +
+      "ansClassifier\022\r\n\005dense\030\001 \001(\010\022\014\n\004dims\030\002 \001" +
+      "(\005\022O\n\024label2ClusterCenters\030\003 \003(\01321.drill" +
+      "bit.protobuf.KMeansClassifier.ClusterCen" +
+      "ter\0322\n\rClusterCenter\022\r\n\005label\030\001 \001(\t\022\022\n\nc" +
+      "oordinate\030\002 \001(\014\"\222\002\n\036GaussianMixtureModel" +
+      "Classifier\022\r\n\005dense\030\001 \001(\010\022\014\n\004dims\030\002 \001(\005\022" +
+      "z\n\036label2ClusterCenterAndVariance\030\003 \003(\0132" +
+      "R.drillbit.protobuf.GaussianMixtureModel" +
+      "Classifier.LabelAndClusterCenterAndVaria" +
+      "nce\032W\n LabelAndClusterCenterAndVariance\022" +
+      "\r\n\005label\030\001 \001(\t\022\022\n\ncoordinate\030\002 \001(\014\022\020\n\010va" +
+      "riance\030\003 \001(\014b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -883,13 +3293,25 @@ public final class ClusterPb {
     internal_static_drillbit_protobuf_KMeansClassifier_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_drillbit_protobuf_KMeansClassifier_descriptor,
-        new java.lang.String[] { });
+        new java.lang.String[] { "Dense", "Dims", "Label2ClusterCenters", });
+    internal_static_drillbit_protobuf_KMeansClassifier_ClusterCenter_descriptor =
+      internal_static_drillbit_protobuf_KMeansClassifier_descriptor.getNestedTypes().get(0);
+    internal_static_drillbit_protobuf_KMeansClassifier_ClusterCenter_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_drillbit_protobuf_KMeansClassifier_ClusterCenter_descriptor,
+        new java.lang.String[] { "Label", "Coordinate", });
     internal_static_drillbit_protobuf_GaussianMixtureModelClassifier_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_drillbit_protobuf_GaussianMixtureModelClassifier_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_drillbit_protobuf_GaussianMixtureModelClassifier_descriptor,
-        new java.lang.String[] { });
+        new java.lang.String[] { "Dense", "Dims", "Label2ClusterCenterAndVariance", });
+    internal_static_drillbit_protobuf_GaussianMixtureModelClassifier_LabelAndClusterCenterAndVariance_descriptor =
+      internal_static_drillbit_protobuf_GaussianMixtureModelClassifier_descriptor.getNestedTypes().get(0);
+    internal_static_drillbit_protobuf_GaussianMixtureModelClassifier_LabelAndClusterCenterAndVariance_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_drillbit_protobuf_GaussianMixtureModelClassifier_LabelAndClusterCenterAndVariance_descriptor,
+        new java.lang.String[] { "Label", "Coordinate", "Variance", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

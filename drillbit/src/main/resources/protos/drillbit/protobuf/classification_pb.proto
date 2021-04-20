@@ -12,9 +12,6 @@ message BinaryClassifier {
   bool dense = 1;
   int32 dims = 2;
   bytes weights = 3;
-  bool useLabel = 4;
-  string trueLabel = 5;
-  string falseLabel = 6;
 }
 
 message MulticlassClassifier {
@@ -31,9 +28,6 @@ message MulticlassClassifier {
 message KNNBinaryClassifier {
   bool dense = 1;
   bytes coordinates = 3;
-  bool useLabel = 4;
-  string trueLabel = 5;
-  string falseLabel = 6;
 }
 
 message KNNMulticlassClassifier {

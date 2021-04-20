@@ -71,7 +71,7 @@ public class SparseVector implements Vector {
         Object[] valueArray = values.values().toArray();
         double[] result = new double[valueArray.length];
         for (int i = 0; i < valueArray.length; i++) {
-            result[i] = ObjectParser.parseDouble(result[i]);
+            result[i] = ObjectParser.parseDouble(valueArray[i]);
         }
         return result;
     }

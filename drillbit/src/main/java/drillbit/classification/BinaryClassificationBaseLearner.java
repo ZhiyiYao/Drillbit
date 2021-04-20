@@ -29,11 +29,6 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
     protected boolean dense;
     protected int dims;
 
-    // For label checking and output form
-    protected String trueLabel;
-    protected String falseLabel;
-    protected boolean useLabel;
-
     // For iteratively training
     protected int iters;
 
@@ -47,15 +42,11 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
     public Options getOptions() {
         Options opts = super.getOptions();
 
-        opts.addOption("dense", "dense_model", false, "Use dense model or not");
-        opts.addOption("dims", "feature_dimensions", true, "The dimension of model [default: 16777216 (2^24)]");
-        opts.addOption("iters", "training_iterations", true, "The number of training iterations");
-        opts.addOption("chk_cv", "check_conversion", false, "whether to check conversion");
-        opts.addOption("cv_rate", "conversion_rate", true, "conversion rate used in checking");
-
-        opts.addOption("use_int", "use_integer_as_label", false, "whether to use 0 and 1 as labels or use string labels");
-        opts.addOption("true_label", "true_label_string", true, "name of true label");
-        opts.addOption("false_label", "false_label_string", true, "name of false label");
+        opts.addOption("dense", false, "Use dense model or not");
+        opts.addOption("dims", true, "The dimension of model [default: 16777216 (2^24)]");
+        opts.addOption("iters", true, "The number of training iterations");
+        opts.addOption("chk_cv", false, "whether to check conversion");
+        opts.addOption("cv_rate", true, "conversion rate used in checking");
 
         return opts;
     }
@@ -91,36 +82,10 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
         }
         cvState = new ConversionState(chkCv, cvRate);
 
-        useLabel = !cl.hasOption("use_int");
-        if (useLabel) {
-            trueLabel = cl.hasOption("true_label") ? cl.getOptionValue("true_label") : "";
-            falseLabel = cl.hasOption("false_label") ? cl.getOptionValue("false_label") : "";
-            if (trueLabel.equals("") && falseLabel.equals("")) {
-                useLabel = false;
-            }
-        }
-        else {
-            trueLabel = "";
-            falseLabel = "";
-        }
-
-        weights = createModel();
+        weights = createModel(dense, dims);
         count = 0;
 
         return cl;
-    }
-
-    @Nonnull
-    final Weights createModel() {
-        Weights weights;
-        if (dense) {
-            logger.info(String.format("Build a dense model with initial with %d initial dimensions", dims));
-            weights = new DenseWeights(dims, TrainWeights.WeightType.WithCovar);
-        } else {
-            logger.info(String.format("Build a dense model with initial with %d initial dimensions", dims));
-            weights = new SparseWeights(dims, TrainWeights.WeightType.WithCovar);
-        }
-        return weights;
     }
 
     @Override
@@ -140,48 +105,14 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
         }
 
         checkTargetValue(target);
-        double score = target2Score(target);
 
+        train(featureVector, StringParser.parseDouble(target, -1));
         count++;
-        train(featureVector, score);
     }
 
     @Override
     public void add(@Nonnull final String feature, @Nonnull final String target) {
         add(feature, target, "");
-    }
-
-    protected void parseLabel(@Nonnull final String target) {
-        if (trueLabel.equals("")) {
-            trueLabel = target;
-        }
-        else if (falseLabel.equals("")) {
-            falseLabel = target;
-        }
-    }
-
-    protected double target2Score(@Nonnull final String target) {
-        if (useLabel) {
-            if (trueLabel.equals("") || falseLabel.equals("")) {
-                parseLabel(target);
-            }
-            if (trueLabel.equals(target)) {
-                return 1.d;
-            }
-            else if (falseLabel.equals(target)) {
-                return 0.d;
-            }
-            else {
-                throw new IllegalArgumentException(String.format("Target should be %s for true label, or %s for false label, but %s provided.", trueLabel, falseLabel, target));
-            }
-        }
-        else {
-            double score = StringParser.parseDouble(target, -1.d);
-            if (score == -1.d) {
-                throw new IllegalArgumentException(String.format("Target should be 0 or 1, but %s provided", target));
-            }
-            return score;
-        }
     }
 
     // Here we don't use optimizer to update weights
@@ -264,15 +195,8 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
     @Nonnull
     protected PredictionResult calcScore(@Nonnull final ArrayList<FeatureValue> features) {
         double score = predict(features);
-        String label;
-        if (useLabel) {
-            label = score > 0.5 ? trueLabel : falseLabel;
-        }
-        else {
-            label = score > 0.5 ? "1" : "0";
-        }
 
-        return new PredictionResult(label, score);
+        return new PredictionResult(score > 0 ? "1" : "-1", score);
     }
 
     @Nonnull
@@ -310,10 +234,6 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
 
         ClassificationPb.BinaryClassifier.Builder builder = ClassificationPb.BinaryClassifier.newBuilder();
 
-        builder.setTrueLabel(trueLabel);
-        builder.setFalseLabel(falseLabel);
-        builder.setUseLabel(useLabel);
-
         builder.setDense(dense);
         builder.setDims(dims);
         builder.setWeights(ByteString.copyFrom(weights.toByteArray()));
@@ -324,16 +244,6 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
     @Override
     public BaseLearner fromByteArray(byte[] learnerBytes) throws InvalidProtocolBufferException {
         ClassificationPb.BinaryClassifier binaryClassifier = ClassificationPb.BinaryClassifier.parseFrom(learnerBytes);
-
-        useLabel = binaryClassifier.getUseLabel();
-        if (useLabel) {
-            trueLabel = binaryClassifier.getTrueLabel();
-            falseLabel = binaryClassifier.getFalseLabel();
-        }
-        else {
-            trueLabel = "";
-            falseLabel = "";
-        }
 
         dense = binaryClassifier.getDense();
         dims = binaryClassifier.getDims();
@@ -398,16 +308,10 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
 
     @Override
     protected void checkTargetValue(final String target) throws IllegalArgumentException {
-        if (useLabel) {
-            if (!trueLabel.equals("") && !falseLabel.equals("")) {
-                throw new IllegalArgumentException(String.format("Target should be %s for true label, or %s for false label, but %s provided.", trueLabel, falseLabel, target));
-            }
-        }
-        else {
-            double score = StringParser.parseDouble(target, -1.d);
-            if (score == -1.d) {
-                throw new IllegalArgumentException(String.format("Target should be 0 or 1, but %s provided", target));
-            }
+        // Binary classification targets must be 0 or 1
+        int targetValue = StringParser.parseInt(target, -2);
+        if (targetValue != -1 && targetValue != 0 && targetValue != 1) {
+            throw new IllegalArgumentException("Target should be either -1 or 1.");
         }
     }
 }
