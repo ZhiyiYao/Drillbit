@@ -16,3 +16,13 @@ from (
     from dfs.tmp.`placeholder_for_loading_dataset`
     limit 150
 ) t;
+
+create table dfs.tmp.`employee` (feature, target) as select
+numerical_feature_values(
+    concat_feature_names('department_id', 'position_id'),
+    department_id,
+    position_id
+) as feature,
+cast(salary as char) as target
+from cp.`employee.json`
+limit 500;

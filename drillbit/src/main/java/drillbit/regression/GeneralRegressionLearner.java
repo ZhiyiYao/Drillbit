@@ -14,20 +14,19 @@ import drillbit.utils.parser.StringParser;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
-import org.jetbrains.annotations.NotNull;
-
 import javax.annotation.Nonnull;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 public final class GeneralRegressionLearner extends BaseLearner {
     // Model
     protected Weights weights;
-    protected long count;
 
-    // For model storage and allocate
+    // Model storage
     protected boolean dense;
     protected int dims;
 
@@ -54,31 +53,30 @@ public final class GeneralRegressionLearner extends BaseLearner {
         super();
     }
 
+    @Nonnull
     @Override
     public Options getOptions() {
         Options opts = super.getOptions();
 
-        opts.addOption("dense", "dense_model", false, "Use dense model or not");
-        opts.addOption("dims", "feature_dimensions", true, "The dimension of model [default: 16777216 (2^24)]");
-        opts.addOption("iters", "iterations", true, "number of iterations");
-        opts.addOption("mini_batch", "mini_batch_size", true, "mini batch size");
-        opts.addOption("loss", "loss_function", true, "loss function name");
-        opts.addOption("chk_cv", "check_conversion", false, "whether to check conversion");
-        opts.addOption("opt", "optimizer", true, "optimizer name");
-        opts.addOption("cv_rate", "conversion_rate", true, "conversion rate used in checking");
+        opts.addOption("dense", false, "Use dense model or not");
+        opts.addOption("dims", true, "The dimension of model [default: 16777216 (2^24)]");
+        opts.addOption("iters", true, "number of iterations");
+        opts.addOption("mini_batch", true, "mini batch size");
+        opts.addOption("loss", true, "loss function name");
+        opts.addOption("chk_cv", false, "whether to check conversion");
+        opts.addOption("opt", true, "optimizer name");
+        opts.addOption("cv_rate", true, "conversion rate used in checking");
 
         return opts;
     }
 
     @Override
-    public CommandLine processOptions(@Nonnull final CommandLine cl) {
+    final public CommandLine processOptions(@Nonnull final CommandLine cl) {
         super.processOptions(cl);
 
         dense = cl.hasOption("dense");
 
-        if (cl.hasOption("dims")) {
-            dims = StringParser.parseInt(cl.getOptionValue("dims"), -1);
-        }
+        dims = StringParser.parseInt(cl.getOptionValue("dims"), -1);
         if (dims < 0) {
             dims = dense ? DEFAULT_DENSE_DIMS : DEFAULT_SPARSE_DIMS;
         }
@@ -87,50 +85,34 @@ public final class GeneralRegressionLearner extends BaseLearner {
         OptimizerOptions.processOptions(cl, optimizerOptions);
         optimizer = createOptimizer();
 
-        if (cl.hasOption("iters")) {
-            iters = StringParser.parseInt(cl.getOptionValue("iters"), 1);
-        }
-        else {
-            iters = 1;
-        }
-
+        iters = StringParser.parseInt(cl.getOptionValue("iters"), 1);
         if (iters < 1) {
             throw new IllegalArgumentException(String.format("invalid iterations of %d", iters));
         }
 
-        if (cl.hasOption("mini_batch")) {
-            miniBatch = StringParser.parseInt(cl.getOptionValue("mini_batch"), 1);
-        }
-        else {
-            miniBatch = 1;
-        }
+        miniBatch = StringParser.parseInt(cl.getOptionValue("mini_batch"), 1);
         if (miniBatch < 1) {
             throw new IllegalArgumentException(String.format("invalid mini batch size of %d", miniBatch));
         }
+
         isMiniBatch = miniBatch > 1;
 
         lossFunction = LossFunctions.getLossFunction(getDefaultLossType());
-        if (cl.hasOption("loss")) {
-            try {
+        try {
+            if (cl.hasOption("loss")) {
                 lossFunction = LossFunctions.getLossFunction(cl.getOptionValue("loss"));
             }
-            catch (Exception e) {
-                throw new IllegalArgumentException(e.getMessage());
-            }
+        }
+        catch (Exception e) {
+            throw new IllegalArgumentException(e.getMessage());
         }
         checkLossFunction(lossFunction);
 
-        OptimizerOptions.processOptions(cl, optimizerOptions);
-
-        chkCv = cl.hasOption("chk_cv");
-        if (cl.hasOption("cv_rate")) {
-            cvRate = StringParser.parseDouble(cl.getOptionValue("cv_rate"), cvRate);
-            chkCv = true;
-        }
+        chkCv = cl.hasOption("chk_cv") || cl.hasOption("cv_rate");
+        cvRate = StringParser.parseDouble(cl.getOptionValue("cv_rate"), cvRate);
         cvState = new ConversionState(chkCv, cvRate);
 
-        weights = createModel();
-        count = 0;
+        weights = createWeights();
         sampled = 0;
 
         return cl;
@@ -146,7 +128,7 @@ public final class GeneralRegressionLearner extends BaseLearner {
     }
 
     @Nonnull
-    final Weights createModel() {
+    final Weights createWeights() {
         Weights weights;
         if (dense) {
             logger.info(String.format("Build a dense model with initial with %d initial dimensions", dims));
@@ -158,74 +140,26 @@ public final class GeneralRegressionLearner extends BaseLearner {
         return weights;
     }
 
-
     @Override
-    public void add(@Nonnull final String feature, @Nonnull final String target, @Nonnull final String commandLine) {
-        if (!optionProcessed) {
-            // parse commandline value here.
-            CommandLine cl = parseOptions(commandLine);
-            processOptions(cl);
-            optionProcessed = true;
-        }
-
-        if (isMiniBatch && accumulated == null) {
-            this.accumulated = new ConcurrentHashMap<>(1024);
-        }
-
-        ArrayList<String> featureValues = StringParser.parseArray(feature);
-        ArrayList<FeatureValue> featureVector = new ArrayList<>();
-        assert featureValues != null;
-        for (String featureValue : featureValues) {
-            featureVector.add(StringParser.parseFeature(featureValue));
-        }
-
+    final public void add(@Nonnull String feature, @Nonnull String target) {
+        ArrayList<FeatureValue> featureValues = parseFeatureList(feature);
         checkTargetValue(target);
-        double targetValue = StringParser.parseDouble(target, 0.d);
-
-        count++;
-        train(featureVector, targetValue);
-
-        writeSampleToTempFile(featureVector, target);
+        writeSampleToTempFile(featureValues, target);
     }
 
     @Override
-    public void add(@Nonnull final String feature, @Nonnull final String target) {
-        add(feature, target, "");
-    }
-
-    @Override
-    public void checkTargetValue(String target) throws IllegalArgumentException {
-        if (Double.isNaN(StringParser.parseDouble(target, Double.NaN))) {
-            throw new IllegalArgumentException(String.format("Invalid target of %s", target));
-        }
-    }
-
-    @Override
-    public void checkLossFunction(LossFunctions.LossFunction lossFunction) throws IllegalArgumentException {
-        if (!lossFunction.forRegression()) {
-            throw new IllegalArgumentException(String.format("Loss function %s not for regression", lossFunction.getType().toString()));
-        }
-    }
-
-    @Override
-    public void train(@Nonnull final ArrayList<FeatureValue> features, final double target) {
+    final public void train(@Nonnull final ArrayList<FeatureValue> features, final double target) {
         double p = predict(features);
         update(features, target, p);
     }
 
     @Override
-    public Object predict(@NotNull String features, @NotNull String options) {
-        ArrayList<String> featureValues = StringParser.parseArray(features);
-        ArrayList<FeatureValue> featureVector = new ArrayList<>();
-        assert featureValues != null;
-        for (String featureValue : featureValues) {
-            featureVector.add(StringParser.parseFeature(featureValue));
-        }
-
-        return predict(featureVector);
+    final public Object predict(@Nonnull String features, @Nonnull String options) {
+        // Options unused.
+        return predict(parseFeatureList(features));
     }
 
-    public double predict(@Nonnull ArrayList<FeatureValue> features) {
+    final public double predict(@Nonnull ArrayList<FeatureValue> features) {
         double score = 0.d;
         for (FeatureValue f : features) {// a += w[i] * x[i]
             if (f == null) {
@@ -282,20 +216,22 @@ public final class GeneralRegressionLearner extends BaseLearner {
         }
 
         try {
-            for (int iter = 2; iter <= iters; iter++) {
-                for (int i = 0; i < count; i++) {
+            for (int iter = 0; iter < iters; iter++) {
+                while (true) {
                     cvState.next();
-
                     sample = readSampleFromTempFile();
+                    if (sample == null) {
+                        // readSampleFromTempFile returns null if there's no more sample to read.
+                        break;
+                    }
                     int featureVectorSize = sample.getFeatureList().size();
                     score = StringParser.parseDouble(sample.getTarget(), 0.d);
-                    featureValueVector = new ArrayList<>(featureVectorSize);
+                    featureValueVector = new ArrayList<>();
                     for (int j = 0; j < featureVectorSize; j++) {
                         featureValueVector.add(StringParser.parseFeature(sample.getFeature(j)));
                     }
                     train(featureValueVector, score);
                 }
-
                 if (isMiniBatch) {
                     batchUpdate();
                 }
@@ -311,11 +247,13 @@ public final class GeneralRegressionLearner extends BaseLearner {
                     inputStream = null;
                 }
             }
-        } catch (Throwable e) {
+        }
+        catch (Throwable e) {
             throw new IllegalArgumentException("Exception caused in the iterative training", e);
-        } finally {
+        }
+        finally {
             // delete the temporary file and release resources
-            File file = new File("drillbit_input_samples.data_pb");
+            File file = new File(String.valueOf(path));
             file.delete();
         }
     }
@@ -348,7 +286,7 @@ public final class GeneralRegressionLearner extends BaseLearner {
             double weight = weights.getWeight(feature);
             double gradient = dloss * xi;
             final double new_weight = optimizer.update(feature, weight, loss, gradient);
-            if (new_weight == 0.f) {
+            if (new_weight == 0.d) {
                 weights.delete(feature);
                 continue;
             }
@@ -380,13 +318,11 @@ public final class GeneralRegressionLearner extends BaseLearner {
 
     @Override
     public final byte[] toByteArray() {
-        logger.info("Trained a regression model using " + count + " training examples");
-
         RegressionPb.GeneralRegressor.Builder builder = RegressionPb.GeneralRegressor.newBuilder();
 
         builder.setDense(dense);
         builder.setDims(dims);
-        builder.setWeights(ByteString.copyFrom(weights.toByteArray()));
+        builder.setWeights(ByteString.copyFrom(Objects.requireNonNull(weights.toByteArray())));
 
         return builder.build().toByteArray();
     }
@@ -418,14 +354,24 @@ public final class GeneralRegressionLearner extends BaseLearner {
 
     @Override
     public void finalizeTraining() {
-        if (count == 0) {
-            return;
-        }
-        if (iters > 1) {
-            runIterativeTraining();
-        }
+        runIterativeTraining();
+
         if (isMiniBatch) {
             batchUpdate();
+        }
+    }
+
+    @Override
+    public void checkTargetValue(String target) throws IllegalArgumentException {
+        if (Double.isNaN(StringParser.parseDouble(target, Double.NaN))) {
+            throw new IllegalArgumentException(String.format("Invalid target of %s", target));
+        }
+    }
+
+    @Override
+    public void checkLossFunction(LossFunctions.LossFunction lossFunction) throws IllegalArgumentException {
+        if (!lossFunction.forRegression()) {
+            throw new IllegalArgumentException(String.format("Loss function %s not for regression", lossFunction.getType()));
         }
     }
 

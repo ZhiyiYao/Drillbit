@@ -18,7 +18,7 @@
  */
 package drillbit.utils.collections.maps;
 
-import hivemall.utils.lang.Preconditions;
+import drillbit.utils.common.Conditions;
 
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnegative;
@@ -38,7 +38,7 @@ public final class BoundedSortedMap<K, V> extends TreeMap<K, V> {
 
     public BoundedSortedMap(@Nonnegative int size, boolean reverseOrder) {
         super(reverseOrder ? Collections.reverseOrder() : null);
-        Preconditions.checkArgument(size > 0, "size must be greater than zero: " + size);
+        Conditions.checkArgument(size > 0, "size must be greater than zero: " + size);
         this.bound = size;
     }
 

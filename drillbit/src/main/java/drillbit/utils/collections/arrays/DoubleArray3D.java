@@ -18,7 +18,7 @@
  */
 package drillbit.utils.collections.arrays;
 
-import hivemall.utils.lang.Primitives;
+import drillbit.utils.lang.Primitives;
 
 import javax.annotation.Nonnull;
 import java.nio.ByteBuffer;

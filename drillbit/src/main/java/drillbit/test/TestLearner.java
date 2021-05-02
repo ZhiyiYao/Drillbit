@@ -28,14 +28,14 @@ public class TestLearner {
             y = Math.random() - 2;
             feature = String.format("[0:1, 1:%f, two:%f]", x, y);
             target = "1";
-            learner.add(feature, target, commandLine);
+            learner.add(feature, target);
             x = Math.random() + 3;
             y = Math.random() * 3 + 5;
             feature = String.format("[0:1, 1:%f, two:%f]", x, y);
             target = "-1";
-            learner.add(feature, target, commandLine);
+            learner.add(feature, target);
         }
-        byte[] learnerByte = learner.output();
+        byte[] learnerByte = learner.output(commandLine);
         GeneralClassificationLearner newLearner = (GeneralClassificationLearner) (new GeneralClassificationLearner()).fromByteArray(learnerByte);
 
         x = Math.random() * 2 - 3;

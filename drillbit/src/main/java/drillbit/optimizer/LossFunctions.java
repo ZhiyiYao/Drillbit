@@ -507,7 +507,7 @@ public final class LossFunctions {
      */
     public static double logisticLoss(final double target, final double predicted) {
         if (predicted > -100.d) {
-            return target - (double) MathUtils.sigmoid(predicted);
+            return target - MathUtils.logistic(predicted);
         } else {
             return target;
         }

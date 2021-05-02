@@ -18,7 +18,7 @@
  */
 package drillbit.utils.collections;
 
-import hivemall.utils.lang.Copyable;
+import drillbit.utils.lang.Copyable;
 
 public interface IMapIterator<K, V> {
 

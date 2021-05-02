@@ -25,11 +25,9 @@ public interface Learner {
 
     void showHelp(@Nonnull Options opts);
 
-    void add(@Nonnull final String feature, @Nonnull final String target, @Nonnull final String commandLine);
-
     void add(@Nonnull final String feature, @Nonnull final String target);
 
-    byte[] output();
+    byte[] output(@Nonnull final String commandLine);
 
     void reset();
 

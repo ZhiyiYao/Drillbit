@@ -7,7 +7,6 @@ import drillbit.utils.math.MathUtils;
 import drillbit.utils.parser.StringParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -46,28 +45,15 @@ public final class ConfidenceWeightedClassificationLearner extends BinaryClassif
         return cl;
     }
 
-    @Nonnull
-    protected final Weights createModel(boolean dense, int dims) {
-        Weights weights;
-        if (dense) {
-            logger.info(String.format("Build a dense model with initial with %d initial dimensions", dims));
-            weights = new DenseWeights(dims, TrainWeights.WeightType.WithCovar);
-        } else {
-            logger.info(String.format("Build a dense model with initial with %d initial dimensions", dims));
-            weights = new SparseWeights(dims, TrainWeights.WeightType.WithCovar);
-        }
-        return weights;
-    }
-
-    // Here we don't use optimizer to update weights
     @Override
     public final void train(@Nonnull final ArrayList<FeatureValue> features, double label) {
+        // Here we don't use optimizer to update weights.
         final int y = label > 0 ? 1 : -1;
 
         PredictionResult margin = calcScoreAndVariance(features);
         double gamma = getGamma(margin, y);
 
-        if (gamma > 0.f) {// alpha = max(0, gamma)
+        if (gamma > 0.d) {// alpha = max(0, gamma)
             double coeff = gamma * y;
             update(features, coeff, gamma);
         }
@@ -82,9 +68,9 @@ public final class ConfidenceWeightedClassificationLearner extends BinaryClassif
             final Object k = f.getFeature();
             final double v = f.getValueAsDouble();
 
-            TrainWeights.WeightWithCovar old_w = weights.get(k);
-            TrainWeights.WeightWithCovar new_w = getNewWeight(old_w, v, coeff, alpha, phi);
-            weights.set(k, new_w);
+            TrainWeights.WeightWithCovar oldW = weights.get(k);
+            TrainWeights.WeightWithCovar newW = getNewWeight(oldW, v, coeff, alpha, phi);
+            weights.set(k, newW);
         }
     }
 

@@ -10,6 +10,7 @@ import drillbit.optimizer.ConversionState;
 import drillbit.optimizer.LossFunctions;
 import drillbit.protobuf.ClassificationPb;
 import drillbit.protobuf.SamplePb;
+import drillbit.utils.math.MathUtils;
 import drillbit.utils.parser.StringParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
@@ -23,7 +24,6 @@ import java.util.ArrayList;
 public abstract class BinaryClassificationBaseLearner extends BaseLearner {
     // Model
     protected Weights weights;
-    protected int count;
 
     // For model storage and allocate
     protected boolean dense;
@@ -36,6 +36,13 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
     private boolean chkCv;
     private double cvRate;
     protected ConversionState cvState;
+
+    protected boolean returnProba;
+
+    public BinaryClassificationBaseLearner() {
+        super();
+        returnProba = false;
+    }
 
     @Override
     @Nonnull
@@ -52,90 +59,78 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
     }
 
     @Override
+    @Nonnull
+    public Options getPredictOptions() {
+        Options opts = super.getPredictOptions();
+
+        // Predict option only includes return the probability of input sample or not.
+        opts.addOption("return_proba", false, "return probability of input sample");
+
+        return opts;
+    }
+
+    @Override
     public CommandLine processOptions(@Nonnull final CommandLine cl) {
         super.processOptions(cl);
 
         dense = cl.hasOption("dense");
 
-        if (cl.hasOption("dims")) {
-            dims = StringParser.parseInt(cl.getOptionValue("dims"), -1);
-        }
+        dims = StringParser.parseInt(cl.getOptionValue("dims"), -1);
         if (dims < 0) {
             dims = dense ? DEFAULT_DENSE_DIMS : DEFAULT_SPARSE_DIMS;
         }
 
-        if (cl.hasOption("iters")) {
-            iters = StringParser.parseInt(cl.getOptionValue("iters"), 1);
-        }
-        else {
-            iters = 1;
-        }
-
+        iters = StringParser.parseInt(cl.getOptionValue("iters"), 1);
         if (iters < 1) {
             throw new IllegalArgumentException(String.format("invalid iterations of %d", iters));
         }
 
-        chkCv = cl.hasOption("chk_cv");
-        if (cl.hasOption("cv_rate")) {
-            cvRate = StringParser.parseDouble(cl.getOptionValue("cv_rate"), cvRate);
-            chkCv = true;
-        }
+        chkCv = cl.hasOption("chk_cv") || cl.hasOption("cv_rate");
+        cvRate = StringParser.parseDouble(cl.getOptionValue("cv_rate"), cvRate);
         cvState = new ConversionState(chkCv, cvRate);
 
-        weights = createModel(dense, dims);
-        count = 0;
+        weights = createWeights(dense, dims);
 
         return cl;
     }
 
     @Override
-    public void add(@Nonnull final String feature, @Nonnull final String target, @Nonnull final String commandLine) {
-        if (!optionProcessed) {
-            // parse commandline value here.
-            CommandLine cl = parseOptions(commandLine);
-            processOptions(cl);
-            optionProcessed = true;
-        }
+    public CommandLine processPredictOptions(@Nonnull final CommandLine cl) {
+        super.processPredictOptions(cl);
 
-        ArrayList<String> featureValues = StringParser.parseArray(feature);
-        ArrayList<FeatureValue> featureVector = new ArrayList<>();
-        assert featureValues != null;
-        for (String featureValue : featureValues) {
-            featureVector.add(StringParser.parseFeature(featureValue));
-        }
+        returnProba = cl.hasOption("return_proba");
 
-        checkTargetValue(target);
-
-        train(featureVector, StringParser.parseDouble(target, -1));
-        count++;
+        return cl;
     }
 
     @Override
     public void add(@Nonnull final String feature, @Nonnull final String target) {
-        add(feature, target, "");
+        ArrayList<FeatureValue> featureVector = parseFeatureList(feature);
+        checkTargetValue(target);
+        writeSampleToTempFile(featureVector, target);
     }
 
-    // Here we don't use optimizer to update weights
     @Override
     protected void train(@Nonnull ArrayList<FeatureValue> features, @Nonnull double target) {
-        final double y = target > 0 ? 1d : -1d;
+        // Here we don't use optimizer to update weights
+        final double y = target > 0 ? 1.d : -1.d;
         final double p = predict(features);
-        final double z = p * y;
-        if (z <= 0.f) { // miss labeled
+        final double z = y * p;
+        if (z <= 0.d) { // miss labeled
             update(features, y, p);
         }
     }
 
     public double predict(@Nonnull final ArrayList<FeatureValue> features) {
-        double score = 0.f;
+        double score = 0.d;
         for (FeatureValue f : features) {// a += w[i] * x[i]
             if (f == null) {
                 continue;
             }
             Object k = f.getFeature();
-            double old_w = weights.getWeight(k);
-            if (old_w != 0.f) {
-                score += (old_w * f.getValueAsFloat());
+            double oldW = weights.getWeight(k);
+            if (oldW != 0.f) {
+                score += (oldW * f.getValueAsFloat());
             }
         }
         return score;
@@ -143,19 +138,25 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
 
     @Override
     public Object predict(@Nonnull String features, @Nonnull String options) {
-        ArrayList<String> featureValues = StringParser.parseArray(features);
-        ArrayList<FeatureValue> featureVector = new ArrayList<>();
-        assert featureValues != null;
-        for (String featureValue : featureValues) {
-            featureVector.add(StringParser.parseFeature(featureValue));
+        if (!optionForPredictProcessed) {
+            CommandLine cl = parsePredictOptions(options);
+            processPredictOptions(cl);
+            optionForPredictProcessed = true;
         }
 
-        return predict(featureVector) > 0 ? 1 : -1;
+        ArrayList<FeatureValue> featureVector = parseFeatureList(features);
+
+        if (returnProba) {
+            return predict(featureVector);
+        }
+        else {
+            return predict(featureVector) > 0 ? 1 : -1;
+        }
     }
 
     @Override
     protected void update(@Nonnull final ArrayList<FeatureValue> features, double y, double p) {
-        throw new IllegalStateException("Update should not be called");
+        throw new UnsupportedOperationException("Update should not be called");
     }
 
     protected void update(@Nonnull final FeatureValue[] features, final double coeff) {
@@ -166,9 +167,9 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
             final Object k = f.getFeature();
             final double v = f.getValueAsDouble();
 
-            double old_w = weights.getWeight(k);
-            double new_w = old_w + (coeff * v);
-            weights.setWeight(k, new_w);
+            double oldW = weights.getWeight(k);
+            double newW = oldW + (coeff * v);
+            weights.setWeight(k, newW);
         }
     }
 
@@ -181,7 +182,7 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
 
     @Override
     public LossFunctions.LossType getDefaultLossType() {
-        //TODO: decide to keep abstract (let derived class implement this method) or return a default value
+        // Return null because derived class may not need loss function.
         return null;
     }
 
@@ -213,7 +214,7 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
 
             TrainWeights.ExtendedWeight old_w = weights.get(k);
             if (old_w == null) {
-                variance += (1.f * v * v);
+                variance += (1.d * v * v);
             } else {
                 score += (old_w.get() * v);
                 variance += (old_w.getCovar() * v * v);
@@ -230,8 +231,6 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
 
     @Override
     public byte[] toByteArray() {
-        logger.info("Trained a binary classification model using " + count + " training examples");
-
         ClassificationPb.BinaryClassifier.Builder builder = ClassificationPb.BinaryClassifier.newBuilder();
 
         builder.setDense(dense);
@@ -259,7 +258,7 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
         return this;
     }
 
-    final void runIterativeTraining() {
+    protected void runIterativeTraining() {
         SamplePb.Sample sample;
         ArrayList<FeatureValue> featureValueVector;
         double score;
@@ -273,10 +272,12 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
 
         try {
             for (int iter = 2; iter <= iters; iter++) {
-                for (int i = 0; i < count; i++) {
+                while (true) {
                     cvState.next();
-
                     sample = readSampleFromTempFile();
+                    if (sample == null) {
+                        break;
+                    }
                     int featureVectorSize = sample.getFeatureList().size();
                     score = StringParser.parseDouble(sample.getTarget(), 0.d);
                     featureValueVector = new ArrayList<>(featureVectorSize);
@@ -297,9 +298,11 @@ public abstract class BinaryClassificationBaseLearner extends BaseLearner {
                     inputStream = null;
                 }
             }
-        } catch (Throwable e) {
+        }
+        catch (Throwable e) {
             throw new IllegalArgumentException("Exception caused in the iterative training", e);
-        } finally {
+        }
+        finally {
             // delete the temporary file and release resources
             File file = new File("drillbit_input_samples.data_pb");
             file.delete();

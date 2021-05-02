@@ -9,7 +9,7 @@ import drillbit.optimizer.LossFunctions;
 import drillbit.parameter.Coordinates;
 import drillbit.parameter.DenseCoordinates;
 import drillbit.protobuf.NeighborsPb;
-import drillbit.utils.math.DenseVector;
+import drillbit.protobuf.SamplePb;
 import drillbit.utils.math.SparseVector;
 import drillbit.utils.parser.StringParser;
 
@@ -19,12 +19,13 @@ import org.apache.commons.cli.Options;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
-public class KNeighborClassificationLearner extends BaseLearner {
+public final class KNeighborClassificationLearner extends BaseLearner {
     private int n;
     private int nForPredict;
 
@@ -185,52 +186,79 @@ public class KNeighborClassificationLearner extends BaseLearner {
     }
 
     @Override
-    public void add(String feature, String target, String commandLine) {
-        if (!optionProcessed) {
-            count = 0;
-            // parse commandline value here.
-            CommandLine cl = parseOptions(commandLine);
-            processOptions(cl);
-            optionProcessed = true;
-        }
-
+    public void add(String feature, String target) {
         ArrayList<FeatureValue> featureValues = parseFeatureList(feature);
-        SparseVector vector = new SparseVector();
-        for (FeatureValue featureValue : featureValues) {
-            if (featureValue.getFeatureType() != FeatureValue.FeatureType.NUMERICAL) {
-                throw new IllegalArgumentException();
-            }
-
-            vector.set(StringParser.parseInt(featureValue.getFeature(), -1), featureValue.getValueAsDouble());
-        }
-
-        int index = getLabelIndex(target);
-        if (index == -1) {
-            DenseCoordinates coordinates = new DenseCoordinates(dims);
-            coordinates.add(vector.toArray());
-
-            labels.add(target);
-            coordinatesList.add(coordinates);
-            nClasses++;
-        }
-        else {
-            DenseCoordinates coordinates = (DenseCoordinates) coordinatesList.get(index);
-            coordinates.add(vector.toArray());
-            coordinatesList.set(index, coordinates);
-        }
-
+        writeSampleToTempFile(featureValues, target);
         count++;
     }
 
     @Override
-    public void add(@Nonnull String feature, @Nonnull String target) {
-        add(feature, target, "");
+    public byte[] output(String commandLine) {
+        finalizeTraining();
+        logger.info("Trained a knn model using " + count + " training examples");
+        return toByteArray();
     }
 
     @Override
-    public byte[] output() {
-        logger.info("Trained a knn model using " + count + " training examples");
-        return toByteArray();
+    public final void finalizeTraining() {
+        try {
+            outputStream.close();
+        }
+        catch (IOException e) {
+            logger.error(e.getMessage(), e);
+        }
+
+        try {
+            for (int i = 0; i < count; i++) {
+                SamplePb.Sample sample = readSampleFromTempFile();
+                int featureVectorSize = sample.getFeatureList().size();
+                String target = sample.getTarget();
+                ArrayList<FeatureValue> featureVector = new ArrayList<>();
+                for (int j = 0; j < featureVectorSize; j++) {
+                    featureVector.add(StringParser.parseFeature(sample.getFeature(j)));
+                }
+
+                SparseVector vector = new SparseVector();
+                for (FeatureValue featureValue : featureVector) {
+                    if (featureValue.getFeatureType() != FeatureValue.FeatureType.NUMERICAL) {
+                        throw new IllegalArgumentException();
+                    }
+
+                    vector.set(StringParser.parseInt(featureValue.getFeature(), -1), featureValue.getValueAsDouble());
+                }
+
+                int index = getLabelIndex(target);
+                if (index == -1) {
+                    DenseCoordinates coordinates = new DenseCoordinates(dims);
+                    coordinates.add(vector.toArray());
+                    labels.add(target);
+                    coordinatesList.add(coordinates);
+                    nClasses++;
+                }
+                else {
+                    DenseCoordinates coordinates = (DenseCoordinates) coordinatesList.get(index);
+                    coordinates.add(vector.toArray());
+                    coordinatesList.set(index, coordinates);
+                }
+            }
+
+            try {
+                inputStream.close();
+            }
+            catch (IOException e) {
+                logger.error("temp file close failed.");
+                logger.error(e.getMessage(), e);
+            }
+            finally {
+                inputStream = null;
+            }
+        } catch (Throwable e) {
+            throw new IllegalArgumentException("Exception caused in the iterative training", e);
+        } finally {
+            // delete the temporary file and release resources
+            File file = new File(String.valueOf(path));
+            file.delete();
+        }
     }
 
     @Override
@@ -239,7 +267,7 @@ public class KNeighborClassificationLearner extends BaseLearner {
     }
 
     @Override
-    public byte[] toByteArray() {
+    public final byte[] toByteArray() {
         NeighborsPb.KNeighborsClassifier.Builder builder = NeighborsPb.KNeighborsClassifier.newBuilder();
 
         builder.setDense(dense);
@@ -258,7 +286,7 @@ public class KNeighborClassificationLearner extends BaseLearner {
     }
 
     @Override
-    public BaseLearner fromByteArray(byte[] learnerBytes) throws InvalidProtocolBufferException {
+    public final BaseLearner fromByteArray(byte[] learnerBytes) throws InvalidProtocolBufferException {
         NeighborsPb.KNeighborsClassifier KnnClassifier = NeighborsPb.KNeighborsClassifier.parseFrom(learnerBytes);
 
         dense = KnnClassifier.getDense();
@@ -302,7 +330,7 @@ public class KNeighborClassificationLearner extends BaseLearner {
     }
 
     @Override
-    public Object predict(@Nonnull final String feature, @Nonnull final String options) {
+    public final Object predict(@Nonnull final String feature, @Nonnull final String options) {
         if (!optionForPredictProcessed) {
             CommandLine cl = parsePredictOptions(options);
             processPredictOptions(cl);

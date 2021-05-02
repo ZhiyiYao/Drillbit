@@ -8,23 +8,28 @@ import drillbit.parameter.SparseWeights;
 import drillbit.parameter.Weights;
 import drillbit.protobuf.SamplePb;
 import drillbit.utils.lang.SizeOf;
-
 import drillbit.utils.parser.StringParser;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataInputStream;
+import org.apache.hadoop.fs.FSDataOutputStream;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.fs.FileSystem;
 
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 import java.io.*;
 import java.nio.ByteBuffer;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+//import java.nio.file.Files;
+//import java.nio.file.Path;
+//import java.nio.file.Paths;
+//import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -42,29 +47,17 @@ public abstract class BaseLearner implements Learner {
     protected static final double MAX_DLOSS = 1e+12d;
     protected static final double MIN_DLOSS = -1e+12d;
 
-    // Process options at first call of add method
+    // Process options at first call of output method of training Aggregate UDF
     protected boolean optionProcessed;
 
+    // Process predict options at first call of add method of predicting Simple UDF
     protected boolean optionForPredictProcessed;
-
-    // Basic commandline options
-
-    // For mini batch update
-//    protected boolean isMiniBatch;
-//    protected int miniBatch;
-//    protected transient ConcurrentHashMap<Object, DoubleAccumulator> accumulated;
-//    protected int sampled;
-
-    // For optimization
-//    @Nonnull
-//    protected final ConcurrentHashMap<String, String> optimizerOptions;
-//    protected Optimizers.OptimizerBase optimizer;
-//    protected LossFunctions.LossFunction lossFunction;
 
     // For read and write of samples
     protected Path path;
-    protected OutputStream outputStream;
-    protected InputStream inputStream;
+    protected FileSystem fs;
+    protected FSDataOutputStream outputStream;
+    protected FSDataInputStream inputStream;
     SamplePb.Sample.Builder builder;
 
     public BaseLearner() {
@@ -149,7 +142,12 @@ public abstract class BaseLearner implements Learner {
     }
 
     @Override
-    public byte[] output() {
+    public byte[] output(@Nonnull final String commandLine) {
+        if (!optionProcessed) {
+            CommandLine cl = parseOptions(commandLine);
+            processOptions(cl);
+            optionProcessed = true;
+        }
         finalizeTraining();
         return toByteArray();
     }
@@ -183,7 +181,7 @@ public abstract class BaseLearner implements Learner {
     }
 
     @Nonnull
-    protected Weights createModel(boolean dense, int dims) {
+    protected Weights createWeights(boolean dense, int dims) {
         Weights weights;
         if (dense) {
             logger.info(String.format("Build a dense model with initial with %d initial dimensions", dims));
@@ -196,10 +194,12 @@ public abstract class BaseLearner implements Learner {
     }
 
     protected void writeSampleToTempFile(@Nonnull final ArrayList<FeatureValue> featureVector, @Nonnull final String target) {
-        if (outputStream == null) {
+        if (fs == null) {
+            Configuration conf = new Configuration();
             try {
-                path = Paths.get("drillbit_temp_file.pb");
-                outputStream = new BufferedOutputStream(Files.newOutputStream(path, StandardOpenOption.CREATE, StandardOpenOption.WRITE));
+                fs = FileSystem.get(conf);
+                path = new Path(".temp/drillbit_temp_file.pb");
+                outputStream = fs.create(path);
             }
             catch (IOException e) {
                 throw new IllegalArgumentException(e.getMessage());
@@ -217,22 +217,24 @@ public abstract class BaseLearner implements Learner {
         builder.setTarget(target);
         SamplePb.Sample sample = builder.build();
         byte[] sampleByte = ByteBuffer.allocate(SizeOf.INT).putInt(sample.getSerializedSize()).array();
-        try {
-            outputStream.write(sampleByte);
-            outputStream.write(sample.toByteArray());
-        }
-        catch (IOException e) {
-            logger.error("temp file write failed.");
-            logger.error(e.getMessage(), e);
+        // TODO: complete the synchronize mechanism of writing to temp file in both local filesystem and distributed filesystem
+        synchronized (outputStream) {
+            try {
+                outputStream.write(sampleByte, 0, sampleByte.length);
+                outputStream.write(sample.toByteArray(), 0, sample.toByteArray().length);
+            }
+            catch (IOException e) {
+                logger.error("temp file write failed.");
+                logger.error(e.getMessage(), e);
+            }
         }
         builder.clear();
     }
 
-    @Nonnull
     protected SamplePb.Sample readSampleFromTempFile() {
         if (inputStream == null) {
             try {
-                inputStream = new BufferedInputStream(Files.newInputStream(path, StandardOpenOption.READ));
+                inputStream = fs.open(path);
             }
             catch (IOException e) {
                 logger.error(e.getMessage(), e);
@@ -241,7 +243,11 @@ public abstract class BaseLearner implements Learner {
 
         byte[] intByte = new byte[SizeOf.INT];
         try {
-            inputStream.read(intByte);
+            int nBytesRead = inputStream.read(intByte);
+            if (nBytesRead == -1) {
+                // InputStream meets the end of file.
+                return null;
+            }
         }
         catch (IOException e) {
             logger.error(e.getMessage(), e);
@@ -250,7 +256,11 @@ public abstract class BaseLearner implements Learner {
         int OneSampleBytes = ByteBuffer.wrap(intByte).getInt();
         byte[] OneSampleByte = new byte[OneSampleBytes];
         try {
-            inputStream.read(OneSampleByte);
+            int nBytesRead = inputStream.read(OneSampleByte);
+            if (nBytesRead == -1) {
+                // InputStream meets the end of file.
+                return null;
+            }
         }
         catch (IOException e) {
             logger.error(e.getMessage(), e);
@@ -270,6 +280,15 @@ public abstract class BaseLearner implements Learner {
 
         assert oneSample != null;
         return oneSample;
+    }
+
+    protected @Nonnull ArrayList<SamplePb.Sample> readBatch(int batch) {
+        ArrayList<SamplePb.Sample> result = new ArrayList<>();
+        for (int i = 0; i < batch; i++) {
+            result.add(readSampleFromTempFile());
+        }
+
+        return result;
     }
 
 //    protected void runIterativeTraining(@Nonnull Model model, boolean isMiniBatch, @Nonnegative final int iterations, @Nonnegative final long count, @Nonnull final ConversionState cvState) {
@@ -390,7 +409,6 @@ public abstract class BaseLearner implements Learner {
     public abstract BaseLearner fromByteArray(byte[] learnerBytes) throws InvalidProtocolBufferException;
 
     protected void finalizeTraining() {
-
     }
 
 //    protected void finalizeTraining() {

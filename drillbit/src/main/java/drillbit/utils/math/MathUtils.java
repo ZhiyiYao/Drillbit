@@ -24,6 +24,27 @@ public class MathUtils {
         return d;
     }
 
+    public static ArrayList<Double> softmax(@Nonnull final ArrayList<Double> ds) {
+        double sumExp = 0;
+        ArrayList<Double> results = new ArrayList<>();
+        for (Double d : ds) {
+            double result = Math.exp(-Math.max(Math.min(d, 23.d), -23.d));
+            results.add(result);
+            sumExp += result;
+        }
+
+        for (int i = 0; i < results.size(); i++) {
+            results.set(i, results.get(i) / sumExp);
+        }
+
+        return results;
+    }
+
+    public static double logistic(@Nonnull final double d) {
+        double d1 = Math.max(Math.min(d, 23.d), -23.d);
+        return 1.d / (1.d + Math.exp(-d1));
+    }
+
     public static double square(final double d) {
         return d * d;
     }
@@ -66,6 +87,21 @@ public class MathUtils {
         for (int i = 0; i < x.length; i++) {
             if (x[i] > m) {
                 m = x[i];
+                which = i;
+            }
+        }
+
+        return which;
+    }
+
+    public static int whichMax(ArrayList<Double> x) {
+        double m = Double.NEGATIVE_INFINITY;
+        int which = 0;
+
+        for (int i = 0; i < x.size(); i++) {
+            double xi = x.get(i);
+            if (xi > m) {
+                m = xi;
                 which = i;
             }
         }
@@ -282,5 +318,15 @@ public class MathUtils {
         }
 
         return y;
+    }
+
+
+    public static double sign(final double x) {
+        if (x < 0.d) {
+            return -1.d;
+        } else if (x > 0.d) {
+            return 1.d;
+        }
+        return 0; // 0 or NaN
     }
 }

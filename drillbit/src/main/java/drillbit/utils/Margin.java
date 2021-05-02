@@ -3,12 +3,12 @@ package drillbit.utils;
 public final class Margin {
 
     private final double correctScore;
-    private final Object maxIncorrectLabel;
+    private final String maxIncorrectLabel;
     private final double maxIncorrectScore;
 
     private double variance;
 
-    public Margin(double correctScore, Object maxIncorrectLabel, double maxIncorrectScore) {
+    public Margin(double correctScore, String maxIncorrectLabel, double maxIncorrectScore) {
         this.correctScore = correctScore;
         this.maxIncorrectLabel = maxIncorrectLabel;
         this.maxIncorrectScore = maxIncorrectScore;
@@ -27,7 +27,7 @@ public final class Margin {
         return correctScore;
     }
 
-    public Object getMaxIncorrectLabel() {
+    public String getMaxIncorrectLabel() {
         return maxIncorrectLabel;
     }
 

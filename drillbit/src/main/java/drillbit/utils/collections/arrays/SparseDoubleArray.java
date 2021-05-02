@@ -18,9 +18,9 @@
  */
 package drillbit.utils.collections.arrays;
 
-import hivemall.utils.lang.ArrayUtils;
-import hivemall.utils.lang.Preconditions;
-import matrix4j.vector.VectorProcedure;
+import drillbit.utils.lang.ArrayUtils;
+import drillbit.utils.common.Conditions;
+import drillbit.utils.math.VectorOperation;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
@@ -182,17 +182,17 @@ public final class SparseDoubleArray implements DoubleArray {
         for (int i = 0; i < mSize; i++) {
             int k = mKeys[i];
             double v = mValues[i];
-            Preconditions.checkArgument(k >= 0, "Negative key is not allowed for toArray(): " + k);
+            Conditions.checkArgument(k >= 0, "Negative key is not allowed for toArray(): " + k);
             array[k] = v;
         }
         return array;
     }
 
-    public void each(@Nonnull final VectorProcedure procedure) {
+    public void each(@Nonnull final VectorOperation operation) {
         for (int i = 0; i < mSize; i++) {
             int k = mKeys[i];
             double v = mValues[i];
-            procedure.apply(k, v);
+            operation.apply(k, v);
         }
     }
 

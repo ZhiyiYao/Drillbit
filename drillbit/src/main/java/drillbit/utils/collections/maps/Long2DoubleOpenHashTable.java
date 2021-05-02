@@ -18,7 +18,7 @@
  */
 package drillbit.utils.collections.maps;
 
-import hivemall.utils.math.Primes;
+import drillbit.utils.math.Primes;
 
 import javax.annotation.Nonnull;
 import java.io.Externalizable;

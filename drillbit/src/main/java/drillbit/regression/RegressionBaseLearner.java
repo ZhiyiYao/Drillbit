@@ -3,11 +3,8 @@ package drillbit.regression;
 import com.google.protobuf.InvalidProtocolBufferException;
 import drillbit.BaseLearner;
 import drillbit.FeatureValue;
-import drillbit.TrainWeights;
 import drillbit.optimizer.ConversionState;
 import drillbit.optimizer.LossFunctions;
-import drillbit.parameter.DenseWeights;
-import drillbit.parameter.SparseWeights;
 import drillbit.parameter.Weights;
 import drillbit.utils.parser.StringParser;
 import org.apache.commons.cli.CommandLine;
@@ -20,7 +17,6 @@ import java.util.ArrayList;
 public class RegressionBaseLearner extends BaseLearner {
     // Model
     protected Weights weights;
-    protected int count;
 
     // For model storage and allocate
     protected boolean dense;
@@ -81,8 +77,7 @@ public class RegressionBaseLearner extends BaseLearner {
         }
         cvState = new ConversionState(chkCv, cvRate);
 
-        weights = createModel(dense, dims);
-        count = 0;
+        weights = createWeights(dense, dims);
 
         return cl;
     }
@@ -138,24 +133,12 @@ public class RegressionBaseLearner extends BaseLearner {
     }
 
     @Override
-    public void add(@Nonnull String feature, @Nonnull String target, @Nonnull String commandLine) {
-        if (!optionProcessed) {
-            CommandLine cl = parseOptions(commandLine);
-            processOptions(cl);
-            optionProcessed = true;
-        }
-
+    public void add(@Nonnull String feature, @Nonnull String target) {
         ArrayList<FeatureValue> featureValues = parseFeatureList(feature);
         checkTargetValue(target);
-        double targetValue = StringParser.parseDouble(target, 0.d);
-
-        count++;
-        train(featureValues, targetValue);
-    }
-
-    @Override
-    public void add(@Nonnull String feature, @Nonnull String target) {
-        add(feature, target, "");
+        synchronized (outputStream) {
+            writeSampleToTempFile(featureValues, target);
+        }
     }
 
     @Override

@@ -13,11 +13,11 @@ import org.apache.drill.exec.expr.holders.VarCharHolder;
 import javax.inject.Inject;
 
 @FunctionTemplate(
-        name = "train_regression",
-        scope = FunctionTemplate.FunctionScope.POINT_AGGREGATE,
-        nulls = FunctionTemplate.NullHandling.INTERNAL
+        name = "train_classification",
+        nulls = FunctionTemplate.NullHandling.INTERNAL,
+        scope = FunctionTemplate.FunctionScope.POINT_AGGREGATE
 )
-public class GeneralRegressionWithCommandLine implements DrillAggFunc {
+public class TrainGeneralClassificationWithCommandLine implements DrillAggFunc {
     @Param
     NullableVarCharHolder featureHolder;
 
@@ -36,10 +36,15 @@ public class GeneralRegressionWithCommandLine implements DrillAggFunc {
     @Workspace
     ObjectHolder learnerHolder;
 
+    @Workspace
+    ObjectHolder optionsHolder;
+
     @Override
     public void setup() {
         learnerHolder = new ObjectHolder();
-        learnerHolder.obj = new drillbit.regression.GeneralRegressionLearner();
+        learnerHolder.obj = new drillbit.classification.GeneralClassificationLearner();
+        optionsHolder = new ObjectHolder();
+        optionsHolder.obj = "";
     }
 
     @Override
@@ -49,23 +54,25 @@ public class GeneralRegressionWithCommandLine implements DrillAggFunc {
         }
         String feature = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(featureHolder.start, featureHolder.end, featureHolder.buffer);
         String target = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(targetHolder.start, targetHolder.end, targetHolder.buffer);
-        String commandLine = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(commandLineHolder.start, commandLineHolder.end, commandLineHolder.buffer);
-        ((drillbit.regression.GeneralRegressionLearner) learnerHolder.obj).add(feature, target, commandLine);
+        if (optionsHolder.obj == "") {
+            optionsHolder.obj = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(commandLineHolder.start, commandLineHolder.end, commandLineHolder.buffer);
+        }
+        ((drillbit.classification.GeneralClassificationLearner) learnerHolder.obj).add(feature, target);
     }
 
     @Override
     public void output() {
-        byte[] modelBytes = ((drillbit.regression.GeneralRegressionLearner) learnerHolder.obj).output();
+        byte[] modelBytes = ((drillbit.classification.GeneralClassificationLearner) learnerHolder.obj).output((String) optionsHolder.obj);
 
-        modelHolder.isSet = 1;
         buffer = modelHolder.buffer = buffer.reallocIfNeeded(modelBytes.length);
         modelHolder.start = 0;
         modelHolder.end = modelBytes.length;
         modelHolder.buffer.setBytes(0, modelBytes);
+        modelHolder.isSet = 1;
     }
 
     @Override
     public void reset() {
-        ((drillbit.regression.GeneralRegressionLearner) learnerHolder.obj).reset();
+        ((drillbit.classification.GeneralClassificationLearner) learnerHolder.obj).reset();
     }
 }

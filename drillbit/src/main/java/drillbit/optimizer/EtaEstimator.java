@@ -9,26 +9,26 @@ import javax.annotation.Nullable;
 import org.apache.commons.cli.CommandLine;
 
 public abstract class EtaEstimator {
-    public static final float DEFAULT_ETA0 = 0.1f;
-    public static final float DEFAULT_ETA = 0.3f;
+    public static final double DEFAULT_ETA0 = 0.1d;
+    public static final double DEFAULT_ETA = 0.3d;
     public static final double DEFAULT_POWER_T = 0.1d;
 
-    protected final float eta0;
+    protected final double eta0;
 
-    public EtaEstimator(float eta0) {
+    public EtaEstimator(double eta0) {
         this.eta0 = eta0;
     }
 
     @Nonnull
     public abstract String typeName();
 
-    public float eta0() {
+    public double eta0() {
         return eta0;
     }
 
-    public abstract float eta(long t);
+    public abstract double eta(long t);
 
-    public void update(@Nonnegative float multiplier) {}
+    public void update(@Nonnegative double multiplier) {}
 
     public void getHyperParameters(@Nonnull Map<String, Object> hyperParams) {
         hyperParams.put("eta", typeName());
@@ -37,7 +37,7 @@ public abstract class EtaEstimator {
 
     public static final class FixedEtaEstimator extends EtaEstimator {
 
-        public FixedEtaEstimator(float eta) {
+        public FixedEtaEstimator(double eta) {
             super(eta);
         }
 
@@ -47,7 +47,7 @@ public abstract class EtaEstimator {
         }
 
         @Override
-        public float eta(long t) {
+        public double eta(long t) {
             return eta0;
         }
 
@@ -60,12 +60,12 @@ public abstract class EtaEstimator {
 
     public static final class SimpleEtaEstimator extends EtaEstimator {
 
-        private final float finalEta;
+        private final double finalEta;
         private final double total_steps;
 
-        public SimpleEtaEstimator(float eta0, long total_steps) {
+        public SimpleEtaEstimator(double eta0, long total_steps) {
             super(eta0);
-            this.finalEta = (float) (eta0 / 2.d);
+            this.finalEta = (double) (eta0 / 2.d);
             this.total_steps = total_steps;
         }
 
@@ -75,11 +75,11 @@ public abstract class EtaEstimator {
         }
 
         @Override
-        public float eta(final long t) {
+        public double eta(final long t) {
             if (t > total_steps) {
                 return finalEta;
             }
-            return (float) (eta0 / (1.d + (t / total_steps)));
+            return eta0 / (1.d + (t / total_steps));
         }
 
         @Override
@@ -99,7 +99,7 @@ public abstract class EtaEstimator {
 
         private final double power_t;
 
-        public InvscalingEtaEstimator(float eta0, double power_t) {
+        public InvscalingEtaEstimator(double eta0, double power_t) {
             super(eta0);
             this.power_t = power_t;
         }
@@ -110,8 +110,8 @@ public abstract class EtaEstimator {
         }
 
         @Override
-        public float eta(final long t) {
-            return (float) (eta0 / Math.pow(t, power_t));
+        public double eta(final long t) {
+            return eta0 / Math.pow(t, power_t);
         }
 
         @Override
@@ -131,9 +131,9 @@ public abstract class EtaEstimator {
      */
     public static final class AdjustingEtaEstimator extends EtaEstimator {
 
-        private float eta;
+        private double eta;
 
-        public AdjustingEtaEstimator(float eta) {
+        public AdjustingEtaEstimator(double eta) {
             super(eta);
             this.eta = eta;
         }
@@ -144,13 +144,13 @@ public abstract class EtaEstimator {
         }
 
         @Override
-        public float eta(long t) {
+        public double eta(long t) {
             return eta;
         }
 
         @Override
-        public void update(@Nonnegative float multiplier) {
-            float newEta = eta * multiplier;
+        public void update(@Nonnegative double multiplier) {
+            double newEta = eta * multiplier;
             if (!isFinite(newEta)) {
                 // avoid NaN or INFINITY
                 return;
@@ -175,24 +175,24 @@ public abstract class EtaEstimator {
     }
 
     @Nonnull
-    public static EtaEstimator get(@Nullable CommandLine cl, float defaultEta0)
+    public static EtaEstimator get(@Nullable CommandLine cl, double defaultEta0)
             throws IllegalArgumentException {
         if (cl == null) {
             return new InvscalingEtaEstimator(defaultEta0, DEFAULT_POWER_T);
         }
 
         if (cl.hasOption("boldDriver")) {
-            float eta = parseFloat(cl.getOptionValue("eta"), DEFAULT_ETA);
+            double eta = parsedouble(cl.getOptionValue("eta"), DEFAULT_ETA);
             return new AdjustingEtaEstimator(eta);
         }
 
         String etaValue = cl.getOptionValue("eta");
         if (etaValue != null) {
-            float eta = Float.parseFloat(etaValue);
+            double eta = Double.parseDouble(etaValue);
             return new FixedEtaEstimator(eta);
         }
 
-        float eta0 = parseFloat(cl.getOptionValue("eta0"), defaultEta0);
+        double eta0 = parsedouble(cl.getOptionValue("eta0"), defaultEta0);
         if (cl.hasOption("t")) {
             long t = Long.parseLong(cl.getOptionValue("t"));
             return new SimpleEtaEstimator(eta0, t);
@@ -205,7 +205,7 @@ public abstract class EtaEstimator {
     @Nonnull
     public static EtaEstimator get(@Nonnull final Map<String, String> options)
             throws IllegalArgumentException {
-        final float eta0 = parseFloat(options.get("eta0"), DEFAULT_ETA0);
+        final double eta0 = parsedouble(options.get("eta0"), DEFAULT_ETA0);
         final double power_t = parseDouble(options.get("power_t"), DEFAULT_POWER_T);
 
         final String etaScheme = options.get("eta");
@@ -229,18 +229,18 @@ public abstract class EtaEstimator {
             return new InvscalingEtaEstimator(eta0, power_t);
         } else {
             if (isNumber(etaScheme)) {
-                float eta = Float.parseFloat(etaScheme);
+                double eta = Double.parseDouble(etaScheme);
                 return new FixedEtaEstimator(eta);
             }
             throw new IllegalArgumentException("Unsupported ETA name: " + etaScheme);
         }
     }
     
-    private static float parseFloat(final String s, final float defaultValue) {
+    private static double parsedouble(final String s, final double defaultValue) {
         if (s == null) {
             return defaultValue;
         }
-        return Float.parseFloat(s);
+        return Double.parseDouble(s);
     }
 
     private static double parseDouble(final String s, final double defaultValue) {

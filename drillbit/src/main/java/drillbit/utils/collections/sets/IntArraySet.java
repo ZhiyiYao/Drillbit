@@ -18,7 +18,7 @@
  */
 package drillbit.utils.collections.sets;
 
-import hivemall.utils.lang.ArrayUtils;
+import drillbit.utils.lang.ArrayUtils;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;

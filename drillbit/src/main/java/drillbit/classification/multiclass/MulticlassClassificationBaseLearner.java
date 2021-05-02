@@ -8,23 +8,27 @@ import drillbit.TrainWeights;
 import drillbit.parameter.*;
 import drillbit.optimizer.LossFunctions;
 import drillbit.protobuf.ClassificationPb;
+import drillbit.protobuf.SamplePb;
+import drillbit.utils.math.MathUtils;
 import drillbit.utils.parser.StringParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Arrays;
+import java.util.Objects;
 
 /*
-    One to all multiclass classifier.
+    One-to-all multiclass classifier.
  */
 public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
     // Models
-    protected ConcurrentHashMap<String, Weights> label2model;
-    protected long count;
+    protected ArrayList<Weights> models;
+    protected ArrayList<String> labels;
+    protected int nClasses;
 
     // For model storage and allocate
     protected boolean dense;
@@ -32,6 +36,14 @@ public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
 
     // For iteratively training
     private int iters;
+
+    // Options for predict
+    protected boolean returnProba;
+
+    public MulticlassClassificationBaseLearner() {
+        super();
+        returnProba = false;
+    }
 
     @Override
     @Nonnull
@@ -41,8 +53,16 @@ public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
         opts.addOption("dense", "dense_model", false, "Use dense model or not");
         opts.addOption("dims", "feature_dimensions", true, "The dimension of model [default: 16777216 (2^24)]");
         opts.addOption("iters", "iterations", true, "number of iterations");
-        //TODO: Is conversion check suitable for multiclass classification?
-        //TODO: Add conversion check here if so.
+
+        return opts;
+    }
+
+    @Override
+    @Nonnull
+    public Options getPredictOptions() {
+        Options opts = super.getPredictOptions();
+
+        opts.addOption("return_proba", false, "Return probability for each class");
 
         return opts;
     }
@@ -53,52 +73,69 @@ public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
 
         dense = cl.hasOption("dense");
 
-        if (cl.hasOption("dims")) {
-            dims = StringParser.parseInt(cl.getOptionValue("dims"), -1);
-        }
+        dims = StringParser.parseInt(cl.getOptionValue("dims"), -1);
         if (dims < 0) {
             dims = dense ? DEFAULT_DENSE_DIMS : DEFAULT_SPARSE_DIMS;
         }
 
-        if (cl.hasOption("iters")) {
-            iters = StringParser.parseInt(cl.getOptionValue("iters"), 1);
-        }
-        else {
-            iters = 1;
-        }
-
+        iters = StringParser.parseInt(cl.getOptionValue("iters"), 1);
         if (iters < 1) {
             throw new IllegalArgumentException(String.format("invalid iterations of %d", iters));
         }
 
-        label2model = new ConcurrentHashMap<>();
+        labels = new ArrayList<>();
+        models = new ArrayList<>();
 
         return cl;
     }
 
     @Override
-    public void add(@Nonnull final String feature, @Nonnull final String target, @Nonnull final String commandLine) {
-        if (!optionProcessed) {
-            // parse commandline value here.
-            CommandLine cl = parseOptions(commandLine);
-            processOptions(cl);
-            optionProcessed = true;
-        }
+    public CommandLine processPredictOptions(@Nonnull final CommandLine cl) {
+        super.processPredictOptions(cl);
 
-        ArrayList<String> featureValues = StringParser.parseArray(feature);
-        ArrayList<FeatureValue> features = new ArrayList<>();
-        assert featureValues != null;
-        for (String featureValue : featureValues) {
-            features.add(StringParser.parseFeature(featureValue));
-        }
+        returnProba = cl.hasOption("return_proba");
 
+        return cl;
+    }
+
+    @Override
+    public void add(@Nonnull final String feature, @Nonnull final String target) {
+        ArrayList<FeatureValue> featureVector = parseFeatureList(feature);
         checkTargetValue(target);
-
-        count++;
-        train(features, target);
+        writeSampleToTempFile(featureVector, target);
     }
 
     protected abstract void train(@Nonnull final ArrayList<FeatureValue> features, @Nonnull final String actual_label);
+
+    @Override
+    protected void train(@Nonnull ArrayList<FeatureValue> featureVector, @Nonnull double target) {
+        // Double target value is unsupported for multiclass tasks.
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    protected void update(@Nonnull ArrayList<FeatureValue> features, double target, double predicted) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Object predict(@Nonnull String features, @Nonnull String options) {
+        if (!optionForPredictProcessed) {
+            CommandLine cl = parsePredictOptions(options);
+            processPredictOptions(cl);
+            optionForPredictProcessed = true;
+        }
+
+        ArrayList<FeatureValue> featureVector = parseFeatureList(features);
+
+        if (returnProba) {
+            PredictionResult result = classify(featureVector);
+            return result.getLabel();
+        }
+        else {
+            return scoresToString(calcScoreForAllClasses(featureVector));
+        }
+    }
 
     protected final double calcVariance(@Nonnull final ArrayList<FeatureValue> features) {
         double variance = 0.d;
@@ -135,18 +172,36 @@ public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
         return new PredictionResult(score).variance(variance);
     }
 
+    @Nonnull
+    protected String scoresToString(@Nonnull final ArrayList<Double> scores) {
+        if (scores.size() == nClasses) {
+            throw new IllegalArgumentException("Length of input scores does not match number of classes.");
+        }
+
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("[");
+        for (int i = 0; i < nClasses; i++) {
+            builder.append(labels.get(i));
+            builder.append(": ");
+            builder.append(scores.get(i));
+            builder.append(", ");
+        }
+        builder.append("]");
+
+        return builder.toString();
+    }
+
     @Override
     public final byte[] toByteArray() throws IllegalArgumentException, UnsupportedOperationException {
-        logger.info("Trained " + label2model.size() + " classification model using " + count + " training examples");
-
         ClassificationPb.MulticlassClassifier.Builder builder = ClassificationPb.MulticlassClassifier.newBuilder();
         ClassificationPb.MulticlassClassifier.LabelAndWeights.Builder labelAndWeightsBuilder = ClassificationPb.MulticlassClassifier.LabelAndWeights.newBuilder();
 
         builder.setDense(dense);
         builder.setDims(dims);
-        for (Map.Entry<String, Weights> entry : label2model.entrySet()) {
+        for (int i = 0; i < nClasses; i++) {
             labelAndWeightsBuilder.clear();
-            builder.addLabel2Weights(labelAndWeightsBuilder.setLabel(entry.getKey()).setWeights(ByteString.copyFrom(entry.getValue().toByteArray())).build());
+            builder.addLabel2Weights(labelAndWeightsBuilder.setLabel(labels.get(i)).setWeights(ByteString.copyFrom(Objects.requireNonNull(models.get(i).toByteArray()))).build());
         }
 
         return builder.build().toByteArray();
@@ -158,13 +213,15 @@ public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
 
         dense = multiclassClassifier.getDense();
         dims = multiclassClassifier.getDims();
-        label2model = new ConcurrentHashMap<>();
+        labels.clear();
+        models.clear();
         for (ClassificationPb.MulticlassClassifier.LabelAndWeights labelAndWeights : multiclassClassifier.getLabel2WeightsList()) {
+            labels.add(labelAndWeights.getLabel());
             if (dense) {
-                label2model.put(labelAndWeights.getLabel(), (new DenseWeights(dims, TrainWeights.WeightType.Single)).fromByteArray(labelAndWeights.getWeights().toByteArray()));
+                models.add((new DenseWeights(dims, TrainWeights.WeightType.Single)).fromByteArray(labelAndWeights.getWeights().toByteArray()));
             }
             else {
-                label2model.put(labelAndWeights.getLabel(), (new SparseWeights(dims, TrainWeights.WeightType.Single)).fromByteArray(labelAndWeights.getWeights().toByteArray()));
+                models.add((new SparseWeights(dims, TrainWeights.WeightType.Single)).fromByteArray(labelAndWeights.getWeights().toByteArray()));
             }
         }
 
@@ -173,27 +230,126 @@ public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
 
     @Override
     protected void finalizeTraining() {
+        runIterativeTraining();
+    }
+
+    void runIterativeTraining() {
+        try {
+            outputStream.close();
+        }
+        catch (IOException e) {
+            logger.error(e.getMessage(), e);
+        }
+
+        try {
+            for (int iter = 0; iter < iters; iter++) {
+                while (true) {
+                    SamplePb.Sample sample = readSampleFromTempFile();
+                    if (sample == null) {
+                        break;
+                    }
+                    int featureVectorSize = sample.getFeatureList().size();
+                    String target = sample.getTarget();
+                    ArrayList<FeatureValue> featureValueVector = new ArrayList<>();
+                    for (int j = 0; j < featureVectorSize; j++) {
+                        featureValueVector.add(StringParser.parseFeature(sample.getFeature(j)));
+                    }
+
+                    int index = getLabelIndex(target);
+                    if (index == -1) {
+                        labels.add(target);
+                        models.add(createWeights(dense, dims));
+                        nClasses++;
+                    }
+
+                    train(featureValueVector, target);
+                }
+
+                try {
+                    inputStream.close();
+                }
+                catch (IOException e) {
+                    logger.error("temp file close failed.");
+                    logger.error(e.getMessage(), e);
+                }
+                finally {
+                    inputStream = null;
+                }
+            }
+        } catch (Throwable e) {
+            throw new IllegalArgumentException("Exception caused in the iterative training", e);
+        } finally {
+            // delete the temporary file and release resources
+            File file = new File(String.valueOf(path));
+            file.delete();
+        }
+    }
+
+    protected final PredictionResult classify(@Nonnull final ArrayList<FeatureValue> features) {
+        ArrayList<Double> scores = calcScoreForAllClasses(features);
+        int index = MathUtils.whichMax(scores);
+
+        String maxScoredLabel = labels.get(index);
+        double maxScore = scores.get(index);
+
+        return new PredictionResult(maxScoredLabel, maxScore);
+    }
+
+    protected ArrayList<Double> calcScoreForAllClasses(@Nonnull final ArrayList<FeatureValue> features) {
+        ArrayList<Double> scores = new ArrayList<>();
+        for (Weights weights : models) {
+            // Compute score for each class.
+            scores.add(calcScore(weights, features));
+        }
+
+        return scores;
+    }
+
+    protected double calcScore(@Nonnull final Weights weights, @Nonnull final ArrayList<FeatureValue> features) {
+        double score = 0.d;
+        for (FeatureValue f : features) {// a += w[i] * x[i]
+            if (f == null) {
+                continue;
+            }
+            final String k = f.getFeature();
+            final double v = f.getValueAsDouble();
+
+            double old_w = weights.getWeight(k);
+            if (old_w != 0.d) {
+                score += (old_w * v);
+            }
+        }
+        return score;
     }
 
     @Override
-    protected void checkTargetValue(String target) throws IllegalArgumentException {
+    public final void checkTargetValue(String target) throws IllegalArgumentException {
+        // Do nothing for multiclass classification task.
+    }
 
+    protected int getLabelIndex(String label) {
+        for (int i = 0; i < labels.size(); i++) {
+            if (label.equals(labels.get(i))) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     @Override
-    public void checkLossFunction(LossFunctions.LossFunction lossFunction) throws IllegalArgumentException {
-
+    public final void checkLossFunction(LossFunctions.LossFunction lossFunction) throws IllegalArgumentException {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public LossFunctions.LossType getDefaultLossType() {
-        return null;
+    public final LossFunctions.LossType getDefaultLossType() {
+        throw new UnsupportedOperationException();
     }
 
-    @NotNull
+    @Nonnull
     @Override
-    protected String getLossOptionDescription() {
-        return null;
+    public final String getLossOptionDescription() {
+        throw new UnsupportedOperationException();
     }
-
 }

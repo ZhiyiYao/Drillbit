@@ -18,7 +18,7 @@
  */
 package drillbit.utils.collections;
 
-import hivemall.utils.lang.Preconditions;
+import drillbit.utils.common.Conditions;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -82,7 +82,7 @@ public final class RingBuffer<T> implements Iterable<T> {
     }
 
     public void toArray(@Nonnull final T[] dst, final boolean fifo) {
-        Preconditions.checkArgument(dst.length == capacity);
+        Conditions.checkArgument(dst.length == capacity);
 
         if (fifo) {
             int curr = isFull() ? head : 0;

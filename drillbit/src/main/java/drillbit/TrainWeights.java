@@ -180,12 +180,11 @@ public final class TrainWeights {
     }
 
     public static class SingleWeight extends ExtendedWeight {
-
-        SingleWeight() {
+        public SingleWeight() {
             super(0.d, 0);
         }
 
-        SingleWeight(double weight) {
+        public SingleWeight(double weight) {
             super(weight, 0);
         }
 
@@ -215,8 +214,7 @@ public final class TrainWeights {
     }
 
     public static class WeightWithCovar extends ExtendedWeight {
-
-        WeightWithCovar() {
+        public WeightWithCovar() {
             super(0.d, 1);
             setCovar(1.d);
         }
@@ -226,7 +224,7 @@ public final class TrainWeights {
             setCovar(1.d);
         }
 
-        WeightWithCovar(double weight, double covar) {
+        public WeightWithCovar(double weight, double covar) {
             super(weight, 1);
             setCovar(covar);
         }
@@ -267,14 +265,13 @@ public final class TrainWeights {
     }
 
     public static class WeightWithMAndV extends ExtendedWeight {
-
-        WeightWithMAndV(double weight) {
+        public WeightWithMAndV(double weight) {
             super(weight, 2);
             setM(0.d);
             setV(0.d);
         }
 
-        WeightWithMAndV(double weight, double M, double V) {
+        public WeightWithMAndV(double weight, double M, double V) {
             super(weight, 2);
             setM(M);
             setV(V);
@@ -325,8 +322,7 @@ public final class TrainWeights {
     }
 
     public static class WeightWithDelta extends ExtendedWeight {
-
-        WeightWithDelta(double weight) {
+        public WeightWithDelta(double weight) {
             super(weight, 1);
             setDelta(0.d);
         }

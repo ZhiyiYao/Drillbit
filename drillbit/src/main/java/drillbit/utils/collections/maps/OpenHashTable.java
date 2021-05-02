@@ -18,10 +18,10 @@
  */
 package drillbit.utils.collections.maps;
 
-import hivemall.utils.collections.IMapIterator;
-import hivemall.utils.lang.Copyable;
-import hivemall.utils.lang.Preconditions;
-import hivemall.utils.math.Primes;
+import drillbit.utils.collections.IMapIterator;
+import drillbit.utils.lang.Copyable;
+import drillbit.utils.common.Conditions;
+import drillbit.utils.math.Primes;
 
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnegative;
@@ -124,7 +124,7 @@ public final class OpenHashTable<K, V> implements Externalizable {
     }
 
     public V put(@CheckForNull final K key, @Nullable final V value) {
-        Preconditions.checkNotNull(key);
+        Conditions.checkNotNull(key);
 
         final int hash = keyHash(key);
         int keyLength = _keys.length;
@@ -208,7 +208,7 @@ public final class OpenHashTable<K, V> implements Externalizable {
     }
 
     protected int findKey(@CheckForNull final K key) {
-        Preconditions.checkNotNull(key);
+        Conditions.checkNotNull(key);
 
         final K[] keys = _keys;
         final byte[] states = _states;

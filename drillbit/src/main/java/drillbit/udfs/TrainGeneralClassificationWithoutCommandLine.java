@@ -8,6 +8,7 @@ import org.apache.drill.exec.expr.annotations.Param;
 import org.apache.drill.exec.expr.annotations.Workspace;
 import org.apache.drill.exec.expr.holders.NullableVarCharHolder;
 import org.apache.drill.exec.expr.holders.ObjectHolder;
+import org.apache.drill.exec.expr.holders.VarCharHolder;
 
 import javax.inject.Inject;
 
@@ -16,7 +17,7 @@ import javax.inject.Inject;
         nulls = FunctionTemplate.NullHandling.INTERNAL,
         scope = FunctionTemplate.FunctionScope.POINT_AGGREGATE
 )
-public class GeneralClassificationWithoutCommandLine implements DrillAggFunc {
+public class TrainGeneralClassificationWithoutCommandLine implements DrillAggFunc {
     @Param
     NullableVarCharHolder featureHolder;
 
@@ -36,7 +37,6 @@ public class GeneralClassificationWithoutCommandLine implements DrillAggFunc {
     public void setup() {
         learnerHolder = new ObjectHolder();
         learnerHolder.obj = new drillbit.classification.GeneralClassificationLearner();
-        System.out.println(learnerHolder.obj);
     }
 
     @Override
@@ -51,13 +51,13 @@ public class GeneralClassificationWithoutCommandLine implements DrillAggFunc {
 
     @Override
     public void output() {
-        byte[] modelBytes = ((drillbit.classification.GeneralClassificationLearner) learnerHolder.obj).output();
+        byte[] modelBytes = ((drillbit.classification.GeneralClassificationLearner) learnerHolder.obj).output("");
 
-        modelHolder.isSet = 1;
         buffer = modelHolder.buffer = buffer.reallocIfNeeded(modelBytes.length);
         modelHolder.start = 0;
         modelHolder.end = modelBytes.length;
         modelHolder.buffer.setBytes(0, modelBytes);
+        modelHolder.isSet = 1;
     }
 
     @Override

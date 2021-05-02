@@ -12,11 +12,11 @@ import org.apache.drill.exec.expr.holders.ObjectHolder;
 import javax.inject.Inject;
 
 @FunctionTemplate(
-        name = "train_regression",
+        name = "train_multiclass_confidence_weighted_classification",
         scope = FunctionTemplate.FunctionScope.POINT_AGGREGATE,
         nulls = FunctionTemplate.NullHandling.INTERNAL
 )
-public class GeneralRegressionWithoutCommandLine implements DrillAggFunc {
+public class TrainMulticlassConfidenceWeightedClassificationWithoutCommandLine implements DrillAggFunc {
     @Param
     NullableVarCharHolder featureHolder;
 
@@ -35,7 +35,7 @@ public class GeneralRegressionWithoutCommandLine implements DrillAggFunc {
     @Override
     public void setup() {
         learnerHolder = new ObjectHolder();
-        learnerHolder.obj = new drillbit.regression.GeneralRegressionLearner();
+        learnerHolder.obj = new drillbit.classification.multiclass.MulticlassConfidenceWeightedClassificationLearner();
     }
 
     @Override
@@ -45,22 +45,22 @@ public class GeneralRegressionWithoutCommandLine implements DrillAggFunc {
         }
         String feature = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(featureHolder.start, featureHolder.end, featureHolder.buffer);
         String target = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(targetHolder.start, targetHolder.end, targetHolder.buffer);
-        ((drillbit.regression.GeneralRegressionLearner) learnerHolder.obj).add(feature, target);
+        ((drillbit.classification.multiclass.MulticlassConfidenceWeightedClassificationLearner) learnerHolder.obj).add(feature, target);
     }
 
     @Override
     public void output() {
-        byte[] modelBytes = ((drillbit.regression.GeneralRegressionLearner) learnerHolder.obj).output();
+        byte[] modelBytes = ((drillbit.classification.multiclass.MulticlassConfidenceWeightedClassificationLearner) learnerHolder.obj).output("");
 
-        modelHolder.isSet = 1;
         buffer = modelHolder.buffer = buffer.reallocIfNeeded(modelBytes.length);
         modelHolder.start = 0;
         modelHolder.end = modelBytes.length;
         modelHolder.buffer.setBytes(0, modelBytes);
+        modelHolder.isSet = 1;
     }
 
     @Override
     public void reset() {
-        ((drillbit.regression.GeneralRegressionLearner) learnerHolder.obj).reset();
+        ((drillbit.classification.multiclass.MulticlassConfidenceWeightedClassificationLearner) learnerHolder.obj).reset();
     }
 }

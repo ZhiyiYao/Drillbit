@@ -18,7 +18,7 @@
  */
 package drillbit.utils.collections;
 
-import hivemall.utils.lang.Preconditions;
+import drillbit.utils.common.Conditions;
 
 import javax.annotation.Nonnull;
 import javax.annotation.concurrent.NotThreadSafe;
@@ -79,7 +79,7 @@ public final class DoubleRingBuffer implements Iterable<Double> {
     }
 
     public void toArray(@Nonnull final double[] dst, final boolean fifo) {
-        Preconditions.checkArgument(dst.length == capacity);
+        Conditions.checkArgument(dst.length == capacity);
 
         if (fifo) {
             int curr = isFull() ? head : 0;

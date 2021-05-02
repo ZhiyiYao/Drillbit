@@ -18,7 +18,7 @@
  */
 package drillbit.utils.collections.lists;
 
-import hivemall.utils.lang.ArrayUtils;
+import drillbit.utils.lang.ArrayUtils;
 
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;

@@ -1,6 +1,5 @@
 package drillbit.udfs;
 
-import drillbit.dataset.DatasetHelper;
 import io.netty.buffer.DrillBuf;
 import org.apache.drill.exec.expr.DrillSimpleFunc;
 import org.apache.drill.exec.expr.annotations.FunctionTemplate;
@@ -24,14 +23,14 @@ public class ExtractTargetFromFeatureAndTarget implements DrillSimpleFunc {
     NullableVarCharHolder feature;
 
     @Workspace
-    DatasetHelper.FeatureAndTargetHelper helper;
+    drillbit.dataset.DatasetHelper.FeatureAndTargetHelper helper;
 
     @Inject
     DrillBuf buffer;
 
     @Override
     public void setup() {
-        helper = new DatasetHelper.FeatureAndTargetHelper();
+        helper = new drillbit.dataset.DatasetHelper.FeatureAndTargetHelper();
     }
 
     @Override
