@@ -2,7 +2,7 @@ package drillbit.test;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import drillbit.classification.GeneralClassificationLearner;
-import drillbit.dataset.IrisDataset;
+import drillbit.data.IrisDataset;
 
 import java.util.ArrayList;
 

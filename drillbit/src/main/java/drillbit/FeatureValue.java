@@ -25,7 +25,11 @@ public final class FeatureValue {
         return feature;
     }
 
-    private FeatureValue(String f, Object v, FeatureType type) {
+    public void setFeature(String feature) {
+        this.feature = feature;
+    }
+
+    public FeatureValue(String f, Object v, FeatureType type) {
         feature = f;
         value = v;
         featureType = type;
@@ -127,8 +131,8 @@ public final class FeatureValue {
             s = s.substring(0, s.length() - 1);
         }
 
-        // numerical feature value.
         if (s.indexOf(':') != -1) {
+            // Numerical feature value.
             pos = s.indexOf(':');
             if (pos == 0) {
                 throw new IllegalArgumentException("Invalid numerical feature value representation: " + s);
@@ -137,8 +141,8 @@ public final class FeatureValue {
             value = StringParser.parseDouble(s.substring(pos + 1), 1.d);
             featureType = FeatureType.NUMERICAL;
         }
-        // categorical feature value.
         else if (s.indexOf('#') != -1){
+            // Categorical feature value.
             pos = s.indexOf('#');
             if (pos == 0) {
                 throw new IllegalArgumentException("Invalid categorical feature value representation: " + s);
@@ -147,11 +151,23 @@ public final class FeatureValue {
             value = s.substring(pos + 1);
             featureType = FeatureType.CATEGORICAL;
         }
-        // no delimiter, recognized as numerical feature value.
         else {
-            feature = s;
-            value = 1.d; // non zero weight.
-            featureType = FeatureType.NUMERICAL;
+            // No delimiter, recognized as numerical feature value.
+            try {
+                // For scalar values that have no feature.
+                double v = StringParser.parseDouble(s, Double.NaN);
+                feature = "";
+                value = v;
+            }
+            catch (NumberFormatException e) {
+                // For string features that have no value.
+                feature = s;
+                // Set weight to 1.
+                value = 1.d;
+            }
+            finally {
+                featureType = FeatureType.NUMERICAL;
+            }
         }
 
         return new FeatureValue(feature, value, featureType);

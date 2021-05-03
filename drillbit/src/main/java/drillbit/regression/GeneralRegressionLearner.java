@@ -285,12 +285,12 @@ public final class GeneralRegressionLearner extends BaseLearner {
             double xi = f.getValueAsDouble();
             double weight = weights.getWeight(feature);
             double gradient = dloss * xi;
-            final double new_weight = optimizer.update(feature, weight, loss, gradient);
-            if (new_weight == 0.d) {
+            final double newWeight = optimizer.update(feature, weight, loss, gradient);
+            if (newWeight == 0.d) {
                 weights.delete(feature);
                 continue;
             }
-            weights.setWeight(feature, new_weight);
+            weights.setWeight(feature, newWeight);
         }
     }
 
@@ -304,12 +304,12 @@ public final class GeneralRegressionLearner extends BaseLearner {
         for (ConcurrentHashMap.Entry<Object, DoubleAccumulator> e : accumulated.entrySet()) {
             Object feature = e.getKey();
             DoubleAccumulator v = e.getValue();
-            final double new_weight = v.get();
-            if (new_weight == 0.d) {
+            final double newWeight = v.get();
+            if (newWeight == 0.d) {
                 weights.delete(feature);
                 continue;
             }
-            weights.setWeight(feature, new_weight);
+            weights.setWeight(feature, newWeight);
         }
 
         accumulated.clear();

@@ -96,9 +96,9 @@ public class SoftmaxRegressionLearner extends MulticlassClassificationBaseLearne
             final Object x = f.getFeature();
             final double xi = f.getValueAsDouble();
 
-            double old_w = weights.getWeight(x);
-            double new_w = old_w + (coeff * xi);
-            weights.set(x, new TrainWeights.SingleWeight(new_w));
+            double oldW = weights.getWeight(x);
+            double newW = oldW + (coeff * xi);
+            weights.set(x, new TrainWeights.SingleWeight(newW));
         }
     }
 

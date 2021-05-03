@@ -9,10 +9,11 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public final class SparseWeights extends Weights {
-    private final ConcurrentHashMap<Object, TrainWeights.ExtendedWeight> weights;
+    private final ConcurrentHashMap<String, TrainWeights.ExtendedWeight> weights;
 
     public SparseWeights(int ndims, TrainWeights.WeightType weightType) {
         super(StorageType.Sparse, weightType);
@@ -26,7 +27,12 @@ public final class SparseWeights extends Weights {
 
     @Override
     public ConcurrentHashMap<Object, TrainWeights.ExtendedWeight> weightMap() {
-        return weights;
+        ConcurrentHashMap<Object, TrainWeights.ExtendedWeight> result = new ConcurrentHashMap<>();
+        for (Map.Entry<String, TrainWeights.ExtendedWeight> entry : weights.entrySet()) {
+            result.put(entry.getKey(), entry.getValue());
+        }
+
+        return result;
     }
 
     @Override
@@ -56,8 +62,8 @@ public final class SparseWeights extends Weights {
     @Nullable
     @Override
     public <T extends TrainWeights.ExtendedWeight> T get(@Nonnull final Object feature) {
-        if (weights.containsKey(feature)) {
-            TrainWeights.ExtendedWeight weight = weights.get(feature);
+        if (weights.containsKey((String) feature)) {
+            TrainWeights.ExtendedWeight weight = weights.get((String) feature);
             return (T) weight;
         }
         else {
@@ -67,7 +73,7 @@ public final class SparseWeights extends Weights {
 
     @Override
     public <T extends TrainWeights.ExtendedWeight> void set(@Nonnull final Object feature, @Nonnull T value) {
-        weights.put(feature, value);
+        weights.put((String) feature, value);
         size = weights.size();
     }
 

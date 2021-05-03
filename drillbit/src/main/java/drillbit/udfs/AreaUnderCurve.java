@@ -15,7 +15,7 @@ import org.apache.drill.exec.expr.holders.VarCharHolder;
         scope = FunctionTemplate.FunctionScope.POINT_AGGREGATE,
         nulls = FunctionTemplate.NullHandling.INTERNAL
 )
-public class GeneralAreaUnderCurve implements DrillAggFunc {
+public class AreaUnderCurve implements DrillAggFunc {
     @Param
     NullableVarCharHolder label;
 

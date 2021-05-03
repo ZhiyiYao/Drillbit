@@ -1,4 +1,4 @@
-package drillbit.dataset;
+package drillbit.data;
 
 public class DatasetHelper {
     public static class FeatureAndTargetHelper {

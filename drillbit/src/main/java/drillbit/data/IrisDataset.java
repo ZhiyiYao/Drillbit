@@ -1,4 +1,4 @@
-package drillbit.dataset;
+package drillbit.data;
 
 import drillbit.optimizer.OptimizerOptions;
 import drillbit.utils.common.Conditions;

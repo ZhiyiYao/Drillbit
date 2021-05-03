@@ -1,4 +1,4 @@
-package drillbit.dataset;
+package drillbit.data;
 
 public class TrainTestSampleSplitter {
     public static boolean judge(double rate) {

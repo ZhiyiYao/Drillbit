@@ -23,14 +23,14 @@ public class ExtractFeatureFromFeatureAndTarget implements DrillSimpleFunc {
     NullableVarCharHolder feature;
 
     @Workspace
-    drillbit.dataset.DatasetHelper.FeatureAndTargetHelper helper;
+    drillbit.data.DatasetHelper.FeatureAndTargetHelper helper;
 
     @Inject
     DrillBuf buffer;
 
     @Override
     public void setup() {
-        helper = new drillbit.dataset.DatasetHelper.FeatureAndTargetHelper();
+        helper = new drillbit.data.DatasetHelper.FeatureAndTargetHelper();
     }
 
     @Override

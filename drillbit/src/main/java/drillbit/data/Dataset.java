@@ -1,4 +1,4 @@
-package drillbit.dataset;
+package drillbit.data;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;

@@ -27,14 +27,14 @@ public class LoadIrisDatasetWithOptions implements DrillSimpleFunc {
     NullableVarCharHolder featureAndTarget;
 
     @Workspace
-    drillbit.dataset.IrisDataset dataset;
+    drillbit.data.IrisDataset dataset;
 
     @Inject
     DrillBuf buffer;
 
     @Override
     public void setup() {
-        dataset = new drillbit.dataset.IrisDataset();
+        dataset = new drillbit.data.IrisDataset();
     }
 
     @Override

@@ -22,7 +22,12 @@ public final class StringParser {
         if (s == null) {
             return defaultValue;
         }
-        return Integer.parseInt(s);
+        try {
+            return Integer.parseInt(s);
+        }
+        catch (NumberFormatException e) {
+            return defaultValue;
+        }
     }
 
     public static long parseLong(final String s, final long defaultValue) {
@@ -36,14 +41,24 @@ public final class StringParser {
         if (s == null) {
             return defaultValue;
         }
-        return Float.parseFloat(s);
+        try {
+            return Float.parseFloat(s);
+        }
+        catch (NumberFormatException e) {
+            return defaultValue;
+        }
     }
 
     public static double parseDouble(final String s, final double defaultValue) {
         if (s == null) {
             return defaultValue;
         }
-        return Double.parseDouble(s);
+        try {
+            return Double.parseDouble(s);
+        }
+        catch (NumberFormatException e) {
+            return defaultValue;
+        }
     }
 
     public static boolean parseBoolean(final String s, final boolean defaultValue) {
@@ -61,7 +76,11 @@ public final class StringParser {
             Collections.addAll(result, strings);
             return result;
         }
-        return null;
+        else {
+            ArrayList<String> result = new ArrayList<>();
+            result.add(s);
+            return result;
+        }
     }
 
     public static String[] parseList(final String s) {
