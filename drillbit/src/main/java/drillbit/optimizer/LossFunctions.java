@@ -507,8 +507,10 @@ public final class LossFunctions {
      */
     public static double logisticLoss(final double target, final double predicted) {
         if (predicted > -100.d) {
-            return target - MathUtils.logistic(predicted);
-        } else {
+            return target - predicted;
+        }
+        else {
+            System.out.println("Underflowed");
             return target;
         }
     }

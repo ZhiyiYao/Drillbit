@@ -77,9 +77,7 @@ public final class StringParser {
             return result;
         }
         else {
-            ArrayList<String> result = new ArrayList<>();
-            result.add(s);
-            return result;
+            return parseArray("[" + s + "]");
         }
     }
 

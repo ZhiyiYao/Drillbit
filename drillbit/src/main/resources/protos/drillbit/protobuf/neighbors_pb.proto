@@ -9,10 +9,8 @@ message KNeighborsClassifier {
   string metric = 4;
   string weight = 5;
   string algorithm = 6;
-  int32 leaf_size = 7;
-  int32 p = 8;
 
-  repeated LabelAndCoordinates label2Coordinates = 9;
+  repeated LabelAndCoordinates label2Coordinates = 7;
 
   message LabelAndCoordinates {
     string label = 1;

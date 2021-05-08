@@ -2,6 +2,7 @@ package drillbit;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import drillbit.neighbors.solver.SolverOptions;
 import drillbit.optimizer.*;
 import drillbit.parameter.DenseWeights;
 import drillbit.parameter.SparseWeights;
@@ -102,7 +103,7 @@ public abstract class BaseLearner implements Learner {
     public CommandLine parsePredictOptions(String optionValue) {
         String[] args = optionValue.split("\\s+");
         Options opts = getPredictOptions();
-        OptimizerOptions.setup(opts);
+        SolverOptions.setup(opts);
         opts.addOption("help", false, "Show function help");
 
         final CommandLine cl;
@@ -187,7 +188,7 @@ public abstract class BaseLearner implements Learner {
             logger.info(String.format("Build a dense model with initial with %d initial dimensions", dims));
             weights = new DenseWeights(dims, TrainWeights.WeightType.WithCovar);
         } else {
-            logger.info(String.format("Build a dense model with initial with %d initial dimensions", dims));
+            logger.info(String.format("Build a sparse model with initial with %d initial dimensions", dims));
             weights = new SparseWeights(dims, TrainWeights.WeightType.WithCovar);
         }
         return weights;

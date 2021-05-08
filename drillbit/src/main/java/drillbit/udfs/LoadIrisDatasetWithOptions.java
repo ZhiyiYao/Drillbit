@@ -44,7 +44,7 @@ public class LoadIrisDatasetWithOptions implements DrillSimpleFunc {
             dataset.processOptions(optionValue);
         }
 
-        String oneSample = dataset.loadOneSample();;
+        String oneSample = dataset.loadOneSample();
 
         featureAndTarget.isSet = 1;
         featureAndTarget.buffer = buffer;

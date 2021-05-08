@@ -5,6 +5,8 @@ import org.apache.commons.cli.Options;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 public interface Dataset {
 
@@ -25,5 +27,17 @@ public interface Dataset {
 
     CommandLine parseOptions(@Nonnull final String optionValue);
 
-    void shuffle(ArrayList<String> features, ArrayList<String> targets);
+    static void shuffle(ArrayList<String> features, ArrayList<String> targets) {
+        if (features.size() != targets.size()) {
+            throw new IllegalArgumentException("Size of input features and targets does not match");
+        }
+        int size = features.size();
+
+        Random rnd = new Random();
+        for (int i = size; i > 1; i--) {
+            int index = rnd.nextInt(i);
+            Collections.swap(features, i - 1, index);
+            Collections.swap(targets, i - 1, index);
+        }
+    }
 }

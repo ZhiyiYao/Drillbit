@@ -8,25 +8,20 @@ import org.apache.drill.exec.expr.annotations.Param;
 import org.apache.drill.exec.expr.annotations.Workspace;
 import org.apache.drill.exec.expr.holders.NullableVarCharHolder;
 import org.apache.drill.exec.expr.holders.ObjectHolder;
-import org.apache.drill.exec.expr.holders.VarCharHolder;
 
 import javax.inject.Inject;
-
 
 @FunctionTemplate(
         name = "train_softmax_regression",
         scope = FunctionTemplate.FunctionScope.POINT_AGGREGATE,
         nulls = FunctionTemplate.NullHandling.INTERNAL
 )
-public class TrainSoftmaxRegressionWithCommandLine implements DrillAggFunc {
+public class TrainSoftmaxRegressionWithoutCommandLine implements DrillAggFunc {
     @Param
     NullableVarCharHolder featureHolder;
 
     @Param
     NullableVarCharHolder targetHolder;
-
-    @Param(constant = true)
-    VarCharHolder commandLineHolder;
 
     @Inject
     DrillBuf buffer;
@@ -37,15 +32,10 @@ public class TrainSoftmaxRegressionWithCommandLine implements DrillAggFunc {
     @Workspace
     ObjectHolder learnerHolder;
 
-    @Workspace
-    ObjectHolder optionsHolder;
-
     @Override
     public void setup() {
         learnerHolder = new ObjectHolder();
         learnerHolder.obj = new drillbit.classification.multiclass.SoftmaxRegressionLearner();
-        optionsHolder = new ObjectHolder();
-        optionsHolder.obj = "";
     }
 
     @Override
@@ -55,15 +45,12 @@ public class TrainSoftmaxRegressionWithCommandLine implements DrillAggFunc {
         }
         String feature = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(featureHolder.start, featureHolder.end, featureHolder.buffer);
         String target = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(targetHolder.start, targetHolder.end, targetHolder.buffer);
-        if (optionsHolder.obj == "") {
-            optionsHolder.obj = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(commandLineHolder.start, commandLineHolder.end, commandLineHolder.buffer);
-        }
         ((drillbit.classification.multiclass.SoftmaxRegressionLearner) learnerHolder.obj).add(feature, target);
     }
 
     @Override
     public void output() {
-        byte[] modelBytes = ((drillbit.classification.multiclass.SoftmaxRegressionLearner) learnerHolder.obj).output((String) optionsHolder.obj);
+        byte[] modelBytes = ((drillbit.classification.multiclass.SoftmaxRegressionLearner) learnerHolder.obj).output("");
 
         buffer = modelHolder.buffer = buffer.reallocIfNeeded(modelBytes.length);
         modelHolder.start = 0;

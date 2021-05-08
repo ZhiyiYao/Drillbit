@@ -18,7 +18,6 @@ import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 /*
@@ -35,7 +34,8 @@ public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
     protected int dims;
 
     // For iteratively training
-    private int iters;
+    protected int iters;
+    protected final int DEFAULT_ITERS = 20;
 
     // Options for predict
     protected boolean returnProba;
@@ -50,9 +50,10 @@ public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
     public Options getOptions() {
         Options opts = super.getOptions();
 
-        opts.addOption("dense", "dense_model", false, "Use dense model or not");
-        opts.addOption("dims", "feature_dimensions", true, "The dimension of model [default: 16777216 (2^24)]");
-        opts.addOption("iters", "iterations", true, "number of iterations");
+        opts.addOption("dense", false, "Use dense model or not");
+        opts.addOption("dims", true, "The dimension of model [default: 16777216 (2^24)]");
+        opts.addOption("iters", true, "number of iterations");
+        opts.addOption("labels", true, "list of labels");
 
         return opts;
     }
@@ -78,13 +79,22 @@ public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
             dims = dense ? DEFAULT_DENSE_DIMS : DEFAULT_SPARSE_DIMS;
         }
 
-        iters = StringParser.parseInt(cl.getOptionValue("iters"), 1);
+        iters = StringParser.parseInt(cl.getOptionValue("iters"), DEFAULT_ITERS);
         if (iters < 1) {
             throw new IllegalArgumentException(String.format("invalid iterations of %d", iters));
         }
 
         labels = new ArrayList<>();
         models = new ArrayList<>();
+        if (cl.hasOption("labels")) {
+            String[] labelList = StringParser.parseList(cl.getOptionValue("labels"));
+            for (String label : labelList) {
+                labels.add(label);
+                models.add(createWeights(dense, dims));
+            }
+        }
+
+        nClasses = labels.size();
 
         return cl;
     }
@@ -174,7 +184,7 @@ public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
 
     @Nonnull
     protected String scoresToString(@Nonnull final ArrayList<Double> scores) {
-        if (scores.size() == nClasses) {
+        if (scores.size() != nClasses) {
             throw new IllegalArgumentException("Length of input scores does not match number of classes.");
         }
 
@@ -213,8 +223,8 @@ public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
 
         dense = multiclassClassifier.getDense();
         dims = multiclassClassifier.getDims();
-        labels.clear();
-        models.clear();
+        labels = new ArrayList<>();
+        models = new ArrayList<>();
         for (ClassificationPb.MulticlassClassifier.LabelAndWeights labelAndWeights : multiclassClassifier.getLabel2WeightsList()) {
             labels.add(labelAndWeights.getLabel());
             if (dense) {
@@ -224,6 +234,8 @@ public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
                 models.add((new SparseWeights(dims, TrainWeights.WeightType.Single)).fromByteArray(labelAndWeights.getWeights().toByteArray()));
             }
         }
+
+        nClasses = labels.size();
 
         return this;
     }
@@ -242,24 +254,22 @@ public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
         }
 
         try {
-            for (int iter = 0; iter < iters; iter++) {
+            for (int iter = 1; iter <= iters; iter++) {
+                // For learner with variant learning rate, the iteration may have to count from 1. e.g. the softmax learner.
                 while (true) {
                     SamplePb.Sample sample = readSampleFromTempFile();
                     if (sample == null) {
                         break;
                     }
                     int featureVectorSize = sample.getFeatureList().size();
-                    String target = sample.getTarget();
+                    String target = sample.getTarget().trim();
                     ArrayList<FeatureValue> featureValueVector = new ArrayList<>();
                     for (int j = 0; j < featureVectorSize; j++) {
                         featureValueVector.add(StringParser.parseFeature(sample.getFeature(j)));
                     }
 
-                    int index = getLabelIndex(target);
-                    if (index == -1) {
-                        labels.add(target);
-                        models.add(createWeights(dense, dims));
-                        nClasses++;
+                    if (getLabelIndex(target) == -1) {
+                        throw new IllegalArgumentException(String.format("Invalid class label of %s", target));
                     }
 
                     train(featureValueVector, target);
@@ -314,9 +324,9 @@ public abstract class MulticlassClassificationBaseLearner extends BaseLearner {
             final String k = f.getFeature();
             final double v = f.getValueAsDouble();
 
-            double old_w = weights.getWeight(k);
-            if (old_w != 0.d) {
-                score += (old_w * v);
+            double oldW = weights.getWeight(k);
+            if (oldW != 0.d) {
+                score += oldW * v;
             }
         }
         return score;

@@ -45,3 +45,7 @@ message Node {
   Node trueChild = 6;
   Node falseChild = 7;
 }
+
+message Tree {
+  
+}

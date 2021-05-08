@@ -103,7 +103,7 @@ public class DenseCoordinates extends Coordinates {
             double[] row = coordinates.get(i);
 
             for (int j = 0; j < ndim; j++) {
-                rowBuilder.addElement(row[i]);
+                rowBuilder.addElement(row[j]);
             }
             builder.addCoordinate(rowBuilder.build());
         }
@@ -129,7 +129,7 @@ public class DenseCoordinates extends Coordinates {
             double[] coordinate = new double[ndim];
             ParameterPb.DenseCoordinates.Row row = denseCoordinates.getCoordinate(i);
             for (int j = 0; j < ndim; j++) {
-                coordinate[i] = row.getElement(i);
+                coordinate[j] = row.getElement(j);
             }
             coordinates.add(coordinate);
         }

@@ -14,11 +14,11 @@ import javax.inject.Inject;
 
 
 @FunctionTemplate(
-        name = "train_softmax_regression",
+        name = "train_confidence_weighted_classification",
         scope = FunctionTemplate.FunctionScope.POINT_AGGREGATE,
         nulls = FunctionTemplate.NullHandling.INTERNAL
 )
-public class TrainSoftmaxRegressionWithCommandLine implements DrillAggFunc {
+public class TrainConfidenceWeightedClassificationWithCommandLine implements DrillAggFunc {
     @Param
     NullableVarCharHolder featureHolder;
 
@@ -43,9 +43,8 @@ public class TrainSoftmaxRegressionWithCommandLine implements DrillAggFunc {
     @Override
     public void setup() {
         learnerHolder = new ObjectHolder();
-        learnerHolder.obj = new drillbit.classification.multiclass.SoftmaxRegressionLearner();
+        learnerHolder.obj = new drillbit.classification.ConfidenceWeightedClassificationLearner();
         optionsHolder = new ObjectHolder();
-        optionsHolder.obj = "";
     }
 
     @Override
@@ -58,12 +57,12 @@ public class TrainSoftmaxRegressionWithCommandLine implements DrillAggFunc {
         if (optionsHolder.obj == "") {
             optionsHolder.obj = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(commandLineHolder.start, commandLineHolder.end, commandLineHolder.buffer);
         }
-        ((drillbit.classification.multiclass.SoftmaxRegressionLearner) learnerHolder.obj).add(feature, target);
+        ((drillbit.classification.ConfidenceWeightedClassificationLearner) learnerHolder.obj).add(feature, target);
     }
 
     @Override
     public void output() {
-        byte[] modelBytes = ((drillbit.classification.multiclass.SoftmaxRegressionLearner) learnerHolder.obj).output((String) optionsHolder.obj);
+        byte[] modelBytes = ((drillbit.classification.ConfidenceWeightedClassificationLearner) learnerHolder.obj).output((String) optionsHolder.obj);
 
         buffer = modelHolder.buffer = buffer.reallocIfNeeded(modelBytes.length);
         modelHolder.start = 0;
@@ -74,6 +73,6 @@ public class TrainSoftmaxRegressionWithCommandLine implements DrillAggFunc {
 
     @Override
     public void reset() {
-        ((drillbit.classification.multiclass.SoftmaxRegressionLearner) learnerHolder.obj).reset();
+        ((drillbit.classification.ConfidenceWeightedClassificationLearner) learnerHolder.obj).reset();
     }
 }

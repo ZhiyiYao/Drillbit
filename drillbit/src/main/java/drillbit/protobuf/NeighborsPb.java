@@ -73,37 +73,25 @@ public final class NeighborsPb {
         getAlgorithmBytes();
 
     /**
-     * <code>int32 leaf_size = 7;</code>
-     * @return The leafSize.
-     */
-    int getLeafSize();
-
-    /**
-     * <code>int32 p = 8;</code>
-     * @return The p.
-     */
-    int getP();
-
-    /**
-     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
      */
     java.util.List<drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates> 
         getLabel2CoordinatesList();
     /**
-     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
      */
     drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates getLabel2Coordinates(int index);
     /**
-     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
      */
     int getLabel2CoordinatesCount();
     /**
-     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
      */
     java.util.List<? extends drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinatesOrBuilder> 
         getLabel2CoordinatesOrBuilderList();
     /**
-     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
      */
     drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinatesOrBuilder getLabel2CoordinatesOrBuilder(
         int index);
@@ -191,17 +179,7 @@ public final class NeighborsPb {
               algorithm_ = s;
               break;
             }
-            case 56: {
-
-              leafSize_ = input.readInt32();
-              break;
-            }
-            case 64: {
-
-              p_ = input.readInt32();
-              break;
-            }
-            case 74: {
+            case 58: {
               if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                 label2Coordinates_ = new java.util.ArrayList<drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates>();
                 mutable_bitField0_ |= 0x00000001;
@@ -1034,39 +1012,17 @@ public final class NeighborsPb {
       }
     }
 
-    public static final int LEAF_SIZE_FIELD_NUMBER = 7;
-    private int leafSize_;
-    /**
-     * <code>int32 leaf_size = 7;</code>
-     * @return The leafSize.
-     */
-    @java.lang.Override
-    public int getLeafSize() {
-      return leafSize_;
-    }
-
-    public static final int P_FIELD_NUMBER = 8;
-    private int p_;
-    /**
-     * <code>int32 p = 8;</code>
-     * @return The p.
-     */
-    @java.lang.Override
-    public int getP() {
-      return p_;
-    }
-
-    public static final int LABEL2COORDINATES_FIELD_NUMBER = 9;
+    public static final int LABEL2COORDINATES_FIELD_NUMBER = 7;
     private java.util.List<drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates> label2Coordinates_;
     /**
-     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
      */
     @java.lang.Override
     public java.util.List<drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates> getLabel2CoordinatesList() {
       return label2Coordinates_;
     }
     /**
-     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
      */
     @java.lang.Override
     public java.util.List<? extends drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinatesOrBuilder> 
@@ -1074,21 +1030,21 @@ public final class NeighborsPb {
       return label2Coordinates_;
     }
     /**
-     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
      */
     @java.lang.Override
     public int getLabel2CoordinatesCount() {
       return label2Coordinates_.size();
     }
     /**
-     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
      */
     @java.lang.Override
     public drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates getLabel2Coordinates(int index) {
       return label2Coordinates_.get(index);
     }
     /**
-     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+     * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
      */
     @java.lang.Override
     public drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinatesOrBuilder getLabel2CoordinatesOrBuilder(
@@ -1128,14 +1084,8 @@ public final class NeighborsPb {
       if (!getAlgorithmBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 6, algorithm_);
       }
-      if (leafSize_ != 0) {
-        output.writeInt32(7, leafSize_);
-      }
-      if (p_ != 0) {
-        output.writeInt32(8, p_);
-      }
       for (int i = 0; i < label2Coordinates_.size(); i++) {
-        output.writeMessage(9, label2Coordinates_.get(i));
+        output.writeMessage(7, label2Coordinates_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -1167,17 +1117,9 @@ public final class NeighborsPb {
       if (!getAlgorithmBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, algorithm_);
       }
-      if (leafSize_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(7, leafSize_);
-      }
-      if (p_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(8, p_);
-      }
       for (int i = 0; i < label2Coordinates_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(9, label2Coordinates_.get(i));
+          .computeMessageSize(7, label2Coordinates_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1206,10 +1148,6 @@ public final class NeighborsPb {
           .equals(other.getWeight())) return false;
       if (!getAlgorithm()
           .equals(other.getAlgorithm())) return false;
-      if (getLeafSize()
-          != other.getLeafSize()) return false;
-      if (getP()
-          != other.getP()) return false;
       if (!getLabel2CoordinatesList()
           .equals(other.getLabel2CoordinatesList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
@@ -1236,10 +1174,6 @@ public final class NeighborsPb {
       hash = (53 * hash) + getWeight().hashCode();
       hash = (37 * hash) + ALGORITHM_FIELD_NUMBER;
       hash = (53 * hash) + getAlgorithm().hashCode();
-      hash = (37 * hash) + LEAF_SIZE_FIELD_NUMBER;
-      hash = (53 * hash) + getLeafSize();
-      hash = (37 * hash) + P_FIELD_NUMBER;
-      hash = (53 * hash) + getP();
       if (getLabel2CoordinatesCount() > 0) {
         hash = (37 * hash) + LABEL2COORDINATES_FIELD_NUMBER;
         hash = (53 * hash) + getLabel2CoordinatesList().hashCode();
@@ -1390,10 +1324,6 @@ public final class NeighborsPb {
 
         algorithm_ = "";
 
-        leafSize_ = 0;
-
-        p_ = 0;
-
         if (label2CoordinatesBuilder_ == null) {
           label2Coordinates_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000001);
@@ -1433,8 +1363,6 @@ public final class NeighborsPb {
         result.metric_ = metric_;
         result.weight_ = weight_;
         result.algorithm_ = algorithm_;
-        result.leafSize_ = leafSize_;
-        result.p_ = p_;
         if (label2CoordinatesBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             label2Coordinates_ = java.util.Collections.unmodifiableList(label2Coordinates_);
@@ -1512,12 +1440,6 @@ public final class NeighborsPb {
         if (!other.getAlgorithm().isEmpty()) {
           algorithm_ = other.algorithm_;
           onChanged();
-        }
-        if (other.getLeafSize() != 0) {
-          setLeafSize(other.getLeafSize());
-        }
-        if (other.getP() != 0) {
-          setP(other.getP());
         }
         if (label2CoordinatesBuilder_ == null) {
           if (!other.label2Coordinates_.isEmpty()) {
@@ -1896,68 +1818,6 @@ public final class NeighborsPb {
         return this;
       }
 
-      private int leafSize_ ;
-      /**
-       * <code>int32 leaf_size = 7;</code>
-       * @return The leafSize.
-       */
-      @java.lang.Override
-      public int getLeafSize() {
-        return leafSize_;
-      }
-      /**
-       * <code>int32 leaf_size = 7;</code>
-       * @param value The leafSize to set.
-       * @return This builder for chaining.
-       */
-      public Builder setLeafSize(int value) {
-        
-        leafSize_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 leaf_size = 7;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearLeafSize() {
-        
-        leafSize_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int p_ ;
-      /**
-       * <code>int32 p = 8;</code>
-       * @return The p.
-       */
-      @java.lang.Override
-      public int getP() {
-        return p_;
-      }
-      /**
-       * <code>int32 p = 8;</code>
-       * @param value The p to set.
-       * @return This builder for chaining.
-       */
-      public Builder setP(int value) {
-        
-        p_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int32 p = 8;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearP() {
-        
-        p_ = 0;
-        onChanged();
-        return this;
-      }
-
       private java.util.List<drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates> label2Coordinates_ =
         java.util.Collections.emptyList();
       private void ensureLabel2CoordinatesIsMutable() {
@@ -1971,7 +1831,7 @@ public final class NeighborsPb {
           drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates, drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates.Builder, drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinatesOrBuilder> label2CoordinatesBuilder_;
 
       /**
-       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
        */
       public java.util.List<drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates> getLabel2CoordinatesList() {
         if (label2CoordinatesBuilder_ == null) {
@@ -1981,7 +1841,7 @@ public final class NeighborsPb {
         }
       }
       /**
-       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
        */
       public int getLabel2CoordinatesCount() {
         if (label2CoordinatesBuilder_ == null) {
@@ -1991,7 +1851,7 @@ public final class NeighborsPb {
         }
       }
       /**
-       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
        */
       public drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates getLabel2Coordinates(int index) {
         if (label2CoordinatesBuilder_ == null) {
@@ -2001,7 +1861,7 @@ public final class NeighborsPb {
         }
       }
       /**
-       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
        */
       public Builder setLabel2Coordinates(
           int index, drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates value) {
@@ -2018,7 +1878,7 @@ public final class NeighborsPb {
         return this;
       }
       /**
-       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
        */
       public Builder setLabel2Coordinates(
           int index, drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates.Builder builderForValue) {
@@ -2032,7 +1892,7 @@ public final class NeighborsPb {
         return this;
       }
       /**
-       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
        */
       public Builder addLabel2Coordinates(drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates value) {
         if (label2CoordinatesBuilder_ == null) {
@@ -2048,7 +1908,7 @@ public final class NeighborsPb {
         return this;
       }
       /**
-       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
        */
       public Builder addLabel2Coordinates(
           int index, drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates value) {
@@ -2065,7 +1925,7 @@ public final class NeighborsPb {
         return this;
       }
       /**
-       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
        */
       public Builder addLabel2Coordinates(
           drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates.Builder builderForValue) {
@@ -2079,7 +1939,7 @@ public final class NeighborsPb {
         return this;
       }
       /**
-       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
        */
       public Builder addLabel2Coordinates(
           int index, drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates.Builder builderForValue) {
@@ -2093,7 +1953,7 @@ public final class NeighborsPb {
         return this;
       }
       /**
-       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
        */
       public Builder addAllLabel2Coordinates(
           java.lang.Iterable<? extends drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates> values) {
@@ -2108,7 +1968,7 @@ public final class NeighborsPb {
         return this;
       }
       /**
-       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
        */
       public Builder clearLabel2Coordinates() {
         if (label2CoordinatesBuilder_ == null) {
@@ -2121,7 +1981,7 @@ public final class NeighborsPb {
         return this;
       }
       /**
-       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
        */
       public Builder removeLabel2Coordinates(int index) {
         if (label2CoordinatesBuilder_ == null) {
@@ -2134,14 +1994,14 @@ public final class NeighborsPb {
         return this;
       }
       /**
-       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
        */
       public drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates.Builder getLabel2CoordinatesBuilder(
           int index) {
         return getLabel2CoordinatesFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
        */
       public drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinatesOrBuilder getLabel2CoordinatesOrBuilder(
           int index) {
@@ -2151,7 +2011,7 @@ public final class NeighborsPb {
         }
       }
       /**
-       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
        */
       public java.util.List<? extends drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinatesOrBuilder> 
            getLabel2CoordinatesOrBuilderList() {
@@ -2162,14 +2022,14 @@ public final class NeighborsPb {
         }
       }
       /**
-       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
        */
       public drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates.Builder addLabel2CoordinatesBuilder() {
         return getLabel2CoordinatesFieldBuilder().addBuilder(
             drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates.getDefaultInstance());
       }
       /**
-       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
        */
       public drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates.Builder addLabel2CoordinatesBuilder(
           int index) {
@@ -2177,7 +2037,7 @@ public final class NeighborsPb {
             index, drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates.getDefaultInstance());
       }
       /**
-       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 9;</code>
+       * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
        */
       public java.util.List<drillbit.protobuf.NeighborsPb.KNeighborsClassifier.LabelAndCoordinates.Builder> 
            getLabel2CoordinatesBuilderList() {
@@ -2270,15 +2130,14 @@ public final class NeighborsPb {
   static {
     java.lang.String[] descriptorData = {
       "\n5resources/protos/drillbit/protobuf/nei" +
-      "ghbors_pb.proto\022\021drillbit.protobuf\"\242\002\n\024K" +
+      "ghbors_pb.proto\022\021drillbit.protobuf\"\204\002\n\024K" +
       "NeighborsClassifier\022\r\n\005dense\030\001 \001(\010\022\014\n\004di" +
       "ms\030\002 \001(\005\022\t\n\001n\030\003 \001(\005\022\016\n\006metric\030\004 \001(\t\022\016\n\006w" +
-      "eight\030\005 \001(\t\022\021\n\talgorithm\030\006 \001(\t\022\021\n\tleaf_s" +
-      "ize\030\007 \001(\005\022\t\n\001p\030\010 \001(\005\022V\n\021label2Coordinate" +
-      "s\030\t \003(\0132;.drillbit.protobuf.KNeighborsCl" +
-      "assifier.LabelAndCoordinates\0329\n\023LabelAnd" +
-      "Coordinates\022\r\n\005label\030\001 \001(\t\022\023\n\013coordinate" +
-      "s\030\002 \001(\014b\006proto3"
+      "eight\030\005 \001(\t\022\021\n\talgorithm\030\006 \001(\t\022V\n\021label2" +
+      "Coordinates\030\007 \003(\0132;.drillbit.protobuf.KN" +
+      "eighborsClassifier.LabelAndCoordinates\0329" +
+      "\n\023LabelAndCoordinates\022\r\n\005label\030\001 \001(\t\022\023\n\013" +
+      "coordinates\030\002 \001(\014b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -2289,7 +2148,7 @@ public final class NeighborsPb {
     internal_static_drillbit_protobuf_KNeighborsClassifier_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_drillbit_protobuf_KNeighborsClassifier_descriptor,
-        new java.lang.String[] { "Dense", "Dims", "N", "Metric", "Weight", "Algorithm", "LeafSize", "P", "Label2Coordinates", });
+        new java.lang.String[] { "Dense", "Dims", "N", "Metric", "Weight", "Algorithm", "Label2Coordinates", });
     internal_static_drillbit_protobuf_KNeighborsClassifier_LabelAndCoordinates_descriptor =
       internal_static_drillbit_protobuf_KNeighborsClassifier_descriptor.getNestedTypes().get(0);
     internal_static_drillbit_protobuf_KNeighborsClassifier_LabelAndCoordinates_fieldAccessorTable = new

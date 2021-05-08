@@ -28,7 +28,7 @@ public class MathUtils {
         double sumExp = 0;
         ArrayList<Double> results = new ArrayList<>();
         for (Double d : ds) {
-            double result = Math.exp(-Math.max(Math.min(d, 23.d), -23.d));
+            double result = Math.exp(Math.max(Math.min(d, 23.d), -23.d));
             results.add(result);
             sumExp += result;
         }

@@ -6,23 +6,18 @@ message KMeansClassifier {
   bool dense = 1;
   int32 dims = 2;
 
-  repeated LabelAndClusterCenter label2ClusterCenters = 3;
-
-  message LabelAndClusterCenter {
-    string label = 1;
-    bytes coordinate = 2;
-  }
+  repeated bytes clusterCenters = 3;
 }
 
 message GaussianMixtureModelClassifier {
   bool dense = 1;
   int32 dims = 2;
+  string covariance_type = 3;
 
-  repeated LabelAndClusterCenterAndVariance label2ClusterCenterAndVariance = 3;
+  repeated ClusterCenterAndVariance ClusterCenterAndVariances = 4;
 
-  message LabelAndClusterCenterAndVariance {
-    string label = 1;
-    bytes coordinate = 2;
+  message ClusterCenterAndVariance {
+    bytes clusterCenter = 2;
     bytes variance = 3;
   }
 }

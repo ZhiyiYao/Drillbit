@@ -8,7 +8,7 @@ limit 500;
 drop table dfs.tmp.`iris`;
 
 create table dfs.tmp.`iris` (feature, target) as select
-extract_feature(feature_and_target) as feature,
+add_bias(add_index(extract_feature(feature_and_target))) as feature,
 extract_target(feature_and_target) as target
 from (
     select

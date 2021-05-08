@@ -9,9 +9,7 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
+import java.util.*;
 
 public class IrisDataset implements Dataset {
     private ArrayList<String> features;
@@ -19,6 +17,8 @@ public class IrisDataset implements Dataset {
     private ArrayList<String> targets;
 
     public boolean optionProcessed;
+
+    private final int MAX_N_SAMPLES = 150;
 
     public IrisDataset() {
         features = new ArrayList<>();
@@ -59,23 +59,18 @@ public class IrisDataset implements Dataset {
 
     @Override
     public void processOptions(String options) {
-        boolean shuffle = true;
-        int nSamples = 150;
+        int nSamples;
+        boolean shuffle;
 
         CommandLine cl = parseOptions(options);
 
-        if (cl.hasOption("not_shuffle")) {
-            shuffle = false;
-        }
+        shuffle = !cl.hasOption("not_shuffle");
 
-        if (cl.hasOption("nsamples")) {
-            int nSamplesAssigned = StringParser.parseInt(cl.getOptionValue("nsamples"), 0);
-            Conditions.checkArgument(0 <= nSamplesAssigned && nSamplesAssigned <= nSamples, String.format("Invalid sample number of %d", nSamplesAssigned));
-            nSamples = nSamplesAssigned;
-        }
+        nSamples = StringParser.parseInt(cl.getOptionValue("n_samples"), MAX_N_SAMPLES);
+        Conditions.checkArgument(0 <= nSamples && nSamples <= nSamples, String.format("Invalid sample number of %d", nSamples));
 
         if (shuffle) {
-            shuffle(features, targets);
+            Dataset.shuffle(features, targets);
         }
 
         ArrayList<String> newFeatures = new ArrayList<>();
@@ -97,11 +92,12 @@ public class IrisDataset implements Dataset {
     @Nonnull
     @Override
     public Options getOptions() {
-        Options options = new Options();
-        options.addOption("nsamples", "number_of_samples", true, "assign number of samples to be generated");
-        options.addOption("not_shuffle", "not_shullfe_samples", false, "do not shuffle samples");
+        Options opts = new Options();
 
-        return options;
+        opts.addOption("n_samples", true, "assign number of samples to be generated");
+        opts.addOption("not_shuffle", false, "do not shuffle samples");
+
+        return opts;
     }
 
     @Override
@@ -124,13 +120,6 @@ public class IrisDataset implements Dataset {
         }
 
         return cl;
-    }
-
-    @Override
-    public void shuffle(ArrayList<String> features, ArrayList<String> targets) {
-        Random rnd = new Random();
-        Collections.shuffle(features, rnd);
-        Collections.shuffle(targets, rnd);
     }
 
     @Override

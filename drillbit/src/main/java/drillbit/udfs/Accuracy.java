@@ -14,12 +14,12 @@ import org.apache.drill.exec.expr.annotations.FunctionTemplate;
         scope = FunctionTemplate.FunctionScope.POINT_AGGREGATE,
         nulls = FunctionTemplate.NullHandling.INTERNAL
 )
-public class BinaryAccuracy implements DrillAggFunc {
+public class Accuracy implements DrillAggFunc {
     @Param
-    NullableVarCharHolder y_pred;
+    NullableVarCharHolder yPred;
 
     @Param
-    NullableVarCharHolder y_true;
+    NullableVarCharHolder yTrue;
 
     @Workspace
     UInt8Holder count;
@@ -40,11 +40,9 @@ public class BinaryAccuracy implements DrillAggFunc {
 
     @Override
     public void add() {
-        String pred_s = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(y_pred.start, y_pred.end, y_pred.buffer);
-        String true_s = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(y_true.start, y_true.end, y_true.buffer);
-        double pred_d = drillbit.utils.parser.StringParser.parseDouble(pred_s, 0);
-        double true_d = drillbit.utils.parser.StringParser.parseDouble(true_s, 0);
-        if (pred_d == true_d) {
+        String predS = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(yPred.start, yPred.end, yPred.buffer).trim();
+        String trueS = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(yTrue.start, yTrue.end, yTrue.buffer).trim();
+        if (trueS.equals(predS)) {
             trueCount.value++;
         }
         count.value++;
