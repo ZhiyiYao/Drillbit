@@ -1,7 +1,11 @@
 package drillbit.neighbors.distance;
 
-import java.util.ArrayList;
+import javax.annotation.Nonnull;
+import java.util.concurrent.ConcurrentHashMap;
 
-public interface Distance {
-    double evaluate(double[] vec1, double[] vec2);
+public abstract class Distance {
+    public Distance(@Nonnull final ConcurrentHashMap<String, String> options) {
+    }
+
+    public abstract double evaluate(double[] vec1, double[] vec2);
 }

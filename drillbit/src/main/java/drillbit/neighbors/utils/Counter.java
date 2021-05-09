@@ -2,14 +2,14 @@ package drillbit.neighbors.utils;
 
 public class Counter {
     private final String label;
-    private int count;
+    private double count;
 
     public Counter(String label) {
         this.label = label;
         this.count = 0;
     }
 
-    public int getCount() {
+    public double getCount() {
         return count;
     }
 
@@ -17,8 +17,13 @@ public class Counter {
         return label;
     }
 
+    public Counter incr(double d) {
+        count += d;
+        return this;
+    }
+
     public Counter incr() {
-        count++;
+        count += 1;
         return this;
     }
 }

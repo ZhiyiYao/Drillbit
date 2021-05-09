@@ -1,4 +1,4 @@
-package drillbit.neighbors.solver;
+package drillbit.neighbors.distance;
 
 import org.apache.commons.cli.*;
 
@@ -7,26 +7,24 @@ import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public final class SolverOptions {
+public final class DistanceOptions {
     @Nonnull
     public static ConcurrentHashMap<String, String> create() {
         ConcurrentHashMap<String, String> opts = new ConcurrentHashMap<String, String>();
 
-        opts.put("solver", "kdtree");
+        opts.put("distance", "euclidean");
 
         return opts;
     }
 
     public static void setup(@Nonnull Options opts) {
-        opts.addOption("solver", true, "Solver used to solve n neighbors problem");
-
-        // Leaf size for KDTree and BallTree
-        opts.addOption("leaf_size", true, "Size of leaf nodes");
+        opts.addOption("distance", true, "Distance metric used to compute the distance");
+        opts.addOption("p", true, "P used to compute p-norm");
     }
 
     public static String optionsToString(@Nonnull final ConcurrentHashMap<String, String> options) {
         StringBuilder builder = new StringBuilder();
-        for (ConcurrentHashMap.Entry<String, String> entry : options.entrySet()) {
+        for (Map.Entry<String, String> entry : options.entrySet()) {
             builder.append(" -");
             builder.append(entry.getKey());
             builder.append(" ");
@@ -50,10 +48,10 @@ public final class SolverOptions {
             throw new IllegalArgumentException(e);
         }
 
-        ConcurrentHashMap<String, String> solverOptions = create();
-        processOptions(cl, solverOptions);
+        ConcurrentHashMap<String, String> distanceOptions = create();
+        processOptions(cl, distanceOptions);
 
-        return solverOptions;
+        return distanceOptions;
     }
 
     public static void processOptions(@Nullable CommandLine cl, @Nonnull ConcurrentHashMap<String, String> options) {

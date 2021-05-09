@@ -1,6 +1,12 @@
 package drillbit.neighbors.distance;
 
-public class ChebyshevDistance implements Distance {
+import java.util.concurrent.ConcurrentHashMap;
+
+public class ChebyshevDistance extends Distance {
+    public ChebyshevDistance(ConcurrentHashMap<String, String> options) {
+        super(options);
+    }
+
     @Override
     public double evaluate(double[] vec1, double[] vec2) {
         double distance = 0;

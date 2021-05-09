@@ -2,7 +2,9 @@ package drillbit;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 
+import drillbit.neighbors.distance.DistanceOptions;
 import drillbit.neighbors.solver.SolverOptions;
+import drillbit.neighbors.weight.WeightOptions;
 import drillbit.optimizer.*;
 import drillbit.parameter.DenseWeights;
 import drillbit.parameter.SparseWeights;
@@ -104,6 +106,8 @@ public abstract class BaseLearner implements Learner {
         String[] args = optionValue.split("\\s+");
         Options opts = getPredictOptions();
         SolverOptions.setup(opts);
+        DistanceOptions.setup(opts);
+        WeightOptions.setup(opts);
         opts.addOption("help", false, "Show function help");
 
         final CommandLine cl;

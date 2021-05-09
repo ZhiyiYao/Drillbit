@@ -12,11 +12,11 @@ import org.apache.drill.exec.expr.holders.VarCharHolder;
 import javax.inject.Inject;
 
 @FunctionTemplate(
-        name = "load_iris_dataset",
+        name = "load_digits_dataset",
         scope = FunctionTemplate.FunctionScope.SIMPLE,
         nulls = FunctionTemplate.NullHandling.NULL_IF_NULL
 )
-public class LoadIrisDatasetWithOptions implements DrillSimpleFunc {
+public class LoadDigitsDatasetWithOptions implements DrillSimpleFunc {
     @Param
     NullableVarCharHolder unusedInput;
 
@@ -27,14 +27,14 @@ public class LoadIrisDatasetWithOptions implements DrillSimpleFunc {
     NullableVarCharHolder featureAndTarget;
 
     @Workspace
-    drillbit.data.IrisDataset dataset;
+    drillbit.data.DigitsDataset dataset;
 
     @Inject
     DrillBuf buffer;
 
     @Override
     public void setup() {
-        dataset = new drillbit.data.IrisDataset();
+        dataset = new drillbit.data.DigitsDataset();
     }
 
     @Override

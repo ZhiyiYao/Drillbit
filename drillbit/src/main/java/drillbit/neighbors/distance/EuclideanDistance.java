@@ -1,6 +1,12 @@
 package drillbit.neighbors.distance;
 
-public class EuclideanDistance implements Distance {
+import java.util.concurrent.ConcurrentHashMap;
+
+public class EuclideanDistance extends Distance {
+    public EuclideanDistance(ConcurrentHashMap<String, String> options) {
+        super(options);
+    }
+
     @Override
     public double evaluate(double[] vec1, double[] vec2) {
 

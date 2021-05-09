@@ -4,13 +4,14 @@ import drillbit.BaseLearner;
 import drillbit.FeatureValue;
 import drillbit.neighbors.distance.Distance;
 import drillbit.neighbors.distance.DistanceFactory;
+import drillbit.neighbors.distance.DistanceOptions;
 import drillbit.neighbors.solver.Solver;
 import drillbit.neighbors.solver.SolverFactory;
 import drillbit.neighbors.solver.SolverOptions;
 import drillbit.neighbors.weight.Weight;
+import drillbit.neighbors.weight.WeightFactory;
+import drillbit.neighbors.weight.WeightOptions;
 import drillbit.optimizer.LossFunctions;
-import drillbit.optimizer.OptimizerOptions;
-import drillbit.optimizer.Optimizers;
 import drillbit.parameter.Coordinates;
 import drillbit.parameter.DenseCoordinates;
 import drillbit.protobuf.NeighborsPb;
@@ -31,18 +32,19 @@ import org.apache.commons.cli.ParseException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.Nonnull;
 
-public final class KNeighborClassificationLearner extends BaseLearner {
-    private int n;
+public final class KNeighborsClassificationLearner extends BaseLearner {
+    private int k;
 
-    private String metric;
-    private Distance distanceMetric;
+    private ConcurrentHashMap<String, String> distanceOptions;
+    private Distance distance;
 
-    private String weight;
-    private Weight weightFunction;
+    private ConcurrentHashMap<String, String> weightOptions;
+    private Weight weight;
 
     private ConcurrentHashMap<String, String> solverOptions;
     private Solver solver;
@@ -56,18 +58,21 @@ public final class KNeighborClassificationLearner extends BaseLearner {
 
     private boolean returnIndex;
 
-    private static final int DEFAULT_N = 7;
-    private static final String DEFAULT_METRIC = "euclidean";
+    private static final int DEFAULT_K = 3;
     private static final String DEFAULT_WEIGHT = "uniform";
 
     @Override
     public CommandLine parseOptions(String optionValue) {
         String[] args = optionValue.split("\\s+");
         Options opts = getOptions();
+
         SolverOptions.setup(opts);
+        DistanceOptions.setup(opts);
+        WeightOptions.setup(opts);
+
         opts.addOption("help", false, "Show function help");
 
-        final CommandLine cl;
+        CommandLine cl;
         try {
             DefaultParser parser = new DefaultParser();
             cl = parser.parse(opts, args);
@@ -87,14 +92,11 @@ public final class KNeighborClassificationLearner extends BaseLearner {
         Options opts = super.getOptions();
 
         // Options for KNN algorithm
-        opts.addOption("n_neighbors", true, "number of nearest neighbors");
-        opts.addOption("metric", true, "function of distance metric");
-        opts.addOption("weight", true, "weight function used in prediction");
-        opts.addOption("algorithm", true, "algorithm used to compute the nearest neighbors");
+        opts.addOption("k", true, "number of nearest neighbors");
 
         // Options for model storage
-        opts.addOption("dims", "feature_dimensions", true, "The dimension of model");
-        opts.addOption("dense", "use_dense_model", false, "Use dense model or not");
+        opts.addOption("dims", true, "The dimension of model");
+        opts.addOption("dense", false, "Use dense model or not");
 
         return opts;
     }
@@ -103,9 +105,7 @@ public final class KNeighborClassificationLearner extends BaseLearner {
         Options opts = super.getPredictOptions();
 
         // KNN algorithm
-        opts.addOption("n_neighbors", true, "number of nearest neighbors");
-        opts.addOption("metric", true, "function of distance metric");
-        opts.addOption("weight", true, "weight function used in prediction");
+        opts.addOption("k", true, "number of nearest neighbors");
 
         // Options for output format
         opts.addOption("return_index", false, "return index of label");
@@ -124,12 +124,19 @@ public final class KNeighborClassificationLearner extends BaseLearner {
             throw new IllegalArgumentException("Dimension of feature not specified");
         }
 
-        n = StringParser.parseInt(cl.getOptionValue("n"), DEFAULT_N);
-        n = n > 0 ? n : DEFAULT_N;
+        k = StringParser.parseInt(cl.getOptionValue("k"), DEFAULT_K);
+        k = k > 0 ? k : DEFAULT_K;
 
-        metric = cl.getOptionValue("metric", DEFAULT_METRIC);
+        distanceOptions = DistanceOptions.create();
+        DistanceOptions.processOptions(cl, distanceOptions);
+        distance = DistanceFactory.create(distanceOptions);
 
-        weight = cl.getOptionValue("weight", DEFAULT_WEIGHT);
+        weightOptions = WeightOptions.create();
+        WeightOptions.processOptions(cl, weightOptions);
+        weight = WeightFactory.create(weightOptions);
+
+        solverOptions = SolverOptions.create();
+        SolverOptions.processOptions(cl, solverOptions);
 
         labels = new ArrayList<>();
         coordinatesList = new ArrayList<>();
@@ -140,19 +147,15 @@ public final class KNeighborClassificationLearner extends BaseLearner {
     public CommandLine processPredictOptions(@Nonnull final CommandLine cl) {
         super.processPredictOptions(cl);
 
-        n = StringParser.parseInt(cl.getOptionValue("n_neighbors"), n);
-        n = n > 0 ? n : DEFAULT_N;
+        k = StringParser.parseInt(cl.getOptionValue("n_neighbors"), k);
+        k = k > 0 ? k : DEFAULT_K;
 
-        metric = cl.getOptionValue("metric", metric);
-        try {
-            distanceMetric = DistanceFactory.getDistance(metric);
-        }
-        catch (Exception e) {
-            logger.error(e);
-            throw new IllegalArgumentException(e.getMessage());
-        }
+        DistanceOptions.processOptions(cl, distanceOptions);
+        distance = DistanceFactory.create(distanceOptions);
 
-        solverOptions = SolverOptions.create();
+        WeightOptions.processOptions(cl, weightOptions);
+        weight = WeightFactory.create(weightOptions);
+
         SolverOptions.processOptions(cl, solverOptions);
         solver = SolverFactory.create(solverOptions);
         solver.build(labels, coordinatesList);
@@ -255,13 +258,14 @@ public final class KNeighborClassificationLearner extends BaseLearner {
 
         builder.setDense(dense);
         builder.setDims(dims);
-        builder.setN(n);
-        builder.setMetric(metric);
+        builder.setK(k);
+        builder.setDistanceOptions(DistanceOptions.optionsToString(distanceOptions));
+        builder.setSolverOptions(SolverOptions.optionsToString(solverOptions));
 
-        for (int i = 0; i < labels.size(); i++) {
+        for (int i = 0; i < nClasses; i++) {
             NeighborsPb.KNeighborsClassifier.LabelAndCoordinates.Builder labelAndCoordinatesBuilder = NeighborsPb.KNeighborsClassifier.LabelAndCoordinates.newBuilder();
             labelAndCoordinatesBuilder.setLabel(labels.get(i));
-            labelAndCoordinatesBuilder.setCoordinates(ByteString.copyFrom(coordinatesList.get(i).toByteArray()));
+            labelAndCoordinatesBuilder.setCoordinates(ByteString.copyFrom(Objects.requireNonNull(coordinatesList.get(i).toByteArray())));
             builder.addLabel2Coordinates(labelAndCoordinatesBuilder.build());
         }
 
@@ -274,7 +278,15 @@ public final class KNeighborClassificationLearner extends BaseLearner {
 
         dense = KnnClassifier.getDense();
         dims = KnnClassifier.getDims();
-        metric = KnnClassifier.getMetric();
+
+        distanceOptions = DistanceOptions.parse(KnnClassifier.getDistanceOptions());
+        distance = DistanceFactory.create(distanceOptions);
+
+        weightOptions = WeightOptions.parse(KnnClassifier.getWeightOptions());
+        weight = WeightFactory.create(weightOptions);
+
+        solverOptions = SolverOptions.parse(KnnClassifier.getSolverOptions());
+        solver = SolverFactory.create(solverOptions);
 
         labels = new ArrayList<>();
         coordinatesList = new ArrayList<>();
@@ -338,10 +350,10 @@ public final class KNeighborClassificationLearner extends BaseLearner {
         }
 
         if (returnIndex) {
-            return solver.solveIndex(n, distanceMetric, vector.toArray());
+            return Integer.toString(solver.solveIndex(k, distance, weight, vector.toArray()));
         }
         else {
-            return solver.solveLabel(n, distanceMetric, vector.toArray());
+            return solver.solveLabel(k, distance, weight, vector.toArray());
         }
     }
 

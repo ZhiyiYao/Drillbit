@@ -1,6 +1,12 @@
 package drillbit.neighbors.distance;
 
-public class HammingDistance implements Distance {
+import java.util.concurrent.ConcurrentHashMap;
+
+public class HammingDistance extends Distance {
+    public HammingDistance(ConcurrentHashMap<String, String> options) {
+        super(options);
+    }
+
     @Override
     public double evaluate(double[] vec1, double[] vec2) {
         long result = 0;

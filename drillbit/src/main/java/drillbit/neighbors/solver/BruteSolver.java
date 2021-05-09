@@ -3,6 +3,7 @@ package drillbit.neighbors.solver;
 import drillbit.neighbors.distance.Distance;
 import drillbit.neighbors.utils.Counter;
 import drillbit.neighbors.utils.Score;
+import drillbit.neighbors.weight.Weight;
 import drillbit.parameter.Coordinates;
 import org.apache.commons.cli.CommandLine;
 
@@ -34,8 +35,8 @@ public class BruteSolver extends Solver {
     }
 
     @Override
-    public int solveIndex(int k, Distance metric, double[] vec) {
-        ArrayList<Score> scores = solveNeighbors(k, metric, vec);
+    public int solveIndex(int k, Distance metric, Weight weight, double[] vec) {
+        ArrayList<Score> scores = solveNeighbors(k, metric, weight, vec);
         ArrayList<Counter> counters = new ArrayList<>();
 
         for (Score score : scores) {
@@ -43,10 +44,14 @@ public class BruteSolver extends Solver {
             int index = getCounterIndex(counters, label);
 
             if (index == -1) {
-                counters.add(new Counter(label));
+                Counter counter = new Counter(label);
+                counter.incr(weight.evaluate(score.getDistance()));
+                counters.add(counter);
             }
             else {
-                counters.set(index, counters.get(index).incr());
+                Counter counter = counters.get(index);
+                counter.incr(weight.evaluate(score.getDistance()));
+                counters.set(index, counter);
             }
         }
         counters.sort((c1, c2) -> c1.getCount() < c2.getCount() ? 1 : -1);
@@ -55,8 +60,8 @@ public class BruteSolver extends Solver {
     }
 
     @Override
-    public String solveLabel(int k, Distance metric, double[] vec) {
-        ArrayList<Score> scores = solveNeighbors(k, metric, vec);
+    public String solveLabel(int k, Distance metric, Weight weight, double[] vec) {
+        ArrayList<Score> scores = solveNeighbors(k, metric, weight, vec);
         ArrayList<Counter> counters = new ArrayList<>();
 
         for (Score score : scores) {
@@ -64,10 +69,14 @@ public class BruteSolver extends Solver {
             int index = getCounterIndex(counters, label);
 
             if (index == -1) {
-                counters.add(new Counter(label));
+                Counter counter = new Counter(label);
+                counter.incr(weight.evaluate(score.getDistance()));
+                counters.add(counter);
             }
             else {
-                counters.set(index, counters.get(index).incr());
+                Counter counter = counters.get(index);
+                counter.incr(weight.evaluate(score.getDistance()));
+                counters.set(index, counter);
             }
         }
         counters.sort((c1, c2) -> c1.getCount() < c2.getCount() ? 1 : -1);
@@ -76,7 +85,7 @@ public class BruteSolver extends Solver {
     }
 
     @Override
-    public ArrayList<Score> solveNeighbors(int n, Distance metric, double[] vec) {
+    public ArrayList<Score> solveNeighbors(int n, Distance metric, Weight weight, double[] vec) {
         ArrayList<Score> scores = new ArrayList<>();
         double maxDistance = 0;
 

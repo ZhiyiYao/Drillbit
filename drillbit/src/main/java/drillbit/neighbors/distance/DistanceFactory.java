@@ -1,27 +1,37 @@
 package drillbit.neighbors.distance;
 
-public class DistanceFactory {
-    public static Distance getDistance(String distanceName) {
+import org.apache.hadoop.yarn.webapp.hamlet.Hamlet;
+
+import javax.annotation.Nonnull;
+import java.util.concurrent.ConcurrentHashMap;
+
+public final class DistanceFactory {
+    public static Distance create(@Nonnull final ConcurrentHashMap<String, String> options) {
+        String distanceName = options.get("distance");
         if ("euclidean".equalsIgnoreCase(distanceName)) {
-            return new EuclideanDistance();
+            return new EuclideanDistance(options);
         }
         else if ("hamming".equalsIgnoreCase(distanceName)) {
-            return new HammingDistance();
+            return new HammingDistance(options);
         }
         else if ("manhattan".equalsIgnoreCase(distanceName)) {
-            return new ManhattanDistance();
+            return new ManhattanDistance(options);
         }
         else if ("chebyshev".equalsIgnoreCase(distanceName)) {
-            return new ChebyshevDistance();
+            return new ChebyshevDistance(options);
         }
         else if ("cosine".equalsIgnoreCase(distanceName)) {
-            return new CosineDistance();
+            return new CosineDistance(options);
         }
         else if ("angular".equalsIgnoreCase(distanceName)) {
-        	return new AngularDistance();
+        	return new AngularDistance(options);
         }
-
-        throw new IllegalArgumentException("Unsupported distance metric: " + distanceName);
+        else if ("pnorm".equalsIgnoreCase(distanceName)) {
+            return new PNormDistance(options);
+        }
+        else {
+            throw new IllegalArgumentException("Unsupported distance metric: " + distanceName);
+        }
     }
 
 }

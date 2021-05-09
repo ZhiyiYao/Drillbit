@@ -1,8 +1,12 @@
 package drillbit.neighbors.distance;
 
-import java.util.ArrayList;
+import java.util.concurrent.ConcurrentHashMap;
 
-public class CosineDistance implements Distance {
+public class CosineDistance extends Distance {
+    public CosineDistance(ConcurrentHashMap<String, String> options) {
+        super(options);
+    }
+
     @Override
     public double evaluate(double[] vec1, double[] vec2) {
         double product = 0;

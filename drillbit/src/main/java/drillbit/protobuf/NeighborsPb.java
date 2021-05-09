@@ -31,46 +31,46 @@ public final class NeighborsPb {
     int getDims();
 
     /**
-     * <code>int32 n = 3;</code>
-     * @return The n.
+     * <code>int32 k = 3;</code>
+     * @return The k.
      */
-    int getN();
+    int getK();
 
     /**
-     * <code>string metric = 4;</code>
-     * @return The metric.
+     * <code>string distanceOptions = 4;</code>
+     * @return The distanceOptions.
      */
-    java.lang.String getMetric();
+    java.lang.String getDistanceOptions();
     /**
-     * <code>string metric = 4;</code>
-     * @return The bytes for metric.
+     * <code>string distanceOptions = 4;</code>
+     * @return The bytes for distanceOptions.
      */
     com.google.protobuf.ByteString
-        getMetricBytes();
+        getDistanceOptionsBytes();
 
     /**
-     * <code>string weight = 5;</code>
-     * @return The weight.
+     * <code>string weightOptions = 5;</code>
+     * @return The weightOptions.
      */
-    java.lang.String getWeight();
+    java.lang.String getWeightOptions();
     /**
-     * <code>string weight = 5;</code>
-     * @return The bytes for weight.
+     * <code>string weightOptions = 5;</code>
+     * @return The bytes for weightOptions.
      */
     com.google.protobuf.ByteString
-        getWeightBytes();
+        getWeightOptionsBytes();
 
     /**
-     * <code>string algorithm = 6;</code>
-     * @return The algorithm.
+     * <code>string solverOptions = 6;</code>
+     * @return The solverOptions.
      */
-    java.lang.String getAlgorithm();
+    java.lang.String getSolverOptions();
     /**
-     * <code>string algorithm = 6;</code>
-     * @return The bytes for algorithm.
+     * <code>string solverOptions = 6;</code>
+     * @return The bytes for solverOptions.
      */
     com.google.protobuf.ByteString
-        getAlgorithmBytes();
+        getSolverOptionsBytes();
 
     /**
      * <code>repeated .drillbit.protobuf.KNeighborsClassifier.LabelAndCoordinates label2Coordinates = 7;</code>
@@ -109,9 +109,9 @@ public final class NeighborsPb {
       super(builder);
     }
     private KNeighborsClassifier() {
-      metric_ = "";
-      weight_ = "";
-      algorithm_ = "";
+      distanceOptions_ = "";
+      weightOptions_ = "";
+      solverOptions_ = "";
       label2Coordinates_ = java.util.Collections.emptyList();
     }
 
@@ -158,25 +158,25 @@ public final class NeighborsPb {
             }
             case 24: {
 
-              n_ = input.readInt32();
+              k_ = input.readInt32();
               break;
             }
             case 34: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              metric_ = s;
+              distanceOptions_ = s;
               break;
             }
             case 42: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              weight_ = s;
+              weightOptions_ = s;
               break;
             }
             case 50: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              algorithm_ = s;
+              solverOptions_ = s;
               break;
             }
             case 58: {
@@ -887,125 +887,125 @@ public final class NeighborsPb {
       return dims_;
     }
 
-    public static final int N_FIELD_NUMBER = 3;
-    private int n_;
+    public static final int K_FIELD_NUMBER = 3;
+    private int k_;
     /**
-     * <code>int32 n = 3;</code>
-     * @return The n.
+     * <code>int32 k = 3;</code>
+     * @return The k.
      */
     @java.lang.Override
-    public int getN() {
-      return n_;
+    public int getK() {
+      return k_;
     }
 
-    public static final int METRIC_FIELD_NUMBER = 4;
-    private volatile java.lang.Object metric_;
+    public static final int DISTANCEOPTIONS_FIELD_NUMBER = 4;
+    private volatile java.lang.Object distanceOptions_;
     /**
-     * <code>string metric = 4;</code>
-     * @return The metric.
+     * <code>string distanceOptions = 4;</code>
+     * @return The distanceOptions.
      */
     @java.lang.Override
-    public java.lang.String getMetric() {
-      java.lang.Object ref = metric_;
+    public java.lang.String getDistanceOptions() {
+      java.lang.Object ref = distanceOptions_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        metric_ = s;
+        distanceOptions_ = s;
         return s;
       }
     }
     /**
-     * <code>string metric = 4;</code>
-     * @return The bytes for metric.
+     * <code>string distanceOptions = 4;</code>
+     * @return The bytes for distanceOptions.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getMetricBytes() {
-      java.lang.Object ref = metric_;
+        getDistanceOptionsBytes() {
+      java.lang.Object ref = distanceOptions_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        metric_ = b;
+        distanceOptions_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
 
-    public static final int WEIGHT_FIELD_NUMBER = 5;
-    private volatile java.lang.Object weight_;
+    public static final int WEIGHTOPTIONS_FIELD_NUMBER = 5;
+    private volatile java.lang.Object weightOptions_;
     /**
-     * <code>string weight = 5;</code>
-     * @return The weight.
+     * <code>string weightOptions = 5;</code>
+     * @return The weightOptions.
      */
     @java.lang.Override
-    public java.lang.String getWeight() {
-      java.lang.Object ref = weight_;
+    public java.lang.String getWeightOptions() {
+      java.lang.Object ref = weightOptions_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        weight_ = s;
+        weightOptions_ = s;
         return s;
       }
     }
     /**
-     * <code>string weight = 5;</code>
-     * @return The bytes for weight.
+     * <code>string weightOptions = 5;</code>
+     * @return The bytes for weightOptions.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getWeightBytes() {
-      java.lang.Object ref = weight_;
+        getWeightOptionsBytes() {
+      java.lang.Object ref = weightOptions_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        weight_ = b;
+        weightOptions_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
 
-    public static final int ALGORITHM_FIELD_NUMBER = 6;
-    private volatile java.lang.Object algorithm_;
+    public static final int SOLVEROPTIONS_FIELD_NUMBER = 6;
+    private volatile java.lang.Object solverOptions_;
     /**
-     * <code>string algorithm = 6;</code>
-     * @return The algorithm.
+     * <code>string solverOptions = 6;</code>
+     * @return The solverOptions.
      */
     @java.lang.Override
-    public java.lang.String getAlgorithm() {
-      java.lang.Object ref = algorithm_;
+    public java.lang.String getSolverOptions() {
+      java.lang.Object ref = solverOptions_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        algorithm_ = s;
+        solverOptions_ = s;
         return s;
       }
     }
     /**
-     * <code>string algorithm = 6;</code>
-     * @return The bytes for algorithm.
+     * <code>string solverOptions = 6;</code>
+     * @return The bytes for solverOptions.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getAlgorithmBytes() {
-      java.lang.Object ref = algorithm_;
+        getSolverOptionsBytes() {
+      java.lang.Object ref = solverOptions_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        algorithm_ = b;
+        solverOptions_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -1072,17 +1072,17 @@ public final class NeighborsPb {
       if (dims_ != 0) {
         output.writeInt32(2, dims_);
       }
-      if (n_ != 0) {
-        output.writeInt32(3, n_);
+      if (k_ != 0) {
+        output.writeInt32(3, k_);
       }
-      if (!getMetricBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, metric_);
+      if (!getDistanceOptionsBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, distanceOptions_);
       }
-      if (!getWeightBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, weight_);
+      if (!getWeightOptionsBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, weightOptions_);
       }
-      if (!getAlgorithmBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, algorithm_);
+      if (!getSolverOptionsBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, solverOptions_);
       }
       for (int i = 0; i < label2Coordinates_.size(); i++) {
         output.writeMessage(7, label2Coordinates_.get(i));
@@ -1104,18 +1104,18 @@ public final class NeighborsPb {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(2, dims_);
       }
-      if (n_ != 0) {
+      if (k_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(3, n_);
+          .computeInt32Size(3, k_);
       }
-      if (!getMetricBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, metric_);
+      if (!getDistanceOptionsBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, distanceOptions_);
       }
-      if (!getWeightBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, weight_);
+      if (!getWeightOptionsBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, weightOptions_);
       }
-      if (!getAlgorithmBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, algorithm_);
+      if (!getSolverOptionsBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, solverOptions_);
       }
       for (int i = 0; i < label2Coordinates_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
@@ -1140,14 +1140,14 @@ public final class NeighborsPb {
           != other.getDense()) return false;
       if (getDims()
           != other.getDims()) return false;
-      if (getN()
-          != other.getN()) return false;
-      if (!getMetric()
-          .equals(other.getMetric())) return false;
-      if (!getWeight()
-          .equals(other.getWeight())) return false;
-      if (!getAlgorithm()
-          .equals(other.getAlgorithm())) return false;
+      if (getK()
+          != other.getK()) return false;
+      if (!getDistanceOptions()
+          .equals(other.getDistanceOptions())) return false;
+      if (!getWeightOptions()
+          .equals(other.getWeightOptions())) return false;
+      if (!getSolverOptions()
+          .equals(other.getSolverOptions())) return false;
       if (!getLabel2CoordinatesList()
           .equals(other.getLabel2CoordinatesList())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
@@ -1166,14 +1166,14 @@ public final class NeighborsPb {
           getDense());
       hash = (37 * hash) + DIMS_FIELD_NUMBER;
       hash = (53 * hash) + getDims();
-      hash = (37 * hash) + N_FIELD_NUMBER;
-      hash = (53 * hash) + getN();
-      hash = (37 * hash) + METRIC_FIELD_NUMBER;
-      hash = (53 * hash) + getMetric().hashCode();
-      hash = (37 * hash) + WEIGHT_FIELD_NUMBER;
-      hash = (53 * hash) + getWeight().hashCode();
-      hash = (37 * hash) + ALGORITHM_FIELD_NUMBER;
-      hash = (53 * hash) + getAlgorithm().hashCode();
+      hash = (37 * hash) + K_FIELD_NUMBER;
+      hash = (53 * hash) + getK();
+      hash = (37 * hash) + DISTANCEOPTIONS_FIELD_NUMBER;
+      hash = (53 * hash) + getDistanceOptions().hashCode();
+      hash = (37 * hash) + WEIGHTOPTIONS_FIELD_NUMBER;
+      hash = (53 * hash) + getWeightOptions().hashCode();
+      hash = (37 * hash) + SOLVEROPTIONS_FIELD_NUMBER;
+      hash = (53 * hash) + getSolverOptions().hashCode();
       if (getLabel2CoordinatesCount() > 0) {
         hash = (37 * hash) + LABEL2COORDINATES_FIELD_NUMBER;
         hash = (53 * hash) + getLabel2CoordinatesList().hashCode();
@@ -1316,13 +1316,13 @@ public final class NeighborsPb {
 
         dims_ = 0;
 
-        n_ = 0;
+        k_ = 0;
 
-        metric_ = "";
+        distanceOptions_ = "";
 
-        weight_ = "";
+        weightOptions_ = "";
 
-        algorithm_ = "";
+        solverOptions_ = "";
 
         if (label2CoordinatesBuilder_ == null) {
           label2Coordinates_ = java.util.Collections.emptyList();
@@ -1359,10 +1359,10 @@ public final class NeighborsPb {
         int from_bitField0_ = bitField0_;
         result.dense_ = dense_;
         result.dims_ = dims_;
-        result.n_ = n_;
-        result.metric_ = metric_;
-        result.weight_ = weight_;
-        result.algorithm_ = algorithm_;
+        result.k_ = k_;
+        result.distanceOptions_ = distanceOptions_;
+        result.weightOptions_ = weightOptions_;
+        result.solverOptions_ = solverOptions_;
         if (label2CoordinatesBuilder_ == null) {
           if (((bitField0_ & 0x00000001) != 0)) {
             label2Coordinates_ = java.util.Collections.unmodifiableList(label2Coordinates_);
@@ -1426,19 +1426,19 @@ public final class NeighborsPb {
         if (other.getDims() != 0) {
           setDims(other.getDims());
         }
-        if (other.getN() != 0) {
-          setN(other.getN());
+        if (other.getK() != 0) {
+          setK(other.getK());
         }
-        if (!other.getMetric().isEmpty()) {
-          metric_ = other.metric_;
+        if (!other.getDistanceOptions().isEmpty()) {
+          distanceOptions_ = other.distanceOptions_;
           onChanged();
         }
-        if (!other.getWeight().isEmpty()) {
-          weight_ = other.weight_;
+        if (!other.getWeightOptions().isEmpty()) {
+          weightOptions_ = other.weightOptions_;
           onChanged();
         }
-        if (!other.getAlgorithm().isEmpty()) {
-          algorithm_ = other.algorithm_;
+        if (!other.getSolverOptions().isEmpty()) {
+          solverOptions_ = other.solverOptions_;
           onChanged();
         }
         if (label2CoordinatesBuilder_ == null) {
@@ -1559,261 +1559,261 @@ public final class NeighborsPb {
         return this;
       }
 
-      private int n_ ;
+      private int k_ ;
       /**
-       * <code>int32 n = 3;</code>
-       * @return The n.
+       * <code>int32 k = 3;</code>
+       * @return The k.
        */
       @java.lang.Override
-      public int getN() {
-        return n_;
+      public int getK() {
+        return k_;
       }
       /**
-       * <code>int32 n = 3;</code>
-       * @param value The n to set.
+       * <code>int32 k = 3;</code>
+       * @param value The k to set.
        * @return This builder for chaining.
        */
-      public Builder setN(int value) {
+      public Builder setK(int value) {
         
-        n_ = value;
+        k_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 n = 3;</code>
+       * <code>int32 k = 3;</code>
        * @return This builder for chaining.
        */
-      public Builder clearN() {
+      public Builder clearK() {
         
-        n_ = 0;
+        k_ = 0;
         onChanged();
         return this;
       }
 
-      private java.lang.Object metric_ = "";
+      private java.lang.Object distanceOptions_ = "";
       /**
-       * <code>string metric = 4;</code>
-       * @return The metric.
+       * <code>string distanceOptions = 4;</code>
+       * @return The distanceOptions.
        */
-      public java.lang.String getMetric() {
-        java.lang.Object ref = metric_;
+      public java.lang.String getDistanceOptions() {
+        java.lang.Object ref = distanceOptions_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          metric_ = s;
+          distanceOptions_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string metric = 4;</code>
-       * @return The bytes for metric.
+       * <code>string distanceOptions = 4;</code>
+       * @return The bytes for distanceOptions.
        */
       public com.google.protobuf.ByteString
-          getMetricBytes() {
-        java.lang.Object ref = metric_;
+          getDistanceOptionsBytes() {
+        java.lang.Object ref = distanceOptions_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          metric_ = b;
+          distanceOptions_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string metric = 4;</code>
-       * @param value The metric to set.
+       * <code>string distanceOptions = 4;</code>
+       * @param value The distanceOptions to set.
        * @return This builder for chaining.
        */
-      public Builder setMetric(
+      public Builder setDistanceOptions(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        metric_ = value;
+        distanceOptions_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string metric = 4;</code>
+       * <code>string distanceOptions = 4;</code>
        * @return This builder for chaining.
        */
-      public Builder clearMetric() {
+      public Builder clearDistanceOptions() {
         
-        metric_ = getDefaultInstance().getMetric();
+        distanceOptions_ = getDefaultInstance().getDistanceOptions();
         onChanged();
         return this;
       }
       /**
-       * <code>string metric = 4;</code>
-       * @param value The bytes for metric to set.
+       * <code>string distanceOptions = 4;</code>
+       * @param value The bytes for distanceOptions to set.
        * @return This builder for chaining.
        */
-      public Builder setMetricBytes(
+      public Builder setDistanceOptionsBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        metric_ = value;
+        distanceOptions_ = value;
         onChanged();
         return this;
       }
 
-      private java.lang.Object weight_ = "";
+      private java.lang.Object weightOptions_ = "";
       /**
-       * <code>string weight = 5;</code>
-       * @return The weight.
+       * <code>string weightOptions = 5;</code>
+       * @return The weightOptions.
        */
-      public java.lang.String getWeight() {
-        java.lang.Object ref = weight_;
+      public java.lang.String getWeightOptions() {
+        java.lang.Object ref = weightOptions_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          weight_ = s;
+          weightOptions_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string weight = 5;</code>
-       * @return The bytes for weight.
+       * <code>string weightOptions = 5;</code>
+       * @return The bytes for weightOptions.
        */
       public com.google.protobuf.ByteString
-          getWeightBytes() {
-        java.lang.Object ref = weight_;
+          getWeightOptionsBytes() {
+        java.lang.Object ref = weightOptions_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          weight_ = b;
+          weightOptions_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string weight = 5;</code>
-       * @param value The weight to set.
+       * <code>string weightOptions = 5;</code>
+       * @param value The weightOptions to set.
        * @return This builder for chaining.
        */
-      public Builder setWeight(
+      public Builder setWeightOptions(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        weight_ = value;
+        weightOptions_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string weight = 5;</code>
+       * <code>string weightOptions = 5;</code>
        * @return This builder for chaining.
        */
-      public Builder clearWeight() {
+      public Builder clearWeightOptions() {
         
-        weight_ = getDefaultInstance().getWeight();
+        weightOptions_ = getDefaultInstance().getWeightOptions();
         onChanged();
         return this;
       }
       /**
-       * <code>string weight = 5;</code>
-       * @param value The bytes for weight to set.
+       * <code>string weightOptions = 5;</code>
+       * @param value The bytes for weightOptions to set.
        * @return This builder for chaining.
        */
-      public Builder setWeightBytes(
+      public Builder setWeightOptionsBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        weight_ = value;
+        weightOptions_ = value;
         onChanged();
         return this;
       }
 
-      private java.lang.Object algorithm_ = "";
+      private java.lang.Object solverOptions_ = "";
       /**
-       * <code>string algorithm = 6;</code>
-       * @return The algorithm.
+       * <code>string solverOptions = 6;</code>
+       * @return The solverOptions.
        */
-      public java.lang.String getAlgorithm() {
-        java.lang.Object ref = algorithm_;
+      public java.lang.String getSolverOptions() {
+        java.lang.Object ref = solverOptions_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          algorithm_ = s;
+          solverOptions_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string algorithm = 6;</code>
-       * @return The bytes for algorithm.
+       * <code>string solverOptions = 6;</code>
+       * @return The bytes for solverOptions.
        */
       public com.google.protobuf.ByteString
-          getAlgorithmBytes() {
-        java.lang.Object ref = algorithm_;
+          getSolverOptionsBytes() {
+        java.lang.Object ref = solverOptions_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          algorithm_ = b;
+          solverOptions_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string algorithm = 6;</code>
-       * @param value The algorithm to set.
+       * <code>string solverOptions = 6;</code>
+       * @param value The solverOptions to set.
        * @return This builder for chaining.
        */
-      public Builder setAlgorithm(
+      public Builder setSolverOptions(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        algorithm_ = value;
+        solverOptions_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string algorithm = 6;</code>
+       * <code>string solverOptions = 6;</code>
        * @return This builder for chaining.
        */
-      public Builder clearAlgorithm() {
+      public Builder clearSolverOptions() {
         
-        algorithm_ = getDefaultInstance().getAlgorithm();
+        solverOptions_ = getDefaultInstance().getSolverOptions();
         onChanged();
         return this;
       }
       /**
-       * <code>string algorithm = 6;</code>
-       * @param value The bytes for algorithm to set.
+       * <code>string solverOptions = 6;</code>
+       * @param value The bytes for solverOptions to set.
        * @return This builder for chaining.
        */
-      public Builder setAlgorithmBytes(
+      public Builder setSolverOptionsBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        algorithm_ = value;
+        solverOptions_ = value;
         onChanged();
         return this;
       }
@@ -2130,14 +2130,15 @@ public final class NeighborsPb {
   static {
     java.lang.String[] descriptorData = {
       "\n5resources/protos/drillbit/protobuf/nei" +
-      "ghbors_pb.proto\022\021drillbit.protobuf\"\204\002\n\024K" +
+      "ghbors_pb.proto\022\021drillbit.protobuf\"\230\002\n\024K" +
       "NeighborsClassifier\022\r\n\005dense\030\001 \001(\010\022\014\n\004di" +
-      "ms\030\002 \001(\005\022\t\n\001n\030\003 \001(\005\022\016\n\006metric\030\004 \001(\t\022\016\n\006w" +
-      "eight\030\005 \001(\t\022\021\n\talgorithm\030\006 \001(\t\022V\n\021label2" +
-      "Coordinates\030\007 \003(\0132;.drillbit.protobuf.KN" +
-      "eighborsClassifier.LabelAndCoordinates\0329" +
-      "\n\023LabelAndCoordinates\022\r\n\005label\030\001 \001(\t\022\023\n\013" +
-      "coordinates\030\002 \001(\014b\006proto3"
+      "ms\030\002 \001(\005\022\t\n\001k\030\003 \001(\005\022\027\n\017distanceOptions\030\004" +
+      " \001(\t\022\025\n\rweightOptions\030\005 \001(\t\022\025\n\rsolverOpt" +
+      "ions\030\006 \001(\t\022V\n\021label2Coordinates\030\007 \003(\0132;." +
+      "drillbit.protobuf.KNeighborsClassifier.L" +
+      "abelAndCoordinates\0329\n\023LabelAndCoordinate" +
+      "s\022\r\n\005label\030\001 \001(\t\022\023\n\013coordinates\030\002 \001(\014b\006p" +
+      "roto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -2148,7 +2149,7 @@ public final class NeighborsPb {
     internal_static_drillbit_protobuf_KNeighborsClassifier_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_drillbit_protobuf_KNeighborsClassifier_descriptor,
-        new java.lang.String[] { "Dense", "Dims", "N", "Metric", "Weight", "Algorithm", "Label2Coordinates", });
+        new java.lang.String[] { "Dense", "Dims", "K", "DistanceOptions", "WeightOptions", "SolverOptions", "Label2Coordinates", });
     internal_static_drillbit_protobuf_KNeighborsClassifier_LabelAndCoordinates_descriptor =
       internal_static_drillbit_protobuf_KNeighborsClassifier_descriptor.getNestedTypes().get(0);
     internal_static_drillbit_protobuf_KNeighborsClassifier_LabelAndCoordinates_fieldAccessorTable = new

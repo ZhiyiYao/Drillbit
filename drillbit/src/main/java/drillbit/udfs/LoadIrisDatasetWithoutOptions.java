@@ -39,12 +39,12 @@ public class LoadIrisDatasetWithoutOptions implements DrillSimpleFunc {
             dataset.processOptions("");
         }
 
-        String oneSample = dataset.loadOneSample();;
+        byte[] sampleBytes = dataset.loadOneSample().getBytes();
 
         featureAndTarget.isSet = 1;
-        featureAndTarget.buffer = buffer;
+        buffer = featureAndTarget.buffer = buffer.reallocIfNeeded(sampleBytes.length);
         featureAndTarget.start = 0;
-        featureAndTarget.end = oneSample.getBytes().length;
-        featureAndTarget.buffer.setBytes(0, oneSample.getBytes());
+        featureAndTarget.end = sampleBytes.length;
+        featureAndTarget.buffer.setBytes(0, sampleBytes);
     }
 }

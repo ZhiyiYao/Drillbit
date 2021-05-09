@@ -2,6 +2,7 @@ package drillbit.neighbors.solver;
 
 import drillbit.neighbors.distance.Distance;
 import drillbit.neighbors.utils.Score;
+import drillbit.neighbors.weight.Weight;
 import drillbit.parameter.Coordinates;
 import drillbit.utils.parser.StringParser;
 import org.apache.commons.cli.CommandLine;
@@ -32,21 +33,20 @@ public class BallTreeSolver extends Solver {
 
     @Override
     public void build(@Nonnull ArrayList<String> labels, @Nonnull ArrayList<Coordinates> coordinatesList) {
-
     }
 
     @Override
-    public int solveIndex(int k, Distance metric, double[] vec) {
+    public int solveIndex(int k, Distance metric, Weight weight, double[] vec) {
         return 0;
     }
 
     @Override
-    public String solveLabel(int k, Distance metric, double[] vec) {
+    public String solveLabel(int k, Distance metric, Weight weight, double[] vec) {
         return null;
     }
 
     @Override
-    ArrayList<Score> solveNeighbors(int k, Distance metric, double[] vec) {
+    ArrayList<Score> solveNeighbors(int k, Distance metric, Weight weight, double[] vec) {
         return null;
     }
 }

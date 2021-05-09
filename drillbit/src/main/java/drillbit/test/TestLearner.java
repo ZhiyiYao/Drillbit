@@ -1,14 +1,12 @@
 package drillbit.test;
 
 import com.google.protobuf.InvalidProtocolBufferException;
-import drillbit.Learner;
 import drillbit.classification.GeneralClassificationLearner;
 import drillbit.classification.multiclass.SoftmaxRegressionLearner;
 import drillbit.data.Dataset;
 import drillbit.data.FeatureHelper;
 import drillbit.data.IrisDataset;
-import drillbit.neighbors.KNeighborClassificationLearner;
-import org.checkerframework.checker.units.qual.A;
+import drillbit.neighbors.KNeighborsClassificationLearner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -82,11 +80,16 @@ public class TestLearner {
         dataset.loadAllSamples(featureArray, targetArray);
         Dataset.shuffle(featureArray, targetArray);
 
+        ArrayList<String> trainFeature = new ArrayList<>(featureArray.subList(0, 100));
+        ArrayList<String> trainTarget = new ArrayList<>(targetArray.subList(0, 100));
+        ArrayList<String> testFeature = new ArrayList<>(featureArray.subList(100, 150));
+        ArrayList<String> testTarget = new ArrayList<>(targetArray.subList(100, 150));
+
         SoftmaxRegressionLearner learner = new SoftmaxRegressionLearner();
-        for (int i = 0; i < featureArray.size(); i++) {
-            learner.add(FeatureHelper.addBias(FeatureHelper.addIndex(featureArray.get(i))), targetArray.get(i));
+        for (int i = 0; i < trainFeature.size(); i++) {
+            learner.add(FeatureHelper.addBias(FeatureHelper.addIndex(trainFeature.get(i))), trainTarget.get(i));
         }
-        byte[] bytes = learner.output("-dense -solver brute");
+        byte[] bytes = learner.output("-dense -iters 200");
 
         SoftmaxRegressionLearner newLearner = new SoftmaxRegressionLearner();
         try {
@@ -97,16 +100,16 @@ public class TestLearner {
         }
 
         int correct = 0;
-        for (int i = 0; i < featureArray.size(); i++) {
-            String predicted = (String) newLearner.predict(FeatureHelper.addBias(FeatureHelper.addIndex(featureArray.get(i))), "-return_proba");
-            String actual = targetArray.get(i);
+        for (int i = 0; i < testFeature.size(); i++) {
+            String predicted = (String) newLearner.predict(FeatureHelper.addBias(FeatureHelper.addIndex(testFeature.get(i))), "");
+            String actual = testTarget.get(i);
             System.out.println("predicted: " + predicted + ", actual: " + actual);
-//            if (predicted.equals(actual)) {
-//                correct++;
-//            }
+            if (predicted.equals(actual)) {
+                correct++;
+            }
         }
-//        System.out.println("corrected: " + correct);
-//        System.out.println("accuracy: " + (double) correct / featureArray.size());
+        System.out.println("corrected: " + correct);
+        System.out.println("accuracy: " + (double) correct / testFeature.size());
 
     }
 
@@ -117,13 +120,18 @@ public class TestLearner {
         dataset.loadAllSamples(featureArray, targetArray);
         Dataset.shuffle(featureArray, targetArray);
 
-        KNeighborClassificationLearner learner = new KNeighborClassificationLearner();
-        for (int i = 0; i < featureArray.size(); i++) {
-            learner.add(FeatureHelper.addBias(FeatureHelper.addIndex(featureArray.get(i))), targetArray.get(i));
-        }
-        byte[] bytes = learner.output("-dense -dims 5 -solver brute");
+        ArrayList<String> trainFeature = new ArrayList<>(featureArray.subList(0, 100));
+        ArrayList<String> trainTarget = new ArrayList<>(targetArray.subList(0, 100));
+        ArrayList<String> testFeature = new ArrayList<>(featureArray.subList(100, 150));
+        ArrayList<String> testTarget = new ArrayList<>(targetArray.subList(100, 150));
 
-        KNeighborClassificationLearner newLearner = new KNeighborClassificationLearner();
+        KNeighborsClassificationLearner learner = new KNeighborsClassificationLearner();
+        for (int i = 0; i < trainFeature.size(); i++) {
+            learner.add(FeatureHelper.addBias(FeatureHelper.addIndex(trainFeature.get(i))), trainTarget.get(i));
+        }
+        byte[] bytes = learner.output("-dense -dims 5 -k 3 -solver brute -weight inverse -distance pnorm -p 10");
+
+        KNeighborsClassificationLearner newLearner = new KNeighborsClassificationLearner();
         try {
             newLearner.fromByteArray(bytes);
         }
@@ -132,10 +140,11 @@ public class TestLearner {
         }
 
         int correct = 0;
-        for (int i = 0; i < featureArray.size(); i++) {
-            String predicted = (String) newLearner.predict(FeatureHelper.addBias(FeatureHelper.addIndex(featureArray.get(i))), "-n_neighbors 4 -metric chebyshev -solver brute");
+        for (int i = 0; i < testFeature.size(); i++) {
+            String predicted = (String) newLearner.predict(FeatureHelper.addBias(FeatureHelper.addIndex(testFeature.get(i))),
+                    "");
 //            int predicted = (int) newLearner.predict(FeatureHelper.addBias(FeatureHelper.addIndex(featureArray.get(i))), "-solver brute -return_index");
-            String actual = targetArray.get(i);
+            String actual = testTarget.get(i);
             System.out.println("predicted: " + predicted + ", actual: " + actual);
             if (predicted.equals(actual)) {
                 correct++;
@@ -143,6 +152,6 @@ public class TestLearner {
         }
 
         System.out.println("corrected: " + correct);
-        System.out.println("accuracy: " + (double) correct / featureArray.size());
+        System.out.println("accuracy: " + (double) correct / testFeature.size());
     }
 }

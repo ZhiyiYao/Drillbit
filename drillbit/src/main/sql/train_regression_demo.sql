@@ -15,7 +15,7 @@ as select
 train_softmax_regression(
     feature,
     target,
-    '-dense -iters 500 -eta0 0.1 -labels [Iris-setosa,Iris-versicolor,Iris-virginica]'
+    '-dense -iters 500 -eta0 0.1'
 )
 as model
 from dfs.tmp.`iris`;

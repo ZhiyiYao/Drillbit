@@ -1,23 +1,30 @@
 package drillbit.test;
 
 import drillbit.data.Dataset;
-import drillbit.data.FeatureHelper;
+import drillbit.data.DigitsDataset;
 import drillbit.data.IrisDataset;
 
 public class TestDataset {
     public static void main(String[] args) {
-        testFeatureHelper();
+        testIris();
+        testDigits();
     }
 
-//    public static void testIris() {
-//        Dataset dataset = new IrisDataset();
-//        dataset.processOptions("");
-//    }
+    public static void testIris() {
+        Dataset dataset = new IrisDataset();
+        dataset.processOptions("-n_samples 30");
 
-    public static void testFeatureHelper() {
-        String feature1 = FeatureHelper.addBias(FeatureHelper.addIndex("[0, 1, 3:2, 123:0.2, 2, 3, fe#123, fsd:12]"));
-        System.out.println(feature1);
-        String feature2 = FeatureHelper.addIndex(FeatureHelper.addBias("[0, 1, 2:2, 123:0.2, 2, 3, fe#123, fsd:12]"));
-        System.out.println(feature2);
+        for (int i = 0; i < 30; i++) {
+            System.out.println(dataset.loadOneSample());
+        }
+    }
+
+    public static void testDigits() {
+        Dataset dataset = new DigitsDataset();
+        dataset.processOptions("-n_samples 300");
+
+        for (int i = 0; i < 300; i++) {
+            System.out.println(dataset.loadOneSample());
+        }
     }
 }

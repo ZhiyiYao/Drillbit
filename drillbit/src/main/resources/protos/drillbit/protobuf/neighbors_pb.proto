@@ -5,10 +5,10 @@ package drillbit.protobuf;
 message KNeighborsClassifier {
   bool dense = 1;
   int32 dims = 2;
-  int32 n = 3;
-  string metric = 4;
-  string weight = 5;
-  string algorithm = 6;
+  int32 k = 3;
+  string distanceOptions = 4;
+  string weightOptions = 5;
+  string solverOptions = 6;
 
   repeated LabelAndCoordinates label2Coordinates = 7;
 
