@@ -1,23 +1,20 @@
 package drillbit.data;
 
-import drillbit.optimizer.OptimizerOptions;
 import drillbit.utils.common.Conditions;
 import drillbit.utils.parser.StringParser;
 import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
 
 import javax.annotation.Nonnull;
-import java.util.*;
+import java.util.ArrayList;
 
-public class IrisDataset implements Dataset {
+public class BostonDataset implements Dataset {
     private ArrayList<String> features;
     private ArrayList<String> targets;
 
     public boolean optionProcessed;
 
-    public IrisDataset() {
+    public BostonDataset() {
         features = new ArrayList<>();
         targets = new ArrayList<>();
         loadAllSamples(features, targets);
@@ -25,8 +22,31 @@ public class IrisDataset implements Dataset {
     }
 
     @Override
+    public String getDatasetDescription() {
+        return "Boston dataset: {\n" +
+                "   type: regression,\n" +
+                "   max_n_samples: 506,\n" +
+                "   features:[\n" +
+                "       crim,\n" +
+                "       zn,\n" +
+                "       indus,\n" +
+                "       chas,\n" +
+                "       nox,\n" +
+                "       rm,\n" +
+                "       age,\n" +
+                "       dis,\n" +
+                "       rad,\n" +
+                "       tax,\n" +
+                "       ptratio,\n" +
+                "       b,\n" +
+                "       lstat\n" +
+                "   ]\n" +
+                "}";
+    }
+
+    @Override
     public void loadAllSamples(@Nonnull ArrayList<String> featureArray, @Nonnull ArrayList<String> targetArray) {
-        String datasetString = Dataset.getRawDataset("/dataset/iris.data");
+        String datasetString = Dataset.getRawDataset("/dataset/boston.data");
         featureArray.clear();
         targetArray.clear();
         String[] rows = datasetString.split("\\n");
@@ -61,7 +81,7 @@ public class IrisDataset implements Dataset {
 
         shuffle = !cl.hasOption("not_shuffle");
 
-        final int MAX_N_SAMPLES = 150;
+        final int MAX_N_SAMPLES = 506;
         nSamples = StringParser.parseInt(cl.getOptionValue("n_samples"), MAX_N_SAMPLES);
         Conditions.checkArgument(0 <= nSamples && nSamples <= MAX_N_SAMPLES, String.format("Invalid sample number of %d", nSamples));
 
@@ -84,25 +104,5 @@ public class IrisDataset implements Dataset {
         opts.addOption("not_shuffle", false, "do not shuffle samples");
 
         return opts;
-    }
-
-    @Override
-    public String getDatasetDescription() {
-        return "Iris dataset: {\n" +
-                "   type: classification,\n"+
-                "   n_classes: 3,\n" +
-                "   max_n_samples: 150,\n" +
-                "   features: [\n" +
-                "       sepal_length,\n" +
-                "       sepal_width,\n" +
-                "       petal_length,\n" +
-                "       petal_width\n" +
-                "   ],\n" +
-                "   labels: [\n" +
-                "       Iris-setosa,\n" +
-                "       Iris-versicolor,\n" +
-                "       Iris-virginica\n" +
-                "   ]\n" +
-                "}";
     }
 }

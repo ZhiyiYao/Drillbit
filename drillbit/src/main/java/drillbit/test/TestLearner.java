@@ -3,10 +3,12 @@ package drillbit.test;
 import com.google.protobuf.InvalidProtocolBufferException;
 import drillbit.classification.GeneralClassificationLearner;
 import drillbit.classification.multiclass.SoftmaxRegressionLearner;
+import drillbit.data.BostonDataset;
 import drillbit.data.Dataset;
 import drillbit.data.FeatureHelper;
 import drillbit.data.IrisDataset;
 import drillbit.neighbors.KNeighborsClassificationLearner;
+import drillbit.regression.GeneralRegressionLearner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,60 +19,40 @@ public class TestLearner {
     public static void main(String[] args) {
 //        testShuffle();
 //        testSoftmaxRegression();
-        testKNNClassification();
+        testLinearRegression();
     }
 
-    public static void testBinaryClassification() throws InvalidProtocolBufferException {
-        String commandLine = "-iters 500 -loss logloss -regularization l2 -chk_cv";
-        GeneralClassificationLearner learner = new GeneralClassificationLearner();
-        double x, y;
-        String feature;
-        String target;
-        for (int i = 0; i < 200; i++) {
-            x = Math.random() * 2 - 3;
-            y = Math.random() - 2;
-            feature = String.format("[0:1, 1:%f, two:%f]", x, y);
-            target = "1";
-            learner.add(feature, target);
-            x = Math.random() + 3;
-            y = Math.random() * 3 + 5;
-            feature = String.format("[0:1, 1:%f, two:%f]", x, y);
-            target = "-1";
-            learner.add(feature, target);
-        }
-        byte[] learnerByte = learner.output(commandLine);
-        GeneralClassificationLearner newLearner = (GeneralClassificationLearner) (new GeneralClassificationLearner()).fromByteArray(learnerByte);
-
-        x = Math.random() * 2 - 3;
-        y = Math.random() - 2;
-
-//        System.out.println(String.format("x = %f, y = %f, result = %f", x, y, result));
-
-        x = Math.random() + 3;
-        y = Math.random() * 3 + 5;
-
-//        System.out.println(String.format("x = %f, y = %f, result = %f", x, y, result));
-    }
-
-    public static void testShuffle() {
-        ArrayList<Integer> s1 = new ArrayList<>();
-        ArrayList<Integer> s2 = new ArrayList<>();
-        Random rnd = new Random();
-        for (int i = 0; i < 10; i++) {
-            s1.add(i);
-            s2.add(i);
-        }
-        Collections.shuffle(s1, rnd);
-        Collections.shuffle(s2, rnd);
-        System.out.println(Arrays.toString(s1.toArray()));
-        System.out.println(Arrays.toString(s2.toArray()));
-    }
-
-    public static void testIris() {
+    public static void testLinearRegression() {
         ArrayList<String> featureArray = new ArrayList<>();
         ArrayList<String> targetArray = new ArrayList<>();
-        IrisDataset dataset = new IrisDataset();
+        BostonDataset dataset = new BostonDataset();
         dataset.loadAllSamples(featureArray, targetArray);
+        Dataset.shuffle(featureArray, targetArray);
+
+        ArrayList<String> trainFeature = new ArrayList<>(featureArray.subList(0, 400));
+        ArrayList<String> trainTarget = new ArrayList<>(targetArray.subList(0, 400));
+        ArrayList<String> testFeature = new ArrayList<>(featureArray.subList(400, 506));
+        ArrayList<String> testTarget = new ArrayList<>(targetArray.subList(400, 506));
+
+        GeneralRegressionLearner learner = new GeneralRegressionLearner();
+        for (int i = 0; i < trainFeature.size(); i++) {
+            learner.add(FeatureHelper.addBias(FeatureHelper.addIndex(trainFeature.get(i))), trainTarget.get(i));
+        }
+
+        byte[] bytes = learner.output("-dense -iters 1 -regularization l2 -opt sgd -loss squaredloss -eta0 0.000001");
+
+        GeneralRegressionLearner newLearner = new GeneralRegressionLearner();
+        try {
+            newLearner.fromByteArray(bytes);
+        }
+        catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < testFeature.size(); i++) {
+            double d = (double) newLearner.predict(FeatureHelper.addBias(FeatureHelper.addIndex(testFeature.get(i))), "");
+            System.out.println("predicted: " + d + ", actual: " + testTarget.get(i));
+        }
     }
 
     public static void testSoftmaxRegression() {

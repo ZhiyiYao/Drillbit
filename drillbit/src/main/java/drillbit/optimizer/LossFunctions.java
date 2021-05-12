@@ -37,26 +37,29 @@ public final class LossFunctions {
     public static LossFunction getLossFunction(@Nullable final String type) {
         if ("SquaredLoss".equalsIgnoreCase(type) || "squared".equalsIgnoreCase(type)) {
             return new SquaredLoss();
-        } else if ("QuantileLoss".equalsIgnoreCase(type) || "quantile".equalsIgnoreCase(type)) {
+        }
+        else if ("QuantileLoss".equalsIgnoreCase(type) || "quantile".equalsIgnoreCase(type)) {
             return new QuantileLoss();
-        } else if ("EpsilonInsensitiveLoss".equalsIgnoreCase(type)
-                || "epsilon_insensitive".equalsIgnoreCase(type)) {
+        }
+        else if ("EpsilonInsensitiveLoss".equalsIgnoreCase(type) || "epsilon_insensitive".equalsIgnoreCase(type)) {
             return new EpsilonInsensitiveLoss();
-        } else if ("SquaredEpsilonInsensitiveLoss".equalsIgnoreCase(type)
-                || "squared_epsilon_insensitive".equalsIgnoreCase(type)) {
+        }
+        else if ("SquaredEpsilonInsensitiveLoss".equalsIgnoreCase(type) || "squared_epsilon_insensitive".equalsIgnoreCase(type)) {
             return new SquaredEpsilonInsensitiveLoss();
-        } else if ("HuberLoss".equalsIgnoreCase(type) || "huber".equalsIgnoreCase(type)) {
+        }
+        else if ("HuberLoss".equalsIgnoreCase(type) || "huber".equalsIgnoreCase(type)) {
             return new HuberLoss();
-        } else if ("HingeLoss".equalsIgnoreCase(type) || "hinge".equalsIgnoreCase(type)) {
+        }
+        else if ("HingeLoss".equalsIgnoreCase(type) || "hinge".equalsIgnoreCase(type)) {
             return new HingeLoss();
-        } else if ("LogLoss".equalsIgnoreCase(type) || "log".equalsIgnoreCase(type)
-                || "LogisticLoss".equalsIgnoreCase(type) || "logistic".equalsIgnoreCase(type)) {
+        }
+        else if ("LogLoss".equalsIgnoreCase(type) || "log".equalsIgnoreCase(type) || "LogisticLoss".equalsIgnoreCase(type) || "logistic".equalsIgnoreCase(type)) {
             return new LogLoss();
-        } else if ("SquaredHingeLoss".equalsIgnoreCase(type)
-                || "squared_hinge".equalsIgnoreCase(type)) {
+        }
+        else if ("SquaredHingeLoss".equalsIgnoreCase(type) || "squared_hinge".equalsIgnoreCase(type)) {
             return new SquaredHingeLoss();
-        } else if ("ModifiedHuberLoss".equalsIgnoreCase(type)
-                || "modified_huber".equalsIgnoreCase(type)) {
+        }
+        else if ("ModifiedHuberLoss".equalsIgnoreCase(type) || "modified_huber".equalsIgnoreCase(type)) {
             return new ModifiedHuberLoss();
         }
         throw new IllegalArgumentException("Unsupported loss function name: " + type);
@@ -97,7 +100,7 @@ public final class LossFunctions {
          * @param y The true value (aka target)
          * @return The loss evaluated at `p` and `y`.
          */
-        public double loss(double p, double y);
+        double loss(double p, double y);
 
         /**
          * Evaluate the derivative of the loss function with respect to the prediction `p`.
@@ -106,14 +109,14 @@ public final class LossFunctions {
          * @param y The true value (aka target)
          * @return The derivative of the loss function w.r.t. `p`.
          */
-        public double dloss(double p, double y);
+        double dloss(double p, double y);
 
-        public boolean forBinaryClassification();
+        boolean forBinaryClassification();
 
-        public boolean forRegression();
+        boolean forRegression();
 
         @Nonnull
-        public LossType getType();
+        LossType getType();
 
     }
 
@@ -321,7 +324,7 @@ public final class LossFunctions {
         private double c;
 
         public HuberLoss() {
-            this(1.f); // i.e., beyond 1 standard deviation, the loss becomes linear
+            this(1.d); // i.e., beyond 1 standard deviation, the loss becomes linear
         }
 
         public HuberLoss(double c) {

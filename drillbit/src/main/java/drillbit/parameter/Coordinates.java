@@ -17,7 +17,7 @@ public abstract class Coordinates {
         Dense, Sparse
     }
 
-    public double nDim() {
+    public int nDim() {
         return ndim;
     }
 

@@ -69,7 +69,7 @@ public class DenseCoordinates extends Coordinates {
             coordinates.add(coordinate);
         }
         else {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException(String.format("Illegal negative index of %d", row));
         }
         sz = coordinates.size();
     }

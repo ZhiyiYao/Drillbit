@@ -12,17 +12,11 @@ import drillbit.utils.parser.StringParser;
 
 public class DigitsDataset implements Dataset {
 	private ArrayList<String> features;
-
 	private ArrayList<String> targets;
-
-	private int nSamples;
-	private int nClass;
 
 	public boolean optionProcessed;
 
 	public DigitsDataset() {
-		nClass= 10;
-		nSamples = 1797;
 		features = new ArrayList<>();
 		targets = new ArrayList<>();
 		loadAllSamples(features, targets);
@@ -31,7 +25,7 @@ public class DigitsDataset implements Dataset {
 
 	@Override
 	public void loadAllSamples(ArrayList<String> featureArray, ArrayList<String> targetArray) {
-		String datasetString = Dataset.getRawDataset("/dataset/digits.txt");
+		String datasetString = Dataset.getRawDataset("/dataset/digits.data");
 		featureArray.clear();
 		targetArray.clear();
 		String[] rows = datasetString.split("\\n");
@@ -61,28 +55,19 @@ public class DigitsDataset implements Dataset {
 
 	@Override
 	public void processOptions(String options) {
-		boolean shuffle = true;
+		int nSamples;
+		boolean shuffle;
 
 		CommandLine cl = parseOptions(options);
 
-		if (cl.hasOption("not_shuffle")) {
-			shuffle = false;
-		}
+		shuffle = !cl.hasOption("not_shuffle");
 
 		final int MAX_N_SAMPLES = 1798;
 		nSamples = StringParser.parseInt(cl.getOptionValue("n_samples"), MAX_N_SAMPLES);
 		Conditions.checkArgument(0 <= nSamples && nSamples <= MAX_N_SAMPLES, String.format("Invalid sample number of %d", nSamples));
 
-		if (cl.hasOption("n_class")) {
-			int nClassAssigned = StringParser.parseInt(cl.getOptionValue("n_class"), nClass);
-			Conditions.checkArgument(0 < nClassAssigned && nClassAssigned <= nClass, String.format("Invalid sample number of %d", nClassAssigned));
-			nClass = nClassAssigned;
-		}
-
-		features = new ArrayList<>();
-		targets = new ArrayList<>();
-
-		loadAllSamples(features,targets);
+		features = new ArrayList<>(features.subList(0, nSamples));
+		targets = new ArrayList<>(targets.subList(0, nSamples));
 
 		if (shuffle) {
 			Dataset.shuffle(features, targets);
@@ -97,7 +82,6 @@ public class DigitsDataset implements Dataset {
 		Options options = new Options();
 		options.addOption("n_samples", "number_of_samples", true, "assign number of samples to be generated");
 		options.addOption("not_shuffle", "not_shullfe_samples", false, "do not shuffle samples");
-		options.addOption("n_class","number_of_class",true,"assgin number of class in [0,n_class]");
 
 		return options;
 	}
@@ -106,20 +90,15 @@ public class DigitsDataset implements Dataset {
 	@Override
 	public String getDatasetDescription() {
 		return "Digit dataset: {\n" +
-				"   n_classes: 10,\n" +
-				"   max_n_samples: 1797,\n" +
-				"   labels: [\n" +
-				"		0,\n" +
-				"       1,\n" +
-				"       2,\n" +
-				"		3,\n" +
-				"		4,\n" +
-				"		5,\n" +
-				"		6,\n" +
-				"		7,\n" +
-				"		8,\n" +
-				"		9,\n" +
-				"   ]\n" +
+				"	type: classification,\n" +
+				"	n_classes: 10,\n" +
+				"	max_n_samples: 1797,\n" +
+				"	features: [\n" +
+				"		0-63\n" +
+				"	],\n" +
+				"	labels: [\n" +
+				"		0-9\n" +
+				"	]\n" +
 				"}";
 	}
 }

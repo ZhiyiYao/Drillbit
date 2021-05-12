@@ -65,13 +65,14 @@ public final class OptimizerOptions {
         if (cl == null) {
             return;
         }
+
+        ConcurrentHashMap<String, String> opts = create();
         for (Option opt : cl.getOptions()) {
             String optName = opt.getLongOpt();
             if (optName == null) {
                 optName = opt.getOpt();
             }
-            //TODO: what about putting options without values? e.g. dense option.
-            if (opt.getValue() != null) {
+            if (opts.containsKey(optName) && opt.getValue() != null) {
                 options.put(optName, opt.getValue());
             }
         }

@@ -14,7 +14,6 @@ public interface Metric {
     default CommandLine parseOptions(String optionValue) {
         String[] args = optionValue.split("\\s+");
         Options opts = getOptions();
-        OptimizerOptions.setup(opts);
         opts.addOption("help", false, "Show metric help");
 
         final CommandLine cl;

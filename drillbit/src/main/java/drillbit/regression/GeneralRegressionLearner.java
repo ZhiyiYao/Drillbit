@@ -169,7 +169,7 @@ public final class GeneralRegressionLearner extends BaseLearner {
             final double v = f.getValueAsDouble();
 
             double old_w = weights.getWeight(k);
-            if (old_w != 0.f) {
+            if (old_w != 0.d) {
                 score += (old_w * v);
             }
         }
@@ -180,7 +180,6 @@ public final class GeneralRegressionLearner extends BaseLearner {
     @Override
     public void update(@Nonnull ArrayList<FeatureValue> features, double target, double predicted) {
         optimizer.proceedStep();
-
         double loss = lossFunction.loss(predicted, target);
         cvState.incrLoss(loss); // retain cumulative loss to check convergence
         double dloss = lossFunction.dloss(predicted, target);
@@ -189,7 +188,8 @@ public final class GeneralRegressionLearner extends BaseLearner {
         }
         if (dloss < MIN_DLOSS) {
             dloss = MIN_DLOSS;
-        } else if (dloss > MAX_DLOSS) {
+        }
+        else if (dloss > MAX_DLOSS) {
             dloss = MAX_DLOSS;
         }
 
@@ -198,7 +198,9 @@ public final class GeneralRegressionLearner extends BaseLearner {
             if (sampled >= miniBatch) {
                 batchUpdate();
             }
-        } else {
+        }
+        else {
+            System.out.println(loss + " " + dloss);
             onlineUpdate(features, loss, dloss);
         }
     }
@@ -286,10 +288,7 @@ public final class GeneralRegressionLearner extends BaseLearner {
             double weight = weights.getWeight(feature);
             double gradient = dloss * xi;
             final double newWeight = optimizer.update(feature, weight, loss, gradient);
-            if (newWeight == 0.d) {
-                weights.delete(feature);
-                continue;
-            }
+            System.out.println(weight + " " + newWeight);
             weights.setWeight(feature, newWeight);
         }
     }

@@ -61,7 +61,8 @@ public abstract class Optimizers {
             double delta = computeDelta(weight, gradient);
             double eta = eta(_numStep);
             double reg = _reg.regularize(oldWeight, delta);
-            double newWeight = oldWeight - eta * reg;
+//            double newWeight = oldWeight - eta * reg;
+            double newWeight = oldWeight + eta * reg;
             weight.set(newWeight);
             return newWeight;
         }
@@ -727,7 +728,6 @@ public abstract class Optimizers {
             return TrainWeights.WeightType.WithSumOfSquaredGradientsAndSumOfGradients;
         }
 
-
         @Override
         protected double update(@Nonnull final TrainWeights.ExtendedWeight weight, final double gradient) {
             final double new_sum_grad = weight.getSumOfGradients() + gradient;
@@ -741,7 +741,8 @@ public abstract class Optimizers {
                 weight.setSumOfSquaredGradients(0.f);
                 weight.setSumOfGradients(0.f);
                 return 0.d;
-            } else {
+            }
+            else {
                 // x_{t,i} = -sign(u_{t,i}) * \frac{\eta t}{\sqrt{G_{t,ii}}}(|u_{t,i}|/t - \lambda)
                 double newWeight = -1.d * sign * _eta.eta(_numStep) * _numStep
                         * optimizerImpl.computeDelta(weight, meansOfGradients);

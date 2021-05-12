@@ -14,7 +14,7 @@ import java.util.Random;
 public interface Dataset {
     String getDatasetDescription();
 
-    void loadAllSamples(ArrayList<String> featureArray, ArrayList<String> targetArray);
+    void loadAllSamples(@Nonnull ArrayList<String> featureArray, @Nonnull ArrayList<String> targetArray);
 
     String loadOneSample();
 
@@ -47,10 +47,9 @@ public interface Dataset {
         if (features.size() != targets.size()) {
             throw new IllegalArgumentException("Size of input features and targets does not match");
         }
-        int size = features.size();
 
         Random rnd = new Random();
-        for (int i = size; i > 1; i--) {
+        for (int i = features.size(); i > 1; i--) {
             int index = rnd.nextInt(i);
             Collections.swap(features, i - 1, index);
             Collections.swap(targets, i - 1, index);
