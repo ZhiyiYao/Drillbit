@@ -12,7 +12,8 @@ public class PrettyPrinter {
                 maxRowLabelLength = row.length();
             }
         }
-        maxRowLabelLength += 1;
+        maxRowLabelLength = Math.max(maxRowLabelLength, "actual\\predicted".length());
+        maxRowLabelLength += 2;
 
         int maxColLabelLength = 0;
         for (String col : cols) {
@@ -20,30 +21,33 @@ public class PrettyPrinter {
                 maxColLabelLength = col.length();
             }
         }
-        maxColLabelLength += 1;
+        maxColLabelLength += 2;
 
         String colFormat = "|%-" + maxColLabelLength + "s";
         String eleFormat = "|%-" + maxColLabelLength + "d";
         String rowFormat = "|%-" + maxRowLabelLength + "s";
-        String seperateLine = printSeperateLine(maxColLabelLength * cols.size() + 1);
+        String seperateLine = printSeperateLine((maxColLabelLength + 1) * cols.size() + maxRowLabelLength + 2);
 
         StringBuilder builder = new StringBuilder();
         builder.append(seperateLine);
+        builder.append(String.format(rowFormat, "actual\\predicted"));
         for (String col : cols) {
             builder.append(String.format(colFormat, col));
         }
-        builder.append("\n");
+        builder.append("|\n");
         builder.append(seperateLine);
         for (String row : rows) {
             ConcurrentHashMap<String, Integer> rowMap = table.get(row);
+            builder.append(String.format(rowFormat, row));
             for (String col : cols) {
-                builder.append(String.format(eleFormat, rowMap.get(col)));
+                int count = rowMap.getOrDefault(col, 0);
+                builder.append(String.format(eleFormat, count));
             }
-            builder.append("\n");
+            builder.append("|\n");
             builder.append(seperateLine);
         }
 
-        builder.deleteCharAt(builder.length());
+        builder.deleteCharAt(builder.length() - 1);
 
         return builder.toString();
     }

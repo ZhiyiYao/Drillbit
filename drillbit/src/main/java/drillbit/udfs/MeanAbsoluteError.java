@@ -1,58 +1,69 @@
 package drillbit.udfs;
 
+import com.drew.metadata.jpeg.JpegReader;
+import io.netty.buffer.DrillBuf;
 import org.apache.drill.exec.expr.DrillAggFunc;
 import org.apache.drill.exec.expr.annotations.FunctionTemplate;
 import org.apache.drill.exec.expr.annotations.Output;
 import org.apache.drill.exec.expr.annotations.Param;
 import org.apache.drill.exec.expr.annotations.Workspace;
 import org.apache.drill.exec.expr.holders.Float8Holder;
-import org.apache.drill.exec.expr.holders.UInt8Holder;
+import org.apache.drill.exec.expr.holders.NullableVarCharHolder;
+import org.apache.drill.exec.expr.holders.ObjectHolder;
+
+import javax.inject.Inject;
 
 @FunctionTemplate(
 		name = "mae",
-		scope = FunctionTemplate.FunctionScope.SIMPLE,
-		nulls = FunctionTemplate.NullHandling.NULL_IF_NULL
+		scope = FunctionTemplate.FunctionScope.POINT_AGGREGATE,
+		nulls = FunctionTemplate.NullHandling.INTERNAL
 )
 public class MeanAbsoluteError implements DrillAggFunc {
 	@Param
-	Float8Holder yPred;
+	NullableVarCharHolder actual;
 
 	@Param
-	Float8Holder yTrue;
+	NullableVarCharHolder predicted;
 
 	@Workspace
-	UInt8Holder count;
-
-	@Workspace
-	UInt8Holder squared;
+	ObjectHolder maeHolder;
 
 	@Output
-	Float8Holder result;
+	NullableVarCharHolder result;
+
+	@Inject
+	DrillBuf buffer;
 
 	@Override
 	public void setup() {
-		count = new UInt8Holder();
-		count.value = 0;
-		squared = new UInt8Holder();
-		squared.value = 0;
+		maeHolder = new ObjectHolder();
+		maeHolder.obj = new drillbit.metrics.MeanAbsoluteError();
 	}
 
 	@Override
 	public void add() {
-		double pred_d = yPred.value;
-		double true_d = yTrue.value;
-		squared.value += Math.abs(pred_d - true_d);
-		count.value++;
+		if (actual.isSet != 1 || predicted.isSet != 1) {
+			return;
+		}
+		String actualString = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(actual.start, actual.end, actual.buffer);
+		String predictedString = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(predicted.start, predicted.end, predicted.buffer);
+		((drillbit.metrics.MeanAbsoluteError) maeHolder.obj).add(actualString, predictedString, "");
 	}
 
 	@Override
 	public void output() {
-		result.value = (squared.value) / count.value;
+		String mae = ((drillbit.metrics.MeanAbsoluteError) maeHolder.obj).output().toString();
+		byte[] maeBytes = mae.getBytes();
+
+		result.isSet = 1;
+		buffer = result.buffer = buffer.reallocIfNeeded(maeBytes.length);
+		result.start = 0;
+		result.end = maeBytes.length;
+		result.buffer.setBytes(0, maeBytes);
 	}
 
 	@Override
 	public void reset() {
-		count.value = 0;
-		squared.value = 0;
+		((drillbit.metrics.MeanAbsoluteError) maeHolder.obj).reset();
 	}
 }

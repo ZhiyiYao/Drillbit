@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package drillbit.protobuf;
+
+message Jobs {
+  repeated Job job = 1;
+
+  message Job {
+    string host = 1;
+    int64 jobID = 2;
+    string file = 3;
+    int64 batchNum = 4;
+  }
+}

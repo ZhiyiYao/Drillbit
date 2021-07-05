@@ -63,7 +63,8 @@ public class BostonDataset implements Dataset {
         if (features.size() >= 1 && targets.size() >= 1) {
             featureAndTarget += features.get(0) + ", ";
             featureAndTarget += targets.get(0) + "]";
-        } else {
+        }
+        else {
             throw new UnsupportedOperationException("No enough samples in dataset.");
         }
         features.remove(0);

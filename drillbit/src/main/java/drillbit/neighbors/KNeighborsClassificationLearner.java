@@ -334,13 +334,7 @@ public final class KNeighborsClassificationLearner extends BaseLearner {
         }
 
         ArrayList<FeatureValue> featureValues = parseFeatureList(feature);
-        Vector vector;
-        if (dense) {
-            vector = new DenseVector(dims);
-        }
-        else {
-            vector = new SparseVector(dims);
-        }
+        SparseVector vector = new SparseVector(dims);
         for (FeatureValue featureValue : featureValues) {
             if (featureValue.getFeatureType() != FeatureValue.FeatureType.NUMERICAL) {
                 throw new IllegalArgumentException();

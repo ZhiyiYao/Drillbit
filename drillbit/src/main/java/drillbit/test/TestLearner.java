@@ -7,6 +7,8 @@ import drillbit.data.BostonDataset;
 import drillbit.data.Dataset;
 import drillbit.data.FeatureHelper;
 import drillbit.data.IrisDataset;
+import drillbit.metrics.MeanAbsoluteError;
+import drillbit.metrics.MeanSquaredError;
 import drillbit.neighbors.KNeighborsClassificationLearner;
 import drillbit.regression.GeneralRegressionLearner;
 
@@ -19,10 +21,51 @@ public class TestLearner {
     public static void main(String[] args) {
 //        testShuffle();
 //        testSoftmaxRegression();
-        testLinearRegression();
+        testLinearRegression1();
     }
 
     public static void testLinearRegression() {
+        ArrayList<String> trainFeature = new ArrayList<>(),
+                testFeature = new ArrayList<>(),
+                trainTarget = new ArrayList<>(),
+                testTarget = new ArrayList<>();
+
+        for (int i = 0; i < 200; i++) {
+            double x1 = Math.random(),
+                    x2 = Math.random(), x3 = Math.random(), x4 = Math.random();
+            double y1 = 2 * x1 - x2 + Math.random() / 10;
+            double y2 = 2 * x3 - x4  + Math.random() / 10;
+
+            trainFeature.add("[0:1.0, 1:" + x1 + ", 2:" + x2 + "]");
+            trainTarget.add(Double.toString(y1));
+
+            testFeature.add("[0:1.0, 1:" + x3 + ", 2:" + x4 + "]");
+            testTarget.add(Double.toString(y2));
+        }
+
+        GeneralRegressionLearner learner = new GeneralRegressionLearner();
+        for (int i = 0; i < trainFeature.size(); i++) {
+            learner.add(FeatureHelper.addBias(FeatureHelper.addIndex(trainFeature.get(i))), trainTarget.get(i));
+        }
+
+        byte[] bytes = learner.output("-dense -iters 500 -regularization l2 -opt sgd -loss squaredloss -eta0 0.01");
+
+        GeneralRegressionLearner newLearner = new GeneralRegressionLearner();
+        try {
+            newLearner.fromByteArray(bytes);
+        }
+        catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < testFeature.size(); i++) {
+            double d = (double) newLearner.predict(FeatureHelper.addBias(FeatureHelper.addIndex(testFeature.get(i))), "");
+
+            System.out.println("predicted: " + d + ", actual: " + testTarget.get(i));
+        }
+    }
+
+    public static void testLinearRegression1() {
         ArrayList<String> featureArray = new ArrayList<>();
         ArrayList<String> targetArray = new ArrayList<>();
         BostonDataset dataset = new BostonDataset();
@@ -39,7 +82,7 @@ public class TestLearner {
             learner.add(FeatureHelper.addBias(FeatureHelper.addIndex(trainFeature.get(i))), trainTarget.get(i));
         }
 
-        byte[] bytes = learner.output("-dense -iters 1 -regularization l2 -opt sgd -loss squaredloss -eta0 0.000001");
+        byte[] bytes = learner.output("-dense -iters 100 -regularization l2 -opt sgd -loss squaredloss -eta0 0.01");
 
         GeneralRegressionLearner newLearner = new GeneralRegressionLearner();
         try {
@@ -49,10 +92,17 @@ public class TestLearner {
             e.printStackTrace();
         }
 
+        MeanSquaredError mse = new MeanSquaredError();
+        MeanAbsoluteError mae = new MeanAbsoluteError();
         for (int i = 0; i < testFeature.size(); i++) {
             double d = (double) newLearner.predict(FeatureHelper.addBias(FeatureHelper.addIndex(testFeature.get(i))), "");
+            mse.add(testTarget.get(i), Double.toString(d), "");
+            mae.add(testTarget.get(i), Double.toString(d), "");
             System.out.println("predicted: " + d + ", actual: " + testTarget.get(i));
         }
+
+        System.out.println("mae: " + mae.output());
+        System.out.println("mse: " + mse.output());
     }
 
     public static void testSoftmaxRegression() {

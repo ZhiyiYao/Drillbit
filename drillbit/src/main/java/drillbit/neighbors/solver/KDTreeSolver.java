@@ -60,6 +60,7 @@ public class KDTreeSolver extends Solver {
 	public class KDTree {
 		private Coordinates coordinates;
 		private ArrayList<Counter> counters;
+		private ArrayList<String> labels;
 		private ArrayList<Score> scores;
 		private Node root;
 		private int dim;
@@ -69,7 +70,6 @@ public class KDTreeSolver extends Solver {
 			double maxnum = 0;
 
 			scores = new ArrayList<>();
-			reset();
 			recurve(root, k, distance, x);
 
 			for (int i = 0; i < k; i++) {
@@ -101,7 +101,7 @@ public class KDTreeSolver extends Solver {
 				Score score = new Score(Integer.toString(node.getLabel()), dist, node.getCoordinate());
 
 				for (int i = 0; i < k; i++) {
-					if (scores.size() < i + 1) {
+					if (scores.size() < i+1) {
 						scores.add(score);
 						break;
 					}
@@ -114,7 +114,7 @@ public class KDTreeSolver extends Solver {
 					}
 				}
 
-				if (scores.get(scores.size() - 1).getDistance() > Math.abs(dSplit)) {
+				if (scores.get(scores.size() - 1).getDistance() > Math.abs(dSplit)||scores.size()<k) {
 					if (dSplit < 0)
 						recurve(node.getRight(), k, distance, x);
 					else
@@ -127,14 +127,16 @@ public class KDTreeSolver extends Solver {
 			assert coordinatesList != null && labels != null && coordinatesList.size() == labels.size();
 
 			dim = coordinatesList.get(0).nDim();
-			counters = new ArrayList<>();
-			coordinates = new DenseCoordinates(2 * dim + 1);
+			this.labels = labels;
 
+			counters = new ArrayList<>();
 			for (String label : labels) {
-				Counter counter = new Counter(label);
-				counters.add(counter);
+				counters.add(new Counter(label));
 			}
 
+			scores = new ArrayList<>();
+
+			coordinates = new DenseCoordinates(2 * dim + 1);
 			for (int i = 0; i < coordinatesList.size(); i++) {
 				for (int j = 0; j < dim; j++) {
 					double[] extendedCoordinate = new double[dim*2+1];
@@ -165,33 +167,35 @@ public class KDTreeSolver extends Solver {
 			node.setCoordinate(coordinate);
 			node.setLabel(label);
 			node.setSplit(split);
-			node.setLeft(build(coordinates, 0, (begin + end) / 2));
+			node.setLeft(build(coordinates, begin, (begin + end) / 2));
 			node.setRight(build(coordinates, (begin + end) / 2 + 1, end));
 
 			return node;
 		}
 
 		public void reset() {
-			if (scores != null) {
-				scores.clear();
-			}
-			else {
+			if (scores == null) {
 				scores = new ArrayList<>();
 			}
+			scores.clear();
 
-			if (counters != null) {
-				for (int i = 0; i < counters.size(); i++) {
-					Counter counter = new Counter(counters.get(i).getLabel());
-					counters.set(i, counter);
+			if (counters == null) {
+				counters = new ArrayList<>();
+				for (String label : labels) {
+					counters.add(new Counter(label));
 				}
 			}
 			else {
-				counters = new ArrayList<>();
+				counters.clear();
+				for (String label : labels) {
+					counters.add(new Counter(label));
+				}
 			}
 		}
 
 		private int getSplit(Coordinates coordinates, int begin, int end) {
 			int split = 0;
+			double vs=0;
 
 			for (int j = 0; j < dim; j++) {
 				double v = 0;
@@ -203,7 +207,9 @@ public class KDTreeSolver extends Solver {
 					s += coordinate[j];
 				}
 				v -= s * s;
-				split = split > v ? split : j;
+				v = -v;
+				split = vs > v ? split : j;
+				vs = split == j ? v : vs;
 			}
 
 			quickSort(coordinates, begin, end - 1, split);
@@ -222,7 +228,7 @@ public class KDTreeSolver extends Solver {
 				int pos = low;
 				double[] pivot = coordinates.get(pos), temp;
 				for (int i = low + 1; i <= high; i++) {
-					if (coordinates.get(i)[dim] > pivot[dim]) {
+					if (coordinates.get(i)[dim] < pivot[dim]) {
 						pos++;
 						temp = coordinates.get(pos);
 						coordinates.set(pos, coordinates.get(i));

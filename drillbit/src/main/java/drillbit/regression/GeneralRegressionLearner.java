@@ -156,7 +156,7 @@ public final class GeneralRegressionLearner extends BaseLearner {
     @Override
     final public Object predict(@Nonnull String features, @Nonnull String options) {
         // Options unused.
-        return predict(parseFeatureList(features));
+        return Double.toString(predict(parseFeatureList(features)));
     }
 
     final public double predict(@Nonnull ArrayList<FeatureValue> features) {
@@ -168,10 +168,8 @@ public final class GeneralRegressionLearner extends BaseLearner {
             final Object k = f.getFeature();
             final double v = f.getValueAsDouble();
 
-            double old_w = weights.getWeight(k);
-            if (old_w != 0.d) {
-                score += (old_w * v);
-            }
+            double w = weights.getWeight(k);
+            score += w * v;
         }
 
         return score;
@@ -200,7 +198,7 @@ public final class GeneralRegressionLearner extends BaseLearner {
             }
         }
         else {
-            System.out.println(loss + " " + dloss);
+//            System.out.println(loss + " " + dloss);
             onlineUpdate(features, loss, dloss);
         }
     }
@@ -265,17 +263,16 @@ public final class GeneralRegressionLearner extends BaseLearner {
             Object feature = f.getFeature();
             double xi = f.getValueAsDouble();
             double weight = weights.getWeight(feature);
-
             double gradient = dloss * xi;
-            double new_weight = optimizer.update(feature, weight, loss, gradient);
+            double newWeight = optimizer.update(feature, weight, loss, gradient);
 
             assert accumulated != null;
             DoubleAccumulator acc = accumulated.get(feature);
             if (acc == null) {
-                acc = new DoubleAccumulator(new_weight);
+                acc = new DoubleAccumulator(newWeight);
                 accumulated.put(feature, acc);
             } else {
-                acc.add(new_weight);
+                acc.add(newWeight);
             }
         }
         sampled++;
@@ -288,7 +285,7 @@ public final class GeneralRegressionLearner extends BaseLearner {
             double weight = weights.getWeight(feature);
             double gradient = dloss * xi;
             final double newWeight = optimizer.update(feature, weight, loss, gradient);
-            System.out.println(weight + " " + newWeight);
+//            System.out.println(weight + " " + newWeight);
             weights.setWeight(feature, newWeight);
         }
     }

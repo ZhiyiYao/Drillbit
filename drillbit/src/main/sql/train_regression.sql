@@ -1,4 +1,8 @@
-create table dfs.tmp.`general_regression_model` (model) as select
+set `planner.enable_nljoin_for_scalar_only` = false;
+
+drop table dfs.tmp.`regression_model`;
+
+create table dfs.tmp.`regression_model` (model) as select
 train_regression(
     feature,
     target,
@@ -18,7 +22,7 @@ train_softmax_regression(
     '-dense -iters 500 -eta0 0.1'
 )
 as model
-from dfs.tmp.`iris`;
+from dfs.tmp.`iris_train`;
 
 drop table dfs.tmp.`iris_model_predicted`;
 
@@ -35,7 +39,7 @@ practice_softmax_regression(
     model.model,
     '-return_proba'
 ) as probability
-from dfs.tmp.`iris` dataset
+from dfs.tmp.`iris_test` dataset
 cross join dfs.tmp.`iris_model` model;
 
 select acc(

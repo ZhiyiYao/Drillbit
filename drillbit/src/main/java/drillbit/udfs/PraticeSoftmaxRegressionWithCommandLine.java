@@ -58,11 +58,12 @@ public class PraticeSoftmaxRegressionWithCommandLine implements DrillSimpleFunc 
 
         String feature = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(featureHolder.start, featureHolder.end, featureHolder.buffer);
         String predicted = (String) ((drillbit.classification.multiclass.SoftmaxRegressionLearner) learnerHolder.obj).predict(feature, org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(commandLineHolder.start, commandLineHolder.end, commandLineHolder.buffer));
+        byte[] predictedBytes = predicted.getBytes();
 
         resultHolder.isSet = 1;
-        resultHolder.buffer = buffer;
+        buffer = resultHolder.buffer = buffer.reallocIfNeeded(predictedBytes.length);
         resultHolder.start = 0;
-        resultHolder.end = predicted.getBytes().length;
-        resultHolder.buffer.setBytes(0, predicted.getBytes());
+        resultHolder.end = predictedBytes.length;
+        resultHolder.buffer.setBytes(0, predictedBytes);
     }
 }

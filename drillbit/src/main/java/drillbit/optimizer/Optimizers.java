@@ -61,8 +61,8 @@ public abstract class Optimizers {
             double delta = computeDelta(weight, gradient);
             double eta = eta(_numStep);
             double reg = _reg.regularize(oldWeight, delta);
-//            double newWeight = oldWeight - eta * reg;
-            double newWeight = oldWeight + eta * reg;
+            double newWeight = oldWeight - eta * reg;
+//            double newWeight = oldWeight + eta * reg;
             weight.set(newWeight);
             return newWeight;
         }

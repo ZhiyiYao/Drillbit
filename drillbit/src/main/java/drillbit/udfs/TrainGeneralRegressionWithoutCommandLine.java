@@ -12,7 +12,7 @@ import org.apache.drill.exec.expr.holders.ObjectHolder;
 import javax.inject.Inject;
 
 @FunctionTemplate(
-        name = "train_regression",
+        name = "train_general_regression",
         scope = FunctionTemplate.FunctionScope.POINT_AGGREGATE,
         nulls = FunctionTemplate.NullHandling.INTERNAL
 )
@@ -52,11 +52,11 @@ public class TrainGeneralRegressionWithoutCommandLine implements DrillAggFunc {
     public void output() {
         byte[] modelBytes = ((drillbit.regression.GeneralRegressionLearner) learnerHolder.obj).output("");
 
+        modelHolder.isSet = 1;
         buffer = modelHolder.buffer = buffer.reallocIfNeeded(modelBytes.length);
         modelHolder.start = 0;
         modelHolder.end = modelBytes.length;
         modelHolder.buffer.setBytes(0, modelBytes);
-        modelHolder.isSet = 1;
     }
 
     @Override

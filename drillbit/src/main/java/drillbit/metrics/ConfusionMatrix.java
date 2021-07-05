@@ -8,6 +8,7 @@ import org.apache.commons.cli.Options;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ConfusionMatrix implements Metric {
@@ -17,6 +18,7 @@ public class ConfusionMatrix implements Metric {
     boolean optionProcessed;
 
     public ConfusionMatrix() {
+        optionProcessed = false;
     }
 
     @Override
@@ -44,6 +46,9 @@ public class ConfusionMatrix implements Metric {
             optionProcessed = true;
         }
 
+        actual = actual.trim();
+        predicted = predicted.trim();
+
         if (getLabelIndex(actual) == -1) {
             labels.add(actual);
             confusionMatrix.put(actual, new ConcurrentHashMap<>());
@@ -54,7 +59,7 @@ public class ConfusionMatrix implements Metric {
         }
 
         ConcurrentHashMap<String, Integer> counts = confusionMatrix.get(actual);
-        counts.put(predicted, counts.get(predicted) + 1);
+        counts.put(predicted, counts.getOrDefault(predicted, 0) + 1);
         confusionMatrix.put(actual, counts);
     }
 

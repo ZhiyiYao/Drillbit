@@ -36,12 +36,13 @@ public class ExtractTargetFromFeatureAndTarget implements DrillSimpleFunc {
     @Override
     public void eval() {
         String featureAndTargetString = org.apache.drill.exec.expr.fn.impl.StringFunctionHelpers.toStringFromUTF8(featureAndTarget.start, featureAndTarget.end, featureAndTarget.buffer);
-        String featureValue = helper.extractTarget(featureAndTargetString);
+        String featureTarget = helper.extractTarget(featureAndTargetString);
+        byte[] featureTargetBytes = featureTarget.getBytes();
 
         feature.isSet = 1;
-        feature.buffer = buffer;
+        buffer = feature.buffer = buffer.reallocIfNeeded(featureTargetBytes.length);
         feature.start = 0;
-        feature.end = featureValue.getBytes().length;
-        feature.buffer.setBytes(0, featureValue.getBytes());
+        feature.end = featureTargetBytes.length;
+        feature.buffer.setBytes(0, featureTargetBytes);
     }
 }
