@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package drillbit.protobuf;
+
+message NeuralNetwork {
+  bool regression = 1;
+  bytes model = 2;
+  int32 dims = 4;
+  repeated string labels = 3;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package drillbit.protobuf;
+
+message SyncWeightsArray {
+  repeated bytes weights = 1;
+}
+
+message SyncAccumulation {
+  repeated LabelAndWeights label2Weights = 3;
+
+  message LabelAndWeights {
+    string label = 1;
+    bytes weights = 2;
+  }
+}
